@@ -377,7 +377,9 @@ textarea.line-ta{min-height:0;max-width:22em;overflow-y:hidden;resize:none;line-
     <nav class="nav" id="nav"></nav>
     <div class="savebar">
       <span class="dot" id="savedot"></span><span id="savetxt">自動保存 有効</span>
-      <button class="btn sm" id="dlbtn" data-act="download" title="プロジェクトをJSONファイルに保存（端末にダウンロード）" style="margin-left:8px">⬇ 保存</button>
+      <button class="btn sm" id="gsavebtn" data-act="cloudsave" title="プロジェクトをGistへ保存" style="margin-left:8px">⬆ Gist保存</button>
+      <button class="btn sm" id="gloadbtn" data-act="cloudload" title="Gistから読み込み">⬇ 読込</button>
+      <span id="hdrMsg" style="font-size:11px;color:var(--ember-soft,#caa24a);margin-left:6px;max-width:240px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap"></span>
       <div class="themeswitch" id="themeswitch">
         <button data-act="theme" data-mode="dark" title="夜・低輝度（暖色）">冥</button>
         <button data-act="theme" data-mode="light" title="昼・高輝度（暖色紙）">昼</button>
@@ -471,6 +473,21 @@ function epColor(i){return EP_PAL[i%EP_PAL.length];}
 
 /* ============================ 保存 ============================ */
 const KEY='abyss_meisou_studio_v2';
+const HIST_KEY='abyss_history', HIST_MAX=6;
+function histLoad(){try{if(!hasLS)return[];return JSON.parse(window.localStorage.getItem(HIST_KEY)||'[]')||[];}catch(e){return[];}}
+function histSave(arr){try{if(hasLS)window.localStorage.setItem(HIST_KEY,JSON.stringify(arr.slice(0,HIST_MAX)));}catch(e){}}
+function snapshot(label){try{const arr=histLoad();arr.unshift({t:Date.now(),ver:(state&&state.tutDocVer)||0,label:label||'',data:JSON.stringify(state)});histSave(arr);}catch(e){}}
+function restoreSnapshot(i){
+  const arr=histLoad(); if(i<0||i>=arr.length)return;
+  const snap=arr[i];
+  const okc=(typeof window!=='undefined'&&window.confirm)?window.confirm('この履歴（'+new Date(snap.t).toLocaleString()+(snap.label?'／'+snap.label:'')+'）の状態に戻します。\n現在の内容は「復元前」として履歴に退避されます。続けますか？'):true;
+  if(!okc)return;
+  snapshot('復元前');
+  const ok=importFromText(snap.data);
+  if(ok){cloudMsg('履歴から復元しました（'+new Date(snap.t).toLocaleString()+'）。');}
+  else{cloudMsg('履歴の復元に失敗しました。');}
+  if(route==='data')render();
+}
 let memFallback=null;
 const hasStore=(typeof window!=='undefined'&&window.storage&&typeof window.storage.get==='function');
 // localStorage は、ダウンロードした単体HTMLを端末のブラウザで直接開いた場合の永続化先。
@@ -493,17 +510,17 @@ async function loadProject(){
   return memFallback;
 }
 let saveTimer=null, lastSaveOK=false;
-// 保存インジケータ：このアプリ環境では再起動でストレージが揮発するため、
-// 「ファイル保存（ダウンロード）こそが確実な保存」であることを前提に、未保存=要ダウンロードを表示する。
+// 保存インジケータ：DIRTY=「最後のGist保存以降に編集あり」。localStorage自動保存は別途常時動作。
+// クラウド正本＝Gist のため、未保存時は「Gist保存を」と促す。
 function updateSaveUI(){
-  const d=document.getElementById('savedot'), tx=document.getElementById('savetxt'), b=document.getElementById('dlbtn');
+  const d=document.getElementById('savedot'), tx=document.getElementById('savetxt'), b=document.getElementById('gsavebtn');
   if(DIRTY){
     if(d){d.classList.add('saving');}
-    if(tx){tx.textContent='未保存 — 保存推奨';}
+    if(tx){tx.textContent='未保存 — Gist保存を';}
     if(b){b.classList.add('pri');}
   }else{
     if(d){d.classList.remove('saving');}
-    if(tx){tx.textContent='保存済み（ファイル）';}
+    if(tx){tx.textContent='Gist保存済み';}
     if(b){b.classList.remove('pri');}
   }
 }
@@ -932,7 +949,7 @@ function seed(){
 /* ============================ チュートリアル（第0話）シナリオ ============================ */
 const TUT_TRICK='【鍵と扉】客室の錠は内外とも“鍵でしか”施解錠できないデッドボルトで（内側のつまみ無し）、鍵はこの2本のみ。普段はボディガードが扉前を固めるため被害者は施錠せず、扉は閉まっていても無施錠で、就寝時にだけ自分の鍵Aで施錠する習慣だった。\n\n【最大の謎】施錠された室内に、チョコのついた“もう1本の鍵”が落ちていた。鍵は2本——被害者の部屋の鍵（鍵A）と、ボディガードが持つ予備（鍵B）のみ。ゆえに自殺か内部犯行に見え、終始扉前にいたボディガードが最有力に映る。真相は、鍵Aが「犯行の後に」チョコで包まれて室内へ運び込まれた時間差トリックである。\n\n【下準備】犯人＝メイドは客室係として日頃から被害者の部屋と愛犬の世話に出入りしており（20時の清掃もその一環＝カメラ記録は「20時メイド入室」のみ）、扉の錠の仕組み・鍵Aの定位置・犬の習性を熟知していた。\n\n【犯行】ダイニングで始まった停電は、長いトンネル内で復旧が進まないうえ、乗務員のメイドが配電に細工して引き延ばしたため、20時台後半から23時のトンネル脱出まで監視カメラの停止と暗闇が続いた。ボディガードは21時まで持ち場を守り扉越しに生存を確認するが、停電が長引く中「トンネルに閉じた車内なら外部の脅威はない」と判断し、車掌の要請で先頭車の復旧対応へ向かう——メイドが狙ったのは、この“扉前が無人になる空白”である。被害者は護衛を頼り就寝するまで施錠しない習慣で、その前に殺された。メイドは暗闇の中、無施錠の扉から入室して撲殺し、室内の定位置にあった鍵Aを抜き取り、退室して鍵Aで外から施錠する。鍵は施錠に“裸”のまま使う必要があるため、この時点で鍵Aはメイドの手元、鍵Bはボディガード——室内に鍵のない、まだ不完全な密室。\n\n【密室の完成（時間差）】扉を施錠した後で、メイドはチョコレート製造機（誰でも短時間で作れる）を使い、役目を終えた鍵Aを丸ごとチョコで包んで成形する。被害者の愛犬には“チョコを咥えてもその場では口にせず、必ず自分の寝床＝被害者の部屋へ運んでから舐めとる”という習性があった。23時、ボディガードは日課で犬を部屋へ入れる。停電後に扉が施錠されていても、彼は「怯えた被害者が就寝前に自分で施錠した」と自然に受け取り、鍵Bで解錠→犬を入れ→鍵Bで再施錠する（暗がりのため室内へは入らず、異変にも気づかない＝カメラにも入室は映らない）。犬の世話をするメイドが直前に与えた“鍵A入りチョコ”を、犬は寝床へ運んで食べ尽くす。床に食べかすや包みは残らない一方、金属の鍵Aの溝にはチョコの跡がわずかに残る——これが唯一の綻びにして決定的な手がかりとなる。こうして犯行の後から、密室が“ひとりでに”完成する。\n\n【驚きとカタルシスの核】凶器ならぬ“鍵”を室内へ運んだのは、被害者が誰より愛した飼い犬だった。犯人は人を介さず、被害者自身の「愛犬への情」と「犬の習性」を利用して密室を仕立てる。最有力に見えたボディガードはむしろ「鍵を室内へ戻す扉を開けた」無自覚の協力者にされており、疑いの矢印が一八〇度反転する。';
 const TUT_LOGIC='※チュートリアルとして「手がかりを組み合わせる→意外な事実が反転する→最後の一点で犯人が確定する」快感を順に体験させる構成。\n\n① 提示される“不可能”：施錠された密室。鍵は室内（鍵A）とボディガードの予備（鍵B）の2本のみ。プレイヤーはまず「鍵Bを持ち扉前にいたボディガードが怪しい」とミスリードされる。\n② 一度目の反転：監視カメラはボディガードが室内へ入っていないと示す。最有力が崩れ、「では誰がどうやって密室を？」と謎が深まる。\n③ 鍵の正体（合成1→合成2）：『チョコのついた鍵』＋『チョコ製造機（誰でも作れる）』→「鍵はチョコに包まれていた」。さらに＋『犬は自室で痕跡なくチョコを完食する習性』→「鍵入りチョコを犬が室内へ運んだ」。“鍵は最初から室内にあった”という前提が覆る最大の驚き＝密室は犯行の後から作れる。\n④ 犯行時刻（合成3）：21時の会話で被害者は生存。カメラに出入りはなく、長く続いた停電の暗闇だけが空白。しかもその間ボディガードは離席＝扉前は無人。→「犯行時刻は21〜23時（停電中〜トンネル脱出）」。鉄壁に見えた監視に穴が空く二度目の反転。\n⑤ 絞り込み（合成4）：トリックの実行条件は『製造機を使える』×『犯行時刻にアリバイがない』。前者は4名（ウェイター・メイド・ボディガード・その他客）、後者は2名（メイド・その他客）→重なるのはメイドとその他客。\n⑥ 最後の一点＝確定とカタルシス（合成5）：その他客は偶然乗り合わせた客で、被害者の飼い犬が“自室でチョコを完食する習性”を知り得ない。この密室は犬の習性を熟知する者にしか作れない——日々客室に出入りし犬を見ていたメイドだけが該当する。被害者が最も信頼し愛した日常（愛犬・客室係）の只中に犯人がいた、という反転で幕が下りる。';
-const TUT_DOC_VER=30;
+const TUT_DOC_VER=35;
 const OFFICE_TRICK='カップすり替え毒殺の二段構え。茶器は配膳直前まで施錠棚（ココ管理）にあり安全。ノエルは「席順の都合」を口実に配膳後のカップを配り直し、その手の中でレイの席の杯に毒を仕込んだ（袖の銀鈴が一瞬鳴る）。狙いは新入りレイの抹消。だが元・王の毒見役アールが香りの違和に気づき、何も言わず自分の杯と取り替えて飲み干す——身代わりの殉職。さらにノエルは事前にアカシックレコードへ「犯人＝レイ」と書き込んでおり（インクの乾き＝事前改竄の痕）、毒殺と冤罪を同時に成立させる計画だった。';
 const OFFICE_LOGIC='①茶器は直前まで施錠棚＝毒の仕込みは「配膳後」に限定 ②配り直しの瞬間だけ鈴の音＋猫がノエルの足元だけを威嚇＝すり替えの手はノエル ③席札上、毒杯は本来レイの席＋アールの毒見の所作＝狙いはレイ、アールは身代わり ④「犯人レイ」の記録はインクが事件前に乾いている＝事前改竄 ⑤記録に触れられるのは記録の代理人のみ＝ノエルで確定。動機はキャロルによる新入り抹消の指令。';
 function officeEpisode(){
@@ -1468,21 +1485,26 @@ function trainEpisode(){
       {id:uid(),type:'line',windows:[{id:uid(),charId:C.victim,text:'（アメール……\nいつも通りの、\n優しい声）'}]},
       {id:uid(),type:'dir',text:'不審な客が、無言で目を逸らす。',media:[]},
       {id:uid(),type:'dir',text:'突如、車内が真っ暗に。停電。悲鳴とパニック。',media:[]},
-      {id:uid(),type:'line',windows:[{id:uid(),charId:SUB,text:'来た。20時の停電。'},{id:uid(),charId:REI,text:'暗闇の中じゃ\n誰も、誰の動きも\n見えない。'},{id:uid(),charId:C.victim,text:'きゃっ……！\nだ、誰かの足音が——'}]},
+      {id:uid(),type:'line',windows:[{id:uid(),charId:SUB,text:'来た。20時の停電。'},{id:uid(),charId:C.victim,text:'きゃっ……！\n何も見えない……！'},{id:uid(),charId:REI,text:'（この闇……\n妙に、気になるな）'}]},
       {id:uid(),type:'event',ev:'推理カード獲得',text:'全身コート＋サングラスの不審な客／20時に停電し車内が真っ暗に',media:[]},
-      {id:uid(),type:'event',ev:'場面転換',text:'停電パニック。"前"の観測は一区切り——時刻メーターはAM4:00へ（→自分の死の観測）。',media:[]},
+      {id:uid(),type:'event',ev:'場面転換',text:'停電のパニックで"前"の観測はひとまず一区切り。だがレイは、この停電に引っかかりを覚える——もう一度、20時の闇を詳しく観測することにする。',media:[]},
     ]},
   );
   E.scenes.push(
-    {id:uid(),title:'第4幕：AM4:00——自分の死を観測する',beatKey:'midpoint',summary:'レイ、自分が殺される瞬間を幽体として目撃。事件の意味が反転する',blocks:[
-      {id:uid(),type:'note',text:'【演出意図】物語の折返し。旧コールドオープン用に設計した3カット（衝撃→散る光→崩れる影）をここで初使用する。犬の遠吠え・琥珀の灯。すずは「死を見る」ことの痛みを引き受け、シエルが二人を支える。',media:[]},
-      {id:uid(),type:'event',ev:'時系列移動',text:'時刻メーターをAM4:00へ。無人の通路。ランプの灯りが規則正しく流れる。',media:[]},
-      {id:uid(),type:'dir',text:'通路の先に——考え事をしながら歩く、生前の自分がいる。',media:[]},
-      {id:uid(),type:'line',windows:[{id:uid(),charId:REI,text:'……俺だ。'},{id:uid(),charId:C.victim,text:'探偵さん、あれって——'},{id:uid(),charId:SUB,text:'……見るのね？'},{id:uid(),charId:REI,text:'ああ。\n現物しか、\n信じない主義だ。'}]},
-      {id:uid(),type:'event',ev:'カメラ演出',text:'衝撃→散る光→崩れ落ちる影の3カット。遠くで犬の遠吠え。琥珀色の灯が滲む。襲撃者の顔は、ここでも見えない。',media:[]},
-      {id:uid(),type:'line',windows:[{id:uid(),charId:C.victim,text:'……っ。'},{id:uid(),charId:REI,text:'（これが、俺の死か。\n——悪くない顔で\n死んでるな、俺）'},{id:uid(),charId:SUB,text:'強がり。\n手、震えてる。'},{id:uid(),charId:REI,text:'……武者震いだ。'}]},
-      {id:uid(),type:'line',windows:[{id:uid(),charId:REI,text:'靴音は一人分。\n凶器は鈍器。\n——背は、高くない。'},{id:uid(),charId:SUB,text:'観測、続けるよ。\n翌朝の発覚まで\n一気に行こう。'}]},
-      {id:uid(),type:'event',ev:'推理カード獲得',text:'「レイ殺害の状況（単独犯・鈍器・小柄）」※自分の死すら推理ピースにする探偵の覚悟＝キャラクター提示。',media:[]},
+    {id:uid(),title:'第4幕：20時の闇——常識が、覆る',beatKey:'midpoint',summary:'停電の瞬間を再観測。「停電中こそ犯行」の常識を、レイの観察眼が覆す',blocks:[
+      {id:uid(),type:'note',text:'【演出意図】物語の折返し（ミッドポイント）。レイの死には踏み込まず、純粋にすず事件の推理に集中させる。直前の14番で「停電が起きた」事実を提示済み。ここでは停電を詳細に再観測し、"停電中こそ犯行のチャンス"という全員（とプレイヤー）の思い込みを、レイの観察眼が反証する——中盤最大の「常識が覆る」快感を置く。',media:[]},
+      {id:uid(),type:'event',ev:'時系列移動',text:'時刻メーターを、もう一度20:00の停電へ。今度は、闇の中の一部始終をつぶさに観測する。',media:[]},
+      {id:uid(),type:'dir',text:'照明が落ちる。完全な闇。悲鳴、椅子の倒れる音、入り乱れる足音。',media:[]},
+      {id:uid(),type:'line',windows:[{id:uid(),charId:SUB,text:'停電のドサクサ。'},{id:uid(),charId:SUB,text:'犯人が動くなら、\nここよね。'},{id:uid(),charId:REI,text:'みんな、そう思う。\n——だが、待て。'}]},
+      {id:uid(),type:'dir',text:'レイが闇の中で目を凝らす。だが、何も見えない。本当に、何も。',media:[]},
+      {id:uid(),type:'line',windows:[{id:uid(),charId:REI,text:'真っ暗で、自分の\n手すら見えない。'},{id:uid(),charId:REI,text:'この暗さで人を探し、\n確実に殺せると\n思うか？'}]},
+      {id:uid(),type:'line',windows:[{id:uid(),charId:SUB,text:'……むしろ、\n何もできない。'},{id:uid(),charId:C.victim,text:'そういえば、みんな\nその場で固まって\nいました……'}]},
+      {id:uid(),type:'event',ev:'ツッコミポイント',text:'「停電中＝犯行のチャンス」という思い込みの反証。真っ暗では誰も正確に動けず、犯行にはむしろ不向き。停電のアリバイは意味をなさない。',media:[]},
+      {id:uid(),type:'line',windows:[{id:uid(),charId:REI,text:'停電は、犯行の\n時間じゃない。'},{id:uid(),charId:REI,text:'本当の犯行は——\n明かりが戻った\n後だ。'}]},
+      {id:uid(),type:'dir',text:'すずが、息を呑む。自分の事件の輪郭が、初めて少しだけ見えた気がした。',media:[]},
+      {id:uid(),type:'line',windows:[{id:uid(),charId:C.victim,text:'じゃあ、わたしが\n襲われたのは……'},{id:uid(),charId:SUB,text:'停電の後。\n21時から23時の、\nどこか。'}]},
+      {id:uid(),type:'event',ev:'推理カード獲得',text:'仮説「停電中は犯行不可能（暗闇では動けない）」／仮説「真の犯行時刻は停電復旧後＝21〜23時」',media:[]},
+      {id:uid(),type:'line',windows:[{id:uid(),charId:REI,text:'容疑は、\n振り出しだ。'},{id:uid(),charId:REI,text:'停電のアリバイは、\nもう通用しない。'}]},
     ]},
     {id:uid(),title:'推理編：翌7時 事件発覚（全車両）',beatKey:'midpoint',summary:'すず、自分の事件発覚と向き合う。監視カメラの入室記録とアリバイ',blocks:[
       {id:uid(),type:'note',text:'【演出意図】感情ビート：すずが発覚の朝＝自分の死の現場を直視するか選ぶ。シエルは逃げ道を作り、すずは自分の意思で見る（依頼人の成長）。ここから捜査は記録と現物の照合戦へ。',media:[]},
@@ -1626,6 +1648,49 @@ function ghSaveToken(tok){GH_TOKEN=tok||'';try{if(hasLS){if(GH_TOKEN)window.loca
 async function ghLoadTokenAsync(){ghLoadToken();if(!GH_TOKEN&&hasStore){try{const r=await window.storage.get(GHKEY);if(r&&r.value)GH_TOKEN=r.value;}catch(e){}}}
 const GIST_FILENAME='abyss_project.json';
 function ghHeaders(){return {'Accept':'application/vnd.github+json','Authorization':'Bearer '+GH_TOKEN,'X-GitHub-Api-Version':'2022-11-28','Content-Type':'application/json'};}
+// ===== GitHub リポジトリの project.json 連携（Gistと別。コミット履歴が残る／AI連携の正本）=====
+const REPO_DEF={owner:'yoyo0810',repo:'abyss-studio',path:'project.json',branch:'main'};
+function repoCfg(){const c=(state&&state.cloud&&state.cloud.repo)||{};return {owner:c.owner||REPO_DEF.owner,repo:c.repo||REPO_DEF.repo,path:c.path||REPO_DEF.path,branch:c.branch||REPO_DEF.branch};}
+function b64EncodeUtf8(str){return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g,function(_,h){return String.fromCharCode(parseInt(h,16));}));}
+function b64DecodeUtf8(b64){return decodeURIComponent(Array.prototype.map.call(atob(String(b64).replace(/\n/g,'')),function(c){return '%'+('00'+c.charCodeAt(0).toString(16)).slice(-2);}).join(''));}
+async function ghGetRepoFile(){
+  const c=repoCfg();
+  const url='https://api.github.com/repos/'+c.owner+'/'+c.repo+'/contents/'+encodeURIComponent(c.path)+'?ref='+encodeURIComponent(c.branch);
+  const r=await fetch(url,{headers:ghHeaders()});
+  if(r.status===404)return {sha:null,content:null};
+  if(!r.ok)throw new Error('get '+r.status+(r.status===401?'（トークン無効）':r.status===403?'（権限なし：repoスコープ付きトークンが必要）':''));
+  const j=await r.json(); return {sha:j.sha,content:j.content?b64DecodeUtf8(j.content):null};
+}
+async function repoSaveNow(){
+  if(!GH_TOKEN){cloudMsg('先にトークンを保存してください。');return;}
+  if(CLOUD_BUSY)return; CLOUD_BUSY=true; cloudMsg('GitHubへ保存中…');
+  try{
+    const c=repoCfg();
+    let sha=null; const cur=await ghGetRepoFile(); sha=cur.sha;
+    const body={message:'update '+c.path+' ('+new Date().toISOString()+')',content:b64EncodeUtf8(JSON.stringify(state,null,2)),branch:c.branch};
+    if(sha)body.sha=sha;
+    const url='https://api.github.com/repos/'+c.owner+'/'+c.repo+'/contents/'+encodeURIComponent(c.path);
+    const r=await fetch(url,{method:'PUT',headers:ghHeaders(),body:JSON.stringify(body)});
+    if(!r.ok){let tx='';try{tx=await r.text();}catch(e){} throw new Error('put '+r.status+(r.status===403?'（書込権限なし：repoスコープ付きトークンが必要）':r.status===401?'（トークン無効）':r.status===404?'（リポジトリ/パスが無い）':'')+(tx?' '+tx.slice(0,100):''));}
+    state.cloud=state.cloud||{}; state.cloud.repoSync=Date.now(); scheduleSave();
+    cloudMsg('GitHubのproject.jsonへ保存しました（'+new Date().toLocaleTimeString()+'）。');
+  }catch(e){cloudMsg('GitHub保存失敗：'+e.message);}
+  CLOUD_BUSY=false; if(route==='data')render();
+}
+async function repoLoadNow(){
+  if(!GH_TOKEN){cloudMsg('先にトークンを保存してください。');return;}
+  if(DIRTY){const okc=(typeof window!=='undefined'&&window.confirm)?window.confirm('未保存の編集があります。\nGitHubから読み込むと、未保存の変更は失われます。\n（直前の状態は履歴に退避されます）\n読み込みますか？'):true; if(!okc){cloudMsg('読込を取り消しました。');return;}}
+  snapshot('GitHub読込前');
+  if(CLOUD_BUSY)return; CLOUD_BUSY=true; cloudMsg('GitHubから読込中…');
+  try{
+    const cur=await ghGetRepoFile();
+    if(!cur.content)throw new Error('project.json が見つかりません（先に「GitHubへ保存」してください）');
+    const ok=importFromText(cur.content);
+    if(ok)cloudMsg('GitHubのproject.jsonから読み込みました。');
+    else cloudMsg('読込内容を解釈できませんでした。');
+  }catch(e){cloudMsg('GitHub読込失敗：'+e.message);}
+  CLOUD_BUSY=false; if(route==='data')render();
+}
 async function ghCreateGist(){
   const body={description:'Abyss Studio project ('+(state.meta&&state.meta.title||'project')+')',public:false,files:{}};
   body.files[GIST_FILENAME]={content:JSON.stringify(state,null,2)};
@@ -1649,7 +1714,7 @@ async function ghPullGist(id){
   return content;
 }
 let CLOUD_BUSY=false, CLOUD_MSG='';
-function cloudMsg(m){CLOUD_MSG=m;const el=document.getElementById('cloudMsg');if(el)el.textContent=m;}
+function cloudMsg(m){CLOUD_MSG=m;const el=document.getElementById('cloudMsg');if(el)el.textContent=m;const h=document.getElementById('hdrMsg');if(h){h.textContent=m;clearTimeout(cloudMsg._t);cloudMsg._t=setTimeout(function(){const hh=document.getElementById('hdrMsg');if(hh)hh.textContent='';},6000);}}
 async function cloudSaveNow(){
   if(!GH_TOKEN){cloudMsg('先にトークンを保存してください。');return;}
   if(CLOUD_BUSY)return; CLOUD_BUSY=true; cloudMsg('保存中…');
@@ -1664,6 +1729,11 @@ async function cloudSaveNow(){
 async function cloudLoadNow(){
   if(!GH_TOKEN){cloudMsg('先にトークンを保存してください。');return;}
   const id=state.cloud&&state.cloud.gistId; if(!id){cloudMsg('Gist ID がありません。まず「Gistへ保存」で新規作成してください。');return;}
+  if(DIRTY){
+    const okc=(typeof window!=='undefined'&&window.confirm)?window.confirm('未保存の編集があります。\nGistから読み込むと、まだGistへ保存していない変更は失われます。\n（直前の状態は履歴に退避されます）\n読み込みますか？'):true;
+    if(!okc){cloudMsg('読込を取り消しました。');return;}
+  }
+  snapshot('Gist読込前');
   if(CLOUD_BUSY)return; CLOUD_BUSY=true; cloudMsg('読込中…');
   try{
     const txt=await ghPullGist(id);
@@ -2404,6 +2474,15 @@ function consistency(){
 /* ---------- データ ---------- */
 function viewData(){
   const gid=(state.cloud&&state.cloud.gistId)||'';
+  const HIST_MAX_DISP=HIST_MAX;
+  const rc=repoCfg();
+  const rsync=(state.cloud&&state.cloud.repoSync)?new Date(state.cloud.repoSync).toLocaleString():'';
+  const _hist=histLoad();
+  const HIST_LIST = _hist.length
+    ? _hist.map((h,i)=>'<div style="display:flex;align-items:center;gap:8px;justify-content:space-between;border:1px solid var(--line);border-radius:8px;padding:8px 10px;margin-bottom:6px;flex-wrap:wrap">'
+        +'<span style="font-size:12px;color:var(--text)">'+(i===0?'<b>最新</b> ':'')+new Date(h.t).toLocaleString()+(h.label?' <span style="color:var(--muted)">／'+esc(h.label)+'</span>':'')+'</span>'
+        +'<button class="btn sm" data-act="snaprestore" data-idx="'+i+'">復元</button></div>').join('')
+    : '<div class="panel-sub">まだ控えはありません。破壊的な操作の直前に自動で作成されます。</div>';
   const synced=(state.cloud&&state.cloud.lastSync)?new Date(state.cloud.lastSync).toLocaleString():'';
   return `
   <div class="vhead"><div class="kicker">Data · データ</div>
@@ -2424,6 +2503,15 @@ function viewData(){
     </div>
     <div id="cloudMsg" style="font-size:12px;color:var(--ember-soft,#caa24a);margin-top:10px;min-height:16px">${CLOUD_MSG||''}</div>
 
+    <div style="margin-top:14px;border-top:1px solid var(--line-soft);padding-top:12px">
+      <div class="layer-lbl" style="margin:0 0 6px">GitHub リポジトリの project.json <span style="color:var(--faint);font-family:var(--mono);font-size:9px">履歴が残る・Claudeが読む正本</span></div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button class="btn" data-act="reposave" style="flex:1;min-width:150px">⬆ GitHubへ保存</button>
+        <button class="btn" data-act="repoload" style="flex:1;min-width:150px">⬇ GitHubから読込</button>
+      </div>
+      <div class="panel-sub" style="margin-top:6px">保存先：<b>${rc.owner}/${rc.repo}/${rc.path}</b>${rsync?' ／ 最終：'+rsync:''}<br>Gistと違いコミット履歴が残り、Claudeが直接読める正本になります。<b>repoスコープ付きトークンが必要</b>です。</div>
+    </div>
+
     <details style="margin-top:12px"${GH_TOKEN&&gid?'':' open'}>
       <summary style="cursor:pointer;font-size:12px;color:var(--muted);font-family:var(--mono);letter-spacing:.04em">接続設定（トークン / Gist ID）</summary>
       <div style="padding:12px 0 2px">
@@ -2440,6 +2528,16 @@ function viewData(){
           <button class="btn ghost" data-act="cloudsetid">IDを設定</button>
         </div>
         <div class="panel-sub" style="margin-top:8px">別端末で使うとき：同じトークンを保存 → このIDを設定 → 「Gistから読込」。トークンは端末内のみ保存・JSONには含まれません。</div>
+        <div class="layer-lbl" style="margin:16px 0 6px">GitHubリポジトリ（project.json の保存先）</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <input class="io-in" id="repoOwnerInput" placeholder="owner（例 yoyo0810）" value="${rc.owner}" style="flex:1;min-width:120px">
+          <input class="io-in" id="repoNameInput" placeholder="repo（例 abyss-studio）" value="${rc.repo}" style="flex:1;min-width:120px">
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+          <input class="io-in" id="repoPathInput" placeholder="path（例 project.json）" value="${rc.path}" style="flex:1;min-width:120px">
+          <button class="btn ghost" data-act="reposetcfg">保存先を設定</button>
+        </div>
+        <div class="panel-sub" style="margin-top:8px">ファイル名は半角英数（日本語名は不可）。同じトークンに「Gist」用と「repo」用の両権限があれば、GistとGitHubの両方が使えます。</div>
       </div>
     </details>
   </div>
@@ -2450,6 +2548,16 @@ function viewData(){
     <textarea class="io-ta" id="patchTA" placeholder='Claudeが出力した {"abyssPatch":1,"ops":[...]} を貼り付け…' style="min-height:120px;margin-top:8px"></textarea>
     <div class="toolbar"><button class="btn pri" data-act="applypatch">差分を適用</button></div>
     <div id="patchMsg" style="font-size:12px;color:var(--ember-soft,#caa24a);margin-top:8px;white-space:pre-wrap;min-height:16px"></div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-t">世代バックアップ（履歴） <span class="en">Local Snapshots</span></div>
+    <div class="panel-sub">Gist読込・取り込み・差分適用・初期化の<b>直前に自動で控え</b>を取ります（この端末のブラウザ内・直近${HIST_MAX_DISP}世代）。やり直したいときはここから戻せます。手元の保険であり、クラウド正本はGistです。</div>
+    <div class="toolbar" style="margin-top:8px">
+      <button class="btn pri" data-act="snapundo">↩ 1つ前に戻す</button>
+      <button class="btn" data-act="snapnow">＋ 現在をスナップショット</button>
+    </div>
+    <div id="histList" style="margin-top:10px">${HIST_LIST}</div>
   </div>
 
   <div class="panel">
@@ -2554,6 +2662,12 @@ document.addEventListener('click',e=>{
   if(a==='applypatch'){const ta=document.getElementById('patchTA');const msg=document.getElementById('patchMsg');if(!ta||!ta.value.trim()){if(msg)msg.textContent='パッチを貼り付けてください。';return;}const r=applyPatch(ta.value.trim());if(msg)msg.textContent=(r.ok?('適用 '+r.done+'/'+r.total+' 件\n'):('適用できませんでした\n'))+r.report;if(r.ok){route='data';render();}return;}
   if(a==='cloudsave'){cloudSaveNow();return;}
   if(a==='cloudload'){cloudLoadNow();return;}
+  if(a==='snapnow'){snapshot('手動');cloudMsg('現在の状態を控えました。');if(route==='data')render();return;}
+  if(a==='snapundo'){const arr=histLoad();if(!arr.length){cloudMsg('戻せる控えがありません。');return;}restoreSnapshot(0);return;}
+  if(a==='snaprestore'){restoreSnapshot(parseInt(t.dataset.idx,10)||0);return;}
+  if(a==='reposave'){repoSaveNow();return;}
+  if(a==='repoload'){repoLoadNow();return;}
+  if(a==='reposetcfg'){const o=document.getElementById('repoOwnerInput'),n=document.getElementById('repoNameInput'),pa=document.getElementById('repoPathInput');state.cloud=state.cloud||{};state.cloud.repo={owner:(o&&o.value.trim())||REPO_DEF.owner,repo:(n&&n.value.trim())||REPO_DEF.repo,path:(pa&&pa.value.trim())||REPO_DEF.path,branch:'main'};scheduleSave();cloudMsg('保存先を設定しました。');render();return;}
   if(a==='cloudsetid'){const i=document.getElementById('gistIdInput');const v=i&&i.value.trim();if(v){state.cloud=state.cloud||{};state.cloud.gistId=v.replace(/.*\//,'');scheduleSave();cloudMsg('Gist ID を設定しました：'+state.cloud.gistId);render();}else{cloudMsg('IDが空です。');}return;}
   if(a==='closesave'){closeSaveModal();return;}
   if(a==='tryshare'){tryShareSave();return;}
@@ -2567,7 +2681,7 @@ document.addEventListener('click',e=>{
   if(a==='import'){doImport();return;}
   if(a==='resetask'){pendingDelete='reset';render();return;}
   if(a==='resetno'){pendingDelete=null;render();return;}
-  if(a==='resetyes'){state=seed();pendingDelete=null;openBeat=openChar=currentScene=null;route='series';scheduleSave();render();return;}
+  if(a==='resetyes'){snapshot('初期化前');state=seed();pendingDelete=null;openBeat=openChar=currentScene=null;route='series';scheduleSave();render();return;}
 });
 function doInlineDelete(btn){
   const scope=btn.dataset.scope,id=btn.dataset.id;
@@ -2692,7 +2806,7 @@ function openSaveModal(){
     +'<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">'
     +'<div style="font-family:var(--serif);font-size:16px;font-weight:700">プロジェクトを保存</div>'
     +'<button class="btn ghost sm" data-act="closesave">閉じる</button></div>'
-    +'<div style="font-size:12px;color:var(--muted);line-height:1.7;margin-bottom:10px">この端末では自動保存が再起動で消えるため、ここで内容を端末に残します。<b>確実なのは「全文コピー」→メモ等に貼り付け</b>です。共有やダウンロードが使える端末はそちらも利用できます。</div>'
+    +'<div style="font-size:12px;color:var(--muted);line-height:1.7;margin-bottom:10px">内容をファイルとして手元にバックアップします（通常は「Gistへ保存」で十分です）。<b>確実なのは「全文をコピー」→メモ等に貼り付け</b>。共有・ダウンロードも利用できます。</div>'
     +'<div class="toolbar" style="flex-wrap:wrap;gap:8px">'
     +'<button class="btn pri" data-act="copyall">① 全文をコピー（確実）</button>'
     +'<button class="btn" data-act="tryshare">② 共有して保存を試す</button>'
@@ -2700,7 +2814,7 @@ function openSaveModal(){
     +'<div id="saveMsg" style="font-size:12px;color:var(--ember-soft,#caa24a);margin:8px 0 4px;min-height:16px"></div>'
     +'<textarea id="manualSaveTA" class="io-ta" readonly style="min-height:200px" onclick="this.focus();this.select();">'+json.replace(/</g,"&lt;")+'</textarea>'
     +'<div style="font-size:11px;color:var(--faint);font-family:var(--mono);margin-top:8px">環境：'+_capsHint()+'</div>'
-    +'<div style="font-size:11px;color:var(--muted);margin-top:6px">復元方法：保存したJSONを、起動時バナー「前回の続きを開く」、または「データ」タブのインポートに読み込みます。</div>'
+    +'<div style="font-size:11px;color:var(--muted);margin-top:6px">復元方法：保存したJSONは「データ」タブ →「バックアップ・その他（上級者向け）」→「ファイルから読込」または「貼り付けで置き換え」で取り込めます。</div>'
     +'</div></div>';
 }
 function closeSaveModal(){const m=document.getElementById('saveModal');if(m){m.style.display='none';m.innerHTML='';}}
@@ -2738,15 +2852,8 @@ async function copyText(txt){
   return false;
 }
 function renderRestoreBanner(){
-  const el=document.getElementById('restoreBanner'); if(!el)return;
-  // 起動時に保存データが見つからなかった場合のみ表示（＝初回 or 再起動でストレージ揮発）
-  if(BOOT_SRC==='none' && !bannerDismissed){
-    el.innerHTML='<div style="margin:0 0 14px;padding:14px 16px;border:1px solid var(--ember-soft,#caa24a);border-radius:10px;background:var(--surface-2);display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap">'
-      +'<div style="flex:1;min-width:220px"><div style="font-family:var(--serif);font-size:14px;font-weight:700;margin-bottom:4px">前回の続きから始めますか？</div>'
-      +'<div style="font-size:12px;color:var(--muted);line-height:1.7">この環境ではアプリ再起動で自動保存が消えます。前回「保存」したJSONファイルを読み込むと、続きから再開できます。新規に始める場合はそのまま閉じてください。</div></div>'
-      +'<div style="display:flex;gap:8px;align-items:center"><button class="btn pri" data-act="restorepick">⬆ 前回の続きを開く</button>'
-      +'<button class="btn ghost sm" data-act="dismissbanner">閉じる</button></div></div>';
-  }else{ el.innerHTML=''; }
+  // 現運用（Chrome＋localStorage自動保存＋Gist）では起動バナーは不要のため非表示。
+  const el=document.getElementById('restoreBanner'); if(el) el.innerHTML='';
 }
 function _assignIdsScene(sc){
   if(!sc.id)sc.id=uid();
@@ -2764,6 +2871,7 @@ function applyPatch(text){
   if(!ops||!Array.isArray(ops)||!(pk.abyssPatch||pk.patch==='abyss'))
     return {ok:false,report:'パッチ形式ではありません（abyssPatch / ops が必要）。'};
   const log=[]; let done=0; const touchedEps=new Set();
+  snapshot('差分適用前');
   ops.forEach((o,i)=>{
     const tag='['+(i+1)+'] '+(o.op||'?');
     try{
@@ -2840,6 +2948,7 @@ function importFromText(txt){
 }
 function doImportFile(file){
   if(!file)return;
+  snapshot('ファイル読込前');
   const rd=new FileReader();
   rd.onload=()=>{const ok=importFromText(String(rd.result||''));if(!ok)alert('読み込めませんでした。エクスポートしたJSONファイルか確認してください。');};
   rd.onerror=()=>alert('ファイルの読み込みに失敗しました。');
@@ -2847,6 +2956,7 @@ function doImportFile(file){
 }
 function doImport(){
   const ta=document.getElementById('importTA');if(!ta||!ta.value.trim())return;
+  snapshot('貼り付け置換前');
   try{
     let obj=JSON.parse(ta.value);
     if(obj&&!obj.episodes&&obj.beats)obj=migrate(obj);
@@ -2884,9 +2994,16 @@ function doImport(){
       canonStarters().forEach(se=>{if(!state.episodes.some(e=>e.id===se.id))state.episodes.push(se);});
     }
     if(!(state.tutDocVer>=19)){state.episodes=state.episodes.filter(e=>e.id!=='ep1_train');}
-    const up=(eid,fn)=>{const i=state.episodes.findIndex(e=>e.id===eid);if(i>=0)state.episodes[i]=fn();else state.episodes.unshift(fn());};
-    up('ep0_office',officeEpisode);
-    up('ep0_train',trainEpisode);
+    // ver31 一度きり：修正版EP0/EP0.5（停電ミッドポイント＝方式X）を反映するため、既存のEP0/EP0.5をコード版へ差し替える。
+    if(!(state.tutDocVer>=31)){
+      state.episodes=state.episodes.filter(e=>e.id!=='ep0_train'&&e.id!=='ep0_office');
+      state.episodes.unshift(officeEpisode());
+      state.episodes.unshift(trainEpisode());
+      state.activeEp='ep0_train';
+    }
+    // ver31以降：EP0/EP0.5を強制再生成しない（手編集・差分パッチが恒久反映）。未存在時のみ初期生成する。
+    if(!state.episodes.some(e=>e.id==='ep0_office')) state.episodes.unshift(officeEpisode());
+    if(!state.episodes.some(e=>e.id==='ep0_train')) state.episodes.unshift(trainEpisode());
     if(!(state.tutDocVer>=19)){state.activeEp='ep0_train';}
     [['sc_rei',REI_DEF],['sc_sub',SUB_DEF],['sc_chief',CHIEF_DEF],['sc_earl',EARL_DEF],['sc_toto',TOTO_DEF],['sc_coco',COCO_DEF],['sc_vet',VET_DEF],['sc_noel',NOEL_DEF],['sc_nicola',NICOLA_DEF]].forEach(([id,def])=>{const c=state.seriesCast.find(x=>x.id===id);if(c)Object.assign(c,def);else state.seriesCast.push({id,...def,media:[]});});
     if(!(state.tutDocVer>=13)){state.bridgePlot=BRIDGE_PLOT;state.bridge.overview=BRIDGE_OVERVIEW;state.bridge.arcs=BRIDGE_ARCS.map(a=>({...a}));}
