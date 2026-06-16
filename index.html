@@ -191,6 +191,16 @@ svg.curve path.line{fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linej
 .block.t-event .spine{background:var(--crimson)} .block.t-event .btype{color:var(--crimson-soft)}
 .block.t-cg .spine{background:#7ea6e0} .block.t-cg .btype{color:#9cc0ee}
 .block.t-note .spine{background:var(--muted-2)} .block.t-note .btype{color:var(--muted)}
+.block.t-setting .spine{background:#8fce8f} .block.t-setting .btype{color:#8fce8f}
+.block.t-narration .spine{background:#9aa7b8} .block.t-narration .btype{color:#aab6c6}
+.bprev{font-size:12.5px;color:var(--muted);line-height:1.55;padding:2px 0}
+.block.collapsed .bmain{padding-bottom:2px}
+.seg{margin:10px 0;border:1px solid var(--line-soft);border-radius:12px;padding:8px 10px 10px;background:rgba(143,206,143,.045)}
+.seg.seg-pre{background:rgba(127,127,127,.03);border-style:dashed}
+.seg>.seg-body{padding-left:12px;border-left:2px solid rgba(143,206,143,.4);margin:6px 0 0 8px}
+.seg.seg-pre>.seg-body{border-left-color:var(--line)}
+.seg-nohead{font-size:12px;color:var(--muted-2);font-family:var(--mono);letter-spacing:.04em;padding:4px 2px 2px}
+.seg-collapsed{font-size:12px;color:var(--muted);padding:8px 2px 4px}
 .line-row{display:flex;gap:10px;align-items:flex-start}
 .line-row select{flex:0 0 150px}
 .choice-opt{display:flex;gap:8px;margin-bottom:6px;align-items:center}
@@ -450,13 +460,16 @@ const ROLES=['探偵','助手','被害者の魂','依頼人','容疑者','関係
 const EP_KINDS=['チュートリアル','プロローグ','推理編','解決編','エピローグ','その他'];
 const PHASES4=['プロローグ','推理編','解決編','エピローグ'];
 const BLOCK_TYPES=[
+  {t:'setting',ja:'場面（場所・日時）',ic:'📍'},
   {t:'dir',ja:'演出 / ト書き',ic:'🎬'},
+  {t:'narration',ja:'地の文',ic:'📖'},
   {t:'line',ja:'台詞',ic:'💬'},
   {t:'choice',ja:'選択肢',ic:'❓'},
   {t:'event',ja:'ゲームイベント',ic:'⚡'},
   {t:'cg',ja:'CG / ムービー',ic:'🎞'},
   {t:'note',ja:'メモ',ic:'📝'},
 ];
+const PHASES=[{k:'pro',code:'Pro',ja:'プロローグ'},{k:'inv',code:'Inv',ja:'推理編'},{k:'sol',code:'Sol',ja:'解決編'},{k:'epi',code:'Epi',ja:'エピローグ'}];
 const EVENTS=['時系列移動','冥界能力：心層ラビリンス','冥界能力：残留思念スキャン','冥界能力：修復イメージアウト','推理カード獲得','ツッコミポイント','ロジックツリー構築','反証バトル','BGM変更','カメラ演出','場面転換','演出：救済／昇天','その他'];
 const CARD_TYPES=[{t:'物的',c:'buttai'},{t:'観測',c:'kansoku'},{t:'行動',c:'koudou'},{t:'仮説',c:'kasetsu'}];
 const SWATCH=['#e7a948','#5fd4c4','#df6379','#b08fd0','#7ea6e0','#8fce8f','#e89a6b','#a9b4c2','#d9c47a','#c98fb5'];
@@ -1007,7 +1020,7 @@ function seed(){
 /* ============================ チュートリアル（第0話）シナリオ ============================ */
 const TUT_TRICK='【鍵と扉】客室の錠は内外とも“鍵でしか”施解錠できないデッドボルトで（内側のつまみ無し）、鍵はこの2本のみ。普段はボディガードが扉前を固めるため被害者は施錠せず、扉は閉まっていても無施錠で、就寝時にだけ自分の鍵Aで施錠する習慣だった。\n\n【最大の謎】施錠された室内に、チョコのついた“もう1本の鍵”が落ちていた。鍵は2本——被害者の部屋の鍵（鍵A）と、ボディガードが持つ予備（鍵B）のみ。ゆえに自殺か内部犯行に見え、終始扉前にいたボディガードが最有力に映る。真相は、鍵Aが「犯行の後に」チョコで包まれて室内へ運び込まれた時間差トリックである。\n\n【下準備】犯人＝メイドは客室係として日頃から被害者の部屋と愛犬の世話に出入りしており（20時の清掃もその一環＝カメラ記録は「20時メイド入室」のみ）、扉の錠の仕組み・鍵Aの定位置・犬の習性を熟知していた。\n\n【犯行】ダイニングで始まった停電は、長いトンネル内で復旧が進まないうえ、乗務員のメイドが配電に細工して引き延ばしたため、20時台後半から23時のトンネル脱出まで監視カメラの停止と暗闇が続いた。ボディガードは21時まで持ち場を守り扉越しに生存を確認するが、停電が長引く中「トンネルに閉じた車内なら外部の脅威はない」と判断し、車掌の要請で先頭車の復旧対応へ向かう——メイドが狙ったのは、この“扉前が無人になる空白”である。被害者は護衛を頼り就寝するまで施錠しない習慣で、その前に殺された。メイドは暗闇の中、無施錠の扉から入室して撲殺し、室内の定位置にあった鍵Aを抜き取り、退室して鍵Aで外から施錠する。鍵は施錠に“裸”のまま使う必要があるため、この時点で鍵Aはメイドの手元、鍵Bはボディガード——室内に鍵のない、まだ不完全な密室。\n\n【密室の完成（時間差）】扉を施錠した後で、メイドはチョコレート製造機（誰でも短時間で作れる）を使い、役目を終えた鍵Aを丸ごとチョコで包んで成形する。被害者の愛犬には“チョコを咥えてもその場では口にせず、必ず自分の寝床＝被害者の部屋へ運んでから舐めとる”という習性があった。23時、ボディガードは日課で犬を部屋へ入れる。停電後に扉が施錠されていても、彼は「怯えた被害者が就寝前に自分で施錠した」と自然に受け取り、鍵Bで解錠→犬を入れ→鍵Bで再施錠する（暗がりのため室内へは入らず、異変にも気づかない＝カメラにも入室は映らない）。犬の世話をするメイドが直前に与えた“鍵A入りチョコ”を、犬は寝床へ運んで食べ尽くす。床に食べかすや包みは残らない一方、金属の鍵Aの溝にはチョコの跡がわずかに残る——これが唯一の綻びにして決定的な手がかりとなる。こうして犯行の後から、密室が“ひとりでに”完成する。\n\n【驚きとカタルシスの核】凶器ならぬ“鍵”を室内へ運んだのは、被害者が誰より愛した飼い犬だった。犯人は人を介さず、被害者自身の「愛犬への情」と「犬の習性」を利用して密室を仕立てる。最有力に見えたボディガードはむしろ「鍵を室内へ戻す扉を開けた」無自覚の協力者にされており、疑いの矢印が一八〇度反転する。';
 const TUT_LOGIC='※チュートリアルとして「手がかりを組み合わせる→意外な事実が反転する→最後の一点で犯人が確定する」快感を順に体験させる構成。\n\n① 提示される“不可能”：施錠された密室。鍵は室内（鍵A）とボディガードの予備（鍵B）の2本のみ。プレイヤーはまず「鍵Bを持ち扉前にいたボディガードが怪しい」とミスリードされる。\n② 一度目の反転：監視カメラはボディガードが室内へ入っていないと示す。最有力が崩れ、「では誰がどうやって密室を？」と謎が深まる。\n③ 鍵の正体（合成1→合成2）：『チョコのついた鍵』＋『チョコ製造機（誰でも作れる）』→「鍵はチョコに包まれていた」。さらに＋『犬は自室で痕跡なくチョコを完食する習性』→「鍵入りチョコを犬が室内へ運んだ」。“鍵は最初から室内にあった”という前提が覆る最大の驚き＝密室は犯行の後から作れる。\n④ 犯行時刻（合成3）：21時の会話で被害者は生存。カメラに出入りはなく、長く続いた停電の暗闇だけが空白。しかもその間ボディガードは離席＝扉前は無人。→「犯行時刻は21〜23時（停電中〜トンネル脱出）」。鉄壁に見えた監視に穴が空く二度目の反転。\n⑤ 絞り込み（合成4）：トリックの実行条件は『製造機を使える』×『犯行時刻にアリバイがない』。前者は4名（ウェイター・メイド・ボディガード・その他客）、後者は2名（メイド・その他客）→重なるのはメイドとその他客。\n⑥ 最後の一点＝確定とカタルシス（合成5）：その他客は偶然乗り合わせた客で、被害者の飼い犬が“自室でチョコを完食する習性”を知り得ない。この密室は犬の習性を熟知する者にしか作れない——日々客室に出入りし犬を見ていたメイドだけが該当する。被害者が最も信頼し愛した日常（愛犬・客室係）の只中に犯人がいた、という反転で幕が下りる。';
-const TUT_DOC_VER=40;
+const TUT_DOC_VER=43;
 const OFFICE_TRICK='カップすり替え毒殺の二段構え。茶器は配膳直前まで施錠棚（ココ管理）にあり安全。ノエルは「席順の都合」を口実に配膳後のカップを配り直し、その手の中でレイの席の杯に毒を仕込んだ（袖の銀鈴が一瞬鳴る）。狙いは新入りレイの抹消。だが元・王の毒見役アールが香りの違和に気づき、何も言わず自分の杯と取り替えて飲み干す——身代わりの殉職。さらにノエルは事前にアカシックレコードへ「犯人＝レイ」と書き込んでおり（インクの乾き＝事前改竄の痕）、毒殺と冤罪を同時に成立させる計画だった。';
 const OFFICE_LOGIC='①茶器は直前まで施錠棚＝毒の仕込みは「配膳後」に限定 ②配り直しの瞬間だけ鈴の音＋猫がノエルの足元だけを威嚇＝すり替えの手はノエル ③席札上、毒杯は本来レイの席＋アールの毒見の所作＝狙いはレイ、アールは身代わり ④「犯人レイ」の記録はインクが事件前に乾いている＝事前改竄 ⑤記録に触れられるのは記録の代理人のみ＝ノエルで確定。動機はキャロルによる新入り抹消の指令。';
 function officeEpisode(){
@@ -1876,7 +1889,10 @@ function epIndex(){return state.episodes.findIndex(e=>e.id===ep().id);}
 function castOf(E){return state.seriesCast.concat(E.cast);}
 function anyChar(id){return castOf(ep()).find(c=>c.id===id);}
 function findScene(id){return ep().scenes.find(s=>s.id===id);}
+let collapsedBlocks=new Set();
 function findBlock(sid,bid){const s=findScene(sid);return s?s.blocks.find(b=>b.id===bid):null;}
+function sceneSetting(s){const b=(s.blocks||[]).find(x=>x.type==='setting');return b?{no:b.no,place:b.place||'',time:b.time||''}:null;}
+function blockPreview(bl,E){const cut=(t,n)=>{t=String(t==null?'':t).replace(/\n/g,' ').trim();const m=n||44;return t?(t.length>m?t.slice(0,m)+'…':t):'（空）';};if(bl.type==='setting')return '📍 #'+(bl.no||'?')+'  '+(bl.place||'（場所未設定）')+' ／ '+(bl.time||'（時刻未設定）');if(bl.type==='line'){const w=(bl.windows||[])[0];const c=w?castOf(E).find(x=>x.id===w.charId):null;return (c?'['+c.name+'] ':'')+cut(w?w.text:'',38);}if(bl.type==='choice')return '選択：'+((bl.opts||[]).filter(Boolean).map(o=>cut(o,14)).join(' / ')||'（未設定）');if(bl.type==='event')return '['+(bl.ev||'')+'] '+cut(bl.text,32);if(bl.type==='cg')return '🎞 '+cut(bl.title,40);if(bl.type==='note')return 'メモ：'+cut(bl.text,40);if(bl.type==='narration')return cut(bl.text);return cut(bl.text);}
 function applyTheme(){
   const t=(state&&state.ui&&state.ui.theme)==='light'?'light':'dark';
   document.documentElement.setAttribute('data-theme',t);
@@ -1953,10 +1969,14 @@ function autosizeOne(ta){
 function autosizeAll(){document.querySelectorAll('textarea').forEach(t=>{if(!t.classList.contains('io-ta')&&!t.classList.contains('line-ta'))autosizeOne(t);});}
 
 /* ============================ シーン編集ヘルパー ============================ */
-function newBlock(ty){const nb={id:uid(),type:ty,text:''};if(ty==='line'){delete nb.text;nb.windows=[{id:uid(),charId:'',text:''}];}if(ty==='choice')nb.opts=['',''];if(ty==='event'){nb.ev=EVENTS[0];nb.media=[];}if(ty==='cg'){nb.title='';nb.media=[];}if(ty==='dir'||ty==='note')nb.media=[];return nb;}
+function newBlock(ty){const nb={id:uid(),type:ty,text:''};if(ty==='line'){delete nb.text;nb.windows=[{id:uid(),charId:'',text:''}];}if(ty==='choice')nb.opts=['',''];if(ty==='event'){nb.ev=EVENTS[0];nb.media=[];}if(ty==='cg'){nb.title='';nb.media=[];}if(ty==='dir'||ty==='note')nb.media=[];if(ty==='setting'){delete nb.text;nb.place='';nb.time='';}return nb;}
+function mkBlock(E,ty){const nb=newBlock(ty);if(ty==='setting'){E.settingSeq=(E.settingSeq||0)+1;nb.no=E.settingSeq;}return nb;}
+function numberSettings(E){if(!E)return;E.settingSeq=E.settingSeq||0;let mx=0;(E.scenes||[]).forEach(s=>(s.blocks||[]).forEach(b=>{if(b.type==='setting'&&typeof b.no==='number')mx=Math.max(mx,b.no);}));E.settingSeq=Math.max(E.settingSeq,mx);(E.scenes||[]).forEach(s=>(s.blocks||[]).forEach(b=>{if(b.type==='setting'&&typeof b.no!=='number'){E.settingSeq+=1;b.no=E.settingSeq;}}));}
 function ensureBlockShape(b){
   if(b.type==='line'){if(!Array.isArray(b.windows)||!b.windows.length){b.windows=[{id:uid(),charId:b.charId||'',text:b.text||''}];}b.windows.forEach(w=>{if(!w.id)w.id=uid();});delete b.charId;delete b.text;}
   if(b.type==='event'||b.type==='cg'||b.type==='dir'||b.type==='note')b.media=b.media||[];
+  if(b.type==='setting'){b.place=b.place||'';b.time=b.time||'';delete b.text;}
+  if(b.type==='narration'&&typeof b.text!=='string')b.text='';
   return b;
 }
 function ensureCharShape(c){c.media=c.media||[];['age','gender','personality','tone','silhouette','likes','dislikes','strengths','flaws'].forEach(k=>{if(c[k]===undefined)c[k]='';});return c;}
@@ -2258,9 +2278,10 @@ function viewScenes(){
   if(currentScene){return scriptEditor(currentScene);}
   const rows=E.scenes.map((s,i)=>{
     const beat=E.beats.find(b=>b.key===s.beatKey);
+    const set=sceneSetting(s);
     return `<div class="scene-card" data-act="openscene" data-id="${s.id}">
       <span class="sn">S${String(i+1).padStart(2,'0')}</span>
-      <div class="st"><div class="nm">${esc(s.title)}</div><div class="ds">${esc(s.summary||'説明なし')}</div></div>
+      <div class="st"><div class="nm">${(()=>{const ph=PHASES.find(p=>p.k===s.phase);return ph?`<span class="chip" style="font-size:9.5px;margin-right:6px;vertical-align:middle">${ph.code}</span>`:'';})()}${esc(s.title)}</div>${set?`<div class="ds" style="color:var(--muted-2);font-family:var(--mono);font-size:11px">📍 ${esc(set.place||'?')} ／ ${esc(set.time||'?')}</div>`:''}<div class="ds">${esc(s.summary||'説明なし')}</div></div>
       <div style="text-align:right">
         <div class="badge">${s.blocks.length} 行</div>
         ${beat?`<div style="margin-top:5px"><span class="chip ${actTag(beat.act)}" style="font-size:10px">${esc(beat.ja)}</span></div>`:''}
@@ -2278,8 +2299,11 @@ function scriptEditor(sid){
   const E=ep();const s=E.scenes.find(x=>x.id===sid);
   if(!s){currentScene=null;return viewScenes();}
   const beatOpts='<option value="">— ビート未設定 —</option>'+E.beats.map(b=>`<option value="${b.key}" ${s.beatKey===b.key?'selected':''}>${b.ja}</option>`).join('');
-  let blocks='';
-  if(s.blocks.length){blocks=insertBar(s,0);s.blocks.forEach((bl,i)=>{blocks+=scriptBlock(s,bl,i)+insertBar(s,i+1);});}
+  numberSettings(E);
+  const _ph=PHASES.find(p=>p.k===s.phase);
+  const _sidx=E.scenes.findIndex(x=>x.id===s.id);
+  let _soff=0; if(_ph){for(let j=0;j<_sidx;j++){if(E.scenes[j].phase===s.phase)_soff+=(E.scenes[j].blocks||[]).filter(b=>b.type==='setting').length;}}
+  let blocks=buildScript(s,E,{phaseCode:_ph?_ph.code:null,settingOffset:_soff});
   const idx=E.scenes.findIndex(x=>x.id===sid);
   const prevS=idx>0?E.scenes[idx-1]:null, nextS=idx<E.scenes.length-1?E.scenes[idx+1]:null;
   const fwdIcon='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>';
@@ -2296,6 +2320,11 @@ function scriptEditor(sid){
     <input type="text" data-scope="scene" data-id="${s.id}" data-field="title" value="${esc(s.title)}" style="font-family:var(--serif);font-size:24px;font-weight:700;background:none;border:none;border-bottom:1px solid var(--line);border-radius:0;padding:6px 0;margin-bottom:10px">
   </div>
   <div class="panel" style="padding:16px">
+    <label class="fld" style="margin:0 0 12px"><span class="lt">フェーズ <span class="en">Phase</span></span>
+      <select data-scope="scene" data-id="${s.id}" data-field="phase">
+        <option value="">— フェーズ未設定 —</option>
+        ${PHASES.map(p=>`<option value="${p.k}" ${s.phase===p.k?'selected':''}>${p.ja}（${p.code}）</option>`).join('')}
+      </select></label>
     <div class="grid2">
       <label class="fld" style="margin:0"><span class="lt">紐づくビート</span>
         <select data-scope="scene" data-id="${s.id}" data-field="beatKey">${beatOpts}</select></label>
@@ -2303,6 +2332,7 @@ function scriptEditor(sid){
         ${afLine(`data-scope="scene" data-id="${s.id}" data-field="summary"`,s.summary)}</label>
     </div>
   </div>
+  <div class="toolbar" style="margin:4px 0 6px"><span style="color:var(--muted-2);font-size:11px;align-self:center;margin-right:2px">表示：</span><button class="btn sm ghost" data-act="collapseall" data-id="${s.id}">▸ 全部畳む</button><button class="btn sm ghost" data-act="expandall" data-id="${s.id}">▾ 全部開く</button></div>
   <div id="blocks">${blocks||'<div class="empty" style="padding:24px"><div class="e-ic">＋</div>下のボタンからブロックを追加して台本を組みます。</div>'}</div>
   <div class="addblock"><span class="lab">追加：</span>
     ${BLOCK_TYPES.map(t=>`<button class="btn sm" data-act="addblock" data-id="${s.id}" data-type="${t.t}">${t.ic} ${t.ja}</button>`).join('')}
@@ -2313,7 +2343,38 @@ function scriptEditor(sid){
   </div>
   ${sceneNav}`;
 }
-function scriptBlock(s,bl,i){
+function buildScript(s,E,phctx){
+  phctx=phctx||{};
+  const arr=s.blocks||[]; if(!arr.length)return '';
+  const segs=[]; let cur={set:-1,kids:[]};
+  arr.forEach((bl,idx)=>{ if(bl.type==='setting'){ if(cur.set!==-1||cur.kids.length)segs.push(cur); cur={set:idx,kids:[]}; } else cur.kids.push(idx); });
+  segs.push(cur);
+  let html=insertBar(s,0);
+  let sCount=phctx.settingOffset||0;
+  segs.forEach(seg=>{
+    const sb=seg.set>=0?arr[seg.set]:null;
+    let segCode=null;
+    if(sb){ sCount+=1; segCode=phctx.phaseCode?(phctx.phaseCode+'-'+sCount):('#'+(sb.no||'?')); }
+    const collapsed=sb?collapsedBlocks.has(sb.id):false;
+    const header=sb?scriptBlock(s,sb,seg.set,{settingCode:segCode}):(seg.kids.length?`<div class="seg-nohead">📍 場面（未設定）</div>`:'');
+    let body='';
+    if(collapsed){ body=`<div class="seg-collapsed">（${seg.kids.length}ブロックを格納／場面の ▸ で開く）</div>`; }
+    else {
+      if(sb) body+=insertBar(s,seg.set+1);
+      let bstart=0;
+      seg.kids.forEach(ci=>{
+        const bl=arr[ci];
+        const ctx=(bl.type==='choice')?{segCode:segCode,branchStart:bstart}:{segCode:segCode};
+        body+=scriptBlock(s,bl,ci,ctx)+insertBar(s,ci+1);
+        if(bl.type==='choice') bstart+=(bl.opts||[]).length;
+      });
+    }
+    html+=`<div class="seg${sb?'':' seg-pre'}">${header}<div class="seg-body">${body}</div></div>`;
+  });
+  return html;
+}
+function scriptBlock(s,bl,i,ctx){
+  ctx=ctx||{};
   const E=ep();const last=s.blocks.length-1;
   const ctrl=`<div class="bctrl">
     <span class="ic-mini" data-act="moveblock" data-id="${s.id}" data-bid="${bl.id}" data-dir="-1" ${i===0?'style="opacity:.3;pointer-events:none"':''}>${ICONS.up}</span>
@@ -2321,9 +2382,17 @@ function scriptBlock(s,bl,i){
     <span class="ic-mini danger" data-act="delblock" data-id="${s.id}" data-bid="${bl.id}">${ICONS.trash}</span>
   </div>`;
   const tt=BLOCK_TYPES.find(t=>t.t===bl.type)||BLOCK_TYPES[0];
+  const typeLabel=bl.type==='setting'?('📍 場面 '+(ctx.settingCode||('#'+(bl.no||'?')))):(tt.ic+' '+tt.ja);
   let body='';
   if(bl.type==='dir'||bl.type==='note'){
     body=`<textarea data-scope="block" data-sid="${s.id}" data-bid="${bl.id}" data-field="text" placeholder="${bl.type==='dir'?'カメラ・照明・BGM・空気感などの演出ト書き':'制作メモ'}">${esc(bl.text)}</textarea>`;
+  }else if(bl.type==='narration'){
+    body=`<textarea data-scope="block" data-sid="${s.id}" data-bid="${bl.id}" data-field="text" placeholder="地の文（プレイヤーに読ませる語りの文章。演出＝画面の動きとは分けて書く）">${esc(bl.text)}</textarea>`;
+  }else if(bl.type==='setting'){
+    body=`<div class="grid2">
+      <label class="fld" style="margin:0"><span class="lt">場所</span><input type="text" data-scope="block" data-sid="${s.id}" data-bid="${bl.id}" data-field="place" value="${esc(bl.place||'')}" placeholder="例：食堂車 / 客室3号室"></label>
+      <label class="fld" style="margin:0"><span class="lt">日時</span><input type="text" data-scope="block" data-sid="${s.id}" data-bid="${bl.id}" data-field="time" value="${esc(bl.time||'')}" placeholder="例：1日目 19:00"></label>
+    </div>`;
   }else if(bl.type==='line'){
     const ws=bl.windows||[];const last=ws.length-1;
     const wins=ws.map((w,wi)=>{
@@ -2346,7 +2415,7 @@ function scriptBlock(s,bl,i){
     }).join('');
     body=`${wins}<button class="btn sm ghost addwin" data-act="addwindow" data-id="${s.id}" data-bid="${bl.id}">${ICONS.plus} 台詞ウィンドウを追加</button>`;
   }else if(bl.type==='choice'){
-    const opts=(bl.opts||[]).map((o,oi)=>`<div class="choice-opt"><span style="color:var(--muted-2);font-family:var(--mono);font-size:11px">${oi+1}</span>
+    const opts=(bl.opts||[]).map((o,oi)=>`<div class="choice-opt"><span style="color:var(--muted-2);font-family:var(--mono);font-size:11px">${ctx.segCode?(ctx.segCode+'-'+((ctx.branchStart||0)+oi+1)):(oi+1)}</span>
       <textarea rows="1" data-scope="opt" data-sid="${s.id}" data-bid="${bl.id}" data-oi="${oi}" placeholder="選択肢テキスト" style="flex:1;resize:none">${esc(o)}</textarea>
       <span class="ic-mini danger" data-act="delopt" data-id="${s.id}" data-bid="${bl.id}" data-oi="${oi}">${ICONS.trash}</span></div>`).join('');
     body=`${opts}<button class="btn sm ghost" data-act="addopt" data-id="${s.id}" data-bid="${bl.id}" style="margin-top:4px">${ICONS.plus} 選択肢を追加</button>
@@ -2363,8 +2432,10 @@ function scriptBlock(s,bl,i){
       ${mediaList(bl.media,'block:'+s.id+':'+bl.id)}
       <textarea data-scope="block" data-sid="${s.id}" data-bid="${bl.id}" data-field="text" placeholder="演出メモ（尺・カット・BGM 等）" style="min-height:46px;margin-top:8px">${esc(bl.text)}</textarea>`;
   }
-  return `<div class="block t-${bl.type}" data-bid="${bl.id}" data-sid="${s.id}"><div class="spine"></div><div class="bmain">
-    <div class="bhead"><span class="drag-handle" draggable="true" data-bid="${bl.id}" data-sid="${s.id}" title="ドラッグで移動">⠿</span><span class="btype">${tt.ic} ${tt.ja}</span>${ctrl}</div>${body}</div></div>`;
+  const collapsed=collapsedBlocks.has(bl.id);
+  const collapseBtn=`<span class="ic-mini" data-act="toggleblockcollapse" data-bid="${bl.id}" title="${collapsed?'開く':'畳む'}" style="margin-left:auto">${collapsed?'▸':'▾'}</span>`;
+  return `<div class="block t-${bl.type}${collapsed?' collapsed':''}" data-bid="${bl.id}" data-sid="${s.id}"><div class="spine"></div><div class="bmain">
+    <div class="bhead"><span class="drag-handle" draggable="true" data-bid="${bl.id}" data-sid="${s.id}" title="ドラッグで移動">⠿</span><span class="btype">${typeLabel}</span>${collapseBtn}${ctrl}</div>${collapsed?`<div class="bprev">${esc(blockPreview(bl,E))}</div>`:body}</div></div>`;
 }
 
 /* ---------- 人物 ---------- */
@@ -2785,9 +2856,12 @@ document.addEventListener('click',e=>{
   if(a==='gotoscene'){if(id){currentScene=id;insertIdx=insertScene=null;render();try{window.scrollTo(0,0);}catch(e){}}return;}
   if(a==='closescene'){currentScene=null;insertIdx=insertScene=null;render();return;}
   if(a==='addscene'){const E=ep();const ns={id:uid(),title:'新規シーン',beatKey:'',summary:'',blocks:[]};E.scenes.push(ns);currentScene=ns.id;insertIdx=insertScene=null;scheduleSave();render();return;}
-  if(a==='addblock'){const s=findScene(id);s.blocks.push(newBlock(t.dataset.type));insertIdx=insertScene=null;scheduleSave();render();return;}
+  if(a==='addblock'){const s=findScene(id);s.blocks.push(mkBlock(ep(),t.dataset.type));insertIdx=insertScene=null;scheduleSave();render();return;}
+  if(a==='toggleblockcollapse'){const bid=t.dataset.bid;if(collapsedBlocks.has(bid))collapsedBlocks.delete(bid);else collapsedBlocks.add(bid);render();return;}
+  if(a==='collapseall'){const s=findScene(id);if(s)(s.blocks||[]).forEach(b=>collapsedBlocks.add(b.id));render();return;}
+  if(a==='expandall'){const s=findScene(id);if(s)(s.blocks||[]).forEach(b=>collapsedBlocks.delete(b.id));render();return;}
   if(a==='toggleinsert'){const k=parseInt(t.dataset.idx,10);if(insertScene===id&&insertIdx===k){insertIdx=null;insertScene=null;}else{insertIdx=k;insertScene=id;}render();return;}
-  if(a==='insertblock'){const s=findScene(id);const k=parseInt(t.dataset.idx,10);s.blocks.splice(k,0,newBlock(t.dataset.type));insertIdx=null;insertScene=null;scheduleSave();render();return;}
+  if(a==='insertblock'){const s=findScene(id);const k=parseInt(t.dataset.idx,10);s.blocks.splice(k,0,mkBlock(ep(),t.dataset.type));insertIdx=null;insertScene=null;scheduleSave();render();return;}
   if(a==='addwindow'){const bl=findBlock(id,t.dataset.bid);if(bl){bl.windows=bl.windows||[];bl.windows.push({id:uid(),charId:'',text:''});scheduleSave();render();}return;}
   if(a==='movewindow'){const bl=findBlock(id,t.dataset.bid);if(bl&&bl.windows){const arr=bl.windows;const k=arr.findIndex(w=>w.id===t.dataset.wid);const j=k+parseInt(t.dataset.dir,10);if(j>=0&&j<arr.length){const[x]=arr.splice(k,1);arr.splice(j,0,x);scheduleSave();render();}}return;}
   if(a==='delwindow'){const bl=findBlock(id,t.dataset.bid);if(bl&&bl.windows){bl.windows=bl.windows.filter(w=>w.id!==t.dataset.wid);if(bl.windows.length===0){const s=findScene(id);if(s)s.blocks=s.blocks.filter(b=>b.id!==bl.id);}scheduleSave();render();}return;}
