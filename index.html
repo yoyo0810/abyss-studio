@@ -221,6 +221,27 @@ svg.curve path.line{fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linej
 .inmark{font-family:var(--mono);font-size:10px;color:var(--muted-2)}
 .baddr{font-family:var(--mono);font-size:10.5px;color:var(--ember);background:rgba(231,169,72,.13);padding:1px 6px;border-radius:4px;font-weight:600;flex:0 0 auto}
 .mbadge{font-size:10px;color:var(--abyss);background:var(--teal);padding:1px 7px;border-radius:5px;font-weight:700;display:inline-flex;align-items:center;gap:3px}
+.cchip{display:inline-flex;align-items:center;gap:4px;font-size:10.5px;padding:1px 7px;border-radius:6px;font-weight:600;white-space:nowrap;line-height:1.7}
+.cchip.cc-buttai{color:var(--ember-soft);background:var(--ember-glow)}
+.cchip.cc-kansoku{color:var(--teal-soft);background:var(--teal-glow)}
+.cchip.cc-koudou{color:var(--choice-soft);background:rgba(176,143,208,.16)}
+.cchip.cc-kasetsu{color:var(--crimson-soft);background:var(--crimson-glow)}
+.cchip.req{color:var(--muted);background:var(--surface-3);border:1px solid var(--line)}
+.cchip.ed{padding-right:4px}
+.cchip.ed i{cursor:pointer;font-style:normal;opacity:.55;padding:0 1px;font-size:11px}
+.cchip.ed i:hover{opacity:1;color:var(--crimson)}
+.rcards{display:flex;flex-wrap:wrap;gap:5px;margin-top:5px}
+.lchip.req{color:var(--muted);background:var(--surface-3)}
+.card-field{display:flex;align-items:center;flex-wrap:wrap;gap:7px;margin-top:8px;padding:7px 9px;background:var(--surface);border:1px solid var(--line-soft);border-radius:8px}
+.card-field.opt-req{margin-top:6px;padding:4px 0 0;background:transparent;border:none}
+.cf-lab{font-size:11px;color:var(--muted);font-weight:600;flex:0 0 auto}
+.cf-chips{display:flex;flex-wrap:wrap;gap:5px}
+.cf-none{font-size:11px;color:var(--faint)}
+.card-add{font-size:11px;padding:3px 6px;border-radius:6px;background:var(--surface-2);color:var(--text);border:1px solid var(--line)}
+.card-src{display:flex;flex-wrap:wrap;align-items:center;gap:5px;margin-top:4px;font-size:10.5px;color:var(--muted-2);font-family:var(--mono)}
+.cs-scene{color:var(--ember-soft);background:var(--ember-glow);padding:0 6px;border-radius:5px}
+.card-src.none{color:var(--crimson-soft)}
+.card-src.synth{color:var(--teal-soft)}
 .event-row{display:grid;grid-template-columns:170px 1fr;gap:10px}
 .block.read{margin-bottom:5px;border-radius:7px;background:var(--surface-2);border-color:var(--line);align-items:stretch}
 .block.read .spine{flex:0 0 3px}
@@ -2018,8 +2039,10 @@ function ensureBlockShape(b){
   if(b.type==='event'||b.type==='cg'||b.type==='dir'||b.type==='note')b.media=b.media||[];
   if(b.type==='setting'){b.place=b.place||'';b.time=b.time||'';delete b.text;}
   if(b.type==='narration'&&typeof b.text!=='string')b.text='';
-  if(b.type==='choice'){ if(!Array.isArray(b.opts))b.opts=[]; b.opts=b.opts.map(o=>(o&&typeof o==='object')?{text:String(o.text||''),to:String(o.to||'')}:{text:String(o||''),to:''}); if(typeof b.text!=='string')b.text=''; }
+  if(b.type==='choice'){ if(!Array.isArray(b.opts))b.opts=[]; b.opts=b.opts.map(o=>(o&&typeof o==='object')?{text:String(o.text||''),to:String(o.to||''),requires:Array.isArray(o.requires)?o.requires.slice():[]}:{text:String(o||''),to:'',requires:[]}); if(typeof b.text!=='string')b.text=''; }
   if(typeof b.to!=='string')b.to='';
+  if(!Array.isArray(b.grants))b.grants=[];
+  if(!Array.isArray(b.requires))b.requires=[];
   return b;
 }
 function ensureCharShape(c){c.media=c.media||[];['age','gender','personality','tone','silhouette','likes','dislikes','strengths','flaws'].forEach(k=>{if(c[k]===undefined)c[k]='';});return c;}
@@ -2437,6 +2460,27 @@ function buildScript(s,E,phctx){
   });
   return html;
 }
+/* ---------- カード接続（獲得 / 所持条件） ---------- */
+function cardById(id){return (ep().cards||[]).find(c=>c.id===id);}
+function cardLabel(id){const c=cardById(id);return c?c.name:'（削除済みカード）';}
+function cardTypeC(id){const c=cardById(id);if(!c)return 'kasetsu';const t=CARD_TYPES.find(x=>x.t===c.type);return t?t.c:'kasetsu';}
+function optReq(o){return (o&&typeof o==='object'&&Array.isArray(o.requires))?o.requires:[];}
+function grantChips(arr){return (arr||[]).map(id=>`<span class="cchip cc-${cardTypeC(id)}">🎴 ${esc(cardLabel(id))}</span>`).join('');}
+function reqChips(arr){return (arr||[]).map(id=>`<span class="cchip req">🔒 ${esc(cardLabel(id))}</span>`).join('');}
+function cardAddSelect(act,extra){return `<select class="card-add" data-act="${act}" ${extra}><option value="">＋ カードを選択…</option>${(ep().cards||[]).map(c=>`<option value="${c.id}">[${c.type}] ${esc(c.name)}</option>`).join('')}</select>`;}
+function grantEditor(s,bl){
+  const chips=(bl.grants||[]).map(id=>`<span class="cchip cc-${cardTypeC(id)} ed">🎴 ${esc(cardLabel(id))}<i data-act="rmgrant" data-sid="${s.id}" data-bid="${bl.id}" data-cid="${id}">✕</i></span>`).join('');
+  return `<div class="card-field"><span class="cf-lab">🎴 獲得カード</span><div class="cf-chips">${chips||'<span class="cf-none">なし</span>'}</div>${cardAddSelect('addgrant',`data-sid="${s.id}" data-bid="${bl.id}"`)}</div>`;
+}
+function reqEditor(s,bl){
+  const chips=(bl.requires||[]).map(id=>`<span class="cchip req ed">🔒 ${esc(cardLabel(id))}<i data-act="rmreq" data-sid="${s.id}" data-bid="${bl.id}" data-cid="${id}">✕</i></span>`).join('');
+  return `<div class="card-field"><span class="cf-lab">🔒 所持条件</span><div class="cf-chips">${chips||'<span class="cf-none">なし</span>'}</div>${cardAddSelect('addreq',`data-sid="${s.id}" data-bid="${bl.id}"`)}</div>`;
+}
+function optReqEditor(s,bl,oi){
+  const arr=optReq(bl.opts[oi]);
+  const chips=arr.map(id=>`<span class="cchip req ed">🔒 ${esc(cardLabel(id))}<i data-act="rmoptreq" data-sid="${s.id}" data-bid="${bl.id}" data-oi="${oi}" data-cid="${id}">✕</i></span>`).join('');
+  return `<div class="card-field opt-req"><span class="cf-lab">🔒 要</span><div class="cf-chips">${chips||'<span class="cf-none">条件なし</span>'}</div>${cardAddSelect('addoptreq',`data-sid="${s.id}" data-bid="${bl.id}" data-oi="${oi}"`)}</div>`;
+}
 function scriptBlock(s,bl,i,ctx){
   ctx=ctx||{};
   const E=ep();const last=s.blocks.length-1;
@@ -2493,7 +2537,7 @@ function scriptBlock(s,bl,i,ctx){
       return `<div class="choice-opt"><div class="opt-top"><span class="opt-code">${code}</span>
         <textarea rows="1" data-scope="opt" data-sid="${s.id}" data-bid="${bl.id}" data-oi="${oi}" placeholder="選択肢テキスト">${esc(optText(o))}</textarea>
         <span class="ic-mini danger" data-act="delopt" data-id="${s.id}" data-bid="${bl.id}" data-oi="${oi}">${ICONS.trash}</span></div>
-        <div class="opt-to"><span class="opt-to-lab">→ 遷移先</span><select data-act="setopttarget" data-sid="${s.id}" data-bid="${bl.id}" data-oi="${oi}">${linkTargetOptions(fl,bl.id,to)}</select></div></div>`;
+        <div class="opt-to"><span class="opt-to-lab">→ 遷移先</span><select data-act="setopttarget" data-sid="${s.id}" data-bid="${bl.id}" data-oi="${oi}">${linkTargetOptions(fl,bl.id,to)}</select></div>${optReqEditor(s,bl,oi)}</div>`;
     }).join('');
     body=`${opts}<button class="btn sm ghost" data-act="addopt" data-id="${s.id}" data-bid="${bl.id}" style="margin-top:4px">${ICONS.plus} 選択肢を追加</button>
       <textarea data-scope="block" data-sid="${s.id}" data-bid="${bl.id}" data-field="text" placeholder="分岐・条件メモ（例：正しい解釈で推理カード化）" style="min-height:48px;margin-top:8px">${esc(bl.text)}</textarea>`;
@@ -2513,6 +2557,7 @@ function scriptBlock(s,bl,i,ctx){
     const myTo=bl.to||''; const toA=myTo?(fl.addrById[myTo]||'？'):''; const lexp=expandedLinks.has(bl.id);
     body+=`<div class="blk-link"><span class="opt-to-lab">→ 遷移先</span><select data-act="setblocktarget" data-sid="${s.id}" data-bid="${bl.id}">${linkTargetOptions(fl,bl.id,myTo)}</select></div>`;
   }
+  if(bl.type!=='setting'){ body+=grantEditor(s,bl); body+=reqEditor(s,bl); }
   const _spk=(bl.type==='line')?(castOf(E).find(x=>x.id===((bl.windows||[])[0]||{}).charId)):null;
   const accent=(myMerge>=2)?'var(--teal)':(bl.type==='setting'?'var(--c-set)':bl.type==='narration'?'var(--c-narr)':bl.type==='dir'?'var(--teal)':bl.type==='note'?'var(--muted-2)':bl.type==='event'?'var(--crimson)':bl.type==='cg'?'var(--c-cg)':bl.type==='choice'?'var(--choice)':(_spk?_spk.color:'var(--ember)'));
   const markerHtml=(myMerge>=2)?`<span class="mbadge">⇄ 合流 (${myMerge})</span>`:((bl.type!=='setting'&&incLetters)?`<span class="inmark">←${incLetters}</span>`:'');
@@ -2525,7 +2570,7 @@ function scriptBlock(s,bl,i,ctx){
       const pr=String(bl.text||'').replace(/\n/g,' ').trim();
       rhead=`<div class="rhead"><span class="baddr">${myAddr}</span><span class="rtype" style="color:${accent}">❓ 選択肢${pr?(' 「'+esc(pr.slice(0,22))+(pr.length>22?'…':'')+'」'):''}</span>${markerHtml}</div>`;
       const _nbc=(s.blocks||[])[i+1];const _nextC=_nbc?(fl.addrById[_nbc.id]||''):'';
-      const ro=(bl.opts||[]).map((o,oi)=>{const L=String.fromCharCode(97+oi);const to=optTo(o);const ta=to?(fl.addrById[to]||'？'):'';return `<div class="ropt"><span class="ropt-l">${L}</span><span class="ropt-t">${esc(optText(o)||'（空）')}</span>${to?`<span class="lchip set ropt-to">→ ${ta}</span>`:`<span class="rnext ropt-to">→ ${_nextC||'次の場面'}</span>`}</div>`;}).join('');
+      const ro=(bl.opts||[]).map((o,oi)=>{const L=String.fromCharCode(97+oi);const to=optTo(o);const ta=to?(fl.addrById[to]||'？'):'';return `<div class="ropt"><span class="ropt-l">${L}</span><span class="ropt-t">${esc(optText(o)||'（空）')}</span>${to?`<span class="lchip set ropt-to">→ ${ta}</span>`:`<span class="rnext ropt-to">→ ${_nextC||'次の場面'}</span>`}${optReq(o).length?`<span class="lchip req" title="${esc(optReq(o).map(cardLabel).join(' / '))}">🔒 ${optReq(o).length}</span>`:''}</div>`;}).join('');
       rbody=`<div class="ropts">${ro}</div>`;
     }else{
       const headLabel=(bl.type==='line')?('💬 '+(_spk?esc(_spk.name):'台詞')):(tt.ic+' '+tt.ja);
@@ -2540,7 +2585,9 @@ function scriptBlock(s,bl,i,ctx){
       const linkHtml=myTo?`<span class="lchip set">→ ${toA}</span>`:`<span class="rnext">→ ${_nextA||'次の場面'}</span>`;
       rbody=`<div class="rbody">${ct} ${linkHtml}</div>`;
     }
-    return `<div class="block read t-${bl.type}${myMerge>=2?' mrg':''}" id="blk-${bl.id}" data-bid="${bl.id}" data-sid="${s.id}"><div class="spine" style="background:${accent}"></div><div class="bmain rcard" data-act="editblock" data-id="${s.id}" data-bid="${bl.id}" title="タップで開いて編集">${rhead}${rbody}</div></div>`;
+    const _gr=grantChips(bl.grants); const _rq=reqChips(bl.requires);
+    const cardLineRead=(_gr||_rq)?`<div class="rcards">${_gr}${_rq}</div>`:'';
+    return `<div class="block read t-${bl.type}${myMerge>=2?' mrg':''}" id="blk-${bl.id}" data-bid="${bl.id}" data-sid="${s.id}"><div class="spine" style="background:${accent}"></div><div class="bmain rcard" data-act="editblock" data-id="${s.id}" data-bid="${bl.id}" title="タップで開いて編集">${rhead}${rbody}${cardLineRead}</div></div>`;
   }
   return `<div class="block editing t-${bl.type}" id="blk-${bl.id}" data-bid="${bl.id}" data-sid="${s.id}"><div class="spine" style="background:${accent}"></div><div class="bmain">
     <div class="bhead"><span class="drag-handle" draggable="true" data-bid="${bl.id}" data-sid="${s.id}" title="ドラッグで移動">⠿</span><span class="btype" style="color:${accent}">${typeLabel}</span>${(bl.type!=='setting'&&myAddr)?`<span class="baddr">${myAddr}</span>`:''}${markerHtml}<span class="editdone" data-act="editdone" data-bid="${bl.id}" title="閉じる（読み取りに戻す）">完了 ▾</span>${ctrl}</div>${body}</div></div>`;
@@ -2630,8 +2677,17 @@ function tlPhase(ph,rows){
   return `<div class="tl-events">${items||'<div class="tl-empty">出来事が未登録です。下のボタンから追加してください。</div>'}</div>
     <button class="btn sm ghost" data-act="addtlrow" data-phase="${ph}">${ICONS.plus} 出来事を追加</button>`;
 }
+function cardGrantIndex(E){
+  const idx={};
+  (E.scenes||[]).forEach((s,si)=>{
+    const lbl='S'+String(si+1).padStart(2,'0')+'・'+(s.title||'(無題)');
+    (s.blocks||[]).forEach(b=>{(b.grants||[]).forEach(cid=>{const a=idx[cid]=idx[cid]||[];if(a.indexOf(lbl)<0)a.push(lbl);});});
+  });
+  return idx;
+}
 function viewSystem(){
   const E=ep();const bal=E.balance;
+  const _grantIdx=cardGrantIndex(E); const _recipeOut=new Set((E.recipes||[]).map(r=>r.outId).filter(Boolean));
   const cardRows=E.cards.map(c=>{
     const ct=CARD_TYPES.find(t=>t.t===c.type)||CARD_TYPES[0];
     return `<div class="card-item">
@@ -2640,6 +2696,7 @@ function viewSystem(){
       <div class="cc">
         <textarea rows="1" data-scope="card" data-id="${c.id}" data-field="name" style="font-weight:600;border:none;background:transparent;padding:2px 0;resize:none;width:100%">${esc(c.name)}</textarea>
         <textarea rows="1" data-scope="card" data-id="${c.id}" data-field="source" placeholder="入手経路（時系列・場所・能力）" class="src" style="border:none;background:transparent;padding:2px 0;font-family:var(--mono);color:var(--muted-2);font-size:11px;resize:none;width:100%">${esc(c.source)}</textarea>
+        ${(()=>{const g=_grantIdx[c.id];if(g&&g.length)return `<div class="card-src">🎴 獲得元 ${g.map(x=>`<span class="cs-scene">${esc(x)}</span>`).join('')}</div>`;if(_recipeOut.has(c.id))return `<div class="card-src synth">🧪 合成で生成（直接配置なし）</div>`;return `<div class="card-src none">⚠ 台本に未配置</div>`;})()}
       </div>
       <span class="iconbtn danger" data-act="del" data-scope="card" data-id="${c.id}">${ICONS.trash}</span>
     </div>`;
@@ -2748,6 +2805,10 @@ function consistency(){
   const orphanHyp=E.cards.filter(c=>c.type==='仮説'&&!producedHyp.has(c.id));
   if(orphanHyp.length)out.push(['warn','入手経路のない仮説カード',`${orphanHyp.map(c=>c.name).join('、')}（合成レシピの出力に設定されていません）`]);
   else if(E.cards.some(c=>c.type==='仮説'))out.push(['ok','全仮説カードに合成経路あり','ロジックツリーが繋がっています']);
+  const _gi=cardGrantIndex(E);
+  const unplaced=E.cards.filter(c=>!_gi[c.id]&&!producedHyp.has(c.id));
+  if(unplaced.length)out.push(['warn','台本に未配置のカードがあります',`${unplaced.length}枚：${unplaced.map(c=>c.name).join('、')}（シーンの該当ブロックを開き「🎴獲得カード」に設定してください）`]);
+  else if(E.cards.length)out.push(['ok','全カードが台本に配置済み','獲得経路（または合成生成）の穴はありません']);
   const ids=new Set(E.cards.map(c=>c.id));
   const broken=E.recipes.filter(r=>!ids.has(r.aId)||!ids.has(r.bId)||(r.outId&&!ids.has(r.outId))||!r.outId);
   if(broken.length)out.push(['warn','未完成の合成レシピ',`${broken.length}件：入力／出力カードが未設定または削除済みです`]);
@@ -2980,6 +3041,9 @@ document.addEventListener('click',e=>{
   if(a==='moveblock'){const s=findScene(id);const arr=s.blocks;const k=arr.findIndex(b=>b.id===t.dataset.bid);const j=k+parseInt(t.dataset.dir,10);if(j>=0&&j<arr.length){const[x]=arr.splice(k,1);arr.splice(j,0,x);scheduleSave();render();}return;}
   if(a==='addopt'){const bl=findBlock(id,t.dataset.bid);bl.opts=bl.opts||[];bl.opts.push({text:'',to:''});scheduleSave();render();return;}
   if(a==='delopt'){const bl=findBlock(id,t.dataset.bid);bl.opts.splice(parseInt(t.dataset.oi,10),1);scheduleSave();render();return;}
+  if(a==='rmgrant'){const bl=findBlock(t.dataset.sid,t.dataset.bid);if(bl&&Array.isArray(bl.grants)){bl.grants=bl.grants.filter(x=>x!==t.dataset.cid);scheduleSave();render();}return;}
+  if(a==='rmreq'){const bl=findBlock(t.dataset.sid,t.dataset.bid);if(bl&&Array.isArray(bl.requires)){bl.requires=bl.requires.filter(x=>x!==t.dataset.cid);scheduleSave();render();}return;}
+  if(a==='rmoptreq'){const bl=findBlock(t.dataset.sid,t.dataset.bid);if(bl&&bl.opts){const o=bl.opts[parseInt(t.dataset.oi,10)];if(o&&Array.isArray(o.requires)){o.requires=o.requires.filter(x=>x!==t.dataset.cid);scheduleSave();render();}}return;}
   if(a==='exportscene'){exportScene(id);return;}
   if(a==='addcard'){ep().cards.push({id:uid(),type:'物的',name:'新しい証拠',source:''});scheduleSave();render();return;}
   if(a==='addrecipe'){ep().recipes.push({id:uid(),aId:'',bId:'',outId:'',note:''});scheduleSave();render();return;}
@@ -3092,6 +3156,9 @@ document.addEventListener('change',e=>{
   if(t.id==='epselect'){state.activeEp=t.value;openBeat=openChar=currentScene=null;insertIdx=insertScene=null;render();return;}
   if(t.dataset&&t.dataset.act==='setopttarget'){const bl=findBlock(t.dataset.sid,t.dataset.bid);if(bl&&bl.opts){const i=parseInt(t.dataset.oi,10);let o=bl.opts[i];if(!o||typeof o!=='object'){o={text:String(o||''),to:''};bl.opts[i]=o;}o.to=t.value;scheduleSave();render();}return;}
   if(t.dataset&&t.dataset.act==='setblocktarget'){const bl=findBlock(t.dataset.sid,t.dataset.bid);if(bl){bl.to=t.value;scheduleSave();render();}return;}
+  if(t.dataset&&t.dataset.act==='addgrant'){const v=t.value;if(v){const bl=findBlock(t.dataset.sid,t.dataset.bid);if(bl){bl.grants=Array.isArray(bl.grants)?bl.grants:[];if(bl.grants.indexOf(v)<0)bl.grants.push(v);scheduleSave();render();}}return;}
+  if(t.dataset&&t.dataset.act==='addreq'){const v=t.value;if(v){const bl=findBlock(t.dataset.sid,t.dataset.bid);if(bl){bl.requires=Array.isArray(bl.requires)?bl.requires:[];if(bl.requires.indexOf(v)<0)bl.requires.push(v);scheduleSave();render();}}return;}
+  if(t.dataset&&t.dataset.act==='addoptreq'){const v=t.value;if(v){const bl=findBlock(t.dataset.sid,t.dataset.bid);if(bl&&bl.opts){const o=bl.opts[parseInt(t.dataset.oi,10)];if(o){o.requires=Array.isArray(o.requires)?o.requires:[];if(o.requires.indexOf(v)<0)o.requires.push(v);scheduleSave();render();}}}return;}
   if(!t.dataset||!t.dataset.scope)return;
   if(t.classList&&t.classList.contains('line-ta')){const c=clampLine(t.value);if(c!==t.value)t.value=c;}
   applyInput(t);
@@ -3284,6 +3351,24 @@ function applyPatch(text){
         let oo=bl.opts[i]; if(!oo||typeof oo!=='object'){oo={text:String(oo||''),to:''}; bl.opts[i]=oo;}
         if(typeof o.text==='string')oo.text=o.text; oo.to=o.to||'';
         touchedEps.add(ep); log.push(tag+' OK：選択肢 '+i+' の遷移先設定'); done++;
+      }else if(o.op==='setBlockGrants'){
+        const ep=_findEp(o.epId); if(!ep)throw new Error('episode '+o.epId+' なし');
+        const sc=ep.scenes.find(x=>x.id===o.sceneId); if(!sc)throw new Error('scene '+o.sceneId+' なし');
+        const bl=(sc.blocks||[]).find(x=>x.id===o.blockId); if(!bl)throw new Error('block '+o.blockId+' なし');
+        bl.grants=Array.isArray(o.cardIds)?o.cardIds.slice():[]; touchedEps.add(ep); log.push(tag+' OK：獲得カード設定 ('+bl.grants.length+')'); done++;
+      }else if(o.op==='setBlockRequires'){
+        const ep=_findEp(o.epId); if(!ep)throw new Error('episode '+o.epId+' なし');
+        const sc=ep.scenes.find(x=>x.id===o.sceneId); if(!sc)throw new Error('scene '+o.sceneId+' なし');
+        const bl=(sc.blocks||[]).find(x=>x.id===o.blockId); if(!bl)throw new Error('block '+o.blockId+' なし');
+        bl.requires=Array.isArray(o.cardIds)?o.cardIds.slice():[]; touchedEps.add(ep); log.push(tag+' OK：所持条件設定 ('+bl.requires.length+')'); done++;
+      }else if(o.op==='setOptionRequires'){
+        const ep=_findEp(o.epId); if(!ep)throw new Error('episode '+o.epId+' なし');
+        const sc=ep.scenes.find(x=>x.id===o.sceneId); if(!sc)throw new Error('scene '+o.sceneId+' なし');
+        const bl=(sc.blocks||[]).find(x=>x.id===o.blockId); if(!bl)throw new Error('block '+o.blockId+' なし');
+        if(bl.type!=='choice')throw new Error('block '+o.blockId+' は選択肢ではない');
+        bl.opts=bl.opts||[]; const i=o.optIndex|0; if(i<0||i>=bl.opts.length)throw new Error('opt index '+i+' 範囲外');
+        let oo=bl.opts[i]; if(!oo||typeof oo!=='object'){oo={text:String(oo||''),to:'',requires:[]}; bl.opts[i]=oo;}
+        oo.requires=Array.isArray(o.cardIds)?o.cardIds.slice():[]; touchedEps.add(ep); log.push(tag+' OK：選択肢 '+i+' の所持条件設定'); done++;
       }else{ throw new Error('未知のop'); }
     }catch(e){ log.push(tag+' ✕ '+e.message); }
   });
