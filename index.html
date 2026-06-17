@@ -219,6 +219,14 @@ svg.curve path.line{fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linej
 .lchip.empty{color:var(--muted-2);background:transparent;border-style:dashed}
 .lchip:hover{border-color:var(--teal)}
 .inmark{font-family:var(--mono);font-size:10px;color:var(--muted-2)}
+.chunk{margin:2px 0}
+.chunk-head{display:flex;align-items:center;gap:8px;margin:9px 0 3px;font-family:var(--mono)}
+.ch-addr{font-size:11px;font-weight:700;color:var(--ember);background:var(--ember-glow);padding:1px 8px;border-radius:6px;letter-spacing:.02em}
+.chunk-head.route .ch-addr{color:var(--choice-soft);background:rgba(176,143,208,.16)}
+.ch-opt{font-size:11.5px;color:var(--choice-soft)}
+.ch-fork{font-size:11px;color:var(--choice)}
+.chunk-merge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:var(--teal-soft);background:var(--teal-glow);padding:3px 9px;border-radius:6px;margin:10px 0 2px}
+.cm-ic{font-size:12px}
 .baddr{font-family:var(--mono);font-size:10.5px;color:var(--ember);background:rgba(231,169,72,.13);padding:1px 6px;border-radius:4px;font-weight:600;flex:0 0 auto}
 .mbadge{font-size:10px;color:var(--abyss);background:var(--teal);padding:1px 7px;border-radius:5px;font-weight:700;display:inline-flex;align-items:center;gap:3px}
 .cchip{display:inline-flex;align-items:center;gap:4px;font-size:10.5px;padding:1px 7px;border-radius:6px;font-weight:600;white-space:nowrap;line-height:1.7}
@@ -2413,51 +2421,68 @@ function optText(o){return (o&&typeof o==='object')?(o.text||''):String(o||'');}
 function optTo(o){return (o&&typeof o==='object')?(o.to||''):'';}
 function shortBlockLabel(bl){const cut=(t,n)=>{t=String(t==null?'':t).replace(/\n/g,' ').trim();return t.length>(n||16)?t.slice(0,n||16)+'…':t;};const tt=BLOCK_TYPES.find(t=>t.t===bl.type)||{ic:''};if(bl.type==='line'){const w=(bl.windows||[])[0];return tt.ic+' '+cut(w?w.text:'',16);}if(bl.type==='choice')return tt.ic+' '+cut(optText((bl.opts||[])[0]),16);if(bl.type==='setting')return '📍 '+cut((bl.place||'場面'),16);if(bl.type==='cg')return tt.ic+' '+cut(bl.title,16);return tt.ic+' '+cut(bl.text,16);}
 function computeSceneAddrs(s,phaseCode,settingOffset,sceneNo){
-  const arr=s.blocks||[]; const addrById={}; const baseById={}; const ordered=[];
+  /* 塊（チャンク）ベースのナンバリング：分岐(フォーク)と合流を境界に、
+     その間の連続ブロックを1つの塊にまとめ、塊にだけ番号を振る。
+     メモ(note)は塊に含めず番号も振らない。ルートは親フォーク番号＋レター。 */
+  const arr=s.blocks||[]; const addrById={}; const ordered=[];
   const byId={}; arr.forEach(b=>{byId[b.id]=b;});
-  const seg=phaseCode?(phaseCode+'-'+(sceneNo||1)):null; let step=0;
+  const seg=phaseCode?(phaseCode+'-'+(sceneNo||1)):null;
+  const edges=[]; const optInfo={};
   arr.forEach(bl=>{
-    if(bl.type==='setting'){ baseById[bl.id]=seg||('#'+(bl.no||'?')); }
-    else { step+=1; baseById[bl.id]=seg?(seg+'.'+step):('・'+step); }
-  });
-  const edges=[];
-  arr.forEach(bl=>{
-    if(bl.type==='choice'){ (bl.opts||[]).forEach((o,oi)=>{ const to=optTo(o); if(to)edges.push({from:bl.id,to:to,letter:String.fromCharCode(97+oi)}); }); }
-    if(bl.to)edges.push({from:bl.id,to:bl.to,letter:null});
+    if(bl.type==='choice'){ (bl.opts||[]).forEach((o,oi)=>{ const to=optTo(o); if(to){ edges.push({from:bl.id,to:to}); if(!optInfo[to])optInfo[to]={forkId:bl.id,letter:String.fromCharCode(97+oi),text:optText(o)}; } }); }
+    if(bl.to)edges.push({from:bl.id,to:bl.to});
   });
   const incoming={}; edges.forEach(e=>{ incoming[e.to]=(incoming[e.to]||0)+1; });
   const mergeById={}; Object.keys(incoming).forEach(k=>{ if(incoming[k]>=2)mergeById[k]=incoming[k]; });
-  const branchById={}; const incomingById={};
-  const addInc=(id,L)=>{ if(!L)return; (incomingById[id]=incomingById[id]||new Set()).add(L); };
-  arr.forEach(bl=>{ if(bl.type!=='choice')return; (bl.opts||[]).forEach((o,oi)=>{
-    const start=optTo(o); if(!start)return; const L=String.fromCharCode(97+oi); addInc(start,L);
-    let cur=start, guard=0;
-    while(cur&&guard++<300){
-      if(incoming[cur]>=2)break;
-      if(branchById[cur]&&branchById[cur]!==L)break;
-      branchById[cur]=L;
-      const nb=byId[cur]; const nx=(nb&&nb.type!=='choice'&&nb.to)?nb.to:null;
-      if(nx){ addInc(nx,L); cur=nx; } else break;
-    }
-  }); });
-  arr.forEach(bl=>{ addrById[bl.id]=(bl.type==='setting')?baseById[bl.id]:(baseById[bl.id]+(branchById[bl.id]||'')); });
-  arr.forEach(bl=>{ ordered.push({id:bl.id,addr:addrById[bl.id],label:shortBlockLabel(bl),setting:bl.type==='setting'}); });
-  return {addrById:addrById, baseById:baseById, branchById:branchById, incomingById:incomingById, mergeById:mergeById, ordered:ordered};
+  const nonNote=arr.filter(b=>b.type!=='note');
+  const headSet=new Set(); if(nonNote[0])headSet.add(nonNote[0].id);
+  arr.forEach(bl=>{ if(bl.type==='note')return; if(bl.type==='choice')headSet.add(bl.id); if((incoming[bl.id]||0)>=2)headSet.add(bl.id); if(optInfo[bl.id])headSet.add(bl.id); });
+  const chunks=[]; let cur=null;
+  arr.forEach(bl=>{ if(bl.type==='note')return; if(headSet.has(bl.id)||!cur){ cur={headId:bl.id,members:[bl.id]}; chunks.push(cur); } else cur.members.push(bl.id); });
+  const chunkByHead={}; chunks.forEach(c=>chunkByHead[c.headId]=c);
+  chunks.forEach(c=>{ const h=c.headId; c.isMerge=(incoming[h]||0)>=2; c.isFork=!!(byId[h]&&byId[h].type==='choice'); c.isRoute=(!c.isMerge && !!optInfo[h]); if(c.isRoute)c.route=optInfo[h]; c.mergeCount=incoming[h]||0; });
+  let mainNo=0;
+  chunks.forEach(c=>{ if(!c.isRoute){ mainNo++; c.num=mainNo; c.addr=seg?(seg+'.'+mainNo):('・'+mainNo); } });
+  chunks.forEach(c=>{ if(c.isRoute){ const f=chunkByHead[c.route.forkId]; c.addr=((f&&f.addr)?f.addr:(seg||'#'))+c.route.letter; } });
+  const depthOf=(c,g)=>{ g=g||0; if(g>50)return 0; if(!c.isRoute)return 0; const f=chunkByHead[c.route.forkId]; return (f?depthOf(f,g+1):0)+1; };
+  chunks.forEach(c=>{ c.depth=depthOf(c,0); });
+  const chunkOfId={};
+  chunks.forEach(c=>{ c.members.forEach(id=>{ chunkOfId[id]=c; addrById[id]=c.addr; }); });
+  arr.forEach(bl=>{ if(bl.type==='note')addrById[bl.id]=''; });
+  arr.forEach(bl=>{ ordered.push({id:bl.id,addr:(bl.type==='note'?'—':(addrById[bl.id]||'')),label:shortBlockLabel(bl),setting:bl.type==='setting'}); });
+  return {addrById:addrById, mergeById:mergeById, incomingById:{}, ordered:ordered, chunks:chunks, chunkByHead:chunkByHead, chunkOfId:chunkOfId, byId:byId};
 }
 function linkTargetOptions(fl,excludeId,curTo){
   let h='<option value="" '+(curTo?'':'selected')+'>（リンクなし＝次へ）</option>';
   fl.ordered.forEach(o=>{ if(o.id===excludeId)return; h+='<option value="'+o.id+'" '+(o.id===curTo?'selected':'')+'>'+esc(o.addr+' '+o.label)+'</option>'; });
   return h;
 }
+function chunkHeaderHtml(ck){
+  let extra='';
+  if(ck.isRoute && ck.route && ck.route.text){ extra=`<span class="ch-opt">${esc(ck.route.text)}</span>`; }
+  else if(ck.isFork){ extra='<span class="ch-fork">❓ 分岐</span>'; }
+  return `<div class="chunk-head${ck.isRoute?' route':''}"><span class="ch-addr">${esc(ck.addr)}</span>${extra}</div>`;
+}
 function buildScript(s,E,phctx){
   phctx=phctx||{};
   const arr=s.blocks||[]; if(!arr.length)return '';
   const flow=computeSceneAddrs(s,phctx.phaseCode,phctx.settingOffset,phctx.sceneNo);
-  let html=insertBar(s,0);
+  const chunkOf=flow.chunkOfId||{};
+  let html=insertBar(s,0); let openChunk=false;
   arr.forEach((bl,i)=>{
-    const ctx={blockAddr:flow.addrById[bl.id],settingCode:flow.addrById[bl.id],mergeCount:flow.mergeById[bl.id]||0,flow:flow};
-    html+=scriptBlock(s,bl,i,ctx)+insertBar(s,i+1);
+    if(bl.type==='note'){ html+=scriptBlock(s,bl,i,{flow:flow,chunkMode:true})+insertBar(s,i+1); return; }
+    const ck=chunkOf[bl.id];
+    if(ck && ck.headId===bl.id){
+      if(openChunk){ html+='</div>'; openChunk=false; }
+      const ml=ck.depth>0?('margin-left:'+(ck.depth*16)+'px;'):'';
+      if(ck.isMerge){ html+=`<div class="chunk-merge" style="${ml}"><span class="cm-ic">⇄</span> 合流 ${ck.mergeCount}</div>`; }
+      const rail=ck.depth>0?(`margin-left:${ck.depth*16}px;border-left:2px solid var(--line);padding-left:10px;`):'';
+      html+=`<div class="chunk" style="${rail}">`; openChunk=true;
+      html+=chunkHeaderHtml(ck);
+    }
+    html+=scriptBlock(s,bl,i,{flow:flow,chunkMode:true})+insertBar(s,i+1);
   });
+  if(openChunk)html+='</div>';
   return html;
 }
 /* ---------- カード接続（獲得 / 所持条件） ---------- */
@@ -2561,20 +2586,22 @@ function scriptBlock(s,bl,i,ctx){
   const _spk=(bl.type==='line')?(castOf(E).find(x=>x.id===((bl.windows||[])[0]||{}).charId)):null;
   const accent=(myMerge>=2)?'var(--teal)':(bl.type==='setting'?'var(--c-set)':bl.type==='narration'?'var(--c-narr)':bl.type==='dir'?'var(--teal)':bl.type==='note'?'var(--muted-2)':bl.type==='event'?'var(--crimson)':bl.type==='cg'?'var(--c-cg)':bl.type==='choice'?'var(--choice)':(_spk?_spk.color:'var(--ember)'));
   const markerHtml=(myMerge>=2)?`<span class="mbadge">⇄ 合流 (${myMerge})</span>`:((bl.type!=='setting'&&incLetters)?`<span class="inmark">←${incLetters}</span>`:'');
+  const addrBadge=ctx.chunkMode?'':`<span class="baddr">${myAddr}</span>`;
+  const mk=ctx.chunkMode?'':markerHtml;
   if(!editingBlocks.has(bl.id)){
     let rhead,rbody;
     if(bl.type==='setting'){
-      rhead=`<div class="rhead"><span class="rset">📍 場面 ${myAddr||('#'+(bl.no||'?'))}</span>${markerHtml}</div>`;
+      rhead=`<div class="rhead"><span class="rset">📍 場面${ctx.chunkMode?'':(' '+(myAddr||('#'+(bl.no||'?'))))}</span>${mk}</div>`;
       rbody=`<div class="rbody rset-body">${esc(bl.place||'（場所未設定）')} ／ ${esc(bl.time||'（時刻未設定）')}</div>`;
     }else if(bl.type==='choice'){
       const pr=String(bl.text||'').replace(/\n/g,' ').trim();
-      rhead=`<div class="rhead"><span class="baddr">${myAddr}</span><span class="rtype" style="color:${accent}">❓ 選択肢${pr?(' 「'+esc(pr.slice(0,22))+(pr.length>22?'…':'')+'」'):''}</span>${markerHtml}</div>`;
+      rhead=`<div class="rhead">${addrBadge}<span class="rtype" style="color:${accent}">❓ 選択肢${pr?(' 「'+esc(pr.slice(0,22))+(pr.length>22?'…':'')+'」'):''}</span>${mk}</div>`;
       const _nbc=(s.blocks||[])[i+1];const _nextC=_nbc?(fl.addrById[_nbc.id]||''):'';
       const ro=(bl.opts||[]).map((o,oi)=>{const L=String.fromCharCode(97+oi);const to=optTo(o);const ta=to?(fl.addrById[to]||'？'):'';return `<div class="ropt"><span class="ropt-l">${L}</span><span class="ropt-t">${esc(optText(o)||'（空）')}</span>${to?`<span class="lchip set ropt-to">→ ${ta}</span>`:`<span class="rnext ropt-to">→ ${_nextC||'次の場面'}</span>`}${optReq(o).length?`<span class="lchip req" title="${esc(optReq(o).map(cardLabel).join(' / '))}">🔒 ${optReq(o).length}</span>`:''}</div>`;}).join('');
       rbody=`<div class="ropts">${ro}</div>`;
     }else{
       const headLabel=(bl.type==='line')?('💬 '+(_spk?esc(_spk.name):'台詞')):(tt.ic+' '+tt.ja);
-      rhead=`<div class="rhead"><span class="baddr">${myAddr}</span><span class="rtype" style="color:${accent}">${headLabel}</span>${markerHtml}</div>`;
+      rhead=`<div class="rhead">${addrBadge}<span class="rtype" style="color:${accent}">${headLabel}</span>${mk}</div>`;
       let ct;
       if(bl.type==='line'){ct=(bl.windows||[]).map(w=>{const c=castOf(E).find(x=>x.id===w.charId);const pre=(c&&_spk&&c.id!==_spk.id)?('<b style="color:'+c.color+'">'+esc(c.name)+'</b> '):'';return pre+esc(w.text||'');}).join('<br>')||'<span style="color:var(--faint)">（空）</span>';}
       else if(bl.type==='event'){ct='⚡ '+esc(bl.ev||'')+(bl.text?('　'+esc(String(bl.text).replace(/\n/g,' '))):'');}
@@ -2582,7 +2609,8 @@ function scriptBlock(s,bl,i,ctx){
       else{ct=esc(String(bl.text||'')).replace(/\n/g,'<br>')||'<span style="color:var(--faint)">（空）</span>';}
       const myTo=bl.to||'';const toA=myTo?(fl.addrById[myTo]||'？'):'';
       const _nb=(s.blocks||[])[i+1];const _nextA=_nb?(fl.addrById[_nb.id]||''):'';
-      const linkHtml=myTo?`<span class="lchip set">→ ${toA}</span>`:`<span class="rnext">→ ${_nextA||'次の場面'}</span>`;
+      const _tgt=myTo||(_nb?_nb.id:''); const _sameChunk=ctx.chunkMode&&_tgt&&fl.chunkOfId&&fl.chunkOfId[bl.id]&&fl.chunkOfId[_tgt]&&fl.chunkOfId[bl.id]===fl.chunkOfId[_tgt];
+      const linkHtml=_sameChunk?'':(myTo?`<span class="lchip set">→ ${toA}</span>`:`<span class="rnext">→ ${_nextA||'次の場面'}</span>`);
       rbody=`<div class="rbody">${ct} ${linkHtml}</div>`;
     }
     const _gr=grantChips(bl.grants); const _rq=reqChips(bl.requires);
