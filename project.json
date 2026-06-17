@@ -6,7 +6,7 @@
     "title": "冥界探偵アビス",
     "tagline": "死者の声は届かない。だから、証拠（ロジック）で語らせる。",
     "logline": "死者視点の再捜査で、現世に埋もれた真実を客観証拠のロジックだけで掘り起こし、魂の無念を清算する本格ミステリ連作。",
-    "updatedAt": 1781573619914
+    "updatedAt": 1781689816878
   },
   "ui": {
     "theme": "light"
@@ -693,20 +693,29 @@
               "id": "3d2getg",
               "type": "note",
               "text": "【演出意図】死の予兆を一切置かず、上質な王道ミステリとして開幕する。レイ＝魔界探偵の記憶を消され単独で送り込まれた実験体だが、本人もプレイヤーも知らない。違和感は「依頼の中身が思い出せない」一点だけ静かに置く。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "g72xbbi",
               "type": "event",
               "ev": "カメラ演出",
               "text": "空撮ロング。月光の雲海を裂き、蒸気を噴いて疾走する漆黒の寝台特急。車体に製菓王朝・甘宮家の紋章。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "6u0fc4z",
               "type": "dir",
               "text": "車内・ロビー車。琥珀色のランプ。検札に来た車掌が、にこやかに帽子を上げる。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "pf22b6s",
@@ -722,7 +731,10 @@
                   "charId": "ep0_cond",
                   "text": "探偵様ですね。\n伺っておりま〜す。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "v15orlj",
@@ -743,22 +755,32 @@
                   "charId": "sc_rei",
                   "text": "（……思い出せない。\nまあ、寝不足だろ）"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "08hpj91",
               "type": "event",
               "ev": "場面転換",
               "text": "【操作解禁①：移動と調べる】ロビー車を自由に見て回れる。チョコの香り、暖炉、甘宮家の家紋。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "z5k94kj",
               "type": "dir",
               "text": "窓の外を、長いトンネルの闇が流れていく。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             }
-          ]
+          ],
+          "phase": "pro"
         },
         {
           "id": "eyn4hb0",
@@ -770,24 +792,45 @@
               "id": "h8lb4ja",
               "type": "note",
               "text": "【演出意図】一人一芸＋一伏線。説明ではなく雑談で仕込む。すず＆ショコラとの交流は厚めに＝死の痛みと幽体ドラマの貯金。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "epmxqxi",
               "type": "choice",
               "opts": [
-                "令嬢とビーグル犬に挨拶する",
-                "車掌に列車の自慢を聞く",
-                "社交室の客たちを観察する"
+                {
+                  "text": "令嬢とビーグル犬に挨拶する",
+                  "to": "",
+                  "requires": []
+                },
+                {
+                  "text": "車掌に列車の自慢を聞く",
+                  "to": "",
+                  "requires": []
+                },
+                {
+                  "text": "社交室の客たちを観察する",
+                  "to": "",
+                  "requires": []
+                }
               ],
               "text": "【自由探索】順不同で全員と話せる。全て回ると夜が更ける。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "uessxcc",
               "type": "dir",
               "text": "ビーグル犬が尻尾を振って駆けてくる。若い令嬢が慌てて追いかけてくる。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "dchfflz",
@@ -813,14 +856,20 @@
                   "charId": "ep0_victim",
                   "text": "目を離すと、お部屋の\nチョコを食べ尽くして\nしまうくらい。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "vumtvze",
               "type": "event",
               "ev": "その他",
               "text": "※伏線①：犬の習性「部屋のチョコを食べ尽くす」を、微笑ましい雑談として提示。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "uj0lhob",
@@ -841,20 +890,29 @@
                   "charId": "sc_rei",
                   "text": "（誰でも、ね）"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "bqn821m",
               "type": "event",
               "ev": "その他",
               "text": "※伏線②：製造機は誰でも短時間で使える。※伏線③：今夜は長大トンネル通過で20時前後に一時停電の予定、と車内放送。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "fb5w9x8",
               "type": "dir",
               "text": "社交室。噂好きのローズ夫人、若き実業家レナード、忙しないヴァン、無口な料理長ガストン、直立不動のヴィクトル、影のように働くメイドのアメール。隅の席に、サングラスの不審な客。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "0tzf68v",
@@ -875,15 +933,22 @@
                   "charId": "sc_rei",
                   "text": "（噂の速さは\n光速だな）"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "ogrt8rc",
               "type": "dir",
               "text": "不審な客が、こちらの視線に気づき、新聞で顔を隠した。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             }
-          ]
+          ],
+          "phase": "pro"
         },
         {
           "id": "lzarg3c",
@@ -895,13 +960,19 @@
               "id": "y987lbn",
               "type": "note",
               "text": "【演出意図】テーマの地上版を一言で立てる。すずの優しさを1シーン分だけ濃く描く——彼女の死後、この時間が効いてくる。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "i4q1es2",
               "type": "dir",
               "text": "夜の食堂車。窓辺の席で手帳を繰るレイに、すずがそっと小皿を差し出す。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "tjx0ee3",
@@ -922,7 +993,10 @@
                   "charId": "ep0_victim",
                   "text": "探偵様って、\nどんなお仕事を\nするんですか？"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "s9gjgjf",
@@ -948,7 +1022,10 @@
                   "charId": "ep0_victim",
                   "text": "ふふ。かっこいい。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "4th5ma0",
@@ -964,13 +1041,19 @@
                   "charId": "sc_rei",
                   "text": "……ああ。\n楽しみにしてる。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "qwwlscb",
               "type": "dir",
               "text": "（※この約束は、果たされない）",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "8enkh5c",
@@ -986,9 +1069,13 @@
                   "charId": "sc_rei",
                   "text": "（——よそう。\n仕事に集中だ）"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             }
-          ]
+          ],
+          "phase": "pro"
         },
         {
           "id": "g9vcn66",
@@ -1000,27 +1087,39 @@
               "id": "9f7z1oy",
               "type": "note",
               "text": "【演出意図】第1幕で交流した相手の死。操作（移動→調べる）を渡しつつ、「密室」「チョコのついた鍵」を説明ゼロの現物提示で焼き付ける。第一発見の悲鳴＝アメール（真犯人の大胆ムーブ。再プレイ時に戦慄する配置）。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "zcd8itn",
               "type": "event",
               "ev": "その他",
               "text": "SE：けたたましい悲鳴（女性）。一瞬だけ走行音を消すミキシングで悲鳴を立たせる。レイ、跳ね起きる。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "pbh9bew",
               "type": "event",
               "ev": "場面転換",
               "text": "【操作：移動】目標マーカー「悲鳴の方へ」。通路は野次馬で歩速が落ちる。乗客の不安の囁き。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "wx6xm33",
               "type": "dir",
               "text": "最後尾のエグゼクティブ・スイート前。扉は開いている。傍らで、メイドのアメールが床に座り込んでいる。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "k4v1dfi",
@@ -1036,7 +1135,10 @@
                   "charId": "ep0_maid",
                   "text": "お嬢様……お嬢様っ！"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "478wj1x",
@@ -1047,7 +1149,10 @@
                   "charId": "ep0_guard",
                   "text": "応答がないため、\n自分が予備の鍵で\n開けたのであります。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "9afy3et",
@@ -1058,13 +1163,19 @@
                   "charId": "sc_rei",
                   "text": "どいてくれ。\n俺は、探偵だ。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "9bp5fi2",
               "type": "dir",
               "text": "人垣が割れる。豪奢なスイートの中央——甘宮すずが倒れている。頭部に殴打痕。既に絶命。昨夜の小皿が、机の上にぽつんとある。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "xnp3c7n",
@@ -1078,7 +1189,10 @@
                   "src": "",
                   "cap": "発見CG"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "v7cydef",
@@ -1089,14 +1203,20 @@
                   "charId": "sc_rei",
                   "text": "……約束、\nまだだったろ。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "eayil19",
               "type": "event",
               "ev": "カメラ演出",
               "text": "カメラがゆっくり寄り、床の鍵にフォーカス送り。鍵の溝に、チョコレートの痕。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "j2xajsk",
@@ -1117,30 +1237,57 @@
                   "charId": "sc_rei",
                   "text": "……チョコの匂いだ。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "xijp5cl",
               "type": "event",
               "ev": "推理カード獲得",
               "text": "「被害者の部屋は密室だった」「チョコのついた鍵（室内に落下）」——最初の推理ピースを現物提示で獲得。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [
+                "c_lockroom",
+                "c_keychoco"
+              ],
+              "requires": []
             },
             {
               "id": "jj884iq",
               "type": "choice",
               "opts": [
-                "室内に落ちた鍵を調べる",
-                "ボディガードに話を聞く",
-                "扉の施錠状態を確認する"
+                {
+                  "text": "室内に落ちた鍵を調べる",
+                  "to": "5jf0n1y",
+                  "requires": []
+                },
+                {
+                  "text": "ボディガードに話を聞く",
+                  "to": "5jf0n1y",
+                  "requires": []
+                },
+                {
+                  "text": "扉の施錠状態を確認する",
+                  "to": "5jf0n1y",
+                  "requires": []
+                }
               ],
-              "text": "（チュートリアル）どれを選んでも短い観察会話。全て確認すると次へ。順不同・取り返し可。"
+              "text": "（チュートリアル）どれを選んでも短い観察会話。全て確認すると次へ。順不同・取り返し可。",
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "5jf0n1y",
               "type": "dir",
               "text": "通路の奥。サングラスの“不審な客”が、こちらを一瞥して雑踏に消える。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "pg7khyo",
@@ -1151,9 +1298,13 @@
                   "charId": "sc_rei",
                   "text": "この事件——\n裏がある。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             }
-          ]
+          ],
+          "phase": "pro"
         },
         {
           "id": "tskx7ns",
@@ -1165,14 +1316,20 @@
               "id": "zrpl0hf",
               "type": "note",
               "text": "【演出意図】普通のミステリとして捜査を快調に進ませ、観客に「これは探偵が解決する話だ」と確信させる。その確信ごと、次のシーンで殺す。予兆演出は一切置かない。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "7yyaq5a",
               "type": "event",
               "ev": "その他",
               "text": "【簡易聴取】ヴィクトル（予備鍵の管理）／アメール（第一発見の状況）／ガナッシュ（停電と運行記録）／ヴァン（給仕の動線）。各2問の選択式。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "vt8ew9m",
@@ -1188,7 +1345,10 @@
                   "charId": "ep0_waiter",
                   "text": "昨夜は20時に停電が。\nええ、皆バタバタで。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "mlw7wct",
@@ -1204,15 +1364,22 @@
                   "charId": "sc_rei",
                   "text": "（いや、まさかな。\nだが、筋は通る）"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "oq498n8",
               "type": "dir",
               "text": "夜。考えを整理するため、レイは無人の通路へ出る。ランプの灯りが、規則正しく流れていく。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             }
-          ]
+          ],
+          "phase": "pro"
         },
         {
           "id": "zbj7ziv",
@@ -1224,13 +1391,19 @@
               "id": "p0kfvax",
               "type": "note",
               "text": "【演出意図】予兆ゼロの一撃。コールドオープンも死に際の予告も存在しないため、プレイヤーは主役の死を本当に予期できない。襲撃者は最後まで映さない。タイトル「ある探偵の死」はこの瞬間まで完全に伏せる。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "yebz9ya",
               "type": "dir",
               "text": "歩きながら、鍵とチョコの仮説を組み立てるレイ。ごく普通の、捜査の夜。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "olzwucs",
@@ -1241,20 +1414,29 @@
                   "charId": "sc_rei",
                   "text": "（明日の朝、\n製造機を調べれば——）"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "pywij2s",
               "type": "dir",
               "text": "——ガッ。鈍い衝撃。視界が傾ぎ、床板の木目が頬に迫る。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "jijephc",
               "type": "event",
               "ev": "カメラ演出",
               "text": "POVが倒れ、ピントが揺れ、周辺減光。音が水中のようにこもる。遠くで犬の遠吠え。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "3f0nspo",
@@ -1275,20 +1457,29 @@
                   "charId": "sc_rei",
                   "text": "こんなところで、\n死ぬわけには——"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "0y2g0jv",
               "type": "dir",
               "text": "伸ばした指先の先で、琥珀色の灯が滲む。視界の端を、“誰か”の靴音が遠ざかる。顔は、見えない。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "csma995",
               "type": "event",
               "ev": "その他",
               "text": "心音停止。完全な暗転。静寂を3秒——そして、タイトルロゴ。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "fbv77op",
@@ -1302,9 +1493,13 @@
                   "src": "",
                   "cap": "タイトルロゴ"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             }
-          ]
+          ],
+          "phase": "pro"
         },
         {
           "id": "gbzxq8p",
@@ -1316,13 +1511,19 @@
               "id": "9ts9x4m",
               "type": "note",
               "text": "【演出意図】参考稿準拠のぺろ攻防。レイは列車の記憶ごと失っており、「俺は誰だ」が再び成立する。プレイヤーだけが直前の死を知っている非対称（ドラマチックアイロニー）が第3幕の牽引力。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "01h3sn5",
               "type": "dir",
               "text": "画面：黒。——ぺろ。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "t4nkfhy",
@@ -1333,13 +1534,19 @@
                   "charId": "sc_rei",
                   "text": "……ん"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "9wj8ios",
               "type": "dir",
               "text": "ぺろぺろ。ぺろぺろぺろ。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "m6hbkw8",
@@ -1350,14 +1557,20 @@
                   "charId": "sc_rei",
                   "text": "……な、なんだ？"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "igmnlnl",
               "type": "event",
               "ev": "カメラ演出",
               "text": "モザイクで視界が徐々にクリアに。水色の空。猫の顔。SE：にゃー。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "jiq98u5",
@@ -1373,13 +1586,19 @@
                   "charId": "sc_rei",
                   "text": "寝よう。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "yl5s402",
               "type": "dir",
               "text": "画面：黒。……間。——ぺろぺろぺろぺろぺろぺろぺろぺろぺろ。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "dn1poe1",
@@ -1400,13 +1619,19 @@
                   "charId": "sc_rei",
                   "text": "おまえ、分かってて\nやってる？"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "mhvjoo5",
               "type": "dir",
               "text": "水色の空とピンク色の荒野。猫が何かを咥えている——鏡。光がずれて、見知らぬ男の顔が映る。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "wn64al5",
@@ -1427,13 +1652,19 @@
                   "charId": "sc_rei",
                   "text": "思い出せない……。\n名前も、何もかも。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "6obkbwu",
               "type": "dir",
               "text": "猫がプラカードを咥えて見せる。「Ｃｏｍｅ ｏｎ」。にゃー（圧）。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "7zeqayo",
@@ -1449,16 +1680,23 @@
                   "charId": "sc_rei",
                   "text": "他に行く所もないし、\n行ってみるか。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "azem5pv",
               "type": "event",
               "ev": "場面転換",
               "text": "【操作解禁②：移動】前を歩く猫についていく。荒野→光速の扉→アケロシティへ。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             }
-          ]
+          ],
+          "phase": "pro"
         },
         {
           "id": "tfcoxh7",
@@ -1470,13 +1708,19 @@
               "id": "zjsd8cl",
               "type": "note",
               "text": "【演出意図】街の説明は最小限。代わりに「治安の悪さ」と「猫の身軽さ」を対で見せ、後の変身設定（普段は猫が合理的）への布石にする。世界の謎は、解かずに置いていく。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "y7ehkyq",
               "type": "dir",
               "text": "光速の扉を抜けると——逆さに浮かぶ建物、空を流れる灯籠の川。魔界の街、アケロシティ。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "lwz6okk",
@@ -1487,13 +1731,19 @@
                   "charId": "sc_rei",
                   "text": "うわうわ、\nなんだこれ！！？"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "g8sudfp",
               "type": "dir",
               "text": "大通りの裏は治安が悪い。酔った魔人の喧嘩、値踏みするような視線。猫は塀の上、樽の隙間を、するりするりと抜けていく。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "gkxwj6q",
@@ -1509,7 +1759,10 @@
                   "charId": "sc_rei",
                   "text": "（……猫の姿は、\nこの街じゃ\n都合がよさそうだ）"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "w5ho3rx",
@@ -1520,22 +1773,32 @@
                   "charId": "ep0_mob",
                   "text": "兄さん新顔かい？\n夜の路地は\n気をつけな。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "rm4n4cf",
               "type": "dir",
               "text": "猫が立ち止まり、灯籠の川を長く見上げる。（※伏線：彼女はまだ、還れていない）",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "0uvyrfz",
               "type": "event",
               "ev": "場面転換",
               "text": "蔦の絡む建物の前へ。看板「魔界探偵事務所」。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             }
-          ]
+          ],
+          "phase": "pro"
         },
         {
           "id": "e0xvy8i",
@@ -1547,7 +1810,10 @@
               "id": "f8mpmdn",
               "type": "note",
               "text": "【演出意図】説明は3点だけ（死んだ／ここは魔界／君は元・魔界探偵）。業や記録の講義はしない——「解決の節目で小出しに明かす」方針。所長の「やはり、こうなったか」と「実験だった」で、シリーズ最大級の伏線を静かに置く。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "ukz7r6o",
@@ -1563,7 +1829,10 @@
                   "charId": "sc_rei",
                   "text": "（何だこの人）"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "9uykepx",
@@ -1589,7 +1858,10 @@
                   "charId": "sc_rei",
                   "text": "（なんか既視感の\nあるフレーズだな）"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "2afuabx",
@@ -1610,13 +1882,19 @@
                   "charId": "sc_rei",
                   "text": "探偵……俺が？"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "hkb1cth",
               "type": "dir",
               "text": "所長はレイの顔を長く見て、静かに息を吐いた。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "jssdu46",
@@ -1647,7 +1925,10 @@
                   "charId": "sc_rei",
                   "text": "実験……？"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "eqphh3l",
@@ -1668,7 +1949,10 @@
                   "charId": "sc_rei",
                   "text": "（胸の奥が、\nざらりとした）"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "u2mg4oz",
@@ -1684,16 +1968,23 @@
                   "charId": "sc_chief",
                   "text": "いずれな。\n世界の説明は、\n仕事が教えてくれる。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "x5bdxr7",
               "type": "event",
               "ev": "その他",
               "text": "UI用語登録：魔界／魔界探偵（この2語のみ。業・記録・救済は未登録のまま＝小出し方針）。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             }
-          ]
+          ],
+          "phase": "pro"
         },
         {
           "id": "yes3oiu",
@@ -1705,13 +1996,19 @@
               "id": "trizlhn",
               "type": "note",
               "text": "【演出意図】依頼人＝被害者本人、ただし犯人も経緯も知らない（謎は壊れない）。受任の熱に呼応して猫が人型化——変身理由は「街の空気だと人の形は高くつく」と軽く一言（E案）。記憶側の理由は本人も未自覚＝伏線。命名「零」でシエルの胸が小さく鳴る（最重要伏線）。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "hjjaw4u",
               "type": "dir",
               "text": "ふわり、と空気が冷える。淡い光を纏った少女の魂——甘宮すずが、深く頭を下げる。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "1yzfh0s",
@@ -1737,7 +2034,10 @@
                   "charId": "ep0_victim",
                   "text": "ただ、胸が苦しくて。\nそれと——ショコラが、\nひとりで泣いてる。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "zqhm3lu",
@@ -1753,22 +2053,39 @@
                   "charId": "sc_chief",
                   "text": "だから、探偵がいる。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "k5vsgh3",
               "type": "choice",
               "opts": [
-                "「引き受ける」",
-                "「……断れない性分でね」"
+                {
+                  "text": "「引き受ける」",
+                  "to": "h02xfmr",
+                  "requires": []
+                },
+                {
+                  "text": "「……断れない性分でね」",
+                  "to": "h02xfmr",
+                  "requires": []
+                }
               ],
-              "text": "どちらを選んでも受任。①には猫が「にゃ！」と即応、②には呆れ顔（性格付けのみ、分岐なし）。"
+              "text": "どちらを選んでも受任。①には猫が「にゃ！」と即応、②には呆れ顔（性格付けのみ、分岐なし）。",
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "h02xfmr",
               "type": "dir",
               "text": "——その瞬間。足元の猫が、淡い光に包まれる。光が解けると、小生意気な笑顔の少女が立っていた。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "qiv5yo3",
@@ -1804,7 +2121,10 @@
                   "charId": "sc_sub",
                   "text": "探偵歴！"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "91vmc9x",
@@ -1835,7 +2155,10 @@
                   "charId": "sc_rei",
                   "text": "（省エネ仲間か）"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "gdn7wro",
@@ -1851,13 +2174,19 @@
                   "charId": "sc_chief",
                   "text": "記憶が無いなら——\n零。レイと呼ぼう。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "sb4b43q",
               "type": "dir",
               "text": "その名に、シエルの胸の奥が小さく鳴った——理由は、本人にも分からない。（※最重要伏線）",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "yn6t23o",
@@ -1868,9 +2197,13 @@
                   "charId": "sc_sub",
                   "text": "……いい名ね。\n先輩命令、採用！"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             }
-          ]
+          ],
+          "phase": "inv"
         },
         {
           "id": "fwjzxcg",
@@ -1882,13 +2215,19 @@
               "id": "btpl359",
               "type": "note",
               "text": "【演出意図】\"ガジェット起動の儀式\"で再潜入に重量を出す。すずの同行＝自分が巻き込まれた事件を幽体視点で初めて体験する観測者。ルールは2行だけ：観測のみ／過去は変えられない。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "x4e4j77",
               "type": "dir",
               "text": "奥の帳が上がる。真鍮と硝子のカプセル。無数の計器、チョコ型の操作ノブ。シエルが慣れた手つきでバルブを開く。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "h4z8tyo",
@@ -1909,7 +2248,10 @@
                   "charId": "sc_rei",
                   "text": "……派手なご招待だ。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "u74u2am",
@@ -1930,14 +2272,20 @@
                   "charId": "ep0_victim",
                   "text": "はい……！"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "ef7g2nz",
               "type": "event",
               "ev": "時系列移動",
               "text": "起動。逆さの街が窓外を流れ、光の奔流→走行音が重なる。事件当夜・18:00前の列車内へ転移。三人潜入。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "9wieqr4",
@@ -1948,16 +2296,23 @@
                   "charId": "sc_sub",
                   "text": "画面の時計が\n\"いま\"の時刻。\n迷ったら見てね。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "k7wzb4h",
               "type": "event",
               "ev": "その他",
               "text": "【UIチュートリアル】画面上部に「事件当夜 17:58」の時刻メーター点灯。以後の時間移動はこのメーターで表現。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             }
-          ]
+          ],
+          "phase": "inv"
         },
         {
           "id": "9paqmf1",
@@ -1969,13 +2324,19 @@
               "id": "x58a68u",
               "type": "note",
               "text": "【演出意図】三人体制の役割を最初に軽口で提示する（すず＝列車と人を知る案内人＋感情／シエル＝探偵技術とTIPS／レイ＝観察と結論）。死の重さを引きずらず、捜査のワクワクへ切り替える。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "tii8qcm",
               "type": "dir",
               "text": "再捜査の道中。先頭を行くシエル、半歩後ろに、すずの淡い光が並ぶ。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "jduos5s",
@@ -1996,7 +2357,10 @@
                   "charId": "sc_rei",
                   "text": "探偵歴マウントが\n早速来たな。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "dxkymhw",
@@ -2017,13 +2381,19 @@
                   "charId": "sc_rei",
                   "text": "心強い。\n頼りにしてる。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "7ro3bi1",
               "type": "dir",
               "text": "すずの淡い光が、少しだけ明るくなった。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "vpn6qp1",
@@ -2044,14 +2414,20 @@
                   "charId": "sc_sub",
                   "text": "（飼い主の顔だ）"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "sfbhsc5",
               "type": "event",
               "ev": "その他",
               "text": "TIPSカットイン（操作おさらい：調べる／時刻メーター／推理ピース。＋豆知識：チョコ／寝台列車／犬の習性）。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "ph172kh",
@@ -2062,9 +2438,13 @@
                   "charId": "sc_rei",
                   "text": "よし。——18時から\n洗い直すぞ。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             }
-          ]
+          ],
+          "phase": "inv"
         },
         {
           "id": "4mcgtpy",
@@ -2076,7 +2456,10 @@
               "id": "h1mbefo",
               "type": "dir",
               "text": "事件当夜18:00、先頭車。走行音。眠気に負けかけるレイの頬を、シエルがつねる。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "ziuwovh",
@@ -2102,13 +2485,19 @@
                   "charId": "sc_rei",
                   "text": "探偵歴の重み、\n感じるよ……。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "9qw3gw6",
               "type": "dir",
               "text": "先頭車には車掌ガナッシュ。金髪ロングにシルクハット。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "0dcfxu6",
@@ -2129,7 +2518,10 @@
                   "charId": "sc_rei",
                   "text": "（職務怠慢では？）"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "bsc7v3n",
@@ -2145,7 +2537,10 @@
                   "charId": "ep0_victim",
                   "text": "でも列車のことは\n誰より詳しくて。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "4t9s6ej",
@@ -2166,14 +2561,23 @@
                   "charId": "ep0_cond",
                   "text": "ヴィクトルくんが\n肌身離さず、ね〜。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "wr7peo9",
               "type": "event",
               "ev": "推理カード獲得",
               "text": "寝台列車の自動運転／現場の鍵は2つあった（ボディガードがもう一方を所持）",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [
+                "c_autopilot",
+                "c_twokeys"
+              ],
+              "requires": []
             },
             {
               "id": "yp4jdda",
@@ -2194,9 +2598,13 @@
                   "charId": "sc_rei",
                   "text": "前提から疑う。\n……メモしておく。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             }
-          ]
+          ],
+          "phase": "inv"
         },
         {
           "id": "feunkkv",
@@ -2208,20 +2616,29 @@
               "id": "9uujeta",
               "type": "note",
               "text": "【演出意図】感情ビート：すずが\"生きている自分\"を観測する。痛みではなく「楽しそう」と微笑ませ、後の発覚シーンとの落差を作る。伏線3点（製造機・習性・トンネル）はすず自身の口から自然に。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "pgsc7vk",
               "type": "event",
               "ev": "時系列移動",
               "text": "19:00 ラウンジ車へ。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "0ucmedx",
               "type": "dir",
               "text": "ラウンジ車。ヴァンが製造機の説明をしている。窓際のソファに——生前のすずが、ショコラとくつろいでいる。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "odg5a5z",
@@ -2252,7 +2669,10 @@
                   "charId": "sc_rei",
                   "text": "（観測者として、\n自分を見る——\nきついだろうに）"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "zo7zlkv",
@@ -2268,13 +2688,19 @@
                   "charId": "ep0_waiter",
                   "text": "ご自由に\nどうぞ〜。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "i41lw0s",
               "type": "dir",
               "text": "生前のショコラがチョコを一粒咥え——その場では食べず、とことこと部屋の方へ歩いていく。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "kkatds8",
@@ -2295,20 +2721,34 @@
                   "charId": "sc_sub",
                   "text": "……へえ。\nいいこと聞いた。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "lc2kuzj",
               "type": "dir",
               "text": "列車が、とてつもなく長いトンネルへ入る。車窓が闇に沈む。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "u4duz8j",
               "type": "event",
               "ev": "推理カード獲得",
               "text": "チョコレート製造機（誰でも短時間で作れる）／長いトンネルに入った／犬の習性（チョコ好き・自室で完食）",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [
+                "c_maker",
+                "c_tunnel",
+                "c_dogwith",
+                "c_doghabit"
+              ],
+              "requires": []
             },
             {
               "id": "zg0a4ts",
@@ -2324,9 +2764,13 @@
                   "charId": "sc_rei",
                   "text": "（妙に、揃いすぎだ）"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             }
-          ]
+          ],
+          "phase": "inv"
         },
         {
           "id": "dyzim49",
@@ -2339,13 +2783,19 @@
               "type": "event",
               "ev": "時系列移動",
               "text": "20:00 ダイニング車へ。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "bpay3tz",
               "type": "dir",
               "text": "ダイニング車。客が食事をとり、ヴァンとガストンが立ち働く。全身コートにサングラスの不審な客の姿も。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "guouwok",
@@ -2366,7 +2816,10 @@
                   "charId": "ep0_maid",
                   "text": "ヴィクトルさんが\n扉の前を\n離れませんから。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "l2jl4hs",
@@ -2377,19 +2830,28 @@
                   "charId": "ep0_victim",
                   "text": "（アメール……\nいつも通りの、\n優しい声）"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "lnm4c6r",
               "type": "dir",
               "text": "不審な客が、無言で目を逸らす。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "rphctyj",
               "type": "dir",
               "text": "突如、車内が真っ暗に。停電。悲鳴とパニック。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "fnlv03e",
@@ -2410,23 +2872,36 @@
                   "charId": "sc_rei",
                   "text": "（この闇……\n妙に、気になるな）"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "l12mmh6",
               "type": "event",
               "ev": "推理カード獲得",
               "text": "全身コート＋サングラスの不審な客／20時に停電し車内が真っ暗に",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [
+                "c_blackout",
+                "c_victimroom"
+              ],
+              "requires": []
             },
             {
               "id": "5mw8bj3",
               "type": "event",
               "ev": "場面転換",
               "text": "停電のパニックで\"前\"の観測はひとまず一区切り。だがレイは、この停電に引っかかりを覚える——もう一度、20時の闇を詳しく観測することにする。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             }
-          ]
+          ],
+          "phase": "inv"
         },
         {
           "id": "8g17t9a",
@@ -2438,20 +2913,29 @@
               "id": "cvt9lui",
               "type": "note",
               "text": "【演出意図】物語の折返し（ミッドポイント）。レイの死には踏み込まず、純粋にすず事件の推理に集中させる。直前の14番で「停電が起きた」事実を提示済み。ここでは停電を詳細に再観測し、\"停電中こそ犯行のチャンス\"という全員（とプレイヤー）の思い込みを、レイの観察眼が反証する——中盤最大の「常識が覆る」快感を置く。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "4yqi8zz",
               "type": "event",
               "ev": "時系列移動",
               "text": "時刻メーターを、もう一度20:00の停電へ。今度は、闇の中の一部始終をつぶさに観測する。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "2llfmug",
               "type": "dir",
               "text": "照明が落ちる。完全な闇。悲鳴、椅子の倒れる音、入り乱れる足音。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "vell0uk",
@@ -2472,13 +2956,19 @@
                   "charId": "sc_rei",
                   "text": "みんな、そう思う。\n——だが、待て。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "m03ywea",
               "type": "dir",
               "text": "レイが闇の中で目を凝らす。だが、何も見えない。本当に、何も。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "2kh9te4",
@@ -2494,7 +2984,10 @@
                   "charId": "sc_rei",
                   "text": "この暗さで人を探し、\n確実に殺せると\n思うか？"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "p4ka32p",
@@ -2510,14 +3003,20 @@
                   "charId": "ep0_victim",
                   "text": "そういえば、みんな\nその場で固まって\nいました……"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "yw66y1x",
               "type": "event",
               "ev": "ツッコミポイント",
               "text": "「停電中＝犯行のチャンス」という思い込みの反証。真っ暗では誰も正確に動けず、犯行にはむしろ不向き。停電のアリバイは意味をなさない。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "vuajzao",
@@ -2533,13 +3032,19 @@
                   "charId": "sc_rei",
                   "text": "本当の犯行は——\n明かりが戻った\n後だ。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "iznzqwa",
               "type": "dir",
               "text": "すずが、息を呑む。自分の事件の輪郭が、初めて少しだけ見えた気がした。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "24zan2h",
@@ -2555,14 +3060,22 @@
                   "charId": "sc_sub",
                   "text": "停電の後。\n21時から23時の、\nどこか。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "3yfkmh5",
               "type": "event",
               "ev": "推理カード獲得",
               "text": "仮説「停電中は犯行不可能（暗闇では動けない）」／仮説「真の犯行時刻は停電復旧後＝21〜23時」",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [
+                "h_time"
+              ],
+              "requires": []
             },
             {
               "id": "texial2",
@@ -2578,9 +3091,13 @@
                   "charId": "sc_rei",
                   "text": "停電のアリバイは、\nもう通用しない。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             }
-          ]
+          ],
+          "phase": "inv"
         },
         {
           "id": "xx3gjwl",
@@ -2592,20 +3109,29 @@
               "id": "v25k6ts",
               "type": "note",
               "text": "【演出意図】感情ビート：すずが発覚の朝＝自分の死の現場を直視するか選ぶ。シエルは逃げ道を作り、すずは自分の意思で見る（依頼人の成長）。ここから捜査は記録と現物の照合戦へ。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "plo983b",
               "type": "event",
               "ev": "時系列移動",
               "text": "翌07:00。発覚の朝へ。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "m3sx911",
               "type": "dir",
               "text": "ボディガードの叫び。スイート車前——プロローグで見た、あの光景。だが今度は\"調べられる\"。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "z2l84ex",
@@ -2631,20 +3157,29 @@
                   "charId": "sc_rei",
                   "text": "（依頼人が\n一番、強いな）"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "ezselr9",
               "type": "dir",
               "text": "部屋の前に監視カメラ。その記録を確認する。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "sdad3xt",
               "type": "event",
               "ev": "ツッコミポイント",
               "text": "監視カメラの入室記録：19時ウェイター（食事）／20時メイド（清掃）／21時ボディガード（扉越しの会話＝生存確認）／23時ボディガード（犬を部屋へ入れる）",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "i3scu67",
@@ -2660,7 +3195,10 @@
                   "charId": "ep0_guard",
                   "text": "車掌と先頭車へ。\n復旧後、すぐ\n戻ったであります。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "im1v4ne",
@@ -2681,16 +3219,30 @@
                   "charId": "sc_sub",
                   "text": "記録と現物、\n両方を疑うのよ。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "220vmm6",
               "type": "event",
               "ev": "推理カード獲得",
               "text": "監視カメラの入室記録／各人物のアリバイ／停電中ボディガードは持ち場を離れた",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [
+                "c_camera",
+                "c_camlog",
+                "c_noalibi",
+                "c_guardleft",
+                "c_makerusers",
+                "c_strangernodog"
+              ],
+              "requires": []
             }
-          ]
+          ],
+          "phase": "inv"
         },
         {
           "id": "e5uw9af",
@@ -2702,7 +3254,10 @@
               "id": "g9thjmw",
               "type": "dir",
               "text": "密室の最有力容疑はボディガード。だが監視カメラは、彼の入室を記録していない。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "3onkehy",
@@ -2718,7 +3273,10 @@
                   "charId": "sc_rei",
                   "text": "なら誰が、どうやって\n密室を作った。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "pkuxu6p",
@@ -2739,7 +3297,10 @@
                   "charId": "sc_sub",
                   "text": "（如才ないこと）"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "ppdv0m0",
@@ -2760,7 +3321,10 @@
                   "charId": "sc_sub",
                   "text": "怪しさ満点。\nでも\"怪しい\"は\n証拠じゃない。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "h7jx3ur",
@@ -2781,15 +3345,22 @@
                   "charId": "ep0_victim",
                   "text": "みんな、いつもの\nみんな、なのに……。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "phvbxu6",
               "type": "dir",
               "text": "容疑が二転三転し、混迷が深まる。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             }
-          ]
+          ],
+          "phase": "inv"
         },
         {
           "id": "pyuzeka",
@@ -2801,7 +3372,10 @@
               "id": "tr8es38",
               "type": "dir",
               "text": "施錠された室内に、なぜ鍵が落ちていたのか。密室成立の方法が、どうしても分からない。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "tbgld55",
@@ -2817,13 +3391,19 @@
                   "charId": "sc_rei",
                   "text": "どうやって鍵を、\n中へ戻した？"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "k75b4w0",
               "type": "dir",
               "text": "長い沈黙。トンネルの闇だけが、窓を流れていく。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "ls8d2ny",
@@ -2849,15 +3429,22 @@
                   "charId": "sc_sub",
                   "text": "……そうよ。\nそれに——"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "wumkacp",
               "type": "dir",
               "text": "シエルが、すずの手をそっと握る。猫の時と同じ、あたたかさで。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             }
-          ]
+          ],
+          "phase": "inv"
         },
         {
           "id": "nwgsjix",
@@ -2869,13 +3456,19 @@
               "id": "s08zye2",
               "type": "note",
               "text": "【演出意図】閃きの起点を依頼人すずに渡す——「核心は知らない」被害者でも、愛犬への愛だけは確かな証言になる。閃き自体はシエル、結論はレイ、と三人で一本の推理を繋ぐ。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "qh4kjvn",
               "type": "dir",
               "text": "行き詰まりの沈黙。ふいに、すずが顔を上げる。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "mhu30cs",
@@ -2891,7 +3484,10 @@
                   "charId": "ep0_victim",
                   "text": "あの子——チョコだけは\n絶対、我慢できないの。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "g2nrcc6",
@@ -2907,14 +3503,20 @@
                   "charId": "sc_rei",
                   "text": "——チョコに包んで、\n犬に運ばせた、\nのか。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "2pomuap",
               "type": "event",
               "ev": "カメラ演出",
               "text": "回想フラッシュ三連：製造機／チョコを咥えて部屋へ運ぶショコラ／チョコのついた鍵。三点が一本の線になる。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "k67uq5a",
@@ -2930,9 +3532,13 @@
                   "charId": "sc_sub",
                   "text": "組み立ててみよ。\nロジックツリーで。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             }
-          ]
+          ],
+          "phase": "inv"
         },
         {
           "id": "p9xywuw",
@@ -2954,30 +3560,62 @@
                   "charId": "sc_sub",
                   "text": "組み立てましょう——\n\"ロジックツリー\"よ。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "rhgtl22",
               "type": "event",
               "ev": "ロジックツリー構築",
               "text": "チュートリアル開始。固定ピースに別のピースを組み合わせ仮説を生成（最初は2パターンに誘導）。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "ddykmiw",
               "type": "note",
               "text": "設問①：鍵にチョコレートがついていた理由は？　固定ピース＝「チョコのついた鍵」",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "caduf5d",
               "type": "choice",
               "opts": [
-                "「チョコレート製造機」を組み合わせる",
-                "「長いトンネル」を組み合わせる",
-                "「自動運転」を組み合わせる"
+                {
+                  "text": "「チョコレート製造機」を組み合わせる",
+                  "to": "4j2yb55",
+                  "requires": [
+                    "c_maker"
+                  ]
+                },
+                {
+                  "text": "「長いトンネル」を組み合わせる",
+                  "to": "s21fb1",
+                  "requires": [
+                    "c_tunnel"
+                  ]
+                },
+                {
+                  "text": "「自動運転」を組み合わせる",
+                  "to": "s21fb1",
+                  "requires": [
+                    "c_autopilot"
+                  ]
+                }
               ],
-              "text": "正解＝製造機 → 仮説「鍵がチョコレートに包まれていた」が生成。"
+              "text": "正解＝製造機 → 仮説「鍵がチョコレートに包まれていた」が生成。",
+              "to": "",
+              "grants": [],
+              "requires": [
+                "c_keychoco"
+              ]
             },
             {
               "id": "4j2yb55",
@@ -2993,23 +3631,51 @@
                   "charId": "sc_sub",
                   "text": "じゃあ、なぜ鍵は\nチョコに包まれて\nいたの？"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "pwm58fz",
               "type": "choice",
               "opts": [
-                "「犬の習性」を組み合わせる",
-                "「停電」を組み合わせる"
+                {
+                  "text": "「犬の習性」を組み合わせる",
+                  "to": "o1svute",
+                  "requires": [
+                    "c_doghabit"
+                  ]
+                },
+                {
+                  "text": "「停電」を組み合わせる",
+                  "to": "s21fb2",
+                  "requires": [
+                    "c_blackout"
+                  ]
+                }
               ],
-              "text": "正解＝犬の習性 → 仮説「鍵入りチョコが犬によって部屋へ運ばれた」（搬入＝23時、ボディガードが扉を開けた時）。"
+              "text": "正解＝犬の習性 → 仮説「鍵入りチョコが犬によって部屋へ運ばれた」（搬入＝23時、ボディガードが扉を開けた時）。",
+              "to": "",
+              "grants": [],
+              "requires": [
+                "h_wrapped"
+              ]
             },
             {
               "id": "o1svute",
               "type": "event",
               "ev": "推理カード獲得",
               "text": "仮説：鍵はチョコに包まれていた／仮説：鍵入りチョコを犬が部屋へ運んだ／仮説：犯行時刻は21〜23時／仮説：犯人はメイド",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [
+                "h_wrapped",
+                "h_dogcarried",
+                "h_narrowed",
+                "h_culprit"
+              ],
+              "requires": []
             },
             {
               "id": "wvjsh1x",
@@ -3035,9 +3701,29 @@
                   "charId": "sc_rei",
                   "text": "推理会議で、\n証明する。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
+            },
+            {
+              "id": "s21fb1",
+              "type": "narration",
+              "text": "それは符合しない。固定ピース「チョコのついた鍵」をもう一度見直そう。",
+              "to": "caduf5d",
+              "grants": [],
+              "requires": []
+            },
+            {
+              "id": "s21fb2",
+              "type": "narration",
+              "text": "時刻のズレは別の手がかり。鍵入りチョコを“運んだ”主体を考えよう。",
+              "to": "pwm58fz",
+              "grants": [],
+              "requires": []
             }
-          ]
+          ],
+          "phase": "inv"
         },
         {
           "id": "kz96awh",
@@ -3049,13 +3735,19 @@
               "id": "2arhq8w",
               "type": "note",
               "text": "【バトル構成】第1波＝密室の前提（鍵2本＋チョコ鍵）／第2波＝停電のアリバイ崩し（犬の習性の知り得なさ）／第3波＝動線と機会の総回収→断罪。誤答で心象ゲージ減少。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "3vnwbxe",
               "type": "dir",
               "text": "IF空間の推理会議。円卓に関係者一同。画面の端に心象ゲージ。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "aia2qdu",
@@ -3071,17 +3763,39 @@
                   "charId": "ep0_guard",
                   "text": "それでも俺を\n疑うのか？"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "ao1jjss",
               "type": "choice",
               "opts": [
-                "推理ピース「現場の鍵は2つあった」を提示",
-                "仮説「鍵はチョコに包まれていた」を提示",
-                "選択肢で回答する"
+                {
+                  "text": "推理ピース「現場の鍵は2つあった」を提示",
+                  "to": "s22fb1",
+                  "requires": [
+                    "c_twokeys"
+                  ]
+                },
+                {
+                  "text": "仮説「鍵はチョコに包まれていた」を提示",
+                  "to": "9xladr3",
+                  "requires": [
+                    "h_wrapped"
+                  ]
+                },
+                {
+                  "text": "選択肢で回答する",
+                  "to": "9xladr3",
+                  "requires": []
+                }
               ],
-              "text": "誤答で心象ゲージ減少。会議中でも推理は差し替え可（ただし減点）。"
+              "text": "誤答で心象ゲージ減少。会議中でも推理は差し替え可（ただし減点）。",
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "9xladr3",
@@ -3097,7 +3811,10 @@
                   "charId": "sc_rei",
                   "text": "チョコの痕が\n残っていた。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "zz0skfp",
@@ -3123,14 +3840,20 @@
                   "charId": "sc_rei",
                   "text": "\"犬が自室でチョコを\n食べ尽くす習性\"を、\n知り得ない。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "76dm3dw",
               "type": "event",
               "ev": "反証バトル",
               "text": "相手の主張のキーワードに、推理ピース／仮説カードをぶつけて論理で完封する。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "d31tm1w",
@@ -3156,7 +3879,10 @@
                   "charId": "sc_rei",
                   "text": "犯人は、あなただ。\nアメール。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "ywy54s6",
@@ -3172,7 +3898,10 @@
                   "charId": "ep0_victim",
                   "text": "アメール……\nどうして……。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "iu6rvwa",
@@ -3186,9 +3915,21 @@
                   "src": "",
                   "cap": "断罪カット"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
+            },
+            {
+              "id": "s22fb1",
+              "type": "narration",
+              "text": "そのピースだけでは「鍵は中にあった」を覆せない。鍵が“どう運ばれたか”を示す仮説をぶつけよう。",
+              "to": "ao1jjss",
+              "grants": [],
+              "requires": []
             }
-          ]
+          ],
+          "phase": "sol"
         },
         {
           "id": "mhrqwjj",
@@ -3200,13 +3941,19 @@
               "id": "92sccoe",
               "type": "note",
               "text": "【演出意図】小出し開示の第1弾をここで。「業」「救済」は、すずの昇天という現象を見せてから一言だけ言葉を与える（講義はしない）。実験の謎・ダイダロス失踪・犯人の背後の影を引きとして並べ、クリア後サイド「事務所毒殺事件」へ橋を架ける。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "y4us56q",
               "type": "dir",
               "text": "真犯人の名指しと同時に、迷宮推理空間が軋み、崩れ始める。崩壊が見えるのは、レイとシエルとすずだけ。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "1zjdbgl",
@@ -3222,7 +3969,10 @@
                   "charId": "ep0_maid",
                   "text": "お嬢様を恨むのは\n筋違いと、\n知りながら。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "w8h419a",
@@ -3233,7 +3983,10 @@
                   "charId": "ep0_victim",
                   "text": "アメール……。\nわたし、知らなかった。\n何も。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "k4figxd",
@@ -3247,13 +4000,19 @@
                   "src": "",
                   "cap": "崩壊／ランク演出"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "5qgg2ty",
               "type": "dir",
               "text": "帰還。事務所の窓辺。すずの胸から、あたたかな光があふれ出す。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "ejw3ss0",
@@ -3274,14 +4033,20 @@
                   "charId": "ep0_victim",
                   "text": "ショコラのこと、\nときどき思い出して\nあげてください。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "f91phvo",
               "type": "event",
               "ev": "演出：救済／昇天",
               "text": "すずの魂が光になり、灯籠の川へ還っていく。レイ、初めて見る「昇天」。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "6iphaag",
@@ -3312,13 +4077,19 @@
                   "charId": "sc_rei",
                   "text": "（また「今度」か。\nこの世界、\n後出しが多いな）"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "hloc4ci",
               "type": "dir",
               "text": "シエルが窓辺で、還っていく光を長く見送っている。（※伏線：彼女はまだ、還れていない）",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "vmg8j2y",
@@ -3339,13 +4110,19 @@
                   "charId": "sc_rei",
                   "text": "（「実験」、ね。\n——覚えておく）"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "s5o9hj9",
               "type": "dir",
               "text": "そこへ、報せ。ベテラン魔界探偵ダイダロスが、迷宮から戻らない——部室に緊張が走る。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "inwuupa",
@@ -3366,16 +4143,23 @@
                   "charId": "sc_chief",
                   "text": "歓迎の茶会を\n開かせよう。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "95b0y2g",
               "type": "event",
               "ev": "場面転換",
               "text": "引き：①レイが一人で送られた「実験」の理由 ②ダイダロス失踪 ③レイを殺した犯人の背後の影（列車の事件は解けたが、探偵殺しは未解決のまま）→ クリア後サイド「EP0.5 マカタン事務所毒殺事件」へ。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             }
-          ]
+          ],
+          "phase": "epi"
         }
       ],
       "cast": [
@@ -3817,7 +4601,8 @@
         "overallDifficulty": 35
       },
       "trick": "【鍵と扉】客室の錠は内外とも“鍵でしか”施解錠できないデッドボルトで（内側のつまみ無し）、鍵はこの2本のみ。普段はボディガードが扉前を固めるため被害者は施錠せず、扉は閉まっていても無施錠で、就寝時にだけ自分の鍵Aで施錠する習慣だった。\n\n【最大の謎】施錠された室内に、チョコのついた“もう1本の鍵”が落ちていた。鍵は2本——被害者の部屋の鍵（鍵A）と、ボディガードが持つ予備（鍵B）のみ。ゆえに自殺か内部犯行に見え、終始扉前にいたボディガードが最有力に映る。真相は、鍵Aが「犯行の後に」チョコで包まれて室内へ運び込まれた時間差トリックである。\n\n【下準備】犯人＝メイドは客室係として日頃から被害者の部屋と愛犬の世話に出入りしており（20時の清掃もその一環＝カメラ記録は「20時メイド入室」のみ）、扉の錠の仕組み・鍵Aの定位置・犬の習性を熟知していた。\n\n【犯行】ダイニングで始まった停電は、長いトンネル内で復旧が進まないうえ、乗務員のメイドが配電に細工して引き延ばしたため、20時台後半から23時のトンネル脱出まで監視カメラの停止と暗闇が続いた。ボディガードは21時まで持ち場を守り扉越しに生存を確認するが、停電が長引く中「トンネルに閉じた車内なら外部の脅威はない」と判断し、車掌の要請で先頭車の復旧対応へ向かう——メイドが狙ったのは、この“扉前が無人になる空白”である。被害者は護衛を頼り就寝するまで施錠しない習慣で、その前に殺された。メイドは暗闇の中、無施錠の扉から入室して撲殺し、室内の定位置にあった鍵Aを抜き取り、退室して鍵Aで外から施錠する。鍵は施錠に“裸”のまま使う必要があるため、この時点で鍵Aはメイドの手元、鍵Bはボディガード——室内に鍵のない、まだ不完全な密室。\n\n【密室の完成（時間差）】扉を施錠した後で、メイドはチョコレート製造機（誰でも短時間で作れる）を使い、役目を終えた鍵Aを丸ごとチョコで包んで成形する。被害者の愛犬には“チョコを咥えてもその場では口にせず、必ず自分の寝床＝被害者の部屋へ運んでから舐めとる”という習性があった。23時、ボディガードは日課で犬を部屋へ入れる。停電後に扉が施錠されていても、彼は「怯えた被害者が就寝前に自分で施錠した」と自然に受け取り、鍵Bで解錠→犬を入れ→鍵Bで再施錠する（暗がりのため室内へは入らず、異変にも気づかない＝カメラにも入室は映らない）。犬の世話をするメイドが直前に与えた“鍵A入りチョコ”を、犬は寝床へ運んで食べ尽くす。床に食べかすや包みは残らない一方、金属の鍵Aの溝にはチョコの跡がわずかに残る——これが唯一の綻びにして決定的な手がかりとなる。こうして犯行の後から、密室が“ひとりでに”完成する。\n\n【驚きとカタルシスの核】凶器ならぬ“鍵”を室内へ運んだのは、被害者が誰より愛した飼い犬だった。犯人は人を介さず、被害者自身の「愛犬への情」と「犬の習性」を利用して密室を仕立てる。最有力に見えたボディガードはむしろ「鍵を室内へ戻す扉を開けた」無自覚の協力者にされており、疑いの矢印が一八〇度反転する。",
-      "logic": "※チュートリアルとして「手がかりを組み合わせる→意外な事実が反転する→最後の一点で犯人が確定する」快感を順に体験させる構成。\n\n① 提示される“不可能”：施錠された密室。鍵は室内（鍵A）とボディガードの予備（鍵B）の2本のみ。プレイヤーはまず「鍵Bを持ち扉前にいたボディガードが怪しい」とミスリードされる。\n② 一度目の反転：監視カメラはボディガードが室内へ入っていないと示す。最有力が崩れ、「では誰がどうやって密室を？」と謎が深まる。\n③ 鍵の正体（合成1→合成2）：『チョコのついた鍵』＋『チョコ製造機（誰でも作れる）』→「鍵はチョコに包まれていた」。さらに＋『犬は自室で痕跡なくチョコを完食する習性』→「鍵入りチョコを犬が室内へ運んだ」。“鍵は最初から室内にあった”という前提が覆る最大の驚き＝密室は犯行の後から作れる。\n④ 犯行時刻（合成3）：21時の会話で被害者は生存。カメラに出入りはなく、長く続いた停電の暗闇だけが空白。しかもその間ボディガードは離席＝扉前は無人。→「犯行時刻は21〜23時（停電中〜トンネル脱出）」。鉄壁に見えた監視に穴が空く二度目の反転。\n⑤ 絞り込み（合成4）：トリックの実行条件は『製造機を使える』×『犯行時刻にアリバイがない』。前者は4名（ウェイター・メイド・ボディガード・その他客）、後者は2名（メイド・その他客）→重なるのはメイドとその他客。\n⑥ 最後の一点＝確定とカタルシス（合成5）：その他客は偶然乗り合わせた客で、被害者の飼い犬が“自室でチョコを完食する習性”を知り得ない。この密室は犬の習性を熟知する者にしか作れない——日々客室に出入りし犬を見ていたメイドだけが該当する。被害者が最も信頼し愛した日常（愛犬・客室係）の只中に犯人がいた、という反転で幕が下りる。"
+      "logic": "※チュートリアルとして「手がかりを組み合わせる→意外な事実が反転する→最後の一点で犯人が確定する」快感を順に体験させる構成。\n\n① 提示される“不可能”：施錠された密室。鍵は室内（鍵A）とボディガードの予備（鍵B）の2本のみ。プレイヤーはまず「鍵Bを持ち扉前にいたボディガードが怪しい」とミスリードされる。\n② 一度目の反転：監視カメラはボディガードが室内へ入っていないと示す。最有力が崩れ、「では誰がどうやって密室を？」と謎が深まる。\n③ 鍵の正体（合成1→合成2）：『チョコのついた鍵』＋『チョコ製造機（誰でも作れる）』→「鍵はチョコに包まれていた」。さらに＋『犬は自室で痕跡なくチョコを完食する習性』→「鍵入りチョコを犬が室内へ運んだ」。“鍵は最初から室内にあった”という前提が覆る最大の驚き＝密室は犯行の後から作れる。\n④ 犯行時刻（合成3）：21時の会話で被害者は生存。カメラに出入りはなく、長く続いた停電の暗闇だけが空白。しかもその間ボディガードは離席＝扉前は無人。→「犯行時刻は21〜23時（停電中〜トンネル脱出）」。鉄壁に見えた監視に穴が空く二度目の反転。\n⑤ 絞り込み（合成4）：トリックの実行条件は『製造機を使える』×『犯行時刻にアリバイがない』。前者は4名（ウェイター・メイド・ボディガード・その他客）、後者は2名（メイド・その他客）→重なるのはメイドとその他客。\n⑥ 最後の一点＝確定とカタルシス（合成5）：その他客は偶然乗り合わせた客で、被害者の飼い犬が“自室でチョコを完食する習性”を知り得ない。この密室は犬の習性を熟知する者にしか作れない——日々客室に出入りし犬を見ていたメイドだけが該当する。被害者が最も信頼し愛した日常（愛犬・客室係）の只中に犯人がいた、という反転で幕が下りる。",
+      "deductionDoc": ""
     },
     {
       "id": "ep0_office",
@@ -4154,14 +4939,20 @@
               "id": "h81wawi",
               "type": "note",
               "text": "【演出意図】タイトルの約束（毒殺）を0.5秒だけ先出しし、導入20分に緊張の通奏低音を通す。参考稿の「ぺろ」開幕は壊さず、その直前に置くだけ。誰が・誰を、は見せない。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "w5qbj2l",
               "type": "event",
               "ev": "BGM変更",
               "text": "完全な無音から開始。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "4zksuaa",
@@ -4175,25 +4966,37 @@
                   "src": "",
                   "cap": "冒頭フラッシュ（毒杯＋鈴）"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "4sl04a0",
               "type": "dir",
               "text": "白文字。——「数時間前」。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "v7i7kpt",
               "type": "note",
               "text": "参考稿準拠の開幕。情報ゼロの黒画面から「ぺろ」だけで始め、プレイヤーの「？」と主人公の「？」を完全同期。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "i34c9h2",
               "type": "dir",
               "text": "画面：黒。——ぺろ。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "230fbtt",
@@ -4204,13 +5007,19 @@
                   "charId": "sc_rei",
                   "text": "……ん"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "mbqet3f",
               "type": "dir",
               "text": "ぺろぺろ。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "if1qd4e",
@@ -4221,13 +5030,19 @@
                   "charId": "sc_rei",
                   "text": "…………ん？"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "kn1wq5k",
               "type": "dir",
               "text": "ぺろぺろぺろ。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "wg2gxnu",
@@ -4238,14 +5053,20 @@
                   "charId": "sc_rei",
                   "text": "……な、なんだ？"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "v2lwbtl",
               "type": "event",
               "ev": "カメラ演出",
               "text": "モザイクで視界が徐々にクリアに。背景：水色の空。画像：猫の顔。SE：にゃー。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "naeuwtb",
@@ -4261,20 +5082,29 @@
                   "charId": "sc_rei",
                   "text": "寝よう。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "gdg58sa",
               "type": "dir",
               "text": "画面：黒。……間。——ぺろぺろぺろぺろぺろ。ぺろぺろぺろぺろぺろぺろぺろぺろぺろ。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "vsotknx",
               "type": "event",
               "ev": "カメラ演出",
               "text": "モザイクが一気にクリア。猫の顔、ドアップ。BGM：荒野の風ループ開始。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "rhtt8nh",
@@ -4300,13 +5130,19 @@
                   "charId": "sc_rei",
                   "text": "おまえ、分かってて\nやってる？"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "uc3orks",
               "type": "dir",
               "text": "猫、すまし顔。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "yg82nhl",
@@ -4317,14 +5153,20 @@
                   "charId": "sc_rei",
                   "text": "はいはい。\nいま、起きるってば！"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "y0wpspv",
               "type": "event",
               "ev": "その他",
               "text": "SE：起き上がる。場所：魔界入口の3D迷宮へ。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             }
           ]
         },
@@ -4338,14 +5180,20 @@
               "id": "yxj3wi7",
               "type": "note",
               "text": "【演出意図】「記憶がない」を台詞で宣言させず、鏡という小道具で発見させる（参考稿の鏡ギミック採用）。プラカード猫で笑いに転換してから歩かせる。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "3acwlw9",
               "type": "event",
               "ev": "カメラ演出",
               "text": "魔界入口の景色を横パンで見渡す。水色の空とピンク色の荒野——魔人となった者が最初に落ちる場所。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "w76ss4w",
@@ -4376,13 +5224,19 @@
                   "charId": "sc_rei",
                   "text": "しかし、\n何もないな。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "ft53igg",
               "type": "dir",
               "text": "SE：にゃーん。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "qrvi44y",
@@ -4398,13 +5252,19 @@
                   "charId": "sc_rei",
                   "text": "わるいな。あげられる\nゴハンは無さそうだ。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "2i2sg1w",
               "type": "dir",
               "text": "猫が何かを咥えている。鏡——光が反射して、よく見えない。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "gq1516q",
@@ -4420,13 +5280,19 @@
                   "charId": "sc_rei",
                   "text": "鏡……か？"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "rjh8qla",
               "type": "dir",
               "text": "光がずれて、見知らぬ男の顔が映る。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "t5j16w5",
@@ -4447,14 +5313,20 @@
                   "charId": "sc_rei",
                   "text": "俺って、そもそも\n誰なんだ？"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "xhiuzke",
               "type": "event",
               "ev": "カメラ演出",
               "text": "ここから主人公の立ち絵を表示（＝自我の輪郭が定まる演出）。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "iclz15x",
@@ -4470,13 +5342,19 @@
                   "charId": "sc_rei",
                   "text": "そもそも俺は、何で\nこんな場所で\n寝てたんだ？"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "q626liu",
               "type": "dir",
               "text": "猫がプラカードを咥えて、こちらに見せる。「Ｃｏｍｅ ｏｎ」。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "yd1ct6a",
@@ -4492,13 +5370,19 @@
                   "charId": "sc_rei",
                   "text": "そんなこと\n言われてもなあ。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "z5upfmd",
               "type": "dir",
               "text": "にゃー。プラカード。にゃー。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "g2vu03b",
@@ -4509,13 +5393,19 @@
                   "charId": "sc_rei",
                   "text": "うーむ。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "fyopj5o",
               "type": "dir",
               "text": "にゃー（圧）。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "0dz9b8v",
@@ -4536,14 +5426,20 @@
                   "charId": "sc_rei",
                   "text": "他に行く所もないし、\n行ってみるか。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "bf1x6dr",
               "type": "event",
               "ev": "場面転換",
               "text": "【操作解禁0：移動】前を歩く猫についていく。猫の足跡をマップに表示。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             }
           ]
         },
@@ -4557,13 +5453,19 @@
               "id": "8nthvoh",
               "type": "note",
               "text": "【演出意図】世界説明は屋台と掲示板に語らせる（説明セリフ禁止）。「記録が魂を裁く」を生活レベルの常識として先に見せ、後の講義への納得感の下地にする。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "jjcl3ty",
               "type": "dir",
               "text": "しばらく歩くと、荒野にぽつんと扉。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "pls4jp4",
@@ -4574,13 +5476,19 @@
                   "charId": "sc_rei",
                   "text": "扉がある……。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "7s14e3p",
               "type": "dir",
               "text": "扉が自動で開き、猫がするりと入っていく。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "32ttmw4",
@@ -4591,14 +5499,20 @@
                   "charId": "sc_rei",
                   "text": "おいおい、これ\nどこに続いてるんだよ。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "a7f4zgv",
               "type": "event",
               "ev": "カメラ演出",
               "text": "扉に入るとブラックアウト→宇宙空間を光速移動するような演出→ホワイトアウト。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "bu7iddq",
@@ -4609,13 +5523,19 @@
                   "charId": "sc_rei",
                   "text": "うわうわ、\nなんだこれ！！？"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "jm0wu15",
               "type": "dir",
               "text": "ホワイトアウトからフェードイン。——魔界の街、アケロシティ。BGM：アケロシティ。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "cqhtvoh",
@@ -4631,13 +5551,19 @@
                   "charId": "sc_rei",
                   "text": "ずいぶん変わった\n雰囲気だ。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "ymrhk4e",
               "type": "dir",
               "text": "角の生えた八百屋、浮遊する新聞屋、湯気を上げる屋台「ソウルフード（直球）」。空には灯籠の川。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "tdkyueh",
@@ -4653,19 +5579,28 @@
                   "charId": "ep0_mob",
                   "text": "あれは天界へ\n還ってく魂さ。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "y7j3csu",
               "type": "dir",
               "text": "猫が立ち止まり、灯籠の川を長く見上げる。（※伏線：彼女はまだ、還れていない）",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "4to64r2",
               "type": "dir",
               "text": "掲示板。手配書のような札がびっしり。「業：恩人を裏切った」「業：橋を落とした」……。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "7uc12ko",
@@ -4691,7 +5626,10 @@
                   "charId": "sc_rei",
                   "text": "（記録、ねえ……）"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "9thvmpx",
@@ -4707,14 +5645,20 @@
                   "charId": "sc_rei",
                   "text": "待ってくれよー。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "m7a3yn9",
               "type": "event",
               "ev": "その他",
               "text": "【プレイアブル】街を歩ける。猫から外れようとすると「（今は、猫の後をついて行こう）」。要所で街並みの一枚絵を挿入。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             }
           ]
         },
@@ -4728,13 +5672,19 @@
               "id": "zkofz5s",
               "type": "note",
               "text": "【演出意図】出会いは「独り言を聞かれる」気まずさコメディで。所長の口から早くもテーマ語「導き」を出す（プレイヤーには冗談に聞こえ、終盤で反転する）。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "nzjft52",
               "type": "dir",
               "text": "蔦の絡む建物の前。猫が足を止める。看板——「魔界探偵事務所」。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "i2x84w8",
@@ -4765,7 +5715,10 @@
                   "charId": "sc_rei",
                   "text": "パッとしない\nイメージだよな、\n探偵なんてものは。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "5xand1h",
@@ -4781,7 +5734,10 @@
                   "charId": "sc_chief",
                   "text": "それも立派な\n仕事だよ、キミ。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "j41hno5",
@@ -4802,7 +5758,10 @@
                   "charId": "sc_rei",
                   "text": "パッとしないのは、\nあくまで主観的な\n印象であって……"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "ow1q7ny",
@@ -4823,7 +5782,10 @@
                   "charId": "sc_chief",
                   "text": "猫にキミをここまで\n案内させたのは——\n私だ。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "yyqj294",
@@ -4854,7 +5816,10 @@
                   "charId": "sc_rei",
                   "text": "導き……？"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "9irbdt4",
@@ -4875,7 +5840,10 @@
                   "charId": "sc_chief",
                   "text": "まず、そのあたりから\n軽く説明してやろう。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             }
           ]
         },
@@ -4889,13 +5857,19 @@
               "id": "p3k77nr",
               "type": "note",
               "text": "【構成意図／課題②対応】講義を二人芝居にしないため、先に全員を顔見せし、アールの茶会準備をここから走らせる。以降の講義は、湯気とメンバーの反応が背景で動くアンサンブル劇になる。一人一芸30秒。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "2yr3cuu",
               "type": "dir",
               "text": "中は剥製・古時計・用途不明の機械の山。壁一面に、未練の数だけの依頼書。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "4zqj1bj",
@@ -4911,7 +5885,10 @@
                   "charId": "sc_rei",
                   "text": "（挨拶が\n注意書きだった）"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "38krxx5",
@@ -4927,7 +5904,10 @@
                   "charId": "sc_rei",
                   "text": "まだ何も\n言ってない。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "2qavj07",
@@ -4943,14 +5923,20 @@
                   "charId": "sc_earl",
                   "text": "茶は出会いの\n握手ですから。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "mdq3ze8",
               "type": "event",
               "ev": "その他",
               "text": "【調べポイント×3】①壁一面の依頼書 ②開かない奥の扉（伏線）③埃をかぶった「ダイダロス」のトロフィー（伏線）。各所でレイの一言ツッコミ。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "gr61x98",
@@ -4966,7 +5952,10 @@
                   "charId": "sc_chief",
                   "text": "まずは肩慣らしに、\n資料の整理から。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "oeyjfvf",
@@ -4982,7 +5971,10 @@
                   "charId": "sc_noel",
                   "text": "よろしくお願い\nいたしますね、先輩。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "jfh12vx",
@@ -4998,7 +5990,10 @@
                   "charId": "sc_rei",
                   "text": "うっ……\n聞かれてた。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "agssofd",
@@ -5014,7 +6009,10 @@
                   "charId": "sc_noel",
                   "text": "戸惑って当然です。\nわたくしが、\nお支えします。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "2f5ge5c",
@@ -5030,19 +6028,28 @@
                   "charId": "sc_noel",
                   "text": "ふふ。いいえ。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "qoqmwho",
               "type": "dir",
               "text": "やわらかな微笑み。新入りに最初に手を差し伸べてくれたのは、彼女だった。（※後の裏切りの落差を作る）",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "dhxenun",
               "type": "dir",
               "text": "猫が、ノエルの足元から距離を取って座る。誰も気に留めない。（※伏線）",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "brbqv1c",
@@ -5058,14 +6065,20 @@
                   "charId": "sc_earl",
                   "text": "歓迎の支度を\n始めましょう。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "vvbzgh9",
               "type": "event",
               "ev": "その他",
               "text": "アールが奥でポットと人数分のカップを並べ始める。以降の講義シーンは、この茶会準備が背景でずっと動く。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             }
           ]
         },
@@ -5079,7 +6092,10 @@
               "id": "7ikc448",
               "type": "note",
               "text": "【演出意図】重い説明を二人芝居にせず、アールの茶支度・トトの誤メモ・ココの舌打ちを背景で動かす。質問はメニュー化し受け身を排す。「理不尽じゃないか？」「ああ、理不尽かもな」で一拍。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "6b31xvh",
@@ -5110,24 +6126,45 @@
                   "charId": "sc_rei",
                   "text": "魔界……？\n死んだって……？"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "xvdaxuf",
               "type": "dir",
               "text": "背後で、アールがやかんを火にかける。シュンシュンと、のどかな湯気。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "ra7wvp8",
               "type": "choice",
               "opts": [
-                "「魔界って、何だ？」",
-                "「なんで俺が魔界に？」",
-                "「とりあえず、続けてくれ」"
+                {
+                  "text": "「魔界って、何だ？」",
+                  "to": "",
+                  "requires": []
+                },
+                {
+                  "text": "「なんで俺が魔界に？」",
+                  "to": "",
+                  "requires": []
+                },
+                {
+                  "text": "「とりあえず、続けてくれ」",
+                  "to": "",
+                  "requires": []
+                }
               ],
               "text": "【質問メニュー】聞きたい順に選べる（全項目で先へ）。未選択の問いは後でいつでも聞ける。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "jr7hy4c",
@@ -5163,7 +6200,10 @@
                   "charId": "sc_chief",
                   "text": "が、一つ\n言えることはある。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "wkzty8m",
@@ -5179,7 +6219,10 @@
                   "charId": "sc_rei",
                   "text": "なんでだよ。\nそれは違う。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "spqd6hi",
@@ -5220,7 +6263,10 @@
                   "charId": "sc_chief",
                   "text": "悪い業が重ければ、\n魔界行きだ。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "tux9xge",
@@ -5236,7 +6282,10 @@
                   "charId": "sc_earl",
                   "text": "まあまあ。\n茶が入るまでの、\nいい退屈しのぎです。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "x6n3vuj",
@@ -5267,13 +6316,19 @@
                   "charId": "sc_chief",
                   "text": "ああ——\n理不尽かもな。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "fwr6q5z",
               "type": "dir",
               "text": "一拍。湯の沸く音だけが、やけに大きい。所長は、否定しなかった。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "4dwslk5",
@@ -5284,14 +6339,20 @@
                   "charId": "sc_chief",
                   "text": "だが、そんな魔界にも\n一筋の光はある。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "3wua78s",
               "type": "event",
               "ev": "その他",
               "text": "UI用語登録：魔界／天界／業（カルマ）。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             }
           ]
         },
@@ -5305,7 +6366,10 @@
               "id": "ke4jxg5",
               "type": "note",
               "text": "【演出意図】①希望②仕組み（業＝記録）③実例（依頼書が光って消える救済）④例外（黒塗り）の四段。アールがカップを並べ終える動きと、トトの“偶然的を射た”誤メモで湿度を調整。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "oggur6j",
@@ -5346,13 +6410,19 @@
                   "charId": "sc_chief",
                   "text": "そこで業を解けば——\n天界へ還れる。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "ttkmwms",
               "type": "dir",
               "text": "アールが、ことり、ことりと、人数分のカップを一つずつ並べていく。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "sx0bbx8",
@@ -5383,7 +6453,10 @@
                   "charId": "sc_chief",
                   "text": "そういうことだ。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "6di5klk",
@@ -5394,14 +6467,20 @@
                   "charId": "sc_chief",
                   "text": "そして業は——\nすべて記録される。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "i5vkmfy",
               "type": "event",
               "ev": "カメラ演出",
               "text": "宙に巨大な頁がめくれる演出。アカシックレコードの召喚。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "9h2404m",
@@ -5437,7 +6516,10 @@
                   "charId": "sc_chief",
                   "text": "冤罪は、死後まで\n続くのだよ。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "4q8nsu7",
@@ -5453,14 +6535,20 @@
                   "charId": "sc_rei",
                   "text": "……それは、\n消すな。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "kmciehu",
               "type": "event",
               "ev": "演出：救済／昇天",
               "text": "壁の依頼書が一枚、ふわりと光って消える。「いま、どこかで業がひとつ解けた」——救済の実例を先に1度見せる（後のアール昇天への納得の下地）。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "yxfk6kg",
@@ -5481,14 +6569,20 @@
                   "charId": "sc_rei",
                   "text": "（ちょっと、\nワクワクしてきた）"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "ht5lktb",
               "type": "event",
               "ev": "その他",
               "text": "所長がレイの記録カードを召喚。——真っ黒。閲覧不可。打刻音が空振りする。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "944ncc8",
@@ -5519,13 +6613,19 @@
                   "charId": "sc_rei",
                   "text": "（俺の過去は、\n黒塗りか……）"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "9jt49ub",
               "type": "dir",
               "text": "カップを並べるココの手が、ほんの一瞬止まる。「……真っ黒、ねえ」。（※共犯疑惑の芽）",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             }
           ]
         },
@@ -5539,18 +6639,36 @@
               "id": "vufpp5q",
               "type": "note",
               "text": "【演出意図】仕事説明も質問メニュー化。「魔界での死＝魂ごとの消滅」を提示し毒殺の重みを支える。アールの“守らないと”で毒見役の業を予兆し、準備完了→そのまま茶会（S09）へなだれ込む。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "3c27ty1",
               "type": "choice",
               "opts": [
-                "「魔界探偵は、何をする？」",
-                "「死人なのに、殺人？」",
-                "「なんで俺が探偵なんだ？」"
+                {
+                  "text": "「魔界探偵は、何をする？」",
+                  "to": "",
+                  "requires": []
+                },
+                {
+                  "text": "「死人なのに、殺人？」",
+                  "to": "",
+                  "requires": []
+                },
+                {
+                  "text": "「なんで俺が探偵なんだ？」",
+                  "to": "",
+                  "requires": []
+                }
               ],
               "text": "【質問メニュー】仕事の疑問を選んで聞く。全て聞くと「では今日から仕事だ」へ。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "u0fqjqh",
@@ -5581,7 +6699,10 @@
                   "charId": "sc_chief",
                   "text": "探偵の出番、\nというわけだ。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "iu2qes8",
@@ -5612,13 +6733,19 @@
                   "charId": "sc_rei",
                   "text": "（……消滅、ねえ）"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "37segmm",
               "type": "dir",
               "text": "茶葉を量るアールの手が、一瞬だけ止まった。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "wm5pzrw",
@@ -5639,7 +6766,10 @@
                   "charId": "sc_rei",
                   "text": "（妙に、\n実感のこもった声だ）"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "uiqd4ck",
@@ -5675,7 +6805,10 @@
                   "charId": "sc_rei",
                   "text": "……あ、そう。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "7tyjqrk",
@@ -5701,7 +6834,10 @@
                   "charId": "sc_rei",
                   "text": "早いな。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "zk1yftz",
@@ -5717,14 +6853,20 @@
                   "charId": "sc_earl",
                   "text": "支度が、\n整いましたよ。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "gfhz8vo",
               "type": "event",
               "ev": "その他",
               "text": "UI用語登録：消滅／適性。並んだカップへカメラが寄り、そのまま歓迎の茶会（S09）へ。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             }
           ]
         },
@@ -5738,13 +6880,19 @@
               "id": "p9kjurq",
               "type": "note",
               "text": "【演出意図】前半＝カップ紹介ギャグで全員を好きにさせる。中盤＝配り直しと鈴。後半＝無言の取り替え→昇天（S04で予習済みだから泣ける）→冷たい打刻で突き落とす。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "zb0ztxx",
               "type": "dir",
               "text": "長机に、人数分のカップ。アールが一人ひとりに合わせた器を並べていく。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "tksgs82",
@@ -5760,7 +6908,10 @@
                   "charId": "sc_coco",
                   "text": "分かってる\nじゃん。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "dom2z8o",
@@ -5781,7 +6932,10 @@
                   "charId": "sc_earl",
                   "text": "冗談です。\nはい、マグカップ。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "dgz3b9k",
@@ -5802,19 +6956,28 @@
                   "charId": "sc_rei",
                   "text": "（……いい人だ）"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "6fqr6xz",
               "type": "dir",
               "text": "ノエルが立ち上がる。「席順の都合で、失礼しますね」。カップが配り直される。——ちりん。どこかで、ごく小さな鈴の音。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "s7hr1o2",
               "type": "dir",
               "text": "猫が、机の下で低く唸る。誰も気づかない。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "vijnp1k",
@@ -5830,26 +6993,38 @@
                   "charId": "sc_earl",
                   "text": "……おや。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "2jahgbv",
               "type": "dir",
               "text": "アールはレイの杯の香りを確かめ、何も言わず自分の杯と取り替えて——一気に飲み干した。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "8xpjrmh",
               "type": "dir",
               "text": "巨体が、ゆっくりと崩れる。悲鳴。駆け寄る面々。だが次の瞬間、アールの胸から、あたたかな光があふれ出す。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "44kziju",
               "type": "event",
               "ev": "演出：救済／昇天",
               "text": "S04で見た「依頼書の光」と同じ光。業「守れなかった一杯」が解け、アールは微笑んで光になる。涙と納得が同時に来る設計。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "9nkiyt8",
@@ -5870,14 +7045,20 @@
                   "charId": "sc_toto",
                   "text": "アールさん……！"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "mtic64b",
               "type": "event",
               "ev": "その他",
               "text": "静寂を裂く、冷たい打刻音。アカシックレコード即日確定——「犯人＝レイ」。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "ubph865",
@@ -5893,7 +7074,10 @@
                   "charId": "sc_rei",
                   "text": "（早い。\n早すぎる——）"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "ky95wu7",
@@ -5907,7 +7091,10 @@
                   "src": "",
                   "cap": "昇天CG／記録CG"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             }
           ]
         },
@@ -5931,7 +7118,10 @@
                   "charId": "sc_rei",
                   "text": "（本日1回目の\n舌打ち）"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "o6le8m4",
@@ -5947,28 +7137,48 @@
                   "charId": "sc_rei",
                   "text": "誰が師匠だ。\nあと、たぶん\nつけるな。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "3e3663y",
               "type": "dir",
               "text": "所長は黙って、レイの白いカップを長く見つめている。（※伏線）",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "pzhs8q2",
               "type": "dir",
               "text": "雨音。膝の上に、猫がそっと乗る。アールが最期に自分を見た目を、レイは思い出す。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "2yp7rdu",
               "type": "choice",
               "opts": [
-                "「俺がやる。俺の容疑だ」",
-                "「……仕方ねえな」"
+                {
+                  "text": "「俺がやる。俺の容疑だ」",
+                  "to": "",
+                  "requires": []
+                },
+                {
+                  "text": "「……仕方ねえな」",
+                  "to": "",
+                  "requires": []
+                }
               ],
-              "text": "どちらも捜査へ。①にココ「へえ」②に猫の前足パンチ（性格付けのみ・分岐なし）。"
+              "text": "どちらも捜査へ。①にココ「へえ」②に猫の前足パンチ（性格付けのみ・分岐なし）。",
+              "to": "",
+              "grants": [],
+              "requires": []
             }
           ]
         },
@@ -5992,7 +7202,10 @@
                   "charId": "sc_rei",
                   "text": "記録の間違いを、\n俺が証明する。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "mqw16nf",
@@ -6008,20 +7221,29 @@
                   "charId": "sc_rei",
                   "text": "（本日2回目。\nでも優しい）"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "9d07kxe",
               "type": "event",
               "ev": "推理カード獲得",
               "text": "【推理ピースUI解禁】チュートリアル：拾う・見る・considerの基本操作。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "qos0qnv",
               "type": "dir",
               "text": "猫が証拠机にぴょんと乗り、尻尾で「ここ」と示す。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             }
           ]
         },
@@ -6035,7 +7257,10 @@
               "id": "5y4buzf",
               "type": "dir",
               "text": "落ち込むトトを、猫が前足でつつく。トトのメモ帳には、アールの淹れ方が几帳面に書き残されている。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "dbymxod",
@@ -6061,20 +7286,29 @@
                   "charId": "sc_rei",
                   "text": "それは\n消さなくていい。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "xeiu12c",
               "type": "dir",
               "text": "猫がレイの袖を、ふみ、ふみ、と踏む。妙に手慣れている。（※伏線）",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "85k66i5",
               "type": "event",
               "ev": "その他",
               "text": "TIPSカットイン：救済・昇天・推理ピースのおさらい（スキップ可）。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             }
           ]
         },
@@ -6089,7 +7323,10 @@
               "type": "event",
               "ev": "場面転換",
               "text": "【操作：調べる】長机。ポイント＝カップ／席札／ポット／床。順不同・全調べで進行。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "8vrewb8",
@@ -6110,14 +7347,20 @@
                   "charId": "sc_rei",
                   "text": "お前も\nそう思うか。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "a9zlohx",
               "type": "event",
               "ev": "推理カード獲得",
               "text": "「毒入りカップ（アールの席）」「席札：毒杯の席は本来レイ」「アールは香りを確かめ一気に飲んだ」",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "h8klb2k",
@@ -6128,13 +7371,19 @@
                   "charId": "sc_rei",
                   "text": "毒見の所作……\nあの人は、気づいて\n飲んだのか。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "e1gmzqx",
               "type": "dir",
               "text": "席札の並びに、わずかな違和感。配膳の「後」で、何かが動いている。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             }
           ]
         },
@@ -6163,7 +7412,10 @@
                   "charId": "sc_rei",
                   "text": "（疑いながら\n協力的。律儀だ）"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "q2nra4b",
@@ -6189,14 +7441,20 @@
                   "charId": "sc_rei",
                   "text": "それは半分消せ。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "4xodce4",
               "type": "event",
               "ev": "推理カード獲得",
               "text": "「茶器は直前まで施錠棚」「ノエルが席順を理由にカップを配り直した（トトのメモ）」",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             }
           ]
         },
@@ -6225,7 +7483,10 @@
                   "charId": "sc_rei",
                   "text": "（「残しておいた」？\n——準備が良すぎる）"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "1ryb7ku",
@@ -6246,20 +7507,29 @@
                   "charId": "sc_rei",
                   "text": "（自分の好みも\n記録頼みか……）"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "4c69wvw",
               "type": "event",
               "ev": "推理カード獲得",
               "text": "「犯人レイの記録は即日確定」「記録のインクが事件前に乾いている（事前改竄の痕）」※インクの発見はS17で演出回収。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "m0y02vl",
               "type": "dir",
               "text": "去り際、ノエルの喉元で銀の鈴が——鳴らない。鳴らないことが、妙に耳に残る。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             }
           ]
         },
@@ -6273,24 +7543,45 @@
               "id": "w7yszm4",
               "type": "note",
               "text": "【目玉ギミック】猫の行動ログを時系列再生し、プレイヤーが意味を選んで証拠化。正解で猫がドヤ顔、不正解で猫パンチ（ノーペナルティの笑い）。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "uax0s6p",
               "type": "event",
               "ev": "時系列移動",
               "text": "茶会の記憶を再生。行動ログ：①ノエルの足元でだけ毛を逆立てて唸る ②配り直しの瞬間に耳が立つ（＝鈴の音）。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "zi67n56",
               "type": "choice",
               "opts": [
-                "「ノエルを警戒していた」",
-                "「お腹が空いていた」",
-                "「毛づくろいの時間だった」"
+                {
+                  "text": "「ノエルを警戒していた」",
+                  "to": "",
+                  "requires": []
+                },
+                {
+                  "text": "「お腹が空いていた」",
+                  "to": "",
+                  "requires": []
+                },
+                {
+                  "text": "「毛づくろいの時間だった」",
+                  "to": "",
+                  "requires": []
+                }
               ],
-              "text": "②③は猫パンチ＋やり直し（笑い）。正解で証拠化。"
+              "text": "②③は猫パンチ＋やり直し（笑い）。正解で証拠化。",
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "aralvqk",
@@ -6311,14 +7602,20 @@
                   "charId": "sc_rei",
                   "text": "自信満々だな。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "mgrd0kp",
               "type": "event",
               "ev": "推理カード獲得",
               "text": "「猫の証言：ノエルの足元だけ威嚇」「配り直しの瞬間、微かな鈴の音」",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             }
           ]
         },
@@ -6333,7 +7630,10 @@
               "type": "event",
               "ev": "ロジックツリー構築",
               "text": "【ミニ合成】「席札：本来レイの席」×「毒見の所作」→ 仮説「狙いはレイ。アールは身代わり」。合成の快感を初体験させる。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "pcn0k7q",
@@ -6349,13 +7649,19 @@
                   "charId": "sc_rei",
                   "text": "会って一時間の俺を、\nあんたは命で\n守ったのか。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "qbw9npi",
               "type": "dir",
               "text": "空のポットから、まだ湯気の記憶が立つ気がした。——「お茶は、毒見してこそ」。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "p7h2avz",
@@ -6366,7 +7672,10 @@
                   "charId": "sc_rei",
                   "text": "白いカップの意味、\n無駄にはしない。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             }
           ]
         },
@@ -6380,7 +7689,10 @@
               "id": "t0vhm4d",
               "type": "dir",
               "text": "事務所が裁定の場に変わる。中央にノエル。ちりん——今度は、はっきり鈴が鳴った。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "v70rcm7",
@@ -6411,14 +7723,20 @@
                   "charId": "sc_rei",
                   "text": "（内容の説明が\nない……！）"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "8pbx1w3",
               "type": "event",
               "ev": "反証バトル",
               "text": "【ルール提示のデモ防戦】主張カードに証拠をぶつける操作を学ぶ（敗北なし・ヒント常時）。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "bve0umy",
@@ -6429,7 +7747,10 @@
                   "charId": "sc_chief",
                   "text": "……裁くのは記録か、\n真実か。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             }
           ]
         },
@@ -6443,7 +7764,10 @@
               "id": "zjojnn0",
               "type": "dir",
               "text": "並べたピースを前に、手が止まる。すり替えを示す「物」がない。雨脚が強くなる。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "f4oxh5s",
@@ -6459,7 +7783,10 @@
                   "charId": "sc_rei",
                   "text": "（本日3回目。\n今のは、効いた）"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "xq1y1ig",
@@ -6470,13 +7797,19 @@
                   "charId": "sc_rei",
                   "text": "届かない、か。\n——記録の壁。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "vcbitrj",
               "type": "dir",
               "text": "猫が窓辺で、降る雨をじっと見ている。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             }
           ]
         },
@@ -6490,13 +7823,19 @@
               "id": "8ayiapa",
               "type": "note",
               "text": "【演出意図】行き詰まりを破るのは天才の閃きではなく「猫が物を落とす」という日常ギャグ。＝テーマ「導き」の先取り。シエルの決め台詞「導かれたのよ」の原型をここで猫が演じる。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "ww1ywsf",
               "type": "dir",
               "text": "がたん。猫が机の上の記録の写しを、前足でわざとらしく床へ落とす。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "6y0khek",
@@ -6512,20 +7851,29 @@
                   "charId": "sc_rei",
                   "text": "……待て。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "fddvr01",
               "type": "dir",
               "text": "落ちて開いた頁。インクの艶が、おかしい。事件の「前」に乾いた色をしている。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "vgsph37",
               "type": "event",
               "ev": "カメラ演出",
               "text": "回想フラッシュ三連：配り直しの「ちりん」／猫の唸り／乾いたインク。三点が一本の線になる。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "70ld2nt",
@@ -6546,13 +7894,19 @@
                   "charId": "sc_rei",
                   "text": "お前、今の\nわざとか？"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "86kmp93",
               "type": "dir",
               "text": "猫はすまし顔で毛づくろい。だが尻尾は、ぱたぱたと上機嫌だった。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             }
           ]
         },
@@ -6567,7 +7921,10 @@
               "type": "event",
               "ev": "ロジックツリー構築",
               "text": "合成①施錠棚×配り直し→「仕込みは配膳後」 ②鈴の音×猫の威嚇→「手はノエル」 ③即日記録×乾いたインク→「事前改竄」 ④（②×③）→「犯人はノエル」。ヒント常時ON。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "abum7ve",
@@ -6583,13 +7940,19 @@
                   "charId": "sc_rei",
                   "text": "ああ。\n——全部、一本だ。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "dqu0fvt",
               "type": "dir",
               "text": "猫が、正解の枝を前足でつつく。ドヤ顔。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             }
           ]
         },
@@ -6603,7 +7966,10 @@
               "id": "j7t0ljp",
               "type": "note",
               "text": "【バトル構成】第1波＝確定記録の絶対性／第2波＝完璧な供述／第3波＝動機の捏造。波ごとに敬語が一段ずつ軋む演出。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "mzbijnr",
@@ -6619,7 +7985,10 @@
                   "charId": "sc_rei",
                   "text": "なら、事件より先に\n乾くインクも\n絶対か？"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "go3efw5",
@@ -6640,7 +8009,10 @@
                   "charId": "sc_rei",
                   "text": "猫は知ってたぞ。\nお前の足元だけ、\nずっと唸ってた。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "dss99im",
@@ -6661,20 +8033,29 @@
                   "charId": "sc_rei",
                   "text": "——その記録、\n書き換える！"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "ujbq4pm",
               "type": "event",
               "ev": "反証バトル",
               "text": "決め台詞でUIが割れる演出。確定記録が剥がれ、白紙へ。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "slb6rq9",
               "type": "dir",
               "text": "完璧な微笑が、初めて軋む。長い沈黙。そして——くす、と笑った。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "0qg5f3m",
@@ -6690,14 +8071,20 @@
                   "charId": "sc_noel",
                   "text": "でも先輩。お前の\n正体も、ろくな\nもんじゃないよ。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "mr0x94c",
               "type": "event",
               "ev": "場面転換",
               "text": "ノエル、影に溶けて消失。鈴の残響。共犯疑惑はくすぶったまま（ココの視線）。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "harshxy",
@@ -6711,7 +8098,10 @@
                   "src": "",
                   "cap": "断罪CG"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             }
           ]
         },
@@ -6725,7 +8115,10 @@
               "id": "yijr0ud",
               "type": "dir",
               "text": "所長が猫を抱き上げる。「手柄には、礼を」。光が弾け——小生意気な笑顔の少女が、そこに立っていた。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "oj4jy8v",
@@ -6761,7 +8154,10 @@
                   "charId": "sc_sub",
                   "text": "探偵歴！"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "fso31hs",
@@ -6782,7 +8178,10 @@
                   "charId": "sc_toto",
                   "text": "メモしました！\n『舌打ち＝照れ』！"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "850zmd7",
@@ -6798,13 +8197,19 @@
                   "charId": "sc_chief",
                   "text": "記憶が無いなら——\n零。レイと呼ぼう。"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "6hnwxya",
               "type": "dir",
               "text": "その名に、シエルの胸の奥が小さく鳴った——理由は、本人にも分からない。（※最重要伏線）",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "7w1mmhq",
@@ -6830,14 +8235,20 @@
                   "charId": "sc_rei",
                   "text": "（ポエムが、今日は\n少し刺さる）"
                 }
-              ]
+              ],
+              "to": "",
+              "grants": [],
+              "requires": []
             },
             {
               "id": "zy91swy",
               "type": "event",
               "ev": "その他",
               "text": "次話予告：机に古い手帳がことんと置かれる。表紙に「チョコレート・エクスプレス」——ダイダロスの字。→EP1へ。",
-              "media": []
+              "media": [],
+              "to": "",
+              "grants": [],
+              "requires": []
             }
           ]
         }
@@ -7067,7 +8478,8 @@
         "overallDifficulty": 25
       },
       "trick": "カップすり替え毒殺の二段構え。茶器は配膳直前まで施錠棚（ココ管理）にあり安全。ノエルは「席順の都合」を口実に配膳後のカップを配り直し、その手の中でレイの席の杯に毒を仕込んだ（袖の銀鈴が一瞬鳴る）。狙いは新入りレイの抹消。だが元・王の毒見役アールが香りの違和に気づき、何も言わず自分の杯と取り替えて飲み干す——身代わりの殉職。さらにノエルは事前にアカシックレコードへ「犯人＝レイ」と書き込んでおり（インクの乾き＝事前改竄の痕）、毒殺と冤罪を同時に成立させる計画だった。",
-      "logic": "①茶器は直前まで施錠棚＝毒の仕込みは「配膳後」に限定 ②配り直しの瞬間だけ鈴の音＋猫がノエルの足元だけを威嚇＝すり替えの手はノエル ③席札上、毒杯は本来レイの席＋アールの毒見の所作＝狙いはレイ、アールは身代わり ④「犯人レイ」の記録はインクが事件前に乾いている＝事前改竄 ⑤記録に触れられるのは記録の代理人のみ＝ノエルで確定。動機はキャロルによる新入り抹消の指令。"
+      "logic": "①茶器は直前まで施錠棚＝毒の仕込みは「配膳後」に限定 ②配り直しの瞬間だけ鈴の音＋猫がノエルの足元だけを威嚇＝すり替えの手はノエル ③席札上、毒杯は本来レイの席＋アールの毒見の所作＝狙いはレイ、アールは身代わり ④「犯人レイ」の記録はインクが事件前に乾いている＝事前改竄 ⑤記録に触れられるのは記録の代理人のみ＝ノエルで確定。動機はキャロルによる新入り抹消の指令。",
+      "deductionDoc": ""
     },
     {
       "id": "ep2_orgel",
@@ -7336,7 +8748,8 @@
         "overallDifficulty": 50
       },
       "trick": "鳴るはずのないオルゴール＝シリンダー差し替え。仲間を偽証で売って座を得た同僚の犯行。",
-      "logic": "自殺記録と矛盾する物証→シリンダーの差し替え痕→差し替え可能者→偽証の動機で確定。"
+      "logic": "自殺記録と矛盾する物証→シリンダーの差し替え痕→差し替え可能者→偽証の動機で確定。",
+      "deductionDoc": ""
     },
     {
       "id": "ep3_twin",
@@ -7605,7 +9018,8 @@
         "overallDifficulty": 50
       },
       "trick": "兄が自死を他殺に偽装し、弟を道連れにする細工を遺した「死後の冤罪づくり」。",
-      "logic": "落下軌道と記録の食い違い→偽装の物証→兄自身の手による細工→弟の無実で確定。"
+      "logic": "落下軌道と記録の食い違い→偽装の物証→兄自身の手による細工→弟の無実で確定。",
+      "deductionDoc": ""
     },
     {
       "id": "ep4_light",
@@ -7874,7 +9288,8 @@
         "overallDifficulty": 50
       },
       "trick": "灯台守の犯行の裏で、キャロルが「記録抹消」の実験を行っていた。",
-      "logic": "消失者の共通項→灯台の運用記録の欠落→抹消の実験痕→灯台守と背後の組織で確定。"
+      "logic": "消失者の共通項→灯台の運用記録の欠落→抹消の実験痕→灯台守と背後の組織で確定。",
+      "deductionDoc": ""
     },
     {
       "id": "ep5_record",
@@ -8143,7 +9558,8 @@
         "overallDifficulty": 50
       },
       "trick": "局員がキャロルに買収され、事前に記録を改竄。完璧な記録こそが偽装の核。",
-      "logic": "記録の完璧さ自体を疑う→事前改竄の立証→買収ルート→局員と組織で確定。"
+      "logic": "記録の完璧さ自体を疑う→事前改竄の立証→買収ルート→局員と組織で確定。",
+      "deductionDoc": ""
     },
     {
       "id": "ep6_lunar",
@@ -8412,7 +9828,8 @@
         "overallDifficulty": 50
       },
       "trick": "依頼自体がキャロルの罠。EP4の「消失」の手口でシエルを連れ去り、同時にレイの正体記録を全魔界へ公開する。",
-      "logic": "罠の構造→記憶再生装置の痕跡→消失手口の一致（EP4）→公開された記録の出所＝キャロルで黒幕性を確定。"
+      "logic": "罠の構造→記憶再生装置の痕跡→消失手口の一致（EP4）→公開された記録の出所＝キャロルで黒幕性を確定。",
+      "deductionDoc": ""
     },
     {
       "id": "ep7_luna",
@@ -8681,7 +10098,8 @@
         "overallDifficulty": 50
       },
       "trick": "ニコラが一家を殺害し、聖歌の口笛・銀の鈴・毒の経路・記録筆耕の偽造で弟ロイに罪を着せた。",
-      "logic": "改竄前の物理痕跡のみで再構成→口笛と鈴の符牒→筆耕の偽造→最終反証バトル三段（記録の壁→ノエルの歌→ニコラの仮面）を破り確定。"
+      "logic": "改竄前の物理痕跡のみで再構成→口笛と鈴の符牒→筆耕の偽造→最終反証バトル三段（記録の壁→ノエルの歌→ニコラの仮面）を破り確定。",
+      "deductionDoc": ""
     }
   ],
   "ep0Injected": true,
