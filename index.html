@@ -227,6 +227,14 @@ svg.curve path.line{fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linej
 .ch-fork{font-size:11px;color:var(--choice)}
 .chunk-merge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:var(--teal-soft);background:var(--teal-glow);padding:3px 9px;border-radius:6px;margin:10px 0 2px}
 .cm-ic{font-size:12px}
+.ch-title{font-family:var(--mono);font-size:11.5px;color:var(--text);background:transparent;border:none;border-bottom:1px dashed transparent;padding:0 3px;min-width:90px;max-width:260px;border-radius:0}
+.ch-title::placeholder{color:var(--faint)}
+.ch-title:hover{border-bottom-color:var(--line)}
+.ch-title:focus{outline:none;border-bottom-color:var(--ember);background:rgba(255,255,255,.03)}
+.block.t-dir.read,.block.t-event.read,.block.t-note.read,.block.t-setting.read{background:transparent}
+.block.t-dir.read .spine,.block.t-event.read .spine,.block.t-note.read .spine,.block.t-setting.read .spine{opacity:.5}
+.block.t-dir .rbody,.block.t-event .rbody,.block.t-note .rbody,.block.t-setting .rbody{color:var(--muted-2);font-style:italic}
+.block.t-dir .rtype,.block.t-event .rtype,.block.t-note .rtype,.block.t-setting .rtype{opacity:.85}
 .baddr{font-family:var(--mono);font-size:10.5px;color:var(--ember);background:rgba(231,169,72,.13);padding:1px 6px;border-radius:4px;font-weight:600;flex:0 0 auto}
 .mbadge{font-size:10px;color:var(--abyss);background:var(--teal);padding:1px 7px;border-radius:5px;font-weight:700;display:inline-flex;align-items:center;gap:3px}
 .cchip{display:inline-flex;align-items:center;gap:4px;font-size:10.5px;padding:1px 7px;border-radius:6px;font-weight:600;white-space:nowrap;line-height:1.7}
@@ -2457,11 +2465,13 @@ function linkTargetOptions(fl,excludeId,curTo){
   fl.ordered.forEach(o=>{ if(o.id===excludeId)return; h+='<option value="'+o.id+'" '+(o.id===curTo?'selected':'')+'>'+esc(o.addr+' '+o.label)+'</option>'; });
   return h;
 }
-function chunkHeaderHtml(ck){
-  let extra='';
-  if(ck.isRoute && ck.route && ck.route.text){ extra=`<span class="ch-opt">${esc(ck.route.text)}</span>`; }
-  else if(ck.isFork){ extra='<span class="ch-fork">❓ 分岐</span>'; }
-  return `<div class="chunk-head${ck.isRoute?' route':''}"><span class="ch-addr">${esc(ck.addr)}</span>${extra}</div>`;
+function chunkHeaderHtml(ck, sid, headBlock){
+  const title=(headBlock&&headBlock.chunkTitle)?headBlock.chunkTitle:'';
+  let hint='';
+  if(ck.isRoute && ck.route && ck.route.text){ hint=`<span class="ch-opt">「${esc(ck.route.text)}」</span>`; }
+  else if(ck.isFork){ hint='<span class="ch-fork">❓ 分岐</span>'; }
+  const titleInput=`<input class="ch-title" data-cht="1" data-bid="${ck.headId}" data-sid="${esc(sid||'')}" value="${esc(title)}" placeholder="＋ タイトル" spellcheck="false">`;
+  return `<div class="chunk-head${ck.isRoute?' route':''}"><span class="ch-addr">${esc(ck.addr)}</span>${titleInput}${hint}</div>`;
 }
 function buildScript(s,E,phctx){
   phctx=phctx||{};
@@ -2478,7 +2488,7 @@ function buildScript(s,E,phctx){
       if(ck.isMerge){ html+=`<div class="chunk-merge" style="${ml}"><span class="cm-ic">⇄</span> 合流 ${ck.mergeCount}</div>`; }
       const rail=ck.depth>0?(`margin-left:${ck.depth*16}px;border-left:2px solid var(--line);padding-left:10px;`):'';
       html+=`<div class="chunk" style="${rail}">`; openChunk=true;
-      html+=chunkHeaderHtml(ck);
+      html+=chunkHeaderHtml(ck, s.id, flow.byId[ck.headId]);
     }
     html+=scriptBlock(s,bl,i,{flow:flow,chunkMode:true})+insertBar(s,i+1);
   });
@@ -3020,6 +3030,7 @@ document.addEventListener('change',e=>{
   if(ix&&ix.files&&ix.files[0]){const rd=new FileReader();rd.onload=()=>{repoUploadIndex(String(rd.result||''));};rd.onerror=()=>cloudMsg('ファイル読込に失敗しました。');rd.readAsText(ix.files[0]);ix.value='';}
 });
 document.addEventListener('click',e=>{
+  if(e.target&&e.target.dataset&&e.target.dataset.cht)return;
   const t=e.target.closest('[data-act]');if(!t)return;
   const a=t.dataset.act,id=t.dataset.id;
   if(a==='nav'){route=id;currentScene=null;insertIdx=insertScene=null;render();return;}
@@ -3164,7 +3175,9 @@ function applyInput(t){
   scheduleSave();
 }
 document.addEventListener('input',e=>{
-  const t=e.target;if(!t.dataset||!t.dataset.scope)return;
+  const t=e.target;
+  if(t.dataset&&t.dataset.cht){const bl=findBlock(t.dataset.sid,t.dataset.bid);if(bl){bl.chunkTitle=t.value;scheduleSave();}return;}
+  if(!t.dataset||!t.dataset.scope)return;
   if(t.type==='range'){const lab=t.parentElement.querySelector('.rngv');if(lab)lab.textContent=clamp(t.value);}
   if(t.classList&&t.classList.contains('line-ta')){const c=clampLine(t.value);if(c!==t.value){const p=t.selectionStart;t.value=c;try{t.setSelectionRange(Math.min(p,c.length),Math.min(p,c.length));}catch(_){}}applyInput(t);updateLineMeta(t);return;}
   applyInput(t);
@@ -3181,6 +3194,7 @@ window.addEventListener('load',()=>autosizeAll());
 if(typeof document!=='undefined'&&document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>autosizeAll());
 document.addEventListener('change',e=>{
   const t=e.target;
+  if(t.dataset&&t.dataset.cht){const bl=findBlock(t.dataset.sid,t.dataset.bid);if(bl){bl.chunkTitle=t.value;scheduleSave();}return;}
   if(t.id==='epselect'){state.activeEp=t.value;openBeat=openChar=currentScene=null;insertIdx=insertScene=null;render();return;}
   if(t.dataset&&t.dataset.act==='setopttarget'){const bl=findBlock(t.dataset.sid,t.dataset.bid);if(bl&&bl.opts){const i=parseInt(t.dataset.oi,10);let o=bl.opts[i];if(!o||typeof o!=='object'){o={text:String(o||''),to:''};bl.opts[i]=o;}o.to=t.value;scheduleSave();render();}return;}
   if(t.dataset&&t.dataset.act==='setblocktarget'){const bl=findBlock(t.dataset.sid,t.dataset.bid);if(bl){bl.to=t.value;scheduleSave();render();}return;}
