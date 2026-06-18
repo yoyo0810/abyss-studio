@@ -227,8 +227,11 @@ svg.curve path.line{fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linej
 .ch-fork{font-size:11px;color:var(--choice)}
 .chunk-merge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:var(--teal-soft);background:var(--teal-glow);padding:3px 9px;border-radius:6px;margin:10px 0 2px}
 .cm-ic{font-size:12px}
-.ch-title{font-family:var(--mono);font-size:11.5px;color:var(--text);background:transparent;border:none;border-bottom:1px dashed transparent;padding:0 3px;min-width:90px;max-width:260px;border-radius:0}
+.ch-title{font-family:var(--mono);font-size:11.5px;background:transparent;border:none;border-bottom:1px dashed transparent;padding:0 3px;min-width:90px;max-width:260px;border-radius:0}
+.ch-title.auto{color:var(--muted);font-style:italic}
+.ch-title.custom{color:var(--text);font-style:normal}
 .ch-title::placeholder{color:var(--faint)}
+.block.t-cg .rbody{color:var(--c-cg)}
 .ch-title:hover{border-bottom-color:var(--line)}
 .ch-title:focus{outline:none;border-bottom-color:var(--ember);background:rgba(255,255,255,.03)}
 .block.t-dir.read,.block.t-event.read,.block.t-note.read,.block.t-setting.read{background:transparent}
@@ -2448,7 +2451,18 @@ function computeSceneAddrs(s,phaseCode,settingOffset,sceneNo){
   const chunks=[]; let cur=null;
   arr.forEach(bl=>{ if(bl.type==='note')return; if(headSet.has(bl.id)||!cur){ cur={headId:bl.id,members:[bl.id]}; chunks.push(cur); } else cur.members.push(bl.id); });
   const chunkByHead={}; chunks.forEach(c=>chunkByHead[c.headId]=c);
-  chunks.forEach(c=>{ const h=c.headId; c.isMerge=(incoming[h]||0)>=2; c.isFork=!!(byId[h]&&byId[h].type==='choice'); c.isRoute=(!c.isMerge && !!optInfo[h]); if(c.isRoute)c.route=optInfo[h]; c.mergeCount=incoming[h]||0; });
+  // --- ループ(回遊)判定：塊内にフォークへ戻る明示リンクがある＝枝(レター)。戻らず前進＝次の本流番号 ---
+  chunks.forEach(c=>{ c._loops=false; const oi=optInfo[c.headId]; if(!oi)return;
+    for(let i=0;i<c.members.length;i++){ const mb=byId[c.members[i]]; if(!mb)continue;
+      if(mb.to===oi.forkId){ c._loops=true; break; }
+      if(mb.type==='choice' && (mb.opts||[]).some(o=>optTo(o)===oi.forkId)){ c._loops=true; break; } } });
+  const forkIsLoopHub={}; chunks.forEach(c=>{ const oi=optInfo[c.headId]; if(oi && c._loops) forkIsLoopHub[oi.forkId]=true; });
+  chunks.forEach(c=>{ const h=c.headId; c.isMerge=(incoming[h]||0)>=2; c.isFork=!!(byId[h]&&byId[h].type==='choice'); c.mergeCount=incoming[h]||0;
+    const oi=optInfo[h];
+    if(oi){ c.isRoute = forkIsLoopHub[oi.forkId] ? c._loops : !c.isMerge; }
+    else { c.isRoute=false; }
+    if(c.isRoute)c.route=oi;
+  });
   let mainNo=0;
   chunks.forEach(c=>{ if(!c.isRoute){ mainNo++; c.num=mainNo; c.addr=seg?(seg+'.'+mainNo):('・'+mainNo); } });
   chunks.forEach(c=>{ if(c.isRoute){ const f=chunkByHead[c.route.forkId]; c.addr=((f&&f.addr)?f.addr:(seg||'#'))+c.route.letter; } });
@@ -2465,13 +2479,25 @@ function linkTargetOptions(fl,excludeId,curTo){
   fl.ordered.forEach(o=>{ if(o.id===excludeId)return; h+='<option value="'+o.id+'" '+(o.id===curTo?'selected':'')+'>'+esc(o.addr+' '+o.label)+'</option>'; });
   return h;
 }
-function chunkHeaderHtml(ck, sid, headBlock){
-  const title=(headBlock&&headBlock.chunkTitle)?headBlock.chunkTitle:'';
-  let hint='';
-  if(ck.isRoute && ck.route && ck.route.text){ hint=`<span class="ch-opt">「${esc(ck.route.text)}」</span>`; }
-  else if(ck.isFork){ hint='<span class="ch-fork">❓ 分岐</span>'; }
-  const titleInput=`<input class="ch-title" data-cht="1" data-bid="${ck.headId}" data-sid="${esc(sid||'')}" value="${esc(title)}" placeholder="＋ タイトル" spellcheck="false">`;
-  return `<div class="chunk-head${ck.isRoute?' route':''}"><span class="ch-addr">${esc(ck.addr)}</span>${titleInput}${hint}</div>`;
+function chunkDefaultTitle(ck, byId){
+  const cut=(t,n)=>{t=String(t==null?'':t).replace(/\n/g,' ').trim();return t.length>(n||22)?t.slice(0,n||22)+'…':t;};
+  if(ck.isRoute && ck.route && ck.route.text) return cut(ck.route.text,22);
+  const h=byId&&byId[ck.headId]; if(!h) return '';
+  if(h.type==='choice') return cut((h.text&&String(h.text).trim())?h.text:(optText((h.opts||[])[0])||'選択肢'),22);
+  if(h.type==='line'){ const w=(h.windows||[])[0]; return cut(w?w.text:'',22)||'台詞'; }
+  if(h.type==='cg') return cut(h.title||'',22)||'CG';
+  if(h.type==='event') return cut(h.ev||'',22)||'イベント';
+  if(h.type==='setting') return cut(h.place||'',22)||'場面';
+  return cut(h.text||'',22)||'（無題）';
+}
+function chunkHeaderHtml(ck, sid, headBlock, byId){
+  const override=(headBlock&&headBlock.chunkTitle)?headBlock.chunkTitle:'';
+  const def=chunkDefaultTitle(ck, byId||{});
+  const val=override||def;
+  const cls=override?'custom':'auto';
+  const fork=ck.isFork?'<span class="ch-fork">❓</span>':'';
+  const titleInput=`<input class="ch-title ${cls}" data-cht="1" data-bid="${ck.headId}" data-sid="${esc(sid||'')}" data-def="${esc(def)}" value="${esc(val)}" placeholder="（無題）" spellcheck="false">`;
+  return `<div class="chunk-head${ck.isRoute?' route':''}"><span class="ch-addr">${esc(ck.addr)}</span>${fork}${titleInput}</div>`;
 }
 function buildScript(s,E,phctx){
   phctx=phctx||{};
@@ -2485,10 +2511,10 @@ function buildScript(s,E,phctx){
     if(ck && ck.headId===bl.id){
       if(openChunk){ html+='</div>'; openChunk=false; }
       const ml=ck.depth>0?('margin-left:'+(ck.depth*16)+'px;'):'';
-      if(ck.isMerge){ html+=`<div class="chunk-merge" style="${ml}"><span class="cm-ic">⇄</span> 合流 ${ck.mergeCount}</div>`; }
+      if(ck.isMerge && !ck.isRoute){ html+=`<div class="chunk-merge" style="${ml}"><span class="cm-ic">⇄</span> 合流 ${ck.mergeCount}</div>`; }
       const rail=ck.depth>0?(`margin-left:${ck.depth*16}px;border-left:2px solid var(--line);padding-left:10px;`):'';
       html+=`<div class="chunk" style="${rail}">`; openChunk=true;
-      html+=chunkHeaderHtml(ck, s.id, flow.byId[ck.headId]);
+      html+=chunkHeaderHtml(ck, s.id, flow.byId[ck.headId], flow.byId);
     }
     html+=scriptBlock(s,bl,i,{flow:flow,chunkMode:true})+insertBar(s,i+1);
   });
@@ -3176,7 +3202,7 @@ function applyInput(t){
 }
 document.addEventListener('input',e=>{
   const t=e.target;
-  if(t.dataset&&t.dataset.cht){const bl=findBlock(t.dataset.sid,t.dataset.bid);if(bl){bl.chunkTitle=t.value;scheduleSave();}return;}
+  if(t.dataset&&t.dataset.cht){const bl=findBlock(t.dataset.sid,t.dataset.bid);if(bl){bl.chunkTitle=(t.value===(t.dataset.def||''))?'':t.value;scheduleSave();}return;}
   if(!t.dataset||!t.dataset.scope)return;
   if(t.type==='range'){const lab=t.parentElement.querySelector('.rngv');if(lab)lab.textContent=clamp(t.value);}
   if(t.classList&&t.classList.contains('line-ta')){const c=clampLine(t.value);if(c!==t.value){const p=t.selectionStart;t.value=c;try{t.setSelectionRange(Math.min(p,c.length),Math.min(p,c.length));}catch(_){}}applyInput(t);updateLineMeta(t);return;}
@@ -3194,7 +3220,7 @@ window.addEventListener('load',()=>autosizeAll());
 if(typeof document!=='undefined'&&document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>autosizeAll());
 document.addEventListener('change',e=>{
   const t=e.target;
-  if(t.dataset&&t.dataset.cht){const bl=findBlock(t.dataset.sid,t.dataset.bid);if(bl){bl.chunkTitle=t.value;scheduleSave();}return;}
+  if(t.dataset&&t.dataset.cht){const bl=findBlock(t.dataset.sid,t.dataset.bid);if(bl){bl.chunkTitle=(t.value===(t.dataset.def||''))?'':t.value;scheduleSave();}return;}
   if(t.id==='epselect'){state.activeEp=t.value;openBeat=openChar=currentScene=null;insertIdx=insertScene=null;render();return;}
   if(t.dataset&&t.dataset.act==='setopttarget'){const bl=findBlock(t.dataset.sid,t.dataset.bid);if(bl&&bl.opts){const i=parseInt(t.dataset.oi,10);let o=bl.opts[i];if(!o||typeof o!=='object'){o={text:String(o||''),to:''};bl.opts[i]=o;}o.to=t.value;scheduleSave();render();}return;}
   if(t.dataset&&t.dataset.act==='setblocktarget'){const bl=findBlock(t.dataset.sid,t.dataset.bid);if(bl){bl.to=t.value;scheduleSave();render();}return;}
