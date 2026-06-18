@@ -220,7 +220,7 @@ svg.curve path.line{fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linej
 .lchip:hover{border-color:var(--teal)}
 .inmark{font-family:var(--mono);font-size:10px;color:var(--muted-2)}
 .chunk{margin:2px 0}
-.chunk-head{display:flex;align-items:center;gap:8px;margin:9px 0 3px;font-family:var(--mono)}
+.chunk-head{display:flex;align-items:center;gap:8px;margin:9px 0 3px;font-family:var(--mono);flex-wrap:wrap}
 .ch-addr{font-size:11px;font-weight:700;color:var(--ember);background:var(--ember-glow);padding:1px 8px;border-radius:6px;letter-spacing:.02em}
 .chunk-head.route .ch-addr{color:var(--choice-soft);background:rgba(176,143,208,.16)}
 .ch-opt{font-size:11.5px;color:var(--choice-soft)}
@@ -232,6 +232,12 @@ svg.curve path.line{fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linej
 .ch-title.custom{color:var(--text);font-style:normal}
 .ch-title::placeholder{color:var(--faint)}
 .block.t-cg .rbody{color:var(--c-cg)}
+.ch-code{font-family:var(--mono);font-size:10px;color:var(--muted-2);background:var(--surface-3);border:1px solid var(--line-soft);border-radius:5px;padding:1px 6px;cursor:pointer;letter-spacing:.02em;line-height:1.5;white-space:nowrap}
+.ch-code:hover{border-color:var(--ember);color:var(--ember-soft)}
+.ch-break{font-size:10px;color:var(--muted-2);background:none;border:1px dashed var(--line);border-radius:5px;padding:1px 7px;cursor:pointer;line-height:1.5}
+.ch-break:hover{border-color:var(--crimson);color:var(--crimson-soft)}
+.chunk-head.manual .ch-addr{box-shadow:inset 0 0 0 1px var(--ember-soft)}
+.ins-break{border-style:dashed!important;color:var(--ember-soft)!important}
 .ch-title:hover{border-bottom-color:var(--line)}
 .ch-title:focus{outline:none;border-bottom-color:var(--ember);background:rgba(255,255,255,.03)}
 .block.t-dir.read,.block.t-event.read,.block.t-note.read,.block.t-setting.read{background:transparent}
@@ -2063,12 +2069,15 @@ function ensureBlockShape(b){
   if(typeof b.to!=='string')b.to='';
   if(!Array.isArray(b.grants))b.grants=[];
   if(!Array.isArray(b.requires))b.requires=[];
+  if(typeof b.sectionBreak!=='boolean')b.sectionBreak=false;
   return b;
 }
 function ensureCharShape(c){c.media=c.media||[];['age','gender','personality','tone','silhouette','likes','dislikes','strengths','flaws'].forEach(k=>{if(c[k]===undefined)c[k]='';});return c;}
 function insertBar(s,k){
   if(insertScene===s.id&&insertIdx===k){
-    return `<div class="insert-bar open">${BLOCK_TYPES.map(t=>`<button class="btn sm" data-act="insertblock" data-id="${s.id}" data-idx="${k}" data-type="${t.t}">${t.ic} ${t.ja}</button>`).join('')}<button class="iconbtn" data-act="toggleinsert" data-id="${s.id}" data-idx="${k}" title="閉じる">✕</button></div>`;
+    const tgt=(s.blocks||[])[k];
+    const brkBtn=(tgt && tgt.type!=='note' && k>0)?`<button class="btn sm ghost ins-break" data-act="togglesectionbreak" data-id="${s.id}" data-bid="${esc(tgt.id)}" title="ここを新しいセクションの先頭にする">${tgt.sectionBreak?'区切り解除':'▦ 新セクション'}</button>`:'';
+    return `<div class="insert-bar open">${BLOCK_TYPES.map(t=>`<button class="btn sm" data-act="insertblock" data-id="${s.id}" data-idx="${k}" data-type="${t.t}">${t.ic} ${t.ja}</button>`).join('')}${brkBtn}<button class="iconbtn" data-act="toggleinsert" data-id="${s.id}" data-idx="${k}" title="閉じる">✕</button></div>`;
   }
   return `<div class="insert-bar"><button class="insert-plus" data-act="toggleinsert" data-id="${s.id}" data-idx="${k}" title="ここに項目を挿入">＋</button></div>`;
 }
@@ -2433,9 +2442,10 @@ function optText(o){return (o&&typeof o==='object')?(o.text||''):String(o||'');}
 function optTo(o){return (o&&typeof o==='object')?(o.to||''):'';}
 function shortBlockLabel(bl){const cut=(t,n)=>{t=String(t==null?'':t).replace(/\n/g,' ').trim();return t.length>(n||16)?t.slice(0,n||16)+'…':t;};const tt=BLOCK_TYPES.find(t=>t.t===bl.type)||{ic:''};if(bl.type==='line'){const w=(bl.windows||[])[0];return tt.ic+' '+cut(w?w.text:'',16);}if(bl.type==='choice')return tt.ic+' '+cut(optText((bl.opts||[])[0]),16);if(bl.type==='setting')return '📍 '+cut((bl.place||'場面'),16);if(bl.type==='cg')return tt.ic+' '+cut(bl.title,16);return tt.ic+' '+cut(bl.text,16);}
 function computeSceneAddrs(s,phaseCode,settingOffset,sceneNo){
-  /* 塊（チャンク）ベースのナンバリング：分岐(フォーク)と合流を境界に、
-     その間の連続ブロックを1つの塊にまとめ、塊にだけ番号を振る。
-     メモ(note)は塊に含めず番号も振らない。ルートは親フォーク番号＋レター。 */
+  /* セクション（分岐・合流で区切られる単位）ベースのナンバリング：
+     分岐(フォーク)と合流を境界に、その間の連続ブロックを1つのセクションにまとめ、
+     セクションにだけ番号を振る。メモ(note)はセクションに含めず番号も振らない。
+     ルート（枝）は親フォーク番号＋レター。※保存項目名は互換のため chunk* のまま。 */
   const arr=s.blocks||[]; const addrById={}; const ordered=[];
   const byId={}; arr.forEach(b=>{byId[b.id]=b;});
   const seg=phaseCode?(phaseCode+'-'+(sceneNo||1)):null;
@@ -2448,21 +2458,23 @@ function computeSceneAddrs(s,phaseCode,settingOffset,sceneNo){
   const mergeById={}; Object.keys(incoming).forEach(k=>{ if(incoming[k]>=2)mergeById[k]=incoming[k]; });
   const nonNote=arr.filter(b=>b.type!=='note');
   const headSet=new Set(); if(nonNote[0])headSet.add(nonNote[0].id);
-  arr.forEach(bl=>{ if(bl.type==='note')return; if(bl.type==='choice')headSet.add(bl.id); if((incoming[bl.id]||0)>=2)headSet.add(bl.id); if(optInfo[bl.id])headSet.add(bl.id); });
+  arr.forEach(bl=>{ if(bl.type==='note')return; if(bl.type==='choice')headSet.add(bl.id); if((incoming[bl.id]||0)>=2)headSet.add(bl.id); if(optInfo[bl.id])headSet.add(bl.id); if(bl.sectionBreak)headSet.add(bl.id); });
   const chunks=[]; let cur=null;
   arr.forEach(bl=>{ if(bl.type==='note')return; if(headSet.has(bl.id)||!cur){ cur={headId:bl.id,members:[bl.id]}; chunks.push(cur); } else cur.members.push(bl.id); });
   const chunkByHead={}; chunks.forEach(c=>chunkByHead[c.headId]=c);
-  // --- ループ(回遊)判定：塊内にフォークへ戻る明示リンクがある＝枝(レター)。戻らず前進＝次の本流番号 ---
+  // --- ループ(回遊)判定：セクション内にフォークへ戻る明示リンクがある＝枝(レター)。戻らず前進＝次の本流番号 ---
   chunks.forEach(c=>{ c._loops=false; const oi=optInfo[c.headId]; if(!oi)return;
     for(let i=0;i<c.members.length;i++){ const mb=byId[c.members[i]]; if(!mb)continue;
       if(mb.to===oi.forkId){ c._loops=true; break; }
       if(mb.type==='choice' && (mb.opts||[]).some(o=>optTo(o)===oi.forkId)){ c._loops=true; break; } } });
   const forkIsLoopHub={}; chunks.forEach(c=>{ const oi=optInfo[c.headId]; if(oi && c._loops) forkIsLoopHub[oi.forkId]=true; });
+  const firstId=(nonNote[0]&&nonNote[0].id)||null;
   chunks.forEach(c=>{ const h=c.headId; c.isMerge=(incoming[h]||0)>=2; c.isFork=!!(byId[h]&&byId[h].type==='choice'); c.mergeCount=incoming[h]||0;
     const oi=optInfo[h];
     if(oi){ c.isRoute = forkIsLoopHub[oi.forkId] ? c._loops : !c.isMerge; }
     else { c.isRoute=false; }
     if(c.isRoute)c.route=oi;
+    c.isManualBreak = !!(byId[h]&&byId[h].sectionBreak) && !c.isFork && !c.isMerge && !oi && h!==firstId;
   });
   let mainNo=0;
   chunks.forEach(c=>{ if(!c.isRoute){ mainNo++; c.num=mainNo; c.addr=seg?(seg+'.'+mainNo):('・'+mainNo); } });
@@ -2497,8 +2509,10 @@ function chunkHeaderHtml(ck, sid, headBlock, byId){
   const val=override||def;
   const cls=override?'custom':'auto';
   const fork=ck.isFork?'<span class="ch-fork">❓</span>':'';
-  const titleInput=`<input class="ch-title ${cls}" data-cht="1" data-bid="${ck.headId}" data-sid="${esc(sid||'')}" data-def="${esc(def)}" value="${esc(val)}" placeholder="（無題）" spellcheck="false">`;
-  return `<div class="chunk-head${ck.isRoute?' route':''}"><span class="ch-addr">${esc(ck.addr)}</span>${fork}${titleInput}</div>`;
+  const titleInput=`<input class="ch-title ${cls}" data-cht="1" data-bid="${ck.headId}" data-sid="${esc(sid||'')}" data-def="${esc(def)}" value="${esc(val)}" placeholder="（無題）" title="セクション見出し（編集できます）" aria-label="セクション見出し" spellcheck="false">`;
+  const codeChip=`<button class="ch-code" data-act="copycode" data-code="${esc(ck.headId)}" title="セクション固定コード（タップでコピー・番号がズレても不変）">§${esc(ck.headId)}</button>`;
+  const brk=ck.isManualBreak?`<button class="ch-break" data-act="togglesectionbreak" data-id="${esc(sid||'')}" data-bid="${esc(ck.headId)}" title="セクション区切りを解除して前のセクションと結合">区切り解除</button>`:'';
+  return `<div class="chunk-head${ck.isRoute?' route':''}${ck.isManualBreak?' manual':''}"><span class="ch-addr" title="セクション番号">${esc(ck.addr)}</span>${fork}${titleInput}${codeChip}${brk}</div>`;
 }
 function buildScript(s,E,phctx){
   phctx=phctx||{};
@@ -3100,6 +3114,8 @@ document.addEventListener('click',e=>{
   if(a==='editdone'){const _b=t.dataset.bid;editingBlocks.delete(_b);render();scrollBlockTop(_b);return;}
   if(a==='toggleinsert'){const k=parseInt(t.dataset.idx,10);if(insertScene===id&&insertIdx===k){insertIdx=null;insertScene=null;}else{insertIdx=k;insertScene=id;}render();return;}
   if(a==='insertblock'){const s=findScene(id);const k=parseInt(t.dataset.idx,10);s.blocks.splice(k,0,mkBlock(ep(),t.dataset.type));insertIdx=null;insertScene=null;scheduleSave();render();return;}
+  if(a==='togglesectionbreak'){const bl=findBlock(t.dataset.id,t.dataset.bid);if(bl){bl.sectionBreak=!bl.sectionBreak;insertIdx=null;insertScene=null;scheduleSave();render();}return;}
+  if(a==='copycode'){const c=t.dataset.code||'';try{if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(c);}else{const ta=document.createElement('textarea');ta.value=c;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);}}catch(e){}const old=t.textContent;t.textContent='コピーしました';if(typeof setTimeout!=='undefined')setTimeout(function(){try{t.textContent=old;}catch(_){}},1000);return;}
   if(a==='addwindow'){const bl=findBlock(id,t.dataset.bid);if(bl){bl.windows=bl.windows||[];bl.windows.push({id:uid(),charId:'',text:''});scheduleSave();render();}return;}
   if(a==='movewindow'){const bl=findBlock(id,t.dataset.bid);if(bl&&bl.windows){const arr=bl.windows;const k=arr.findIndex(w=>w.id===t.dataset.wid);const j=k+parseInt(t.dataset.dir,10);if(j>=0&&j<arr.length){const[x]=arr.splice(k,1);arr.splice(j,0,x);scheduleSave();render();}}return;}
   if(a==='delwindow'){const bl=findBlock(id,t.dataset.bid);if(bl&&bl.windows){bl.windows=bl.windows.filter(w=>w.id!==t.dataset.wid);if(bl.windows.length===0){const s=findScene(id);if(s)s.blocks=s.blocks.filter(b=>b.id!==bl.id);}scheduleSave();render();}return;}
