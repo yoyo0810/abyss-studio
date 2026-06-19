@@ -2499,10 +2499,32 @@ function computeSceneAddrs(s,phaseCode,settingOffset,sceneNo){
     if(c.isRoute)c.route=oi;
     c.isManualBreak = !!(byId[h]&&byId[h].sectionBreak) && !c.isFork && !c.isMerge && !oi && h!==firstId;
   });
+  // continuation chunks: a fork/head reached sequentially from within a branch lane
+  // (not a direct fork-target, not a merge) should nest under that lane, not jump to MAIN
+  chunks.forEach((c,idx)=>{
+    if(c.isRoute||c.isMerge)return;
+    const prev=idx>0?chunks[idx-1]:null;
+    if(!prev||!(prev.isRoute||prev._cont))return;
+    const plast=byId[prev.members[prev.members.length-1]];
+    if(!plast)return;
+    const pIsFork=(plast.type==='choice'||plast.type==='action'||plast.type==='present');
+    const seq=(plast.to===c.headId)||(!plast.to&&!pIsFork);
+    if(seq){ c._cont=true; c._contOf=prev; }
+  });
   let mainNo=0;
-  chunks.forEach(c=>{ if(!c.isRoute){ mainNo++; c.num=mainNo; c.addr=seg?(seg+'.'+mainNo):('・'+mainNo); } });
-  chunks.forEach(c=>{ if(c.isRoute){ const f=chunkByHead[c.route.forkId]; c.addr=((f&&f.addr)?f.addr:(seg||'#'))+c.route.letter; } });
-  const depthOf=(c,g)=>{ g=g||0; if(g>50)return 0; if(!c.isRoute)return 0; const f=chunkByHead[c.route.forkId]; return (f?depthOf(f,g+1):0)+1; };
+  chunks.forEach(c=>{ if(!c.isRoute&&!c._cont){ mainNo++; c.num=mainNo; c.addr=seg?(seg+'.'+mainNo):('・'+mainNo); } });
+  // lane index for continuations (array order), keyed by the lane-owning route
+  const _laneCount={};
+  chunks.forEach(c=>{ if(!c._cont)return; let o=c._contOf,g=0; while(o&&o._cont&&g<60){o=o._contOf;g++;} c._laneOwner=o||null; const k=o?o.headId:'_root'; _laneCount[k]=(_laneCount[k]||1)+1; c._laneIdx=_laneCount[k]; });
+  // resolve addresses: route = forkAddr+letter ; continuation = laneOwnerAddr-idx
+  const _memoA={};
+  const _resolveA=(c)=>{ if(!c)return seg||'#'; if(_memoA[c.headId]!==undefined)return _memoA[c.headId]; _memoA[c.headId]='…';
+    let a; if(c.isRoute){ const f=chunkByHead[c.route.forkId]; a=_resolveA(f)+c.route.letter; }
+    else if(c._cont){ a=_resolveA(c._laneOwner)+'-'+c._laneIdx; }
+    else { a=c.addr; }
+    _memoA[c.headId]=a; return a; };
+  chunks.forEach(c=>{ c.addr=_resolveA(c); });
+  const depthOf=(c,g)=>{ g=g||0; if(g>50)return 0; if(c.isRoute){ const f=chunkByHead[c.route.forkId]; return (f?depthOf(f,g+1):0)+1; } if(c._cont){ return c._laneOwner?depthOf(c._laneOwner,g+1):0; } return 0; };
   chunks.forEach(c=>{ c.depth=depthOf(c,0); });
   const chunkOfId={};
   chunks.forEach(c=>{ c.members.forEach(id=>{ chunkOfId[id]=c; addrById[id]=c.addr; }); });
@@ -2716,7 +2738,8 @@ function scriptBlock(s,bl,i,ctx){
       const _spRow=(sp)=>{const to=sp.to;const ta=to?(fl.addrById[to]||'？'):'';const rq=(sp.requires||[]);const rqH=rq.length?`<span class="lchip req" title="${esc(rq.map(cardLabel).join(' / '))}">🔒 ${esc(rq.map(cardLabel).join(' / '))}</span>`:'';const ic=sp.kind==='talk'?'💬':'🔍';return `<div class="ropt"><span class="ropt-l act-l">${ic}</span><span class="ropt-t">${esc(sp.target||'（対象未設定）')}</span>${to?`<span class="lchip set ropt-to">→ ${ta}</span>`:`<span class="rnext ropt-to">↩ その場</span>`}${rqH}</div>`;};
       const _tk=(bl.spots||[]).filter(sp=>sp.kind==='talk');const _pb=(bl.spots||[]).filter(sp=>sp.kind!=='talk');
       const _exTo=bl.to||'';const _exA=_exTo?(fl.addrById[_exTo]||'？'):'';const _anb=(s.blocks||[])[i+1];const _anA=_anb?(fl.addrById[_anb.id]||''):'';
-      const _exRow=`<div class="ropt act-exit"><span class="ropt-l">▶</span><span class="ropt-t">${esc(bl.exitText||'次へ進む')}</span>${_exTo?`<span class="lchip set ropt-to">→ ${_exA}</span>`:`<span class="rnext ropt-to">→ ${_anA||'次の場面'}</span>`}</div>`;
+      const _exShow=(bl.exitText&&bl.exitText.trim())||_exTo;
+      const _exRow=_exShow?`<div class="ropt act-exit"><span class="ropt-l">▶</span><span class="ropt-t">${esc(bl.exitText||'次へ進む')}</span>${_exTo?`<span class="lchip set ropt-to">→ ${_exA}</span>`:`<span class="rnext ropt-to">→ ${_anA||'次の場面'}</span>`}</div>`:'';
       rbody=`<div class="ropts">${_tk.map(_spRow).join('')}${_pb.map(_spRow).join('')}${_exRow}</div>`;
     }else if(bl.type==='present'){
       const tr=bl.trigger==='auto'?'自動':'コマンド';
