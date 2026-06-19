@@ -6,10 +6,10 @@
     "title": "冥界探偵アビス",
     "tagline": "死者の声は届かない。だから、証拠（ロジック）で語らせる。",
     "logline": "死者視点の再捜査で、現世に埋もれた真実を客観証拠のロジックだけで掘り起こし、魂の無念を清算する本格ミステリ連作。",
-    "updatedAt": 1781699928532
+    "updatedAt": 1781835149609
   },
   "ui": {
-    "theme": "dark"
+    "theme": "light"
   },
   "bridge": {
     "overview": "表は1話完結の「記録と現場が食い違う」事件、裏はレイの冤罪記録・シエル＝ルナの絆・改竄組織キャロルという三本の縦糸。幸福度カーブ（UP小→DOWN大→UP小×3→DOWN大→UP大→DOWN特大→UP中）で感情を振り切り、最終話でプレイヤーが見てきた全ての偶然を「導き」として回収する。",
@@ -696,7 +696,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "s01_cg_open",
@@ -713,7 +714,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "s01_nar_arrive",
@@ -721,7 +723,8 @@
               "text": "一面の闇に、甘い匂いがした。チョコレートだ。疾走する列車の中だというのに、車両まるごと菓子工房に迷い込んだような——濃く、温かく、どこか懐かしい香り。\n俺は招待状を一枚、コートに突っ込んだままこの“走る宮殿”に乗っている。腕利きの探偵、という触れ込みで。報酬は破格だった。……破格すぎて、誰が出した招待なのかも、思い出せないくらいに。",
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "s01_dir_lobby",
@@ -730,7 +733,8 @@
               "to": "",
               "grants": [],
               "requires": [],
-              "media": []
+              "media": [],
+              "sectionBreak": false
             },
             {
               "id": "s01_l_gana1",
@@ -754,7 +758,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "s01_l_rei1",
@@ -773,7 +778,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "s01_ch_talk",
@@ -794,11 +800,19 @@
                   "text": "「今夜の予定は？」",
                   "to": "s01_l_plan1",
                   "requires": []
+                },
+                {
+                  "text": "実は…",
+                  "to": "",
+                  "requires": [
+                    "c_camera"
+                  ]
                 }
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "s01_l_about1",
@@ -822,7 +836,8 @@
               ],
               "to": "s01_l_about2",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "s01_l_about2",
@@ -834,9 +849,10 @@
                   "text": "（製菓宮殿、ねぇ。\nスケールの単位が\n砂糖でできてる）"
                 }
               ],
-              "to": "s01_merge1",
+              "to": "9bxv5qt",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "s01_l_invite1",
@@ -850,7 +866,8 @@
               ],
               "to": "s01_l_invite2",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "s01_l_invite2",
@@ -869,7 +886,8 @@
               ],
               "to": "s01_l_invite3",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "s01_l_invite3",
@@ -888,7 +906,8 @@
               ],
               "to": "s01_merge1",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "s01_l_plan1",
@@ -907,7 +926,8 @@
               ],
               "to": "s01_l_plan2",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "s01_l_plan2",
@@ -921,7 +941,8 @@
               ],
               "to": "s01_merge1",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "s01_merge1",
@@ -929,7 +950,8 @@
               "text": "ガナッシュは満足げに帽子をかぶり直すと、「ごゆっくりなの〜」と歌うように言って車両の奥へ消えていった。後に残るのは、甘い香りと、薪のはぜる小さな音だけ。",
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "s01_event_explore",
@@ -939,7 +961,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "s01_ch_look",
@@ -974,7 +997,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "s01_look_fount",
@@ -982,7 +1006,8 @@
               "text": "絶え間なく注がれては巻き上がる、つややかな茶色の滝。柄杓が一本そっと添えられ、「ご自由にどうぞ」の札。香りだけで胸焼けしそうだ。……誰も見ていない。俺は、見なかったことにした。",
               "to": "s01_ch_look",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "s01_look_portrait",
@@ -990,7 +1015,8 @@
               "text": "暖炉の上に、若い女性の肖像。菓子職人の白い上着をまとい、いたずらっぽく微笑んでいる。真鍮の銘板に、小さく「初代・甘宮」。この甘い王朝は、たった一人の腕から始まったらしい。",
               "to": "s01_ch_look",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "s01_look_crest",
@@ -998,7 +1024,8 @@
               "text": "カカオの樹を抱く王冠。よく見れば、樹の根が一対の線路の形に絡んでいる。傍らの銘に曰く——「甘きものは、世界をつなぐ」。甘宮家の家訓だそうだ。ずいぶん大きく出たもんだ。",
               "to": "s01_ch_look",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "s01_look_window",
@@ -1006,7 +1033,8 @@
               "text": "闇。時おり遠くに、谷を縫う集落の灯りが点々と流れていく。ガラスに映る自分の顔が、ひどく疲れて見えた。……そういえば、俺は誰に呼ばれて、この列車にいるんだったか。窓の外の闇は、何も答えない。",
               "to": "s01_ch_look",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "s01_close",
@@ -1014,7 +1042,8 @@
               "text": "やがて、発車のベルが柔らかく鳴った。ことり、と世界がひとつ後ろへ流れ出す。俺はソファに身を沈め、コートの上から招待状にもう一度だけ指を触れた。差出人のいない、金箔の招待。……それでも、悪くない夜になりそうだ。",
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "s01_dir_tunnel",
@@ -1023,7 +1052,8 @@
               "to": "",
               "grants": [],
               "requires": [],
-              "media": []
+              "media": [],
+              "sectionBreak": false
             }
           ],
           "id": "x9l6zbk"
@@ -1042,7 +1072,8 @@
               "to": "",
               "no": 2,
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "h8lb4ja",
@@ -1051,7 +1082,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "epmxqxi",
@@ -1077,7 +1109,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "uessxcc",
@@ -1086,7 +1119,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "dchfflz",
@@ -1115,7 +1149,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "vumtvze",
@@ -1125,7 +1160,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "uj0lhob",
@@ -1149,7 +1185,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "bqn821m",
@@ -1159,7 +1196,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "fb5w9x8",
@@ -1168,7 +1206,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "0tzf68v",
@@ -1192,7 +1231,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "ogrt8rc",
@@ -1201,7 +1241,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             }
           ],
           "phase": "pro"
@@ -1220,7 +1261,8 @@
               "to": "",
               "no": 3,
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "y987lbn",
@@ -1229,7 +1271,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "i4q1es2",
@@ -1238,7 +1281,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "tjx0ee3",
@@ -1262,7 +1306,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "s9gjgjf",
@@ -1291,7 +1336,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "4th5ma0",
@@ -1310,7 +1356,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "qwwlscb",
@@ -1319,7 +1366,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "8enkh5c",
@@ -1338,7 +1386,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             }
           ],
           "phase": "pro"
@@ -1357,7 +1406,8 @@
               "to": "",
               "no": 4,
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "9f7z1oy",
@@ -1366,7 +1416,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "zcd8itn",
@@ -1376,7 +1427,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "pbh9bew",
@@ -1386,7 +1438,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "wx6xm33",
@@ -1395,7 +1448,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "k4v1dfi",
@@ -1414,7 +1468,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "478wj1x",
@@ -1428,7 +1483,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "9afy3et",
@@ -1442,7 +1498,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "9bp5fi2",
@@ -1451,7 +1508,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "xnp3c7n",
@@ -1468,7 +1526,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "v7cydef",
@@ -1482,7 +1541,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "eayil19",
@@ -1492,7 +1552,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "j2xajsk",
@@ -1516,7 +1577,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "xijp5cl",
@@ -1526,7 +1588,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "jj884iq",
@@ -1551,7 +1614,8 @@
               "text": "（チュートリアル）どれを選んでも短い観察会話。全て確認すると次へ。順不同・取り返し可。",
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "5jf0n1y",
@@ -1560,7 +1624,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "pg7khyo",
@@ -1574,7 +1639,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             }
           ],
           "phase": "pro"
@@ -1593,7 +1659,8 @@
               "to": "",
               "no": 5,
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "zrpl0hf",
@@ -1602,7 +1669,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "7yyaq5a",
@@ -1612,7 +1680,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "vt8ew9m",
@@ -1631,7 +1700,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "mlw7wct",
@@ -1650,7 +1720,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "oq498n8",
@@ -1659,7 +1730,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             }
           ],
           "phase": "pro"
@@ -1678,7 +1750,8 @@
               "to": "",
               "no": 6,
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "p0kfvax",
@@ -1687,7 +1760,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "yebz9ya",
@@ -1696,7 +1770,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "olzwucs",
@@ -1710,7 +1785,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "pywij2s",
@@ -1719,7 +1795,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "jijephc",
@@ -1729,7 +1806,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "3f0nspo",
@@ -1753,7 +1831,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "0y2g0jv",
@@ -1762,7 +1841,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "csma995",
@@ -1772,7 +1852,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "fbv77op",
@@ -1789,7 +1870,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             }
           ],
           "phase": "pro"
@@ -1808,7 +1890,8 @@
               "to": "",
               "no": 7,
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "9ts9x4m",
@@ -1817,7 +1900,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "01h3sn5",
@@ -1826,7 +1910,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "t4nkfhy",
@@ -1840,7 +1925,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "9wj8ios",
@@ -1849,7 +1935,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "m6hbkw8",
@@ -1863,7 +1950,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "igmnlnl",
@@ -1873,7 +1961,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "jiq98u5",
@@ -1892,7 +1981,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "yl5s402",
@@ -1901,7 +1991,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "dn1poe1",
@@ -1925,7 +2016,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "mhvjoo5",
@@ -1934,7 +2026,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "wn64al5",
@@ -1958,7 +2051,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "6obkbwu",
@@ -1967,7 +2061,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "7zeqayo",
@@ -1986,7 +2081,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "azem5pv",
@@ -1996,7 +2092,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             }
           ],
           "phase": "pro"
@@ -2015,7 +2112,8 @@
               "to": "",
               "no": 8,
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "zjsd8cl",
@@ -2024,7 +2122,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "y7ehkyq",
@@ -2033,7 +2132,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "lwz6okk",
@@ -2047,7 +2147,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "g8sudfp",
@@ -2056,7 +2157,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "gkxwj6q",
@@ -2075,7 +2177,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "w5ho3rx",
@@ -2089,7 +2192,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "rm4n4cf",
@@ -2098,7 +2202,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "0uvyrfz",
@@ -2108,7 +2213,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             }
           ],
           "phase": "pro"
@@ -2127,7 +2233,8 @@
               "to": "",
               "no": 9,
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "f8mpmdn",
@@ -2136,7 +2243,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "ukz7r6o",
@@ -2155,7 +2263,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "9uykepx",
@@ -2184,7 +2293,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "2afuabx",
@@ -2208,7 +2318,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "hkb1cth",
@@ -2217,7 +2328,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "jssdu46",
@@ -2251,7 +2363,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "eqphh3l",
@@ -2275,7 +2388,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "u2mg4oz",
@@ -2294,7 +2408,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "x5bdxr7",
@@ -2304,7 +2419,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             }
           ],
           "phase": "pro"
@@ -2323,7 +2439,8 @@
               "to": "",
               "no": 10,
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "trizlhn",
@@ -2332,7 +2449,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "hjjaw4u",
@@ -2341,7 +2459,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "1yzfh0s",
@@ -2370,7 +2489,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "zqhm3lu",
@@ -2389,7 +2509,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "k5vsgh3",
@@ -2409,7 +2530,8 @@
               "text": "どちらを選んでも受任。①には猫が「にゃ！」と即応、②には呆れ顔（性格付けのみ、分岐なし）。",
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "h02xfmr",
@@ -2418,7 +2540,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "qiv5yo3",
@@ -2457,7 +2580,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "91vmc9x",
@@ -2491,7 +2615,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "gdn7wro",
@@ -2510,7 +2635,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "sb4b43q",
@@ -2519,7 +2645,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "yn6t23o",
@@ -2533,7 +2660,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             }
           ],
           "phase": "inv"
@@ -2552,7 +2680,8 @@
               "to": "",
               "no": 11,
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "btpl359",
@@ -2561,7 +2690,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "x4e4j77",
@@ -2570,7 +2700,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "h4z8tyo",
@@ -2594,7 +2725,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "u74u2am",
@@ -2618,7 +2750,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "ef7g2nz",
@@ -2628,7 +2761,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "9wieqr4",
@@ -2642,7 +2776,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "k7wzb4h",
@@ -2652,7 +2787,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             }
           ],
           "phase": "inv"
@@ -2671,7 +2807,8 @@
               "to": "",
               "no": 12,
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "x58a68u",
@@ -2680,7 +2817,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "tii8qcm",
@@ -2689,7 +2827,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "jduos5s",
@@ -2713,7 +2852,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "dxkymhw",
@@ -2737,7 +2877,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "7ro3bi1",
@@ -2746,7 +2887,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "vpn6qp1",
@@ -2770,7 +2912,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "sfbhsc5",
@@ -2780,7 +2923,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "ph172kh",
@@ -2794,7 +2938,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             }
           ],
           "phase": "inv"
@@ -2813,7 +2958,8 @@
               "to": "",
               "no": 13,
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "h1mbefo",
@@ -2822,7 +2968,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "ziuwovh",
@@ -2851,7 +2998,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "9qw3gw6",
@@ -2860,7 +3008,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "0dcfxu6",
@@ -2884,7 +3033,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "bsc7v3n",
@@ -2903,7 +3053,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "4t9s6ej",
@@ -2927,7 +3078,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "wr7peo9",
@@ -2937,7 +3089,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "yp4jdda",
@@ -2961,7 +3114,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             }
           ],
           "phase": "inv"
@@ -2980,7 +3134,8 @@
               "to": "",
               "no": 14,
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "9uujeta",
@@ -2989,7 +3144,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "pgsc7vk",
@@ -2999,7 +3155,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "0ucmedx",
@@ -3008,7 +3165,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "odg5a5z",
@@ -3042,7 +3200,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "zo7zlkv",
@@ -3061,7 +3220,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "i41lw0s",
@@ -3070,7 +3230,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "kkatds8",
@@ -3094,7 +3255,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "lc2kuzj",
@@ -3103,7 +3265,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "u4duz8j",
@@ -3113,7 +3276,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "zg0a4ts",
@@ -3132,7 +3296,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             }
           ],
           "phase": "inv"
@@ -3151,7 +3316,8 @@
               "to": "",
               "no": 15,
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "vxd19au",
@@ -3161,7 +3327,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "bpay3tz",
@@ -3170,7 +3337,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "guouwok",
@@ -3194,7 +3362,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "l2jl4hs",
@@ -3208,7 +3377,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "lnm4c6r",
@@ -3217,7 +3387,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "rphctyj",
@@ -3226,7 +3397,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "fnlv03e",
@@ -3250,7 +3422,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "l12mmh6",
@@ -3260,7 +3433,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "5mw8bj3",
@@ -3270,7 +3444,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             }
           ],
           "phase": "inv"
@@ -3289,7 +3464,8 @@
               "to": "",
               "no": 16,
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "cvt9lui",
@@ -3298,7 +3474,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "4yqi8zz",
@@ -3308,7 +3485,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "2llfmug",
@@ -3317,7 +3495,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "vell0uk",
@@ -3341,7 +3520,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "m03ywea",
@@ -3350,7 +3530,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "2kh9te4",
@@ -3369,7 +3550,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "p4ka32p",
@@ -3388,7 +3570,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "yw66y1x",
@@ -3398,7 +3581,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "vuajzao",
@@ -3417,7 +3601,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "iznzqwa",
@@ -3426,7 +3611,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "24zan2h",
@@ -3445,7 +3631,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "3yfkmh5",
@@ -3455,7 +3642,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "texial2",
@@ -3474,7 +3662,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             }
           ],
           "phase": "inv"
@@ -3493,7 +3682,8 @@
               "to": "",
               "no": 17,
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "v25k6ts",
@@ -3502,7 +3692,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "plo983b",
@@ -3512,7 +3703,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "m3sx911",
@@ -3521,7 +3713,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "z2l84ex",
@@ -3550,7 +3743,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "ezselr9",
@@ -3559,7 +3753,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "sdad3xt",
@@ -3569,7 +3764,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "i3scu67",
@@ -3588,7 +3784,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "im1v4ne",
@@ -3612,7 +3809,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "220vmm6",
@@ -3622,7 +3820,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             }
           ],
           "phase": "inv"
@@ -3641,7 +3840,8 @@
               "to": "",
               "no": 18,
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "g9thjmw",
@@ -3650,7 +3850,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "3onkehy",
@@ -3669,7 +3870,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "pkuxu6p",
@@ -3693,7 +3895,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "ppdv0m0",
@@ -3717,7 +3920,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "h7jx3ur",
@@ -3741,7 +3945,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "phvbxu6",
@@ -3750,7 +3955,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             }
           ],
           "phase": "inv"
@@ -3769,7 +3975,8 @@
               "to": "",
               "no": 19,
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "tr8es38",
@@ -3778,7 +3985,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "tbgld55",
@@ -3797,7 +4005,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "k75b4w0",
@@ -3806,7 +4015,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "ls8d2ny",
@@ -3835,7 +4045,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "wumkacp",
@@ -3844,7 +4055,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             }
           ],
           "phase": "inv"
@@ -3863,7 +4075,8 @@
               "to": "",
               "no": 20,
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "s08zye2",
@@ -3872,7 +4085,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "qh4kjvn",
@@ -3881,7 +4095,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "mhu30cs",
@@ -3900,7 +4115,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "g2nrcc6",
@@ -3919,7 +4135,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "2pomuap",
@@ -3929,7 +4146,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "k67uq5a",
@@ -3948,7 +4166,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             }
           ],
           "phase": "inv"
@@ -3967,7 +4186,8 @@
               "to": "",
               "no": 21,
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "asyexcb",
@@ -3986,7 +4206,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "rhgtl22",
@@ -3996,7 +4217,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "ddykmiw",
@@ -4005,7 +4227,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "caduf5d",
@@ -4030,7 +4253,8 @@
               "text": "正解＝製造機 → 仮説「鍵がチョコレートに包まれていた」が生成。",
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "4j2yb55",
@@ -4049,7 +4273,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "pwm58fz",
@@ -4069,7 +4294,8 @@
               "text": "正解＝犬の習性 → 仮説「鍵入りチョコが犬によって部屋へ運ばれた」（搬入＝23時、ボディガードが扉を開けた時）。",
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "o1svute",
@@ -4079,7 +4305,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "wvjsh1x",
@@ -4108,7 +4335,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             }
           ],
           "phase": "inv"
@@ -4127,7 +4355,8 @@
               "to": "",
               "no": 22,
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "2arhq8w",
@@ -4136,7 +4365,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "3vnwbxe",
@@ -4145,7 +4375,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "aia2qdu",
@@ -4164,7 +4395,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "ao1jjss",
@@ -4189,7 +4421,8 @@
               "text": "誤答で心象ゲージ減少。会議中でも推理は差し替え可（ただし減点）。",
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "9xladr3",
@@ -4208,7 +4441,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "zz0skfp",
@@ -4237,7 +4471,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "76dm3dw",
@@ -4247,7 +4482,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "d31tm1w",
@@ -4276,7 +4512,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "ywy54s6",
@@ -4295,7 +4532,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "iu6rvwa",
@@ -4312,7 +4550,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             }
           ],
           "phase": "sol"
@@ -4331,7 +4570,8 @@
               "to": "",
               "no": 23,
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "92sccoe",
@@ -4340,7 +4580,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "y4us56q",
@@ -4349,7 +4590,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "1zjdbgl",
@@ -4368,7 +4610,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "w8h419a",
@@ -4382,7 +4625,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "k4figxd",
@@ -4399,7 +4643,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "5qgg2ty",
@@ -4408,7 +4653,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "ejw3ss0",
@@ -4432,7 +4678,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "f91phvo",
@@ -4442,7 +4689,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "6iphaag",
@@ -4476,7 +4724,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "hloc4ci",
@@ -4485,7 +4734,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "vmg8j2y",
@@ -4509,7 +4759,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "s5o9hj9",
@@ -4518,7 +4769,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "inwuupa",
@@ -4542,7 +4794,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "95b0y2g",
@@ -4552,7 +4805,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             }
           ],
           "phase": "epi"
@@ -5339,7 +5593,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "w5qbj2l",
@@ -5349,7 +5604,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "4zksuaa",
@@ -5366,7 +5622,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "4sl04a0",
@@ -5375,7 +5632,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "v7i7kpt",
@@ -5384,7 +5642,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "i34c9h2",
@@ -5393,7 +5652,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "230fbtt",
@@ -5407,7 +5667,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "mbqet3f",
@@ -5416,7 +5677,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "if1qd4e",
@@ -5430,7 +5692,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "kn1wq5k",
@@ -5439,7 +5702,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "wg2gxnu",
@@ -5453,7 +5717,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "v2lwbtl",
@@ -5463,7 +5728,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "naeuwtb",
@@ -5482,7 +5748,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "gdg58sa",
@@ -5491,7 +5758,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "vsotknx",
@@ -5501,7 +5769,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "rhtt8nh",
@@ -5530,7 +5799,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "uc3orks",
@@ -5539,7 +5809,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "yg82nhl",
@@ -5553,7 +5824,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "y0wpspv",
@@ -5563,7 +5835,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             }
           ]
         },
@@ -5580,7 +5853,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "3acwlw9",
@@ -5590,7 +5864,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "w76ss4w",
@@ -5624,7 +5899,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "ft53igg",
@@ -5633,7 +5909,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "qrvi44y",
@@ -5652,7 +5929,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "2i2sg1w",
@@ -5661,7 +5939,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "gq1516q",
@@ -5680,7 +5959,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "rjh8qla",
@@ -5689,7 +5969,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "t5j16w5",
@@ -5713,7 +5994,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "xhiuzke",
@@ -5723,7 +6005,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "iclz15x",
@@ -5742,7 +6025,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "q626liu",
@@ -5751,7 +6035,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "yd1ct6a",
@@ -5770,7 +6055,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "z5upfmd",
@@ -5779,7 +6065,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "g2vu03b",
@@ -5793,7 +6080,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "fyopj5o",
@@ -5802,7 +6090,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "0dz9b8v",
@@ -5826,7 +6115,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "bf1x6dr",
@@ -5836,7 +6126,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             }
           ]
         },
@@ -5853,7 +6144,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "jjcl3ty",
@@ -5862,7 +6154,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "pls4jp4",
@@ -5876,7 +6169,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "7s14e3p",
@@ -5885,7 +6179,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "32ttmw4",
@@ -5899,7 +6194,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "a7f4zgv",
@@ -5909,7 +6205,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "bu7iddq",
@@ -5923,7 +6220,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "jm0wu15",
@@ -5932,7 +6230,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "cqhtvoh",
@@ -5951,7 +6250,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "ymrhk4e",
@@ -5960,7 +6260,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "tdkyueh",
@@ -5979,7 +6280,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "y7j3csu",
@@ -5988,7 +6290,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "4to64r2",
@@ -5997,7 +6300,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "7uc12ko",
@@ -6026,7 +6330,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "9thvmpx",
@@ -6045,7 +6350,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "m7a3yn9",
@@ -6055,7 +6361,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             }
           ]
         },
@@ -6072,7 +6379,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "nzjft52",
@@ -6081,7 +6389,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "i2x84w8",
@@ -6115,7 +6424,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "5xand1h",
@@ -6134,7 +6444,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "j41hno5",
@@ -6158,7 +6469,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "ow1q7ny",
@@ -6182,7 +6494,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "yyqj294",
@@ -6216,7 +6529,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "9irbdt4",
@@ -6240,7 +6554,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             }
           ]
         },
@@ -6257,7 +6572,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "2yr3cuu",
@@ -6266,7 +6582,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "4zqj1bj",
@@ -6285,7 +6602,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "38krxx5",
@@ -6304,7 +6622,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "2qavj07",
@@ -6323,7 +6642,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "mdq3ze8",
@@ -6333,7 +6653,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "gr61x98",
@@ -6352,7 +6673,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "oeyjfvf",
@@ -6371,7 +6693,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "jfh12vx",
@@ -6390,7 +6713,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "agssofd",
@@ -6409,7 +6733,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "2f5ge5c",
@@ -6428,7 +6753,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "qoqmwho",
@@ -6437,7 +6763,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "dhxenun",
@@ -6446,7 +6773,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "brbqv1c",
@@ -6465,7 +6793,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "vvbzgh9",
@@ -6475,7 +6804,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             }
           ]
         },
@@ -6492,7 +6822,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "6b31xvh",
@@ -6526,7 +6857,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "xvdaxuf",
@@ -6535,7 +6867,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "ra7wvp8",
@@ -6561,7 +6894,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "jr7hy4c",
@@ -6600,7 +6934,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "wkzty8m",
@@ -6619,7 +6954,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "spqd6hi",
@@ -6663,7 +6999,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "tux9xge",
@@ -6682,7 +7019,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "x6n3vuj",
@@ -6716,7 +7054,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "fwr6q5z",
@@ -6725,7 +7064,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "4dwslk5",
@@ -6739,7 +7079,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "3wua78s",
@@ -6749,7 +7090,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             }
           ]
         },
@@ -6766,7 +7108,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "oggur6j",
@@ -6810,7 +7153,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "ttkmwms",
@@ -6819,7 +7163,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "sx0bbx8",
@@ -6853,7 +7198,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "6di5klk",
@@ -6867,7 +7213,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "i5vkmfy",
@@ -6877,7 +7224,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "9h2404m",
@@ -6916,7 +7264,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "4q8nsu7",
@@ -6935,7 +7284,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "kmciehu",
@@ -6945,7 +7295,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "yxfk6kg",
@@ -6969,7 +7320,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "ht5lktb",
@@ -6979,7 +7331,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "944ncc8",
@@ -7013,7 +7366,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "9jt49ub",
@@ -7022,7 +7376,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             }
           ]
         },
@@ -7039,7 +7394,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "3c27ty1",
@@ -7065,7 +7421,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "u0fqjqh",
@@ -7099,7 +7456,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "iu2qes8",
@@ -7133,7 +7491,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "37segmm",
@@ -7142,7 +7501,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "wm5pzrw",
@@ -7166,7 +7526,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "uiqd4ck",
@@ -7205,7 +7566,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "7tyjqrk",
@@ -7234,7 +7596,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "zk1yftz",
@@ -7253,7 +7616,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "gfhz8vo",
@@ -7263,7 +7627,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             }
           ]
         },
@@ -7280,7 +7645,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "zb0ztxx",
@@ -7289,7 +7655,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "tksgs82",
@@ -7308,7 +7675,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "dom2z8o",
@@ -7332,7 +7700,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "dgz3b9k",
@@ -7356,7 +7725,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "6fqr6xz",
@@ -7365,7 +7735,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "s7hr1o2",
@@ -7374,7 +7745,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "vijnp1k",
@@ -7393,7 +7765,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "2jahgbv",
@@ -7402,7 +7775,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "8xpjrmh",
@@ -7411,7 +7785,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "44kziju",
@@ -7421,7 +7796,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "9nkiyt8",
@@ -7445,7 +7821,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "mtic64b",
@@ -7455,7 +7832,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "ubph865",
@@ -7474,7 +7852,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "ky95wu7",
@@ -7491,7 +7870,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             }
           ]
         },
@@ -7518,7 +7898,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "o6le8m4",
@@ -7537,7 +7918,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "3e3663y",
@@ -7546,7 +7928,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "pzhs8q2",
@@ -7555,7 +7938,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "2yp7rdu",
@@ -7575,7 +7959,8 @@
               "text": "どちらも捜査へ。①にココ「へえ」②に猫の前足パンチ（性格付けのみ・分岐なし）。",
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             }
           ]
         },
@@ -7602,7 +7987,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "mqw16nf",
@@ -7621,7 +8007,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "9d07kxe",
@@ -7631,7 +8018,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "qos0qnv",
@@ -7640,7 +8028,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             }
           ]
         },
@@ -7657,7 +8046,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "dbymxod",
@@ -7686,7 +8076,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "xeiu12c",
@@ -7695,7 +8086,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "85k66i5",
@@ -7705,7 +8097,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             }
           ]
         },
@@ -7723,7 +8116,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "8vrewb8",
@@ -7747,7 +8141,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "a9zlohx",
@@ -7757,7 +8152,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "h8klb2k",
@@ -7771,7 +8167,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "e1gmzqx",
@@ -7780,7 +8177,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             }
           ]
         },
@@ -7812,7 +8210,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "q2nra4b",
@@ -7841,7 +8240,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "4xodce4",
@@ -7851,7 +8251,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             }
           ]
         },
@@ -7883,7 +8284,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "1ryb7ku",
@@ -7907,7 +8309,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "4c69wvw",
@@ -7917,7 +8320,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "m0y02vl",
@@ -7926,7 +8330,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             }
           ]
         },
@@ -7943,7 +8348,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "uax0s6p",
@@ -7953,7 +8359,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "zi67n56",
@@ -7978,7 +8385,8 @@
               "text": "②③は猫パンチ＋やり直し（笑い）。正解で証拠化。",
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "aralvqk",
@@ -8002,7 +8410,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "mgrd0kp",
@@ -8012,7 +8421,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             }
           ]
         },
@@ -8030,7 +8440,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "pcn0k7q",
@@ -8049,7 +8460,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "qbw9npi",
@@ -8058,7 +8470,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "p7h2avz",
@@ -8072,7 +8485,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             }
           ]
         },
@@ -8089,7 +8503,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "v70rcm7",
@@ -8123,7 +8538,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "8pbx1w3",
@@ -8133,7 +8549,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "bve0umy",
@@ -8147,7 +8564,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             }
           ]
         },
@@ -8164,7 +8582,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "f4oxh5s",
@@ -8183,7 +8602,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "xq1y1ig",
@@ -8197,7 +8617,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "vcbitrj",
@@ -8206,7 +8627,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             }
           ]
         },
@@ -8223,7 +8645,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "ww1ywsf",
@@ -8232,7 +8655,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "6y0khek",
@@ -8251,7 +8675,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "fddvr01",
@@ -8260,7 +8685,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "vgsph37",
@@ -8270,7 +8696,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "70ld2nt",
@@ -8294,7 +8721,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "86kmp93",
@@ -8303,7 +8731,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             }
           ]
         },
@@ -8321,7 +8750,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "abum7ve",
@@ -8340,7 +8770,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "dqu0fvt",
@@ -8349,7 +8780,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             }
           ]
         },
@@ -8366,7 +8798,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "mzbijnr",
@@ -8385,7 +8818,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "go3efw5",
@@ -8409,7 +8843,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "dss99im",
@@ -8433,7 +8868,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "ujbq4pm",
@@ -8443,7 +8879,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "slb6rq9",
@@ -8452,7 +8889,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "0qg5f3m",
@@ -8471,7 +8909,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "mr0x94c",
@@ -8481,7 +8920,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "harshxy",
@@ -8498,7 +8938,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             }
           ]
         },
@@ -8515,7 +8956,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "oj4jy8v",
@@ -8554,7 +8996,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "fso31hs",
@@ -8578,7 +9021,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "850zmd7",
@@ -8597,7 +9041,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "6hnwxya",
@@ -8606,7 +9051,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "7w1mmhq",
@@ -8635,7 +9081,8 @@
               ],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             },
             {
               "id": "zy91swy",
@@ -8645,7 +9092,8 @@
               "media": [],
               "to": "",
               "grants": [],
-              "requires": []
+              "requires": [],
+              "sectionBreak": false
             }
           ]
         }
@@ -10503,7 +10951,8 @@
   "activeEp": "ep0_train",
   "cloud": {
     "gistId": "597c440ff865144b98294faa523d0baf",
-    "lastSync": 1781583448858
+    "lastSync": 1781835149057,
+    "repoSync": 1781759977191
   },
   "tutDocVer": 50
 }
