@@ -2507,9 +2507,9 @@ function computeSceneAddrs(s,phaseCode,settingOffset,sceneNo){
     if(!prev||!(prev.isRoute||prev._cont))return;
     const plast=byId[prev.members[prev.members.length-1]];
     if(!plast)return;
-    const pIsFork=(plast.type==='choice'||plast.type==='action'||plast.type==='present');
-    const seq=(plast.to===c.headId)||(!plast.to&&!pIsFork);
-    if(seq){ c._cont=true; c._contOf=prev; }
+    // only nest when the branch EXPLICITLY flows into this chunk; implicit fall-through
+    // is NOT treated as continuation (otherwise the post-branch section gets absorbed)
+    if(plast.to===c.headId){ c._cont=true; c._contOf=prev; }
   });
   let mainNo=0;
   chunks.forEach(c=>{ if(!c.isRoute&&!c._cont){ mainNo++; c.num=mainNo; c.addr=seg?(seg+'.'+mainNo):('・'+mainNo); } });
