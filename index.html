@@ -3510,6 +3510,11 @@ function applyPatch(text){
         const allow=['title','logline','bridgeNote','trick','logic','kind'];
         if(allow.indexOf(o.field)<0)throw new Error('field '+o.field+' は不可');
         ep[o.field]=o.value; touchedEps.add(ep); log.push(tag+' OK：'+o.field+' 更新'); done++;
+      }else if(o.op==='addCards'){
+        const ep=_findEp(o.epId); if(!ep)throw new Error('episode '+o.epId+' なし');
+        ep.cards=ep.cards||[]; const list=Array.isArray(o.cards)?o.cards:[]; let add=0,upd=0;
+        list.forEach(c=>{ if(!c)return; const cid=c.id||uid(); const ent={id:cid,type:c.type||'物的',name:c.name||'カード',source:c.source||''}; const k=ep.cards.findIndex(x=>x.id===cid); if(k<0){ep.cards.push(ent);add++;}else{ep.cards[k]=ent;upd++;} });
+        touchedEps.add(ep); log.push(tag+' OK：カード 追加'+add+' 更新'+upd); done++;
       }else if(o.op==='replaceWorld'){
         state.world=state.world||[]; const k=state.world.findIndex(w=>w.id===o.wId);
         const ent=Object.assign({media:[]},o.entry||{}); ent.id=o.wId; ent.media=ent.media||[];
