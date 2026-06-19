@@ -16,7 +16,7 @@
   --teal:#5fd4c4; --teal-soft:#8ae6da; --teal-glow:rgba(95,212,196,.18);
   --crimson:#df6379; --crimson-soft:#ec8e9e; --crimson-glow:rgba(223,99,121,.18);
   --choice:#b08fd0; --choice-soft:#c8aee6;
-  --c-set:#8fce8f; --c-narr:#9aa7b8; --c-cg:#7ea6e0; --c-act:#7fd8a0;
+  --c-set:#8fce8f; --c-narr:#9aa7b8; --c-cg:#7ea6e0; --c-act:#7fd8a0; --c-prs:#e58cb0;
   --act1:var(--teal); --act2:var(--ember); --act3:var(--crimson);
   --band1:rgba(95,212,196,.055); --band2:rgba(231,169,72,.05); --band3:rgba(223,99,121,.06);
   --serif:"Shippori Mincho B1",serif;
@@ -32,7 +32,7 @@
   --teal:#2c9485; --teal-soft:#1c7c6c; --teal-glow:rgba(44,148,133,.15);
   --crimson:#bf4259; --crimson-soft:#9f2c44; --crimson-glow:rgba(191,66,89,.13);
   --choice:#8a5bb5; --choice-soft:#6f3fa0;
-  --c-set:#2f8a45; --c-narr:#56616f; --c-cg:#355f9c; --c-act:#2f8f5a;
+  --c-set:#2f8a45; --c-narr:#56616f; --c-cg:#355f9c; --c-act:#2f8f5a; --c-prs:#b5446e;
   --band1:rgba(44,148,133,.08); --band2:rgba(189,121,22,.09); --band3:rgba(191,66,89,.08);
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
@@ -183,7 +183,7 @@ svg.curve path.line{fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linej
 .block .bhead{display:flex;align-items:center;gap:9px;margin-bottom:8px}
 .block .btype{font-size:11px;font-weight:700;letter-spacing:.05em;display:inline-flex;align-items:center;gap:6px}
 .block .bctrl{margin-left:auto;display:flex;gap:5px}
-.block .ic-mini{width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;border-radius:6px;background:var(--surface-2);border:1px solid var(--line);color:var(--muted-2);cursor:pointer;transition:.13s}
+.block .ic-mini{width:24px;height:24px;flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;border-radius:6px;background:var(--surface-2);border:1px solid var(--line);color:var(--muted-2);cursor:pointer;transition:.13s}
 .block .ic-mini:hover{color:var(--ember-soft);border-color:var(--ember)}
 .block .ic-mini.danger:hover{color:var(--crimson-soft);border-color:var(--crimson)}
 .block .ic-mini svg{width:12px;height:12px}
@@ -199,6 +199,11 @@ svg.curve path.line{fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linej
 .ropt.act-exit .ropt-l{color:var(--c-act)}
 .convbtn{font-size:10.5px;color:var(--muted-2);background:var(--surface-3);border:1px solid var(--line-soft);border-radius:6px;padding:2px 7px;cursor:pointer;margin-left:2px;white-space:nowrap}
 .convbtn:hover{border-color:var(--c-act);color:var(--c-act)}
+.block.t-present .spine{background:var(--c-prs)} .block.t-present .btype{color:var(--c-prs)}
+.trig-row{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-bottom:2px}
+.seg-btn{font-size:11px;color:var(--muted-2);background:var(--surface-3);border:1px solid var(--line-soft);border-radius:14px;padding:3px 11px;cursor:pointer;transition:.12s}
+.seg-btn.on{color:var(--c-prs);border-color:var(--c-prs);background:rgba(229,140,176,.12)}
+.trig-badge{font-size:10px;font-weight:700;color:var(--c-prs);border:1px solid var(--c-prs);border-radius:9px;padding:0 6px;vertical-align:middle}
 .block.t-event .spine{background:var(--crimson)} .block.t-event .btype{color:var(--crimson-soft)}
 .block.t-cg .spine{background:#7ea6e0} .block.t-cg .btype{color:#9cc0ee}
 .block.t-note .spine{background:var(--muted-2)} .block.t-note .btype{color:var(--muted)}
@@ -216,7 +221,8 @@ svg.curve path.line{fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linej
 .line-row select{flex:0 0 150px}
 .choice-opt{display:flex;flex-direction:column;margin-bottom:8px;padding:6px 7px;border:1px solid var(--line-soft);border-radius:8px;background:rgba(255,255,255,.012)}
 .choice-opt .opt-top{display:flex;gap:8px;align-items:center}
-.choice-opt textarea{flex:1;resize:none}
+.choice-opt textarea{flex:1;min-width:0;resize:none}
+.choice-opt .opt-top input{flex:1;min-width:0}
 .opt-code{color:var(--choice);font-family:var(--mono);font-size:11px;font-weight:700;white-space:nowrap}
 .opt-to{display:flex;gap:6px;align-items:center;margin-top:5px;font-size:11px;color:var(--muted-2)}
 .opt-to select{flex:1;font-size:11.5px;padding:3px 6px}
@@ -559,6 +565,7 @@ const BLOCK_TYPES=[
   {t:'line',ja:'台詞',ic:'💬'},
   {t:'choice',ja:'選択肢',ic:'❓'},
   {t:'action',ja:'探索アクション',ic:'🧭'},
+  {t:'present',ja:'カード提示',ic:'📤'},
   {t:'event',ja:'ゲームイベント',ic:'⚡'},
   {t:'cg',ja:'CG / ムービー',ic:'🎞'},
   {t:'note',ja:'メモ',ic:'📝'},
@@ -2067,7 +2074,7 @@ function autosizeOne(ta){
 function autosizeAll(){document.querySelectorAll('textarea').forEach(t=>{if(!t.classList.contains('io-ta')&&!t.classList.contains('line-ta'))autosizeOne(t);});}
 
 /* ============================ シーン編集ヘルパー ============================ */
-function newBlock(ty){const nb={id:uid(),type:ty,text:'',to:''};if(ty==='line'){delete nb.text;nb.windows=[{id:uid(),charId:'',text:''}];}if(ty==='choice')nb.opts=[{text:'',to:''},{text:'',to:''}];if(ty==='action'){nb.spots=[{id:uid(),kind:'talk',target:'',to:'',requires:[]},{id:uid(),kind:'probe',target:'',to:'',requires:[]}];nb.exitText='';}if(ty==='event'){nb.ev=EVENTS[0];nb.media=[];}if(ty==='cg'){nb.title='';nb.media=[];}if(ty==='dir'||ty==='note')nb.media=[];if(ty==='setting'){delete nb.text;nb.place='';nb.time='';}return nb;}
+function newBlock(ty){const nb={id:uid(),type:ty,text:'',to:''};if(ty==='line'){delete nb.text;nb.windows=[{id:uid(),charId:'',text:''}];}if(ty==='choice')nb.opts=[{text:'',to:''},{text:'',to:''}];if(ty==='action'){nb.spots=[{id:uid(),kind:'talk',target:'',to:'',requires:[]},{id:uid(),kind:'probe',target:'',to:'',requires:[]}];nb.exitText='';}if(ty==='present'){nb.entries=[{id:uid(),card:'',to:'',requires:[]}];nb.unmatch='';nb.trigger='command';}if(ty==='event'){nb.ev=EVENTS[0];nb.media=[];}if(ty==='cg'){nb.title='';nb.media=[];}if(ty==='dir'||ty==='note')nb.media=[];if(ty==='setting'){delete nb.text;nb.place='';nb.time='';}return nb;}
 function mkBlock(E,ty){const nb=newBlock(ty);if(ty==='setting'){E.settingSeq=(E.settingSeq||0)+1;nb.no=E.settingSeq;}return nb;}
 function numberSettings(E){if(!E)return;E.settingSeq=E.settingSeq||0;let mx=0;(E.scenes||[]).forEach(s=>(s.blocks||[]).forEach(b=>{if(b.type==='setting'&&typeof b.no==='number')mx=Math.max(mx,b.no);}));E.settingSeq=Math.max(E.settingSeq,mx);(E.scenes||[]).forEach(s=>(s.blocks||[]).forEach(b=>{if(b.type==='setting'&&typeof b.no!=='number'){E.settingSeq+=1;b.no=E.settingSeq;}}));}
 function ensureBlockShape(b){
@@ -2076,7 +2083,8 @@ function ensureBlockShape(b){
   if(b.type==='setting'){b.place=b.place||'';b.time=b.time||'';delete b.text;}
   if(b.type==='narration'&&typeof b.text!=='string')b.text='';
   if(b.type==='choice'){ if(!Array.isArray(b.opts))b.opts=[]; b.opts=b.opts.map(o=>(o&&typeof o==='object')?{text:String(o.text||''),to:String(o.to||''),requires:Array.isArray(o.requires)?o.requires.slice():[]}:{text:String(o||''),to:'',requires:[]}); if(typeof b.text!=='string')b.text=''; }
-  if(b.type==='action'){ if(!Array.isArray(b.spots))b.spots=[]; b.spots=b.spots.map(sp=>(sp&&typeof sp==='object')?{id:sp.id||uid(),kind:(sp.kind==='talk'||sp.kind==='probe'||sp.kind==='present')?sp.kind:'probe',target:String(sp.target||''),to:String(sp.to||''),requires:Array.isArray(sp.requires)?sp.requires.slice():[],card:String(sp.card||'')}:{id:uid(),kind:'probe',target:String(sp||''),to:'',requires:[],card:''}); if(typeof b.text!=='string')b.text=''; if(typeof b.exitText!=='string')b.exitText=''; }
+  if(b.type==='action'){ if(!Array.isArray(b.spots))b.spots=[]; b.spots=b.spots.map(sp=>(sp&&typeof sp==='object')?{id:sp.id||uid(),kind:(sp.kind==='talk')?'talk':'probe',target:String(sp.target||''),to:String(sp.to||''),requires:Array.isArray(sp.requires)?sp.requires.slice():[]}:{id:uid(),kind:'probe',target:String(sp||''),to:'',requires:[]}); if(typeof b.text!=='string')b.text=''; if(typeof b.exitText!=='string')b.exitText=''; }
+  if(b.type==='present'){ if(!Array.isArray(b.entries))b.entries=[]; b.entries=b.entries.map(en=>(en&&typeof en==='object')?{id:en.id||uid(),card:String(en.card||''),to:String(en.to||''),requires:Array.isArray(en.requires)?en.requires.slice():[]}:{id:uid(),card:'',to:'',requires:[]}); if(typeof b.text!=='string')b.text=''; if(typeof b.unmatch!=='string')b.unmatch=''; b.trigger=(b.trigger==='auto')?'auto':'command'; }
   if(typeof b.to!=='string')b.to='';
   if(!Array.isArray(b.grants))b.grants=[];
   if(!Array.isArray(b.requires))b.requires=[];
@@ -2464,13 +2472,14 @@ function computeSceneAddrs(s,phaseCode,settingOffset,sceneNo){
   arr.forEach(bl=>{
     if(bl.type==='choice'){ (bl.opts||[]).forEach((o,oi)=>{ const to=optTo(o); if(to){ edges.push({from:bl.id,to:to}); if(!optInfo[to])optInfo[to]={forkId:bl.id,letter:String.fromCharCode(97+oi),text:optText(o)}; } }); }
     if(bl.type==='action'){ (bl.spots||[]).forEach((sp,si)=>{ const to=sp&&sp.to; if(to){ edges.push({from:bl.id,to:to}); if(!optInfo[to])optInfo[to]={forkId:bl.id,letter:String.fromCharCode(97+si),text:(sp.target||'')}; } }); }
+    if(bl.type==='present'){ (bl.entries||[]).forEach((en,ei)=>{ const to=en&&en.to; if(to){ edges.push({from:bl.id,to:to}); if(!optInfo[to])optInfo[to]={forkId:bl.id,letter:String.fromCharCode(97+ei),text:(en.card?cardLabel(en.card):'提示')}; } }); }
     if(bl.to)edges.push({from:bl.id,to:bl.to});
   });
   const incoming={}; edges.forEach(e=>{ incoming[e.to]=(incoming[e.to]||0)+1; });
   const mergeById={}; Object.keys(incoming).forEach(k=>{ if(incoming[k]>=2)mergeById[k]=incoming[k]; });
   const nonNote=arr.filter(b=>b.type!=='note');
   const headSet=new Set(); if(nonNote[0])headSet.add(nonNote[0].id);
-  arr.forEach(bl=>{ if(bl.type==='note')return; if(bl.type==='choice')headSet.add(bl.id); if(bl.type==='action')headSet.add(bl.id); if(bl.type==='action'&&bl.to)headSet.add(bl.to); if((incoming[bl.id]||0)>=2)headSet.add(bl.id); if(optInfo[bl.id])headSet.add(bl.id); if(bl.sectionBreak)headSet.add(bl.id); });
+  arr.forEach(bl=>{ if(bl.type==='note')return; if(bl.type==='choice')headSet.add(bl.id); if(bl.type==='action')headSet.add(bl.id); if(bl.type==='action'&&bl.to)headSet.add(bl.to); if(bl.type==='present')headSet.add(bl.id); if(bl.type==='present'&&bl.to)headSet.add(bl.to); if((incoming[bl.id]||0)>=2)headSet.add(bl.id); if(optInfo[bl.id])headSet.add(bl.id); if(bl.sectionBreak)headSet.add(bl.id); });
   const chunks=[]; let cur=null;
   arr.forEach(bl=>{ if(bl.type==='note')return; if(headSet.has(bl.id)||!cur){ cur={headId:bl.id,members:[bl.id]}; chunks.push(cur); } else cur.members.push(bl.id); });
   const chunkByHead={}; chunks.forEach(c=>chunkByHead[c.headId]=c);
@@ -2479,10 +2488,11 @@ function computeSceneAddrs(s,phaseCode,settingOffset,sceneNo){
     for(let i=0;i<c.members.length;i++){ const mb=byId[c.members[i]]; if(!mb)continue;
       if(mb.to===oi.forkId){ c._loops=true; break; }
       if(mb.type==='choice' && (mb.opts||[]).some(o=>optTo(o)===oi.forkId)){ c._loops=true; break; }
-      if(mb.type==='action' && (mb.spots||[]).some(sp=>sp&&sp.to===oi.forkId)){ c._loops=true; break; } } });
+      if(mb.type==='action' && (mb.spots||[]).some(sp=>sp&&sp.to===oi.forkId)){ c._loops=true; break; }
+      if(mb.type==='present' && (mb.entries||[]).some(en=>en&&en.to===oi.forkId)){ c._loops=true; break; } } });
   const forkIsLoopHub={}; chunks.forEach(c=>{ const oi=optInfo[c.headId]; if(oi && c._loops) forkIsLoopHub[oi.forkId]=true; });
   const firstId=(nonNote[0]&&nonNote[0].id)||null;
-  chunks.forEach(c=>{ const h=c.headId; c.isMerge=(incoming[h]||0)>=2; c.isFork=!!(byId[h]&&(byId[h].type==='choice'||byId[h].type==='action')); c.mergeCount=incoming[h]||0;
+  chunks.forEach(c=>{ const h=c.headId; c.isMerge=(incoming[h]||0)>=2; c.isFork=!!(byId[h]&&(byId[h].type==='choice'||byId[h].type==='action'||byId[h].type==='present')); c.mergeCount=incoming[h]||0;
     const oi=optInfo[h];
     if(oi){ c.isRoute = forkIsLoopHub[oi.forkId] ? c._loops : !c.isMerge; }
     else { c.isRoute=false; }
@@ -2511,6 +2521,7 @@ function chunkDefaultTitle(ck, byId){
   const h=byId&&byId[ck.headId]; if(!h) return '';
   if(h.type==='choice') return cut((h.text&&String(h.text).trim())?h.text:(optText((h.opts||[])[0])||'選択肢'),22);
   if(h.type==='action') return cut(h.text||'',22)||'探索アクション';
+  if(h.type==='present') return cut(h.text||'',22)||'カード提示';
   if(h.type==='line'){ const w=(h.windows||[])[0]; return cut(w?w.text:'',22)||'台詞'; }
   if(h.type==='cg') return cut(h.title||'',22)||'CG';
   if(h.type==='event') return cut(h.ev||'',22)||'イベント';
@@ -2570,6 +2581,11 @@ function optReqEditor(s,bl,oi){
   const arr=optReq(bl.opts[oi]);
   const chips=arr.map(id=>`<span class="cchip req ed">🔒 ${esc(cardLabel(id))}<i data-act="rmoptreq" data-sid="${s.id}" data-bid="${bl.id}" data-oi="${oi}" data-cid="${id}">✕</i></span>`).join('');
   return `<div class="card-field opt-req"><span class="cf-lab">🔒 要</span><div class="cf-chips">${chips||'<span class="cf-none">条件なし</span>'}</div>${cardAddSelect('addoptreq',`data-sid="${s.id}" data-bid="${bl.id}" data-oi="${oi}"`)}</div>`;
+}
+function entryReqEditor(s,bl,en){
+  const arr=(en&&Array.isArray(en.requires))?en.requires:[];
+  const chips=arr.map(id=>`<span class="cchip req ed">🔒 ${esc(cardLabel(id))}<i data-act="rmentryreq" data-sid="${s.id}" data-bid="${bl.id}" data-eid="${en.id}" data-cid="${id}">✕</i></span>`).join('');
+  return `<div class="card-field opt-req"><span class="cf-lab">🔒 追加条件</span><div class="cf-chips">${chips||'<span class="cf-none">なし</span>'}</div>${cardAddSelect('addentryreq',`data-sid="${s.id}" data-bid="${bl.id}" data-eid="${en.id}"`)}</div>`;
 }
 function spotReqEditor(s,bl,sp){
   const arr=(sp&&Array.isArray(sp.requires))?sp.requires:[];
@@ -2637,21 +2653,30 @@ function scriptBlock(s,bl,i,ctx){
     body=`<textarea data-scope="block" data-sid="${s.id}" data-bid="${bl.id}" data-field="text" placeholder="設問（プレイヤーへの問いかけ／分岐の状況）" style="min-height:48px;margin-bottom:10px">${esc(bl.text)}</textarea>
       ${opts}<button class="btn sm ghost" data-act="addopt" data-id="${s.id}" data-bid="${bl.id}" style="margin-top:4px">${ICONS.plus} 選択肢を追加</button>`;
   }else if(bl.type==='action'){
-    const spotEd=(sp)=>{ const to=sp.to; const ic=sp.kind==='talk'?'💬 話す':sp.kind==='present'?'📤 提示':'🔍 調べる';
-      const ph=sp.kind==='talk'?'話しかける相手（例：車掌ガナッシュ）':sp.kind==='present'?'提示する相手（例：メイドのアメール）':'調べる対象（例：暖炉の上の肖像画）';
-      const cardPick=sp.kind==='present'?`<div class="opt-to"><span class="opt-to-lab">🎴 提示カード</span><select data-act="setspotcard" data-sid="${s.id}" data-bid="${bl.id}" data-spid="${sp.id}"><option value="">（つきつけるカードを選択…）</option>${(ep().cards||[]).map(c=>`<option value="${c.id}" ${sp.card===c.id?'selected':''}>[${c.type}] ${esc(c.name)}</option>`).join('')}</select></div>`:'';
+    const spotEd=(sp)=>{ const to=sp.to; const ic=sp.kind==='talk'?'💬 話す':'🔍 調べる';
+      const ph=sp.kind==='talk'?'話しかける相手（例：車掌ガナッシュ）':'調べる対象（例：暖炉の上の肖像画）';
       return `<div class="choice-opt"><div class="opt-top"><span class="opt-code">${ic}</span>
         <input type="text" data-scope="spot" data-sid="${s.id}" data-bid="${bl.id}" data-spid="${sp.id}" value="${esc(sp.target||'')}" placeholder="${ph}">
         <span class="ic-mini danger" data-act="delspot" data-id="${s.id}" data-bid="${bl.id}" data-spid="${sp.id}">${ICONS.trash}</span></div>
-        ${cardPick}<div class="opt-to"><span class="opt-to-lab">→ 遷移先</span><select data-act="setspotto" data-sid="${s.id}" data-bid="${bl.id}" data-spid="${sp.id}">${linkTargetOptions(fl,bl.id,to)}</select></div>${spotReqEditor(s,bl,sp)}</div>`; };
+        <div class="opt-to"><span class="opt-to-lab">→ 遷移先</span><select data-act="setspotto" data-sid="${s.id}" data-bid="${bl.id}" data-spid="${sp.id}">${linkTargetOptions(fl,bl.id,to)}</select></div>${spotReqEditor(s,bl,sp)}</div>`; };
     const talks=(bl.spots||[]).filter(sp=>sp.kind==='talk');
-    const probes=(bl.spots||[]).filter(sp=>sp.kind==='probe');
-    const presents=(bl.spots||[]).filter(sp=>sp.kind==='present');
+    const probes=(bl.spots||[]).filter(sp=>sp.kind!=='talk');
     body=`<textarea data-scope="block" data-sid="${s.id}" data-bid="${bl.id}" data-field="text" placeholder="探索の導入・状況（例：社交室を自由に歩いて調査できる）" style="min-height:46px;margin-bottom:10px">${esc(bl.text)}</textarea>
       <div class="act-grp"><div class="act-grp-h">💬 話す（移動範囲の相手）</div>${talks.map(spotEd).join('')||'<div class="cf-none" style="margin:2px 0 8px">対象なし</div>'}<button class="btn sm ghost" data-act="addspot" data-id="${s.id}" data-bid="${bl.id}" data-kind="talk">${ICONS.plus} 話す相手を追加</button></div>
       <div class="act-grp"><div class="act-grp-h">🔍 調べる（移動範囲の対象物）</div>${probes.map(spotEd).join('')||'<div class="cf-none" style="margin:2px 0 8px">対象なし</div>'}<button class="btn sm ghost" data-act="addspot" data-id="${s.id}" data-bid="${bl.id}" data-kind="probe">${ICONS.plus} 調べる対象を追加</button></div>
-      <div class="act-grp"><div class="act-grp-h">📤 提示（証拠・仮説をつきつける）</div>${presents.map(spotEd).join('')||'<div class="cf-none" style="margin:2px 0 8px">対象なし</div>'}<button class="btn sm ghost" data-act="addspot" data-id="${s.id}" data-bid="${bl.id}" data-kind="present">${ICONS.plus} 提示先を追加</button></div>
       <div class="act-exit-ed"><span class="opt-to-lab">▶ 探索を終えて進む</span><input type="text" data-scope="block" data-sid="${s.id}" data-bid="${bl.id}" data-field="exitText" value="${esc(bl.exitText||'')}" placeholder="進むアクション名（例：そろそろ席につく）" style="margin:5px 0"><div class="blk-link"><span class="opt-to-lab">→ 遷移先</span><select data-act="setblocktarget" data-sid="${s.id}" data-bid="${bl.id}">${linkTargetOptions(fl,bl.id,bl.to||'')}</select></div></div>`;
+  }else if(bl.type==='present'){
+    const trig=bl.trigger==='auto'?'auto':'command';
+    const entryEd=(en)=>{
+      const cardSel=`<select data-act="setentrycard" data-sid="${s.id}" data-bid="${bl.id}" data-eid="${en.id}"><option value="">（提示するカードを選択…）</option>${(ep().cards||[]).map(c=>`<option value="${c.id}" ${en.card===c.id?'selected':''}>[${c.type}] ${esc(c.name)}</option>`).join('')}</select>`;
+      return `<div class="choice-opt"><div class="opt-top"><span class="opt-code">📤</span>${cardSel}
+        <span class="ic-mini danger" data-act="delentry" data-id="${s.id}" data-bid="${bl.id}" data-eid="${en.id}">${ICONS.trash}</span></div>
+        <div class="opt-to"><span class="opt-to-lab">→ 正解ルート</span><select data-act="setentryto" data-sid="${s.id}" data-bid="${bl.id}" data-eid="${en.id}">${linkTargetOptions(fl,bl.id,en.to)}</select></div>${entryReqEditor(s,bl,en)}</div>`; };
+    body=`<div class="trig-row"><span class="opt-to-lab">提示のきっかけ</span><button class="seg-btn ${trig==='command'?'on':''}" data-act="settrigger" data-id="${s.id}" data-bid="${bl.id}" data-trig="command">提示コマンド（任意）</button><button class="seg-btn ${trig==='auto'?'on':''}" data-act="settrigger" data-id="${s.id}" data-bid="${bl.id}" data-trig="auto">自動で提示を促す</button></div>
+      <textarea data-scope="block" data-sid="${s.id}" data-bid="${bl.id}" data-field="text" placeholder="${trig==='auto'?'提示を促す状況・問い（例：この証言の矛盾を突くなら？）':'提示できる状況メモ（例：会話中に「提示する」で証拠を出せる）'}" style="min-height:44px;margin:8px 0">${esc(bl.text)}</textarea>
+      <div class="act-grp"><div class="act-grp-h">📤 マッチするカード → ルート</div>${(bl.entries||[]).map(entryEd).join('')||'<div class="cf-none" style="margin:2px 0 8px">なし</div>'}<button class="btn sm ghost" data-act="addentry" data-id="${s.id}" data-bid="${bl.id}">${ICONS.plus} 提示カードを追加</button></div>
+      <label class="fld" style="margin:8px 0 0"><span class="lt">アンマッチ台詞（違うカードを出した時の汎用リアクション）</span><textarea data-scope="block" data-sid="${s.id}" data-bid="${bl.id}" data-field="unmatch" placeholder="例：「……それは今の話とは関係なさそうだ」" style="min-height:42px">${esc(bl.unmatch||'')}</textarea></label>
+      <div class="act-exit-ed"><span class="opt-to-lab">▶ 提示しない／未所持で進む</span><div class="blk-link"><span class="opt-to-lab">→ 遷移先</span><select data-act="setblocktarget" data-sid="${s.id}" data-bid="${bl.id}">${linkTargetOptions(fl,bl.id,bl.to||'')}</select></div></div>`;
   }else if(bl.type==='event'){
     body=`<div class="event-row">
       <select data-scope="block" data-sid="${s.id}" data-bid="${bl.id}" data-field="ev">
@@ -2664,13 +2689,13 @@ function scriptBlock(s,bl,i,ctx){
       ${mediaList(bl.media,'block:'+s.id+':'+bl.id)}
       <textarea data-scope="block" data-sid="${s.id}" data-bid="${bl.id}" data-field="text" placeholder="演出メモ（尺・カット・BGM 等）" style="min-height:46px;margin-top:8px">${esc(bl.text)}</textarea>`;
   }
-  if(bl.type!=='choice'&&bl.type!=='setting'&&bl.type!=='action'){
+  if(bl.type!=='choice'&&bl.type!=='setting'&&bl.type!=='action'&&bl.type!=='present'){
     const myTo=bl.to||''; const toA=myTo?(fl.addrById[myTo]||'？'):''; const lexp=expandedLinks.has(bl.id);
     body+=`<div class="blk-link"><span class="opt-to-lab">→ 遷移先</span><select data-act="setblocktarget" data-sid="${s.id}" data-bid="${bl.id}">${linkTargetOptions(fl,bl.id,myTo)}</select></div>`;
   }
   if(bl.type!=='setting'){ body+=grantEditor(s,bl); body+=reqEditor(s,bl); }
   const _spk=(bl.type==='line')?(castOf(E).find(x=>x.id===((bl.windows||[])[0]||{}).charId)):null;
-  const accent=(myMerge>=2)?'var(--teal)':(bl.type==='setting'?'var(--c-set)':bl.type==='narration'?'var(--c-narr)':bl.type==='dir'?'var(--teal)':bl.type==='note'?'var(--muted-2)':bl.type==='event'?'var(--crimson)':bl.type==='cg'?'var(--c-cg)':bl.type==='choice'?'var(--choice)':bl.type==='action'?'var(--c-act)':(_spk?_spk.color:'var(--ember)'));
+  const accent=(myMerge>=2)?'var(--teal)':(bl.type==='setting'?'var(--c-set)':bl.type==='narration'?'var(--c-narr)':bl.type==='dir'?'var(--teal)':bl.type==='note'?'var(--muted-2)':bl.type==='event'?'var(--crimson)':bl.type==='cg'?'var(--c-cg)':bl.type==='choice'?'var(--choice)':bl.type==='action'?'var(--c-act)':bl.type==='present'?'var(--c-prs)':(_spk?_spk.color:'var(--ember)'));
   const markerHtml=(myMerge>=2)?`<span class="mbadge">⇄ 合流 (${myMerge})</span>`:((bl.type!=='setting'&&incLetters)?`<span class="inmark">←${incLetters}</span>`:'');
   const addrBadge=ctx.chunkMode?'':`<span class="baddr">${myAddr}</span>`;
   const mk=ctx.chunkMode?'':markerHtml;
@@ -2688,11 +2713,21 @@ function scriptBlock(s,bl,i,ctx){
     }else if(bl.type==='action'){
       const intro=String(bl.text||'').replace(/\n/g,' ').trim();
       rhead=`<div class="rhead">${addrBadge}<span class="rtype" style="color:${accent}">🧭 探索${intro?(' 「'+esc(intro.slice(0,22))+(intro.length>22?'…':'')+'」'):''}</span>${mk}</div>`;
-      const _spRow=(sp)=>{const to=sp.to;const ta=to?(fl.addrById[to]||'？'):'';const rq=(sp.requires||[]);const rqH=rq.length?`<span class="lchip req" title="${esc(rq.map(cardLabel).join(' / '))}">🔒 ${esc(rq.map(cardLabel).join(' / '))}</span>`:'';const ic=sp.kind==='talk'?'💬':sp.kind==='present'?'📤':'🔍';const txt=sp.kind==='present'?(esc(sp.target||'対象')+'に「'+esc(sp.card?cardLabel(sp.card):'カード未設定')+'」を提示'):esc(sp.target||'（対象未設定）');return `<div class="ropt"><span class="ropt-l act-l">${ic}</span><span class="ropt-t">${txt}</span>${to?`<span class="lchip set ropt-to">→ ${ta}</span>`:`<span class="rnext ropt-to">↩ その場</span>`}${rqH}</div>`;};
-      const _tk=(bl.spots||[]).filter(sp=>sp.kind==='talk');const _pb=(bl.spots||[]).filter(sp=>sp.kind==='probe');const _pr=(bl.spots||[]).filter(sp=>sp.kind==='present');
+      const _spRow=(sp)=>{const to=sp.to;const ta=to?(fl.addrById[to]||'？'):'';const rq=(sp.requires||[]);const rqH=rq.length?`<span class="lchip req" title="${esc(rq.map(cardLabel).join(' / '))}">🔒 ${esc(rq.map(cardLabel).join(' / '))}</span>`:'';const ic=sp.kind==='talk'?'💬':'🔍';return `<div class="ropt"><span class="ropt-l act-l">${ic}</span><span class="ropt-t">${esc(sp.target||'（対象未設定）')}</span>${to?`<span class="lchip set ropt-to">→ ${ta}</span>`:`<span class="rnext ropt-to">↩ その場</span>`}${rqH}</div>`;};
+      const _tk=(bl.spots||[]).filter(sp=>sp.kind==='talk');const _pb=(bl.spots||[]).filter(sp=>sp.kind!=='talk');
       const _exTo=bl.to||'';const _exA=_exTo?(fl.addrById[_exTo]||'？'):'';const _anb=(s.blocks||[])[i+1];const _anA=_anb?(fl.addrById[_anb.id]||''):'';
       const _exRow=`<div class="ropt act-exit"><span class="ropt-l">▶</span><span class="ropt-t">${esc(bl.exitText||'次へ進む')}</span>${_exTo?`<span class="lchip set ropt-to">→ ${_exA}</span>`:`<span class="rnext ropt-to">→ ${_anA||'次の場面'}</span>`}</div>`;
-      rbody=`<div class="ropts">${_tk.map(_spRow).join('')}${_pb.map(_spRow).join('')}${_pr.map(_spRow).join('')}${_exRow}</div>`;
+      rbody=`<div class="ropts">${_tk.map(_spRow).join('')}${_pb.map(_spRow).join('')}${_exRow}</div>`;
+    }else if(bl.type==='present'){
+      const tr=bl.trigger==='auto'?'自動':'コマンド';
+      const intro=String(bl.text||'').replace(/\n/g,' ').trim();
+      rhead=`<div class="rhead">${addrBadge}<span class="rtype" style="color:${accent}">📤 カード提示 <span class="trig-badge">${tr}</span>${intro?(' 「'+esc(intro.slice(0,20))+(intro.length>20?'…':'')+'」'):''}</span>${mk}</div>`;
+      const _enRow=(en)=>{const to=en.to;const ta=to?(fl.addrById[to]||'？'):'';const rq=(en.requires||[]);const rqH=rq.length?`<span class="lchip req" title="${esc(rq.map(cardLabel).join(' / '))}">🔒 ${esc(rq.map(cardLabel).join(' / '))}</span>`:'';const cn=en.card?cardLabel(en.card):'（カード未設定）';return `<div class="ropt"><span class="ropt-l act-l">📤</span><span class="ropt-t">「${esc(cn)}」を提示</span>${to?`<span class="lchip set ropt-to">→ ${ta}</span>`:`<span class="rnext ropt-to">→ ？</span>`}${rqH}</div>`;};
+      const _um=String(bl.unmatch||'').replace(/\n/g,' ').trim();
+      const _umRow=_um?`<div class="ropt"><span class="ropt-l" style="color:var(--muted-2)">≠</span><span class="ropt-t" style="color:var(--muted-2)">アンマッチ：${esc(_um.slice(0,26))}${_um.length>26?'…':''}</span></div>`:'';
+      const _exTo=bl.to||'';const _exA=_exTo?(fl.addrById[_exTo]||'？'):'';const _pnb=(s.blocks||[])[i+1];const _pnA=_pnb?(fl.addrById[_pnb.id]||''):'';
+      const _decRow=`<div class="ropt act-exit"><span class="ropt-l">▶</span><span class="ropt-t">提示しない／未所持</span>${_exTo?`<span class="lchip set ropt-to">→ ${_exA}</span>`:`<span class="rnext ropt-to">→ ${_pnA||'次の場面'}</span>`}</div>`;
+      rbody=`<div class="ropts">${(bl.entries||[]).map(_enRow).join('')}${_umRow}${_decRow}</div>`;
     }else{
       const headLabel=(bl.type==='line')?('💬 '+(_spk?esc(_spk.name):'台詞')):(tt.ic+' '+tt.ja);
       rhead=`<div class="rhead">${addrBadge}<span class="rtype" style="color:${accent}">${headLabel}</span>${mk}</div>`;
@@ -3166,8 +3201,12 @@ document.addEventListener('click',e=>{
   if(a==='moveblock'){const s=findScene(id);const arr=s.blocks;const k=arr.findIndex(b=>b.id===t.dataset.bid);const j=k+parseInt(t.dataset.dir,10);if(j>=0&&j<arr.length){const[x]=arr.splice(k,1);arr.splice(j,0,x);scheduleSave();render();}return;}
   if(a==='addopt'){const bl=findBlock(id,t.dataset.bid);bl.opts=bl.opts||[];bl.opts.push({text:'',to:''});scheduleSave();render();return;}
   if(a==='delopt'){const bl=findBlock(id,t.dataset.bid);bl.opts.splice(parseInt(t.dataset.oi,10),1);scheduleSave();render();return;}
-  if(a==='addspot'){const bl=findBlock(id,t.dataset.bid);if(bl){bl.spots=bl.spots||[];bl.spots.push({id:uid(),kind:(t.dataset.kind==='talk'?'talk':t.dataset.kind==='present'?'present':'probe'),target:'',to:'',requires:[],card:''});scheduleSave();render();}return;}
+  if(a==='addspot'){const bl=findBlock(id,t.dataset.bid);if(bl){bl.spots=bl.spots||[];bl.spots.push({id:uid(),kind:(t.dataset.kind==='talk'?'talk':'probe'),target:'',to:'',requires:[]});scheduleSave();render();}return;}
   if(a==='delspot'){const bl=findBlock(id,t.dataset.bid);if(bl&&bl.spots){bl.spots=bl.spots.filter(sp=>sp.id!==t.dataset.spid);scheduleSave();render();}return;}
+  if(a==='addentry'){const bl=findBlock(id,t.dataset.bid);if(bl){bl.entries=bl.entries||[];bl.entries.push({id:uid(),card:'',to:'',requires:[]});scheduleSave();render();}return;}
+  if(a==='delentry'){const bl=findBlock(id,t.dataset.bid);if(bl&&bl.entries){bl.entries=bl.entries.filter(en=>en.id!==t.dataset.eid);scheduleSave();render();}return;}
+  if(a==='settrigger'){const bl=findBlock(id,t.dataset.bid);if(bl){bl.trigger=(t.dataset.trig==='auto')?'auto':'command';scheduleSave();render();}return;}
+  if(a==='rmentryreq'){const bl=findBlock(t.dataset.sid,t.dataset.bid);if(bl&&bl.entries){const en=bl.entries.find(x=>x.id===t.dataset.eid);if(en&&Array.isArray(en.requires)){en.requires=en.requires.filter(x=>x!==t.dataset.cid);scheduleSave();render();}}return;}
   if(a==='converttype'){const bl=findBlock(id,t.dataset.bid);if(bl){if(bl.type==='choice'){bl.type='action';bl.spots=(bl.opts||[]).map(o=>({id:uid(),kind:'probe',target:optText(o),to:optTo(o),requires:optReq(o).slice()}));bl.exitText='';delete bl.opts;}else if(bl.type==='action'){bl.type='choice';bl.opts=(bl.spots||[]).map(sp=>({text:sp.target||'',to:sp.to||'',requires:(sp.requires||[]).slice()}));if(bl.to){bl.opts.push({text:bl.exitText||'次へ進む',to:bl.to,requires:[]});bl.to='';}delete bl.spots;delete bl.exitText;}ensureBlockShape(bl);scheduleSave();render();}return;}
   if(a==='rmgrant'){const bl=findBlock(t.dataset.sid,t.dataset.bid);if(bl&&Array.isArray(bl.grants)){bl.grants=bl.grants.filter(x=>x!==t.dataset.cid);scheduleSave();render();}return;}
   if(a==='rmreq'){const bl=findBlock(t.dataset.sid,t.dataset.bid);if(bl&&Array.isArray(bl.requires)){bl.requires=bl.requires.filter(x=>x!==t.dataset.cid);scheduleSave();render();}return;}
@@ -3293,8 +3332,10 @@ document.addEventListener('change',e=>{
   if(t.dataset&&t.dataset.act==='addreq'){const v=t.value;if(v){const bl=findBlock(t.dataset.sid,t.dataset.bid);if(bl){bl.requires=Array.isArray(bl.requires)?bl.requires:[];if(bl.requires.indexOf(v)<0)bl.requires.push(v);scheduleSave();render();}}return;}
   if(t.dataset&&t.dataset.act==='addoptreq'){const v=t.value;if(v){const bl=findBlock(t.dataset.sid,t.dataset.bid);if(bl&&bl.opts){const o=bl.opts[parseInt(t.dataset.oi,10)];if(o){o.requires=Array.isArray(o.requires)?o.requires:[];if(o.requires.indexOf(v)<0)o.requires.push(v);scheduleSave();render();}}}return;}
   if(t.dataset&&t.dataset.act==='setspotto'){const bl=findBlock(t.dataset.sid,t.dataset.bid);if(bl&&bl.spots){const sp=bl.spots.find(x=>x.id===t.dataset.spid);if(sp){sp.to=t.value;scheduleSave();render();}}return;}
-  if(t.dataset&&t.dataset.act==='setspotcard'){const bl=findBlock(t.dataset.sid,t.dataset.bid);if(bl&&bl.spots){const sp=bl.spots.find(x=>x.id===t.dataset.spid);if(sp){sp.card=t.value;scheduleSave();render();}}return;}
   if(t.dataset&&t.dataset.act==='addspotreq'){const v=t.value;if(v){const bl=findBlock(t.dataset.sid,t.dataset.bid);if(bl&&bl.spots){const sp=bl.spots.find(x=>x.id===t.dataset.spid);if(sp){sp.requires=Array.isArray(sp.requires)?sp.requires:[];if(sp.requires.indexOf(v)<0)sp.requires.push(v);scheduleSave();render();}}}return;}
+  if(t.dataset&&t.dataset.act==='setentrycard'){const bl=findBlock(t.dataset.sid,t.dataset.bid);if(bl&&bl.entries){const en=bl.entries.find(x=>x.id===t.dataset.eid);if(en){en.card=t.value;scheduleSave();render();}}return;}
+  if(t.dataset&&t.dataset.act==='setentryto'){const bl=findBlock(t.dataset.sid,t.dataset.bid);if(bl&&bl.entries){const en=bl.entries.find(x=>x.id===t.dataset.eid);if(en){en.to=t.value;scheduleSave();render();}}return;}
+  if(t.dataset&&t.dataset.act==='addentryreq'){const v=t.value;if(v){const bl=findBlock(t.dataset.sid,t.dataset.bid);if(bl&&bl.entries){const en=bl.entries.find(x=>x.id===t.dataset.eid);if(en){en.requires=Array.isArray(en.requires)?en.requires:[];if(en.requires.indexOf(v)<0)en.requires.push(v);scheduleSave();render();}}}return;}
   if(!t.dataset||!t.dataset.scope)return;
   if(t.classList&&t.classList.contains('line-ta')){const c=clampLine(t.value);if(c!==t.value)t.value=c;}
   applyInput(t);
