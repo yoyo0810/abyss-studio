@@ -1102,6 +1102,18 @@ function docSecsHtml(){
   });
   return html;
 }
+function sysSecsHtml(){
+  var html='',pre=String(state.sysPre||'').trim();
+  if(pre)html+='<div class="mdl" style="margin-bottom:6px">'+mdLite(pre)+'</div>';
+  (state.sysSecs||[]).forEach(function(sec){
+    html+='<details class="mdl-sec" style="border:1px solid rgba(255,255,255,.12);border-radius:9px;margin:9px 0;overflow:hidden">'
+      +'<summary style="cursor:pointer;padding:11px 15px;font-family:var(--serif,Georgia,serif);font-weight:700;font-size:15px">'+esc(sec.title)+'</summary>'
+      +'<div class="mdl" style="padding:4px 16px 10px">'+mdLite(sec.body||'')+'</div>'
+      +'</details>';
+  });
+  return html;
+}
+function applySysText(text){ var r=docSplit(text); r.secs.forEach(function(x,i){x.id='sy_'+('0'+(i+1)).slice(-2);}); state.sysPre=r.pre; state.sysSecs=r.secs; state.sysDoc=docJoin(r.pre,r.secs); }
 const REI_DEF={name:'レイ',role:'探偵',color:'#e7a948',oneLiner:'記憶“零”の新人マカタン。省エネ毒舌の執行官（名は零＝レイ）',age:'20代後半（推定）',gender:'男性',personality:'飄々として省エネ。情に脆く、謎の前でだけ目の色が変わる。内心ツッコミが絶えない。',tone:'一人称「俺」。短文の毒舌＋内心モノローグ。決め台詞「——その記録、書き換える！」',silhouette:'襟立てロングコート・気だるい猫背・片手ポケット',likes:'ブラックコーヒー、筋の通った話、静かな窓際',dislikes:'嘘、理不尽な記録、朝の早起き',strengths:'観察眼と論理の組み立て。記録より現物を信じる現場主義。土壇場で折れない集中力。',flaws:'労力の出し惜しみ（省エネ癖）。皮肉が先に出て誤解される。重荷を一人で抱え込む。',detail:'魔界で目覚めた記憶ゼロの新人魔界探偵。所長命名のコードネーム「零（レイ）」。【隠された前世】名家ルナ家の使用人ロイ。一家殺害の罪を着せられ処刑された冤罪者で、真犯人は兄ニコラ。死後、令嬢ルナの黒猫に転生して彼女を守り、猫として生涯を終えて魔界へ。記録上の業は「主家一家殺し」（改竄された冤罪記録）、真の業は「真実を残せず死んだこと」。終盤、ルナが飼い猫に付けた名も「零」だったと判明する。',ability:'執行官：客観証拠のみでロジックツリーを確定させる'};
 const SUB_DEF={name:'シエル',role:'助手',color:'#5fd4c4',oneLiner:'猫から魔人化した小生意気な先輩相棒（前世名ルナ。猫の所作が伏線）',age:'見た目10代後半（実年齢不詳）',gender:'女性',personality:'かわいい＆子憎たらしい先輩。気まぐれで自由、実は誰より仲間想い。不意に核心を突く。',tone:'一人称「わたし」。「後輩くん」「先輩命令！」。軽口→たまの真顔。',silhouette:'小柄で身軽・大きなリボン・猫めいた身のこなし',likes:'魚、日向の窓際の席、後輩をからかうこと',dislikes:'水と風呂、朝、留守番',strengths:'場の空気を一瞬で上げる。直感が異様に当たる（＝導き）。度胸と行動力。',flaws:'気まぐれで朝に弱い（猫）。机の物をつい落とす。強がって本心を隠す。',detail:'マカタン事務所の先輩探偵。魔界では最初猫の姿で、冒頭にレイを舐めて起こした案内猫＝彼女。事務所事件の手柄で所長により魔人の姿になる。【隠された前世】ルナ家の一人娘ルナ。一家を殺され、想い人だった使用人ロイを犯人と信じて憎んだ。のちに自身も罪を着せられ死亡し、先に魔界へ。業は「無実の想い人を憎み呪ったこと」と「冤罪のまま散った無念」。袖をふみふみする癖、レイの淹れた茶だけ匂いを確かめない、子守唄のハミング——飼い猫時代の再会の証が散りばめられる。',ability:'冥界能力の行使・矛盾（ツッコミ）の指摘'};
 const CHIEF_DEF={name:'ボードレール',role:'関係者',color:'#9b8cf0',oneLiner:'マカタン事務所の所長。誰も聞いていないポエムの裏で、全部知っている',age:'見た目40代（実年齢不詳）',gender:'男性',personality:'飄々として食えない。回りくどいが、人を見る目は確か。',tone:'一人称「私」。詩的な比喩を多用（例：真実とは湿った葉巻のようなものだ）。',silhouette:'痩身長躯・片眼鏡・シルクハットとマント、手には湿気た葉巻',likes:'葉巻、出来のいい新人、韻を踏むこと',dislikes:'乾燥（葉巻に悪い）、軽率な断罪',strengths:'大局を読む眼と胆力。人材の適性を見抜く。何があっても動じない。',flaws:'肝心なことを黙る。ポエムが長い。葉巻の保管が下手。',detail:'魔界探偵倶楽部＝マカタン事務所の創設者にして所長。【隠された前世】高名な判事。「百の正しい判決と、一つの誤り」——その一つがロイ（レイの前世）の死刑だった。贖罪として、記録を疑う探偵を育てる事務所を創設。初対面でレイの「特別な適性」を見抜いたのは、最初から正体を知っていたから。終盤で明かされ、全行動が再解釈される。',ability:''};
@@ -1154,6 +1166,7 @@ function seed(){
     schema:2,
     designDoc:DESIGN_DOC,
     bridgePlot:BRIDGE_PLOT,
+    sysDoc:'',
     meta:{title:'冥界探偵アビス',tagline:'死者の声は届かない。だから、証拠（ロジック）で語らせる。',logline:'死者視点の再捜査で、現世に埋もれた真実を客観証拠のロジックだけで掘り起こし、魂の無念を清算する本格ミステリ連作。',updatedAt:Date.now()},
     ui:{theme:'dark'},
     bridge:{
@@ -2015,6 +2028,7 @@ let ioText='';
 let insertIdx=null,insertScene=null,dragBid=null,dragSid=null;
 let openEpDetails=new Set();
 let openDesignDoc=false,editDesignDoc=false;
+let openSysDoc=false,editSysDoc=false;
 let openDeductionDoc=true,editDeductionDoc=false;
 let openBridgePlot=false,editBridgePlot=false;
 let seriesOpen=new Set();
@@ -2251,6 +2265,17 @@ function viewSeries(){
   ${openDesignDoc?(editDesignDoc
     ?`<div class="panel" style="padding:14px"><textarea class="io-ta" style="min-height:360px" data-scope="designdoc">${esc(docJoin(state.docPre,state.docSecs))}</textarea></div>`
     :`<div class="panel mdl" style="padding:18px 20px">${docSecsHtml()}</div>`)
+  :''}
+
+  <div class="sec-head" id="ss_sys"><div class="st">ゲームシステム <span class="en">Game System Spec</span></div>
+    <span style="display:flex;gap:8px">
+      ${openSysDoc?`<button class="btn sm ghost" data-act="editsysdoc">${editSysDoc?'閲覧モードへ':'\u270e 編集'}</button>`:''}
+      <button class="btn sm ghost" data-act="togglesysdoc">${openSysDoc?'\u25b4 閉じる':'\u25be 開く'}</button>
+    </span></div>
+  <div class="panel-sub" style="margin-top:-4px">遊びの仕組み（捜査・推理・救済）の仕様書。大項目ごとの開閉式。編集内容は自動保存され、JSONエクスポートにも含まれます。</div>
+  ${openSysDoc?(editSysDoc
+    ?`<div class="panel" style="padding:14px"><textarea class="io-ta" style="min-height:360px" data-scope="sysdoc">${esc(docJoin(state.sysPre,state.sysSecs))}</textarea></div>`
+    :`<div class="panel mdl" style="padding:18px 20px">${sysSecsHtml()}</div>`)
   :''}
   `;
 }
@@ -3234,6 +3259,8 @@ document.addEventListener('click',e=>{
   if(a==='editbridgeplot'){const y=window.scrollY||0;editBridgePlot=!editBridgePlot;render();window.scrollTo(0,y);if(typeof requestAnimationFrame!=='undefined')requestAnimationFrame(()=>window.scrollTo(0,y));return;}
   if(a==='toggledesigndoc'){const y=window.scrollY||0;openDesignDoc=!openDesignDoc;if(!openDesignDoc)editDesignDoc=false;render();if(openDesignDoc){snapAfterRender('ss_doc');}else{window.scrollTo(0,y);if(typeof requestAnimationFrame!=='undefined')requestAnimationFrame(()=>window.scrollTo(0,y));}return;}
   if(a==='editdesigndoc'){const y=window.scrollY||0;editDesignDoc=!editDesignDoc;render();window.scrollTo(0,y);if(typeof requestAnimationFrame!=='undefined')requestAnimationFrame(()=>window.scrollTo(0,y));return;}
+  if(a==='togglesysdoc'){const y=window.scrollY||0;openSysDoc=!openSysDoc;if(!openSysDoc)editSysDoc=false;render();if(openSysDoc){snapAfterRender('ss_sys');}else{window.scrollTo(0,y);if(typeof requestAnimationFrame!=='undefined')requestAnimationFrame(()=>window.scrollTo(0,y));}return;}
+  if(a==='editsysdoc'){const y=window.scrollY||0;editSysDoc=!editSysDoc;render();window.scrollTo(0,y);if(typeof requestAnimationFrame!=='undefined')requestAnimationFrame(()=>window.scrollTo(0,y));return;}
   if(a==='toggledeductiondoc'){const y=window.scrollY||0;openDeductionDoc=!openDeductionDoc;if(!openDeductionDoc)editDeductionDoc=false;render();if(openDeductionDoc){snapAfterRender('ded_head');}else{window.scrollTo(0,y);if(typeof requestAnimationFrame!=='undefined')requestAnimationFrame(()=>window.scrollTo(0,y));}return;}
   if(a==='editdeductiondoc'){const y=window.scrollY||0;editDeductionDoc=!editDeductionDoc;render();window.scrollTo(0,y);if(typeof requestAnimationFrame!=='undefined')requestAnimationFrame(()=>window.scrollTo(0,y));return;}
   if(a==='toggleepdetail'){const y=window.scrollY||window.pageYOffset||0;const opening=!openEpDetails.has(id);if(opening)openEpDetails.add(id);else openEpDetails.delete(id);render();if(opening){snapAfterRender('edt_'+id);}else{window.scrollTo(0,y);if(typeof requestAnimationFrame!=='undefined')requestAnimationFrame(()=>window.scrollTo(0,y));}return;}
@@ -3370,6 +3397,7 @@ function applyInput(t){
   else if(sc==='recipe'){const r=E.recipes.find(x=>x.id===t.dataset.id);if(r)r[f]=val;}
   else if(sc==='tl')E.timelines[f]=val;
   else if(sc==='designdoc')applyDocText(val);
+  else if(sc==='sysdoc')applySysText(val);
   else if(sc==='deductiondoc')E.deductionDoc=val;
   else if(sc==='bridgeplot')state.bridgePlot=val;
   else if(sc==='tlrow'){const ph=t.dataset.phase;const arr=E.timelines&&E.timelines[ph];if(Array.isArray(arr)){const r=arr.find(x=>x.id===t.dataset.id);if(r)r[f]=val;}}
@@ -3590,6 +3618,20 @@ function applyPatch(text){
         state.docSecs.splice(_dk,1); state.designDoc=docJoin(state.docPre,state.docSecs); log.push(tag+' OK：設定書セクション 削除 '+o.id); done++;
       }else if(o.op==='setDocPre'){
         state.docPre=String(o.value==null?'':o.value); state.designDoc=docJoin(state.docPre,state.docSecs); log.push(tag+' OK：設定書の前文を更新'); done++;
+      }else if(o.op==='setSysDoc'){
+        applySysText(String(o.value==null?'':o.value)); log.push(tag+' OK：ゲームシステムを更新（全文・'+state.sysDoc.length+'字）'); done++;
+      }else if(o.op==='setSysSection'){
+        state.sysSecs=state.sysSecs||[]; var _sid=o.id||('sy_'+uid());
+        var _sent={id:_sid,title:String(o.title==null?'':o.title),body:String(o.body==null?'':o.body)};
+        var _sk=state.sysSecs.findIndex(function(x){return x.id===_sid;});
+        if(_sk<0){ var _sat=state.sysSecs.length; if(o.afterId){var _sj=state.sysSecs.findIndex(function(x){return x.id===o.afterId;}); if(_sj>=0)_sat=_sj+1;} state.sysSecs.splice(_sat,0,_sent); log.push(tag+' OK：システム項目 追加「'+_sent.title.slice(0,16)+'」'); }
+        else { state.sysSecs[_sk]=_sent; log.push(tag+' OK：システム項目 置換 '+_sid); }
+        state.sysDoc=docJoin(state.sysPre,state.sysSecs); done++;
+      }else if(o.op==='deleteSysSection'){
+        state.sysSecs=state.sysSecs||[]; var _sdk=state.sysSecs.findIndex(function(x){return x.id===o.id;}); if(_sdk<0)throw new Error('sysSec '+o.id+' なし');
+        state.sysSecs.splice(_sdk,1); state.sysDoc=docJoin(state.sysPre,state.sysSecs); log.push(tag+' OK：システム項目 削除 '+o.id); done++;
+      }else if(o.op==='setSysPre'){
+        state.sysPre=String(o.value==null?'':o.value); state.sysDoc=docJoin(state.sysPre,state.sysSecs); log.push(tag+' OK：ゲームシステムの前文を更新'); done++;
       }else if(o.op==='setBridgePlot'){
         state.bridgePlot=String(o.value==null?'':o.value); log.push(tag+' OK：ブリッジ筋書きを更新（'+state.bridgePlot.length+'字）'); done++;
       }else if(o.op==='setMetaField'){
@@ -3705,6 +3747,7 @@ function doImport(){
   state.bridge=state.bridge||{overview:'',arcs:[]};state.bridge.arcs=state.bridge.arcs||[];
   state.world=state.world||[];state.world.forEach(w=>w.media=w.media||[]);if(typeof state.designDoc!=='string')state.designDoc=DESIGN_DOC;if(typeof state.bridgePlot!=='string')state.bridgePlot=BRIDGE_PLOT;
   if(!Array.isArray(state.docSecs)){var _dr=docSplit(state.designDoc||DESIGN_DOC);state.docPre=_dr.pre;state.docSecs=_dr.secs;}
+  if(!Array.isArray(state.sysSecs)){applySysText(state.sysDoc||'');}
   state.cloud=state.cloud||{};
   await ghLoadTokenAsync();
   state.seriesCast=state.seriesCast||[];state.seriesCast.forEach(c=>ensureCharShape(c));
