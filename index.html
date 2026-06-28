@@ -394,6 +394,29 @@ textarea.line-ta{min-height:0;max-width:22em;overflow-y:hidden;resize:none;line-
 .mdl .mdl-ul{margin:6px 0 10px 18px;padding:0}
 .mdl .mdl-ul li{margin:3px 0}
 .mdl .mdl-hr{border:none;border-top:1px solid var(--line-soft);margin:16px 0}
+.mdl .mdl-pre,.mdl-pre{font-family:var(--mono,monospace);font-size:11.5px;line-height:1.55;white-space:pre;overflow-x:auto;background:rgba(255,255,255,.045);border:1px solid var(--line-soft);border-radius:8px;padding:11px 13px;margin:10px 0}
+.dlv-sec{border:1px solid var(--line-soft);border-radius:10px;margin:12px 0;overflow:hidden}
+.dlv-sum{cursor:pointer;padding:14px 16px;display:flex;align-items:center;gap:10px;font-family:var(--serif);font-weight:700;font-size:16px;list-style:none}
+.dlv-sum::-webkit-details-marker{display:none}
+.dlv-sec>.dlv-sum::before{content:'\25B8';color:var(--ember-soft);font-size:12px}
+.dlv-sec[open]>.dlv-sum::before{content:'\25BE'}
+.dlv-en{font-family:var(--mono);font-size:9px;letter-spacing:.2em;color:var(--faint);text-transform:uppercase}
+.dlv-body{padding:2px 16px 14px}
+.dlv-sub{border:1px solid var(--line-soft);border-radius:8px;margin:8px 0;overflow:hidden}
+.dlv-subsum{cursor:pointer;padding:10px 13px;font-weight:600;font-size:13px;font-family:var(--serif);list-style:none}
+.dlv-subsum::-webkit-details-marker{display:none}
+.dlv-sub>.dlv-subsum::before{content:'\FF0B';color:var(--ember-soft);margin-right:7px;font-size:11px}
+.dlv-sub[open]>.dlv-subsum::before{content:'\FF0D'}
+.dlv-subbody{padding:2px 14px 10px}
+.dlv-list{margin:6px 0;padding:0;list-style:none}
+.dlv-list li{padding:6px 2px;border-bottom:1px dashed var(--line-soft);font-size:13px;line-height:1.6}
+.dlv-list li:last-child{border-bottom:none}
+.dlv-role,.dlv-time,.dlv-en2{font-family:var(--mono);font-size:10px;color:var(--faint)}
+.dlv-time{color:var(--ember-soft);margin-right:4px}
+.dlv-tag{display:inline-block;font-family:var(--mono);font-size:9px;letter-spacing:.1em;padding:1px 6px;border:1px solid var(--line-soft);border-radius:4px;color:var(--muted);margin-right:4px}
+.dlv-sub2{color:var(--muted);font-size:11.5px}
+.dlv-tl-lab{font-family:var(--mono);font-size:10px;letter-spacing:.15em;color:var(--ember-soft);margin:10px 0 2px}
+.dlv-empty{color:var(--muted);font-size:12px;padding:8px 2px}
 .mdl .mdl-table{width:100%;border-collapse:collapse;margin:10px 0;font-size:12px}
 .mdl .mdl-table th,.mdl .mdl-table td{border:1px solid var(--line-soft);padding:6px 8px;text-align:left;vertical-align:top}
 .mdl .mdl-table th{background:var(--surface);font-family:var(--serif);white-space:nowrap}
@@ -522,6 +545,7 @@ const ICONS={
   back:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>',
   copy:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/></svg>',
   dup:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M4 16V6a2 2 0 0 1 2-2h10"/></svg>',
+  deliverable:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 14l2 2 4-4"/></svg>',
 };
 const NAV=[
   {id:'series',ja:'シリーズ',en:'Series'},
@@ -531,10 +555,11 @@ const NAV=[
   {id:'scenes',ja:'シーン',en:'Scenes'},
   {id:'chars',ja:'人物',en:'Cast'},
   {id:'system',ja:'システム',en:'Systems'},
+  {id:'deliverable',ja:'成果物',en:'Deliverable'},
   {sep:true},
   {id:'data',ja:'データ',en:'Data'},
 ];
-const EP_SCOPED=['dash','scenes','chars','system'];
+const EP_SCOPED=['dash','scenes','chars','system','deliverable'];
 const STC=[
   {key:'opening',en:'Opening Image',ja:'オープニング・イメージ',act:1},
   {key:'theme',en:'Theme Stated',ja:'テーマの提示',act:1},
@@ -680,7 +705,7 @@ function blankBeats(){
   return STC.map((b,i)=>({id:'beat_'+uid(),key:b.key,en:b.en,ja:b.ja,act:b.act,phase:'',summary:'',scenario:'',direction:'',experience:'',tension:STC_TEN[i],difficulty:STC_DIF[i],minutes:'',charIds:[]}));
 }
 function blankEpisode(kind,title){
-  return {id:uid(),kind:kind||'その他',title:title||'新規エピソード',logline:'',bridgeNote:'',beats:blankBeats(),scenes:[],cast:[],cards:[],recipes:[],timelines:{past:[],inc:[],post:[]},balance:blankBalance(),deductionDoc:''};
+  return {id:uid(),kind:kind||'その他',title:title||'新規エピソード',logline:'',bridgeNote:'',beats:blankBeats(),scenes:[],cast:[],cards:[],recipes:[],timelines:{past:[],inc:[],post:[]},balance:blankBalance(),deductionDoc:'',walkthrough:''};
 }
 function setBeat(E,key,o){const b=E.beats.find(x=>x.key===key);if(b)Object.assign(b,o);}
 
@@ -1039,6 +1064,7 @@ function mdLite(src){
   const closeUl=()=>{if(inUl){html+='</ul>';inUl=false;}};
   while(i<lines.length){
     const t=lines[i].trim();
+    if(t.startsWith('```')){closeUl();i++;const buf=[];while(i<lines.length&&lines[i].trim()!=='```'){buf.push(lines[i]);i++;}if(i<lines.length)i++;html+='<pre class="mdl-pre">'+esc(buf.join('\n'))+'</pre>';continue;}
     if(!t){closeUl();i++;continue;}
     if(/^-{3,}$/.test(t)){closeUl();html+='<hr class="mdl-hr">';i++;continue;}
     if(t.startsWith('|')){closeUl();const rows=[];while(i<lines.length&&lines[i].trim().startsWith('|')){rows.push(lines[i].trim());i++;}
@@ -1195,6 +1221,395 @@ function seed(){
 }
 
 /* ============================ チュートリアル（第0話）シナリオ ============================ */
+const EP0_WALKTHROUGH = `# EP0 攻略動線 ― チョコレート寝台特急殺人事件
+
+制作フロー③（攻略動線）の成果物。プレイヤーが何を、どの順で操作し、どこで詰まり、どこで気づくか。
+真相は①（trick）、解決ロジックは②（logic／白書）に準拠。本書はそれを「遊びの順番」に落としたもの。
+
+---
+
+## 全体の流れ（チェック用の俯瞰）
+
+EP0攻略フローは、全8ブロック。1本の線でつながっている。
+
+**反転の流れ**
+- B2　ボディガード格下げ（軽い反転）
+- B3　鍵の正体で大反転（最大の見せ場）
+- B4　カメラの穴で犯行時刻を確定＋ボディガードを完全排除（2回目の反転）
+- B5　容疑者2人に絞れず、壁
+- B6　犬の習性で犯人を確定（自力の逆転）
+- B7　推理会議で出し切る
+- B8　救済
+
+**カードの組み立て**
+- B1・B2 は集めるだけ。
+- B3 で初の合成（最大の驚き）。
+- B4・B5・B6 で一段ずつ。B6 で犯人確定。
+- B7 で使い切る。
+
+**伏線の回収**
+- 「鍵にチョコ」　… B1で置く → B3で回収
+- 「カメラの記録」… B2で置く → B3・B4で効く
+- 「犬の習性」　 … B3で出す → B6で決め手
+
+**ツッコミ（誤り→シエルが指摘）の段階**
+- B3 犬が直接運んだ → B4 暗闇こそ犯行 → B6 怪しそうだから犯人 → B7 本番で対応
+- だんだん難しくなる。推理会議の予行になる。
+
+**観測ツール**
+- 修復イメージアウトを B3 で1回だけ味見。EP0では他で出さない（フル機能は次の話へ温存）。
+
+**テーマの通し**
+- B5「日常の中に犯人」の入口 → B6で確定 → B8「一日の尊さ」に着地。
+
+---
+
+## ブロック1：密室を調べる
+
+**狙い**
+基本操作（調べる→カードが増える）を覚えてもらう。同時に「ボディガードが怪しい」という思い込みを、プレイヤー自身に持たせる。
+
+**提示情報**
+- 現場に入った直後、自動で1枚絵と短い文を出す。
+- 内容：鍵のかかった個室。令嬢すずが撲殺。床に、チョコのついた“もう1本の鍵”。
+- 状況パネルで2点を明示。
+  - この錠は、鍵でしか開け閉めできない（内側のつまみが無い）。
+  - 鍵は2本だけ。室内の鍵Aと、ボディガードが持つ鍵B。
+- 誤解を誘う一文：「扉の前を固めていたのは、ボディガードだ」。
+
+事件の状況（図）。
+
+\`\`\`
+  [ 廊下 ] ──扉(施錠)── [ 室内 ]
+   ● ボディガード         ・ すず（撲殺）
+    （鍵B を所持）         ・ 落ちている鍵A（チョコが付着）
+
+  鍵は2本だけ：  鍵A ＝ 室内  ／  鍵B ＝ ボディガード
+  錠の仕組み：   鍵でしか開け閉めできない（内側のつまみ無し）
+
+  → 第一印象：扉前にいて鍵Bを持つボディガードが、一番怪しい
+\`\`\`
+
+**操作と結果**
+- 調べる〔扉・錠〕→ カード〔施錠された密室〕。
+- 調べる〔扉・錠〕→ カード〔鍵はボディガードが持つ〕。
+- 調べる〔室内の床〕→ カード〔室内に鍵が落ちていた〕。
+- 調べる〔落ちている鍵〕→ カード〔鍵にチョコが付着〕。
+- 話す〔すず〕→ すず自身も鍵の異常を知らない（空白として提示。カードにはしない）。
+- この段階では、まだカードを組まない。集めるだけ。
+
+**推理ポイント**
+- 「鍵は2本だけ。なのに室内に鍵がある＝内部の者の仕業では？」と、密室の不可能さを体感させる。
+- 「鍵Bを持ち、扉前にいたボディガードが一番怪しい」という誤った第一印象を、自分で抱かせる。
+- 「鍵にチョコ」を、意味の分からない“浮いた手がかり”として記憶に残す（後の大反転の伏線。ここでは意味を伏せる）。
+
+**ゲーム性**
+- 「調べる→カードが増える」の基本ループ習得。チュートリアル誘導つき。
+- “浮いた手がかり（チョコ）”で、小さな引っかかりを残す。
+- フェアな誤誘導。情報はすべて正しいが、並べ方で自然にボディガードへ目が向く。
+
+---
+
+## ブロック2：監視カメラで、ボディガードを「犯人候補」から外す
+
+**狙い**
+B1で持たせた「ボディガードが怪しい」を、カメラ記録で崩す。プレイヤー初体験のどんでん返し。
+
+**提示情報**
+- 廊下の監視カメラが、被害者の部屋の扉を映している。
+- カメラの出入り記録（一覧）。
+  - 19時：ウェイターが入室
+  - 20時：メイドが入室（掃除）
+  - 21時：ボディガードが扉ごしに会話（部屋には入っていない）
+  - 23時：犬が入室
+- 見せどころ2点。
+  - 21時、ボディガードは会話しただけ＝入っていない。
+  - 23時に入ったのは犬＝彼は扉を開けただけ。
+- 記録の上では、ボディガードが部屋に入った回がゼロ。
+- 21〜23時は記録が空白（停電のため）。意味＝犯行時刻はまだ伏せる。「次に追う謎」として置く。
+
+**操作と結果**
+- 調べる〔廊下〕→ カード〔監視カメラ〕。
+- 調べる〔監視カメラ〕→ カード〔カメラの記録〕。
+- 話す〔ボディガード〕→「扉は開けたが、中には入っていない。犬を入れただけだ」。記録と一致。
+- このブロックも、まだカードは組まない。記録を読んで思い込みが崩れる体験に絞る。
+- 結果：「ボディガードが怪しい」が消える。「停電中の空白に、何があったのか」という新しい謎が残る。
+
+**推理ポイント**
+- 「鍵を持つ＝犯人」の早とちりを、カメラ記録でプレイヤー自身に打ち消させる。
+- 打ち消し方が肝：時間（アリバイ）ではなく「入室記録ゼロ」（行動）で外す。撲殺は室内でしか起きない→入っていない人には不可能。
+- ただし無実確定ではなく「最有力から格下げ」。空白が残るので、まだ完全には消さない（完全な無実はB4）。
+- 崩しても解決しない。「鍵を持つ人すら入っていない密室」になり、謎が深まる。「では、どうやって？」と前のめりにさせる。
+
+**ゲーム性**
+- カメラ記録という「一覧で読む証拠」を、自分で読み解く。「会話だけ」「入ったのは犬」を拾わせる。
+- 思い込みが崩れる瞬間に演出。小さな達成感。
+- 「停電の空白」という次の引っかかりで、没入を切らさない。
+
+---
+
+## ブロック3：鍵の正体 ― 密室は「後から」完成した
+
+**狙い**
+「室内に鍵がある＝内部の者の仕業か自殺」という大前提を崩す。鍵は、後から犬が運び込んでいた。密室は、犯行のあとに、ひとりでに完成した。これが事件の核心。あわせて、観測ツール（修復イメージアウト）を初めて味見させる。
+
+**提示情報**
+- B2で残った謎：「鍵を持つ人すら入っていない。なのに、なぜ密室ができた？」。
+- ラウンジ車のチョコレート製造機（「誰でも短時間で作れる」）に触れさせる。
+- すずに犬の話を聞ける。決め台詞：「あの子、チョコだけは我慢できないの。でも、その場では食べない。咥えたら、必ず自分の寝床まで運んでから舐めとるの」。
+- 現場の鍵を、もう一度「別のやり方で調べられる」と示す（観測ツールへの入口）。
+
+開始時点の状況（図）。プレイヤーが「謎の入口」で見ている状態。
+
+\`\`\`
+  [室内] すず（撲殺）／ 落ちている鍵A（チョコ付着）
+  [扉]   施錠されている
+  [人]   鍵を持つボディガードすら、室内に入っていない（B2で判明）
+
+  ？ 謎：誰も入れないのに、なぜ密室の中に鍵があるのか
+\`\`\`
+
+**操作と結果**
+- 調べる〔ラウンジ車の製造機〕→ カード〔チョコレート製造機〕。
+- 話す〔すず〕→ カード〔犬の習性〕（決め台詞つき）。
+- 〔観測ツール味見〕使う〔修復イメージアウト〕→〔鍵〕→ カード〔鍵は何かに包まれ成形されていた〕（仮称）。答えではなく、きっかけ。「何かに包まれた形」までを見せ、チョコとは言わない。
+- 1段目の合成：〔鍵にチョコが付着〕×〔チョコレート製造機〕→ 仮説〔鍵はチョコに包まれていた〕。味見カードが後押しになる。
+- 誤った道（ツッコミ）：「犬が鍵を直接くわえて運んだ」→ シエル「硬い鍵を、ずっとくわえていられる？」→ 亀裂。
+- 2段目の合成（大反転）：〔鍵はチョコに包まれていた〕×〔犬の習性〕→ 仮説〔鍵入りチョコを犬が部屋へ運んだ〕。
+
+このトリックの肝＝「密室が後から完成する」流れ（図）。2段目の合成で、プレイヤーが理解する内容。
+
+\`\`\`
+ 21-23時  メイドが侵入 → 撲殺 → 鍵Aを持ち出す → 外から施錠
+    │      ▼ この時点：室内に鍵なし ＝ 密室はまだ未完成
+    │      メイドが鍵Aをチョコで包む
+    ▼
+ 23時     犬が入室（ボディガードが扉を開ける）
+    │      → 鍵入りチョコを部屋へ運ぶ → 完食
+    │      ▼ 食べかす無し。金属の鍵Aだけが室内に残る
+    ▼
+ 結果     室内に鍵Aが出現 ＝ 密室が“ひとりでに”完成
+          （犯人は鍵を持つ必要がない。鍵を持つ人はむしろ作れない側）
+\`\`\`
+
+**推理ポイント**
+- 最大の驚きを、プレイヤー自身の手で組ませる。「室内に鍵＝内部の仕業」を、自分でひっくり返す快感。
+- 二段の階段。①「鍵になぜチョコ？」を製造機と結ぶ（小さな発見）。②「では誰が室内へ？」を犬の習性と結ぶ（大きな発見）。
+- 観測ツールは、一歩目の後押しに置く。道具なしでも解けるが、使うと確信が増す。「力は、答えではなく気づきを早める」を体に入れる。
+- 感情：鍵を運んだのは、被害者が最も愛した犬。犯人は、被害者の“犬への情”を利用して密室を作った。ぞっとする後味。
+- B1で浮かせた「鍵にチョコ」を、ここで回収。
+
+**ゲーム性**
+- 初めて魔界探偵の力を使う高揚を、最大の見せ場に重ねる。ただし1回だけ。フル機能は次の話へ温存。
+- 初めての本格的なカード組み立てを、一番の山場で体験。「カード×カード＝仮説」の手応え。
+- 誤った道（犬が直接運んだ）で、ツッコミ機能を学ぶ。推理会議の予行。
+- 大反転の演出（現場が組み直される映像など）。EP0で最も盛り上がる場面。
+- B2のカメラ記録が、ここで意味を持つ。「あれはこういうことか」という気持ちよさ。
+
+---
+
+## ブロック4：犯行時刻 ― 鉄壁のカメラに、2時間の穴
+
+**狙い**
+「ずっと監視されていたはず」を崩す。カメラに2時間の空白があった。犯行時刻を21〜23時に絞る。同時に、B2で格下げしたボディガードを、ここで完全に容疑から外す。
+
+**提示情報**
+- B3で「犬が23時に鍵を運んで密室完成→殺されたのは23時より前」と分かっている。では、いつ殺されたか。
+- B2のカメラ記録を再掲。21時、ボディガードが扉ごしに会話＝すずは21時に生存。→殺されたのは「21時より後、23時より前」。
+- 現場を時間ごとに見比べられるようにする。カメラの状態が時間で変わると気づかせる。
+  - 21時の会話まで：カメラは動作（記録あり）。
+  - 直後〜23時：カメラは停止（停電の混乱に乗じ、メイドが細工）。
+  - 23時：カメラ復帰、犬の入室を記録。
+- 新しい手がかり2つ。
+  - 停電中、ボディガードは持ち場を離れ、車掌と先頭車へ（扉前は無人）。
+  - 長いトンネル内で「外から人は入れない＝安全」と、ボディガードは判断していた。
+
+カメラの「2時間の空白」と犯行時刻（図）。
+
+\`\`\`
+ 〜21時    カメラ：作動中
+    │       21時 ボディガードが扉ごしに会話 ＝ すずは生存（記録あり）
+    ▼
+ 21-23時   カメラ：停止（停電の混乱に乗じ、メイドが細工）
+    │       明かりは戻っている。でも映っていない＝この2時間が空白
+    │       ボディガードは持ち場を離れ、先頭車へ（扉前は無人）
+    │       ▼ この空白の中で犯行
+    ▼
+ 23時      カメラ：復帰 → 犬の入室を記録
+
+ → 犯行時刻は 21〜23時。ボディガードは先頭車でアリバイ＝容疑から外れる
+\`\`\`
+
+**操作と結果**
+- 時間を切り替えて調べる〔現場：21時前／21〜23時／23時〕→ カメラの状態の変化を確認。21〜23時だけ記録が無いと気づく。
+- 話す〔ボディガード〕または 調べる〔先頭車〕→ カード〔ボディガードは21〜23時、先頭車にいた〕。
+- 合成：〔カメラの記録（21時に生存）〕×〔カメラが止まっていた21〜23時〕×〔ボディガードは21〜23時 離席〕→ 仮説〔犯行時刻は21〜23時〕。
+- 誤った道（ツッコミ）：「真っ暗な停電の瞬間こそ犯行」→ シエル「21時には生きていた。それに真っ暗じゃ、細かい細工も犬の誘導もできない」→ 亀裂。正解は「明かりが戻り、カメラだけ止まっていた21〜23時」。
+- 結果：犯行時刻が21〜23時に定まる。ボディガードのアリバイが成立し、完全に容疑から外れる。「鉄壁に見えたカメラに2時間の穴」＝2回目の反転。
+
+**推理ポイント**
+- 「ずっと監視されていたはず」を崩す。カメラに穴があり、扉を守る人もその間いなかった。
+- 「同じ現場でも、時間が違えば見えるものが違う」という、この作品の捜査の基本を、ここで体で覚えさせる。
+- 「真っ暗だから犯行」という早とちりを、わざと一度させて正す。本当の狙いは「映っていないこと」。
+- B2からの宿題「ボディガードはシロか」を、ここで回収。
+
+**ゲーム性**
+- 時間を切り替えて見比べる遊びが、ここで本番になる。3つの時間を行き来し、空白を自分で見つける。
+- 2回目の反転の演出。「記録なし」の空白が、目に見える形になる瞬間。
+- ボディガードが完全に消える、ひと区切りの達成感。
+
+---
+
+## ブロック5：壁 ― 容疑者が2人に絞れた。でも、決め手がない
+
+**狙い**
+犯行時刻が分かったので、容疑者を絞る。2人まで絞れる。でも、そこから1人に決められない。わざと行き詰まらせ、「最後の決め手は何だ？」と前のめりにさせる。B6への、ため。
+
+**提示情報**
+- B4で「犯行時刻は21〜23時」。ここから絞る。
+- 絞り込みの条件は2つ。
+  - 条件A：この手口を使えるか（チョコ製造機を扱えるか）。
+  - 条件B：21〜23時に、自由に動けたか（アリバイがないか）。
+- 製造機を扱えるのは4人：ウェイター、メイド、ボディガード、不審な客。
+- 21〜23時にアリバイがないのは2人：メイド、不審な客（ボディガードは先頭車でアリバイあり。ウェイターも別の証言で動けない）。
+- 両方を満たすのは「メイド」と「不審な客」。
+
+2つの条件の重なり（図）。
+
+\`\`\`
+  条件A：チョコ製造機を扱える     → ウェイター／メイド／ボディガード／不審な客
+  条件B：21〜23時にアリバイ無し   → メイド／不審な客
+
+  AとB 両方を満たす ＝ ［ メイド ］ ［ 不審な客 ］ の2人
+
+  → ここで手がかりが尽きる。2人を1人に分ける決め手が、まだ無い（＝壁）
+\`\`\`
+
+**操作と結果**
+- 調べる/話す〔製造機まわり・各人物〕→ カード〔製造機を扱えるのは4人〕。
+- 調べる/話す〔各人の21〜23時の居場所〕→ カード〔この時間にアリバイがないのはメイドと不審な客〕。
+- 合成：〔製造機を扱える4人〕×〔アリバイがない2人〕→ 仮説〔容疑者はメイドか不審な客〕。
+- 結果：容疑者が2人に確定。だが、ここで手がかりが尽きる。2人を分ける決め手が、まだ無い＝壁。
+
+**推理ポイント**
+- 「条件を重ねて絞る」という、推理の基本の型を覚えさせる。AとB両方を満たす人。
+- そのうえで、あえて「2人までしか絞れない」状態を体験させる。順調に来たのに、最後の1人が決まらない引っかかり。
+- 「製造機も使えて、時間も空いている。条件は同じ。なら2人を分けるものは何だ？」と考えさせる。これがB6の答え（犬の習性を知るか）への入口。
+- 答えはまだ出させない。問いだけを、くっきり残す。
+
+**ゲーム性**
+- 「行き詰まり」を、ゲームとして見せる。これまでは組めば進んだが、ここでは組んでも進まない。この変化が緊張を生む。
+- ここに「迫る悪い奴ら」の緊張を足せる（要・最終判断）。行き詰まる間、すずの魂が少しずつ揺らぐ描写を入れる。手詰まりを「時間との戦い」に変える。
+- 2人が並んだまま決着がつかない絵で、「あと一歩」の感覚を視覚化する。
+
+---
+
+## ブロック6：逆転の糸口 ― 2人を分ける、たった一つの条件
+
+**狙い**
+行き詰まりを、プレイヤー自身の気づきで破る。2人を分ける条件は「犬の習性を知っているか」。これに気づかせ、犯人をメイド1人に確定させる。
+
+**提示情報**
+- B5の問いを、もう一度はっきり見せる。「条件は同じ2人。なら、何が2人を分ける？」。
+- 視点を手口に戻させる。この密室は、犬にチョコを運ばせて作った。実行するには、何を知っている必要があるか。
+- 鍵になる事実：犬は「自室で完食する」特殊な習性を持つ。これを知らなければ、「犬に運ばせる」手口は組み立てられない。
+- 2人の素性を見比べさせる。
+  - 不審な客：偶然乗り合わせた客。犬とも被害者とも、日常の接点がない。
+  - メイド：日頃から客室に出入りし、犬の世話もしていた。
+
+**操作と結果**
+- 調べる/話す〔不審な客〕→ カード〔不審な客は偶然の客。犬の習性を知らない〕。
+- すでに持っているカード〔犬の習性〕を、ここで効かせる。
+- 合成（最後）：〔容疑者はメイドか不審な客〕×〔犬の習性は、日常そばにいた者しか知らない〕→ 仮説〔犯人はメイド〕。
+- 誤った道（ツッコミ）：「不審な客が怪しい。見るからに怪しいから」→ シエル「見た目は関係ない。この手口は、犬の習性を知らないと作れない」→ 亀裂。
+- 結果：犯人がメイド1人に確定。行き詰まりが破れる＝ためを経た逆転。
+
+**推理ポイント**
+- 答えを教えず、最後の一歩を自分で踏ませる。「2人を分けるのは、犬の習性を知るかどうか」に自力で到達。EP0で一番「自分で解いた」場面。
+- 「怪しそうな人」ではなく「手口を実行できる人」を選ぶ。いかにも怪しい囮（不審な客）を、論理で外す。
+- ぞっとさせる。犯人は、見るからに怪しい客ではなく、被害者が毎日顔を合わせ、犬の世話まで任せていた、一番身近な人だった。
+
+**ゲーム性**
+- 「行き詰まり→自分の気づきで突破」という、推理ものの一番気持ちいい流れ。B5でためたぶん、解放感が強くなる。
+- 最後のカード組み立てを、犯人確定という一番重い場面に置く。達成感を最大に。
+- 「不審な客」を論理で外す、軽い意外性。一番怪しい奴が犯人ではない、という締め。
+
+---
+
+## ブロック7：推理会議 ― 組み上げた推理で、犯人を追い詰める
+
+**狙い**
+完成した推理を、ドラマとして出し切る。相手の反論を、自分のカードで一つずつ崩す。やり直し前提の練習回として、推理会議の遊び方を覚えさせる。
+
+**提示情報**
+- 場面が変わる。捜査から、推理を発表する「会議」へ。現世のもしもの物語として、犯人を問い詰める。
+- 揺さぶり役（ノエル）が反論してくる。正しいカード・仮説をぶつけて答える。
+- 心象ゲージを見せる。間違えると減り、0でやり直し。チュートリアルなのでヒントつき。
+
+**操作と結果**
+- 会議は白書の順（密室→時刻→犯人）に沿う。ノエルの主張を順に崩す。
+  - 反論1〔密室〕「物理的に密室は破れない＝部外者には不可能」→ ぶつける〔鍵入りチョコを犬が部屋へ運んだ〕。物理で破ったのではなく、後から鍵を戻したと示す。
+  - 反論2〔運搬〕「どうやって鍵を室内へ？」→ ぶつける〔犬の習性〕＋すずの証言。
+  - 反論3〔時刻・逆転〕「真っ暗な停電のときこそ犯行だ」→ ぶつける〔犯行時刻は21〜23時〕。21時に生存、暗闇では細工できない。
+  - 反論4〔犯人〕「鍵を持つボディガードが怪しい」→ 犬が運ぶ手口だから鍵を持つ必要がない＋アリバイ＋〔犯人はメイド〕。
+- 誤ったカードをぶつけると、心象ゲージが減り、切り返される。ヒントを見て選び直す。
+- 結果：すべての反論を崩すと、犯人＝メイドが揺るがなくなる。クリア。クリア時のゲージで推理ランク。
+
+**推理ポイント**
+- 集めて組んだものを、「相手の反論に合わせて、正しい一枚を出す」形にする。推理を、使える武器として実感させる。
+- B3・B4・B6のツッコミ練習が、ここで生きる。予行が本番につながる。
+- やり直し前提。間違えても、ヒントで立て直せる安心感。
+
+**ゲーム性**
+- 反証バトル：相手の主張のどこに、どのカードをぶつけるか。タイミングと選択。
+- 心象ゲージの緊張と、ヒントの救済の往復。
+- 捜査とは違う、対決の熱。EP0の感情のピークの一つ。
+
+---
+
+## ブロック8：解決・救済・現世への開示 ― 一日の尊さに気づく
+
+**狙い**
+謎解きの決着を、魂の救済に直結させる。作品の核（現世の一日・一瞬の尊さ）を、すずの魂とともに必ず通す。最後に、現世へ真実を伝えるかを選ばせ、余韻を残す。
+
+**提示情報**
+- 決め台詞とともに、誤った記録を正す。「――その記録、書き換える！」。部外者には不可能とされた記録（＝冤罪の嘘）を、真相に上書きする。
+- 事件空間が、本来あるべき解決の姿に組み直される。事件が、霊的に閉じる。
+- すずの無念（＝謎という鎖）が解ける。すずが苦しんでいたのは「誰に殺されたか分からない」だけではない。「一番信頼した日常の中に、自分を憎む人がいた」という痛み。
+- すずが最後に気づくもの：失って初めて分かる、ありふれた一日の重さ。犬と過ごした時間。何気ない食事。守られていた日々。
+- すずの魂が透き通り、昇天する。
+
+**操作と結果**
+- 書き換えは演出として見せる（プレイヤーの最後のひと押しで発動）。
+- 第2層の選択：真相を現世に伝えるか、伝えないかを選ぶ。
+- メイドの背景にも触れる：家業を甘宮家に潰され、家族を失った過去。犯人にも事情があった。「伝えれば、みんなが幸せになる」とは限らない葛藤を残す。
+- 結果：すずの魂は必ず救われる（第1層）。現世がどうなるかは、選択しだい（第2層）。
+
+**推理ポイント（ここは感情の回収）**
+- 解いてきたものが、一人の魂の救いに結びつくと実感させる。
+- 「謎を解く快感」と「魂を救う重み」を、必ずひと続きにする。作品の約束を、EP0で初体験させる。
+- 開示の選択で、「真実は、いつも誰かを幸せにするのか」を持ち帰らせる。答えは与えない。
+
+**ゲーム性**
+- 書き換えの演出。誤った記録が、真相に塗り替わる見せ場。シリーズの決め台詞の初お披露目。
+- 救済の演出。魂が透き通り、昇っていく。静かで強いカタルシス。
+- 開示選択＝プレイヤーの意思表示。スコアや、後の話に響く種にできる（縦糸C）。
+
+---
+
+## 補足メモ（未確定・要判断）
+
+1. 「迫る悪い奴ら」の緊張（すずの魂が少しずつ揺らぐ描写）を、どこから・どの強さで入れるか。
+   現案：B5の後半から軽く入れる。最終判断は保留。
+
+2. B4の「停電」と「カメラ停止」を分ける整理。
+   現案：停電は短時間。メイドの細工で、カメラだけが21〜23時に止まる。明かりは戻っている。
+   これで、データ内の食い違い（犯行は停電中か復旧後か）が解消する。
+   正式採用なら、後でカードの言葉を整える（例：「停電中」→「カメラが止まっていた間」）。
+
+3. カード名は、会話で使った略称のまま（〔監視カメラ〕等）。
+   正式名（「被害者の部屋前の監視カメラ」等）への統一は、後でまとめて行う。
+`;
 const TUT_TRICK='【鍵と扉】客室の錠は内外とも“鍵でしか”施解錠できないデッドボルトで（内側のつまみ無し）、鍵はこの2本のみ。普段はボディガードが扉前を固めるため被害者は施錠せず、扉は閉まっていても無施錠で、就寝時にだけ自分の鍵Aで施錠する習慣だった。\n\n【最大の謎】施錠された室内に、チョコのついた“もう1本の鍵”が落ちていた。鍵は2本——被害者の部屋の鍵（鍵A）と、ボディガードが持つ予備（鍵B）のみ。ゆえに自殺か内部犯行に見え、終始扉前にいたボディガードが最有力に映る。真相は、鍵Aが「犯行の後に」チョコで包まれて室内へ運び込まれた時間差トリックである。\n\n【下準備】犯人＝メイドは客室係として日頃から被害者の部屋と愛犬の世話に出入りしており（20時の清掃もその一環＝カメラ記録は「20時メイド入室」のみ）、扉の錠の仕組み・鍵Aの定位置・犬の習性を熟知していた。\n\n【犯行】ダイニングで始まった停電は、長いトンネル内で復旧が進まないうえ、乗務員のメイドが配電に細工して引き延ばしたため、20時台後半から23時のトンネル脱出まで監視カメラの停止と暗闇が続いた。ボディガードは21時まで持ち場を守り扉越しに生存を確認するが、停電が長引く中「トンネルに閉じた車内なら外部の脅威はない」と判断し、車掌の要請で先頭車の復旧対応へ向かう——メイドが狙ったのは、この“扉前が無人になる空白”である。被害者は護衛を頼り就寝するまで施錠しない習慣で、その前に殺された。メイドは暗闇の中、無施錠の扉から入室して撲殺し、室内の定位置にあった鍵Aを抜き取り、退室して鍵Aで外から施錠する。鍵は施錠に“裸”のまま使う必要があるため、この時点で鍵Aはメイドの手元、鍵Bはボディガード——室内に鍵のない、まだ不完全な密室。\n\n【密室の完成（時間差）】扉を施錠した後で、メイドはチョコレート製造機（誰でも短時間で作れる）を使い、役目を終えた鍵Aを丸ごとチョコで包んで成形する。被害者の愛犬には“チョコを咥えてもその場では口にせず、必ず自分の寝床＝被害者の部屋へ運んでから舐めとる”という習性があった。23時、ボディガードは日課で犬を部屋へ入れる。停電後に扉が施錠されていても、彼は「怯えた被害者が就寝前に自分で施錠した」と自然に受け取り、鍵Bで解錠→犬を入れ→鍵Bで再施錠する（暗がりのため室内へは入らず、異変にも気づかない＝カメラにも入室は映らない）。犬の世話をするメイドが直前に与えた“鍵A入りチョコ”を、犬は寝床へ運んで食べ尽くす。床に食べかすや包みは残らない一方、金属の鍵Aの溝にはチョコの跡がわずかに残る——これが唯一の綻びにして決定的な手がかりとなる。こうして犯行の後から、密室が“ひとりでに”完成する。\n\n【驚きとカタルシスの核】凶器ならぬ“鍵”を室内へ運んだのは、被害者が誰より愛した飼い犬だった。犯人は人を介さず、被害者自身の「愛犬への情」と「犬の習性」を利用して密室を仕立てる。最有力に見えたボディガードはむしろ「鍵を室内へ戻す扉を開けた」無自覚の協力者にされており、疑いの矢印が一八〇度反転する。';
 const TUT_LOGIC='※チュートリアルとして「手がかりを組み合わせる→意外な事実が反転する→最後の一点で犯人が確定する」快感を順に体験させる構成。\n\n① 提示される“不可能”：施錠された密室。鍵は室内（鍵A）とボディガードの予備（鍵B）の2本のみ。プレイヤーはまず「鍵Bを持ち扉前にいたボディガードが怪しい」とミスリードされる。\n② 一度目の反転：監視カメラはボディガードが室内へ入っていないと示す。最有力が崩れ、「では誰がどうやって密室を？」と謎が深まる。\n③ 鍵の正体（合成1→合成2）：『チョコのついた鍵』＋『チョコ製造機（誰でも作れる）』→「鍵はチョコに包まれていた」。さらに＋『犬は自室で痕跡なくチョコを完食する習性』→「鍵入りチョコを犬が室内へ運んだ」。“鍵は最初から室内にあった”という前提が覆る最大の驚き＝密室は犯行の後から作れる。\n④ 犯行時刻（合成3）：21時の会話で被害者は生存。カメラに出入りはなく、長く続いた停電の暗闇だけが空白。しかもその間ボディガードは離席＝扉前は無人。→「犯行時刻は21〜23時（停電中〜トンネル脱出）」。鉄壁に見えた監視に穴が空く二度目の反転。\n⑤ 絞り込み（合成4）：トリックの実行条件は『製造機を使える』×『犯行時刻にアリバイがない』。前者は4名（ウェイター・メイド・ボディガード・その他客）、後者は2名（メイド・その他客）→重なるのはメイドとその他客。\n⑥ 最後の一点＝確定とカタルシス（合成5）：その他客は偶然乗り合わせた客で、被害者の飼い犬が“自室でチョコを完食する習性”を知り得ない。この密室は犬の習性を熟知する者にしか作れない——日々客室に出入りし犬を見ていたメイドだけが該当する。被害者が最も信頼し愛した日常（愛犬・客室係）の只中に犯人がいた、という反転で幕が下りる。';
 const TUT_DOC_VER=50;
@@ -2200,6 +2615,7 @@ function render(){
   else if(route==='scenes')v.innerHTML=viewScenes();
   else if(route==='chars')v.innerHTML=viewChars();
   else if(route==='system')v.innerHTML=viewSystem();
+  else if(route==='deliverable')v.innerHTML=viewDeliverable();
   else if(route==='data')v.innerHTML=viewData();
   const m=$('#main');if(m&&!(route==='scenes'&&currentScene))m.scrollTop=0; if(route!=='scenes')window.scrollTo(0,0);
   autosizeAll(); if(typeof requestAnimationFrame!=='undefined')requestAnimationFrame(autosizeAll);
@@ -2304,6 +2720,36 @@ function viewSeries(){
   :''}
   `;
 }
+function viewDeliverable(){
+  const E=ep();const i=epIndex();
+  const det=(t,en,body,open)=>`<details class="dlv-sec"${open?' open':''}><summary class="dlv-sum"><span class="dlv-t">${t}</span>${en?`<span class="dlv-en">${en}</span>`:''}</summary><div class="dlv-body">${body}</div></details>`;
+  const sub=(t,body)=>`<details class="dlv-sub"><summary class="dlv-subsum">${t}</summary><div class="dlv-subbody">${body}</div></details>`;
+  const empty=t=>`<div class="dlv-empty">${t}</div>`;
+  const md=s=>`<div class="mdl">${mdLite(s)}</div>`;
+  const castList=E.cast.length?('<ul class="dlv-list">'+E.cast.map(c=>`<li><b>${esc(c.name||'')}</b>　<span class="dlv-role">${esc(c.role||'')}</span>${c.oneLiner?`<br><span class="dlv-sub2">${esc(c.oneLiner)}</span>`:''}</li>`).join('')+'</ul>'):empty('登場人物は未登録です。');
+  const tlOne=(lab,arr)=>`<div class="dlv-tl-lab">${lab}</div>`+((Array.isArray(arr)&&arr.length)?('<ul class="dlv-list">'+arr.map(x=>`<li><span class="dlv-time">${esc(x.time||'')}</span>${esc(x.event||'')}</li>`).join('')+'</ul>'):empty('（未登録）'));
+  const tl=E.timelines||{};
+  const truth=sub('人物（被害者・犯人・関係者）',castList)+sub('トリック',E.trick?md(E.trick):empty('未記入'))+sub('時系列（出来事）',tlOne('発生前',tl.past)+tlOne('発生',tl.inc)+tlOne('発生後',tl.post));
+  const cardName=id=>{const c=E.cards.find(x=>x.id===id);return c?c.name:id;};
+  const recipeHtml=E.recipes.length?('<ul class="dlv-list">'+E.recipes.map(r=>`<li>${esc(r.note||(cardName(r.aId)+' × '+cardName(r.bId)))} → <b>${esc(cardName(r.outId))}</b></li>`).join('')+'</ul>'):empty('合成レシピは未登録です。');
+  const logicS=sub('反転の流れ',E.logic?md(E.logic):empty('未記入'))+sub('ロジックツリー（魔捜白書）',E.deductionDoc?md(E.deductionDoc):empty('未記入'))+sub('合成レシピ',recipeHtml);
+  const wt=(E.walkthrough&&E.walkthrough.trim())?mdDoc(E.walkthrough):empty('攻略動線は未記入です。「俯瞰」タブ → エピソードの「攻略動線」欄から記入できます。');
+  const beatHtml=(E.beats&&E.beats.length)?('<ul class="dlv-list">'+E.beats.map((b,k)=>`<li><b>${k+1}. ${esc(b.ja||b.key||'')}</b>${b.en?` <span class="dlv-en2">${esc(b.en)}</span>`:''}${b.summary?`<br><span class="dlv-sub2">${esc(b.summary)}</span>`:''}</li>`).join('')+'</ul>'):empty('ビートは未登録です。');
+  const cardsHtml=E.cards.length?('<ul class="dlv-list">'+E.cards.map(c=>`<li><span class="dlv-tag">${esc(c.type||'')}</span>${esc(c.name||'')}${c.source?`<br><span class="dlv-sub2">${esc(c.source)}</span>`:''}</li>`).join('')+'</ul>'):empty('カードは未登録です。');
+  const scenesHtml=E.scenes.length?('<ul class="dlv-list">'+E.scenes.map(s=>`<li><b>${esc(s.title||'')}</b>${s.summary?`<br><span class="dlv-sub2">${esc(s.summary)}</span>`:''}</li>`).join('')+'</ul>'):empty('シーンは未登録です。');
+  const five=sub('カード一覧（'+E.cards.length+'）',cardsHtml)+sub('シーン一覧（'+E.scenes.length+'）',scenesHtml);
+  return epbar()+`
+  <div class="vhead"><div class="kicker">Deliverable · EP${String(i+1).padStart(2,'0')} ${esc(E.kind)}</div>
+    <h2>成果物（チェック用）</h2>
+    <p>制作フロー①〜⑤を、エピソードごとにまとめて確認します。各項目は開閉式・表示専用です（編集は各タブで行います）。</p></div>
+  ${det('① 事件の真相','Truth',truth,true)}
+  ${det('② 解決ロジック','Logic',logicS,false)}
+  ${det('③ 攻略動線','Walkthrough',wt,false)}
+  ${det('④ ビート（感情）','Beats',beatHtml,false)}
+  ${det('⑤ セリフ・画面・カード','Script & Cards',five,false)}
+  `;
+}
+
 function viewWorld(){
   const worldRows=state.world.map(w=>worldItem(w)).join('');
   return `
@@ -2320,7 +2766,7 @@ function epRow(e,i){
   const active=e.id===state.activeEp;
   const det=openEpDetails.has(e.id);
   const fb=beatsFilled(e),sc=e.scenes.length,cc=e.cast.length,kc=e.cards.length;
-  const hasDetail=(e.trick&&e.trick.trim())||(e.logic&&e.logic.trim());
+  const hasDetail=(e.trick&&e.trick.trim())||(e.logic&&e.logic.trim())||(e.walkthrough&&e.walkthrough.trim());
   return `<div class="ep-row ${active?'on':''}">
     <div class="ep-head">
       <span class="ep-no">EP${String(i+1).padStart(2,'0')}</span>
@@ -2338,10 +2784,11 @@ function epRow(e,i){
       <label class="fld" style="margin:0"><span class="lt">エピソード・ログライン</span>${afLine('data-scope="episode" data-id="'+e.id+'" data-field="logline"',e.logline)}</label>
       <label class="fld" style="margin:0"><span class="lt">ブリッジ（縦軸との接続メモ）</span>${afLine('data-scope="episode" data-id="'+e.id+'" data-field="bridgeNote"',e.bridgeNote)}</label>
       <div class="ep-stats"><span>ビート記述 ${fb}/15</span><span>シーン ${sc}</span><span>固有人物 ${cc}</span><span>推理カード ${kc}</span></div>
-      <div class="ep-detail-toggle ${det?'open':''}" id="edt_${e.id}" data-act="toggleepdetail" data-id="${e.id}"><span class="chev">${ICONS.down}</span>ミステリのトリック / 解決ロジック${hasDetail?'<span class="chip" style="font-size:10px;margin-left:2px">記入済</span>':''}</div>
+      <div class="ep-detail-toggle ${det?'open':''}" id="edt_${e.id}" data-act="toggleepdetail" data-id="${e.id}"><span class="chev">${ICONS.down}</span>ミステリのトリック / 解決ロジック / 攻略動線${hasDetail?'<span class="chip" style="font-size:10px;margin-left:2px">記入済</span>':''}</div>
       ${det?`<div class="ep-detail">
         <label class="fld"><span class="lt">ミステリのトリック</span>${afCap('data-scope="episode" data-id="'+e.id+'" data-field="trick"',e.trick||'',220)}</label>
-        <label class="fld" style="margin:0"><span class="lt">解決編での犯人解明までのロジック展開</span>${afCap('data-scope="episode" data-id="'+e.id+'" data-field="logic"',e.logic||'',340)}</label>
+        <label class="fld" style="margin:0 0 8px"><span class="lt">解決編での犯人解明までのロジック展開</span>${afCap('data-scope="episode" data-id="'+e.id+'" data-field="logic"',e.logic||'',340)}</label>
+        <label class="fld" style="margin:0"><span class="lt">攻略動線（③・プレイヤーの操作と気づきの順）</span>${afCap('data-scope="episode" data-id="'+e.id+'" data-field="walkthrough"',e.walkthrough||'',600)}</label>
       </div>`:''}
     </div>
   </div>`;
@@ -3613,7 +4060,7 @@ function applyPatch(text){
         Object.assign(b,o.beat||{}); touchedEps.add(ep); log.push(tag+' OK：ビート更新 '+o.beatKey); done++;
       }else if(o.op==='setEpisodeField'){
         const ep=_findEp(o.epId); if(!ep)throw new Error('episode '+o.epId+' なし');
-        const allow=['title','logline','bridgeNote','trick','logic','kind'];
+        const allow=['title','logline','bridgeNote','trick','logic','walkthrough','kind'];
         if(allow.indexOf(o.field)<0)throw new Error('field '+o.field+' は不可');
         ep[o.field]=o.value; touchedEps.add(ep); log.push(tag+' OK：'+o.field+' 更新'); done++;
       }else if(o.op==='addCards'){
@@ -3829,6 +4276,7 @@ function doImport(){
     e.cast.forEach(c=>ensureCharShape(c));
     if(e.trick===undefined)e.trick=(e.id==='ep0_train'?TUT_TRICK:'');
     if(e.logic===undefined)e.logic=(e.id==='ep0_train'?TUT_LOGIC:'');
+    if(e.walkthrough===undefined)e.walkthrough=(e.id==='ep0_train'?EP0_WALKTHROUGH:'');
     e.scenes.forEach(s=>{s.blocks=s.blocks||[];s.blocks.forEach(b=>ensureBlockShape(b));});
   });
   if(!state.activeEp||!state.episodes.find(e=>e.id===state.activeEp))state.activeEp=state.episodes[0].id;
