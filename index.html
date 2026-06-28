@@ -417,6 +417,17 @@ textarea.line-ta{min-height:0;max-width:22em;overflow-y:hidden;resize:none;line-
 .dlv-sub2{color:var(--muted);font-size:11.5px}
 .dlv-tl-lab{font-family:var(--mono);font-size:10px;letter-spacing:.15em;color:var(--ember-soft);margin:10px 0 2px}
 .dlv-empty{color:var(--muted);font-size:12px;padding:8px 2px}
+.dlv-beat{border:1px solid var(--line-soft);border-radius:8px;margin:7px 0;overflow:hidden}
+.dlv-beatsum{cursor:pointer;padding:9px 12px;font-size:13px;list-style:none;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px}
+.dlv-beatsum::-webkit-details-marker{display:none}
+.dlv-beat>.dlv-beatsum::before{content:'\25B8';color:var(--ember-soft);font-size:10px;margin-right:5px}
+.dlv-beat[open]>.dlv-beatsum::before{content:'\25BE'}
+.dlv-beathint{color:var(--muted);font-size:11.5px}
+.dlv-beatbody{padding:4px 14px 11px}
+.dlv-bmeta{font-family:var(--mono);font-size:10px;color:var(--faint);margin:4px 0 8px}
+.dlv-brow{display:flex;gap:9px;padding:5px 0;font-size:12.5px;line-height:1.6;border-top:1px dashed var(--line-soft)}
+.dlv-brow:first-of-type{border-top:none}
+.dlv-blab{flex:0 0 auto;width:32px;font-family:var(--mono);font-size:9px;letter-spacing:.1em;color:var(--ember-soft);padding-top:2px}
 .mdl .mdl-table{width:100%;border-collapse:collapse;margin:10px 0;font-size:12px}
 .mdl .mdl-table th,.mdl .mdl-table td{border:1px solid var(--line-soft);padding:6px 8px;text-align:left;vertical-align:top}
 .mdl .mdl-table th{background:var(--surface);font-family:var(--serif);white-space:nowrap}
@@ -2734,7 +2745,17 @@ function viewDeliverable(){
   const recipeHtml=E.recipes.length?('<ul class="dlv-list">'+E.recipes.map(r=>`<li>${esc(r.note||(cardName(r.aId)+' × '+cardName(r.bId)))} → <b>${esc(cardName(r.outId))}</b></li>`).join('')+'</ul>'):empty('合成レシピは未登録です。');
   const logicS=sub('反転の流れ',E.logic?md(E.logic):empty('未記入'))+sub('ロジックツリー（魔捜白書）',E.deductionDoc?md(E.deductionDoc):empty('未記入'))+sub('合成レシピ',recipeHtml);
   const wt=(E.walkthrough&&E.walkthrough.trim())?mdDoc(E.walkthrough):empty('攻略動線は未記入です。「俯瞰」タブ → エピソードの「攻略動線」欄から記入できます。');
-  const beatHtml=(E.beats&&E.beats.length)?('<ul class="dlv-list">'+E.beats.map((b,k)=>`<li><b>${k+1}. ${esc(b.ja||b.key||'')}</b>${b.en?` <span class="dlv-en2">${esc(b.en)}</span>`:''}${b.summary?`<br><span class="dlv-sub2">${esc(b.summary)}</span>`:''}</li>`).join('')+'</ul>'):empty('ビートは未登録です。');
+  const beatHtml=(E.beats&&E.beats.length)?E.beats.map((b,k)=>{
+    const head=`<b>${k+1}. ${esc(b.ja||b.key||'')}</b>${b.en?` <span class="dlv-en2">${esc(b.en)}</span>`:''}`;
+    const hint=b.summary?`<span class="dlv-beathint">${esc(b.summary)}</span>`:'';
+    const meta=[b.phase,(b.minutes?b.minutes+'分':''),(b.tension?'緊張'+b.tension:''),(b.difficulty?'難度'+b.difficulty:'')].filter(Boolean).map(x=>esc(String(x))).join('　');
+    const rows=[];
+    if(b.scenario)rows.push(`<div class="dlv-brow"><span class="dlv-blab">中身</span><span>${esc(b.scenario)}</span></div>`);
+    if(b.direction)rows.push(`<div class="dlv-brow"><span class="dlv-blab">演出</span><span>${esc(b.direction)}</span></div>`);
+    if(b.experience)rows.push(`<div class="dlv-brow"><span class="dlv-blab">体験</span><span>${esc(b.experience)}</span></div>`);
+    const body=(meta?`<div class="dlv-bmeta">${meta}</div>`:'')+(rows.length?rows.join(''):empty('詳細は未記入です。'));
+    return `<details class="dlv-beat"><summary class="dlv-beatsum">${head}${hint}</summary><div class="dlv-beatbody">${body}</div></details>`;
+  }).join(''):empty('ビートは未登録です。');
   const cardsHtml=E.cards.length?('<ul class="dlv-list">'+E.cards.map(c=>`<li><span class="dlv-tag">${esc(c.type||'')}</span>${esc(c.name||'')}${c.source?`<br><span class="dlv-sub2">${esc(c.source)}</span>`:''}</li>`).join('')+'</ul>'):empty('カードは未登録です。');
   const scenesHtml=E.scenes.length?('<ul class="dlv-list">'+E.scenes.map(s=>`<li><b>${esc(s.title||'')}</b>${s.summary?`<br><span class="dlv-sub2">${esc(s.summary)}</span>`:''}</li>`).join('')+'</ul>'):empty('シーンは未登録です。');
   const five=sub('カード一覧（'+E.cards.length+'）',cardsHtml)+sub('シーン一覧（'+E.scenes.length+'）',scenesHtml);
