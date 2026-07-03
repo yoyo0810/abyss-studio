@@ -428,7 +428,6 @@ textarea.line-ta{min-height:0;max-width:22em;overflow-y:hidden;resize:none;line-
 .dlv-brow{display:flex;gap:9px;padding:5px 0;font-size:12.5px;line-height:1.6;border-top:1px dashed var(--line-soft)}
 .dlv-brow:first-of-type{border-top:none}
 .dlv-blab{flex:0 0 auto;width:32px;font-family:var(--mono);font-size:9px;letter-spacing:.1em;color:var(--ember-soft);padding-top:2px}
-.dlv-bval{flex:1;min-width:0;white-space:pre-line}
 .mdl .mdl-table{width:100%;border-collapse:collapse;margin:10px 0;font-size:12px}
 .mdl .mdl-table th,.mdl .mdl-table td{border:1px solid var(--line-soft);padding:6px 8px;text-align:left;vertical-align:top}
 .mdl .mdl-table th{background:var(--surface);font-family:var(--serif);white-space:nowrap}
@@ -2751,9 +2750,9 @@ function viewDeliverable(){
     const hint=b.summary?`<span class="dlv-beathint">${esc(b.summary)}</span>`:'';
     const meta=[b.phase,(b.minutes?b.minutes+'分':''),(b.tension?'緊張'+b.tension:''),(b.difficulty?'難度'+b.difficulty:'')].filter(Boolean).map(x=>esc(String(x))).join('　');
     const rows=[];
-    if(b.scenario)rows.push(`<div class="dlv-brow"><span class="dlv-blab">中身</span><span class="dlv-bval">${esc(b.scenario)}</span></div>`);
-    if(b.direction)rows.push(`<div class="dlv-brow"><span class="dlv-blab">演出</span><span class="dlv-bval">${esc(b.direction)}</span></div>`);
-    if(b.experience)rows.push(`<div class="dlv-brow"><span class="dlv-blab">体験</span><span class="dlv-bval">${esc(b.experience)}</span></div>`);
+    if(b.scenario)rows.push(`<div class="dlv-brow"><span class="dlv-blab">中身</span><span>${esc(b.scenario)}</span></div>`);
+    if(b.direction)rows.push(`<div class="dlv-brow"><span class="dlv-blab">演出</span><span>${esc(b.direction)}</span></div>`);
+    if(b.experience)rows.push(`<div class="dlv-brow"><span class="dlv-blab">体験</span><span>${esc(b.experience)}</span></div>`);
     const body=(meta?`<div class="dlv-bmeta">${meta}</div>`:'')+(rows.length?rows.join(''):empty('詳細は未記入です。'));
     return `<details class="dlv-beat"><summary class="dlv-beatsum">${head}${hint}</summary><div class="dlv-beatbody">${body}</div></details>`;
   }).join(''):empty('ビートは未登録です。');
