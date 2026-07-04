@@ -505,6 +505,7 @@ textarea.line-ta{min-height:0;max-width:22em;overflow-y:hidden;resize:none;line-
 </style>
 </head>
 <body>
+<div id="patchBanner" style="display:none;position:fixed;top:0;left:0;right:0;z-index:99999;padding:14px 16px;font-size:15px;font-weight:bold;white-space:pre-wrap;line-height:1.5;box-shadow:0 2px 12px rgba(0,0,0,.5)" onclick="this.style.display='none'"></div>
 <div class="bg"></div><div class="grain"></div>
 <div id="app">
   <aside class="side">
@@ -3630,6 +3631,7 @@ function viewData(){
   <div class="panel">
     <div class="panel-t">AIの変更を適用 <span class="en">Apply AI Patch</span></div>
     <div class="panel-sub">Claudeが返した「差分パッチ」を貼って適用します。プロジェクト全文ではなく変更点だけなので軽量です。適用後は自動保存され、必要なら「⬆ Gistへ保存」も押してください。</div>
+    <div style="font-family:var(--mono);font-size:10px;color:var(--ember-soft,#caa24a);margin:2px 0 4px">build: v10（結果バナー対応）</div>
     <textarea class="io-ta" id="patchTA" placeholder='Claudeが出力した {"abyssPatch":1,"ops":[...]} を貼り付け…' style="min-height:120px;margin-top:8px"></textarea>
     <div class="toolbar"><button class="btn pri" data-act="applypatch">差分を適用</button></div>
     <div id="patchMsg" style="font-size:12px;color:var(--ember-soft,#caa24a);margin-top:8px;white-space:pre-wrap;min-height:16px"></div>
@@ -3820,7 +3822,7 @@ document.addEventListener('click',e=>{
   if(a==='copyall'){const ta=document.getElementById('manualSaveTA');const msg=document.getElementById('saveMsg');if(ta&&ta.value){copyText(ta.value).then(ok=>{if(msg)msg.textContent=ok?'コピーしました。メモ等に貼り付けて保管してください。':'自動コピー不可：テキストを長押し→全選択→コピーしてください。';if(ok){DIRTY=false;updateSaveUI();}});}return;}
   if(a==='ghsavetoken'){const i=document.getElementById('ghTokenInput');const v=i&&i.value.trim();if(v){ghSaveToken(v);cloudMsg('トークンを保存しました。「Gistへ保存」で開始できます。');}else{cloudMsg('トークンが空です。');}render();return;}
   if(a==='ghcleartoken'){ghSaveToken('');cloudMsg('トークンを削除しました。');render();return;}
-  if(a==='applypatch'){const ta=document.getElementById('patchTA');const msg=document.getElementById('patchMsg');if(!ta||!ta.value.trim()){if(msg)msg.textContent='パッチを貼り付けてください。';return;}const r=applyPatch(ta.value.trim());const warn=(r.ok&&typeof r.done==='number'&&r.done<r.total)?('⚠ '+(r.total-r.done)+'件の操作が適用できませんでした（未知のop＝ビルドが古い可能性。最新ビルドを再読み込みしてから貼り直してください）。\n'):'';if(msg)msg.textContent=(r.ok?('適用 '+r.done+'/'+r.total+' 件\n'+warn):('適用できませんでした\n'))+r.report;if(r.ok){route='data';render();}return;}
+  if(a==='applypatch'){const ta=document.getElementById('patchTA');const msg=document.getElementById('patchMsg');const bn=document.getElementById('patchBanner');function show(txt,ok){if(bn){bn.textContent=txt;bn.style.background=ok?'#1c7c3a':'#a11d1d';bn.style.color='#fff';bn.style.display='block';window.scrollTo(0,0);}if(msg){msg.textContent=txt;}}if(!ta||!ta.value.trim()){show('パッチが空です。貼り付けてから押してください。',false);return;}let r;try{r=applyPatch(ta.value.trim());}catch(e){show('エラーで停止しました：'+(e&&e.message?e.message:e),false);return;}if(!r){show('内部エラー：結果が返りませんでした。',false);return;}if(!r.ok){show('適用できませんでした。\n理由：'+(r.report||'不明'),false);return;}const miss=(typeof r.done==='number'&&r.done<r.total)?('\n⚠ '+(r.total-r.done)+'件が未適用（未知のop）。'):'';show('適用 '+r.done+'/'+r.total+' 件 完了。'+miss+'\n（このバーをタップで消す→次に⬆GitHubへ保存）',true);route='data';render();return;}
   if(a==='cloudsave'){cloudSaveNow();return;}
   if(a==='cloudload'){cloudLoadNow();return;}
   if(a==='snapnow'){snapshot('手動');cloudMsg('現在の状態を控えました。');if(route==='data')render();return;}
