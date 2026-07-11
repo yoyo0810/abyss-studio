@@ -6,7 +6,7 @@
     "title": "魔界探偵ナハト",
     "tagline": "死者の声は届かない。だから、証拠（ロジック）で語らせる。",
     "logline": "死者視点の再捜査で、現世に埋もれた真実を客観証拠のロジックだけで掘り起こし、魂の無念を清算する本格ミステリ連作。",
-    "updatedAt": 1783522239676
+    "updatedAt": 1783798776215
   },
   "ui": {
     "theme": "dark"
@@ -684,345 +684,70 @@
       ],
       "scenes": [
         {
-          "title": "第1幕：チョコレート・エクスプレス乗車",
-          "summary": "\"普通のミステリ\"の顔で開幕。招待状一枚と、思い出せない依頼（実験の種）",
+          "id": "a1_awake",
+          "title": "S01 目覚め ― 甘い列車",
           "beatKey": "opening",
           "phase": "pro",
+          "summary": "18時、ロビー車のソファで目覚める。会話はメイド（アメール）のみ。とっさに「探偵」と名乗るが、記憶が曖昧で頭痛がする。犬用チョコの伏線。二度寝で締め。",
           "blocks": [
             {
-              "id": "s1_note",
-              "type": "note",
-              "text": "【チュートリアル/S01】探索→観測カード獲得→カード提示で“ちょっとした推理”→新カード獲得、の一連を体験させる導入。獲得カード『ショコラはチョコに目がない』は本編（犬がチョコの鍵を運んだ密室トリック）への伏線。",
-              "grants": [],
-              "requires": [],
-              "media": [],
-              "to": "",
-              "sectionBreak": false
-            },
-            {
-              "id": "s1_cg",
-              "type": "cg",
-              "title": "OP／チョコレート寝台特急、乗車",
-              "chunkTitle": "乗車 ― チョコレート寝台特急",
-              "to": "",
-              "grants": [],
-              "requires": [],
-              "media": [],
-              "sectionBreak": false
-            },
-            {
-              "id": "s1_set",
+              "id": "a1_01",
               "type": "setting",
-              "place": "チョコレート寝台特急〈ガトー・エクスプレス〉乗降ロビー",
-              "time": "出発前夜 19:00頃",
               "to": "",
               "grants": [],
               "requires": [],
               "sectionBreak": false,
-              "no": 24
+              "place": "",
+              "time": ""
             },
             {
-              "id": "s1_arrive",
-              "type": "narration",
-              "text": "重厚な扉が開く。足を踏み入れた瞬間、鼻先をくすぐったのは——濃厚な、チョコレートの甘い香りだった。車両ぜんぶが菓子箱の中、といった趣だ。\n（……金のかかった依頼だとは聞いていたが。これはまた、随分と甘ったるい現場だな）",
-              "to": "",
-              "grants": [
-                "c_s1_smell"
-              ],
-              "requires": [],
-              "sectionBreak": false
-            },
-            {
-              "id": "s1_gana",
-              "type": "line",
-              "windows": [
-                {
-                  "id": "s1_gana_w",
-                  "charId": "ep0_cond",
-                  "text": "ようこそお乗りくださいましたぁ。車掌のガナッシュですよぉ。本日はどうぞ、甘い夜をお楽しみくださいなの"
-                }
-              ],
-              "to": "",
-              "grants": [],
-              "requires": [],
-              "sectionBreak": false
-            },
-            {
-              "id": "s1_lounge",
-              "type": "narration",
-              "text": "案内されたラウンジ車。ふかふかの長椅子に、上品な淑女がひとり。その膝の上で、小さな子犬がちょこんと丸くなっている。",
-              "to": "",
-              "grants": [
-                "c_s1_pup"
-              ],
-              "requires": [],
-              "sectionBreak": true,
-              "chunkTitle": "ラウンジの出会い"
-            },
-            {
-              "id": "s1_suzu",
-              "type": "line",
-              "windows": [
-                {
-                  "id": "s1_suzu_w",
-                  "charId": "ep0_victim",
-                  "text": "あら、新しいお客さま。この子はショコラっていうの。人見知りなのに……あなたのこと、気になるみたいなの"
-                }
-              ],
-              "to": "",
-              "grants": [],
-              "requires": [],
-              "sectionBreak": false
-            },
-            {
-              "id": "s1_menu",
-              "type": "narration",
-              "text": "給仕がうやうやしく品書きを差し出す。〈本日のチョコレート晩餐〉——前菜から締めまで、何もかもがチョコレート尽くしらしい。",
-              "to": "",
-              "grants": [
-                "c_s1_menu"
-              ],
-              "requires": [],
-              "sectionBreak": false
-            },
-            {
-              "id": "s1_dog",
-              "type": "line",
-              "windows": [
-                {
-                  "id": "s1_dog_w",
-                  "charId": "ep0_dog",
-                  "text": "クンッ……クゥーン……（しきりに鼻を鳴らし、床のあたりの匂いを追っている）"
-                }
-              ],
-              "to": "",
-              "grants": [],
-              "requires": [],
-              "sectionBreak": false
-            },
-            {
-              "id": "s1_present",
-              "type": "present",
-              "trigger": "auto",
-              "text": "足元の子犬が、さっきから鼻を鳴らして匂いを追っている。——この子は、いったい何に惹かれているんだ？",
-              "entries": [
-                {
-                  "id": "s1_pr_e1",
-                  "card": "c_s1_smell",
-                  "to": "s1_deduce",
-                  "requires": []
-                }
-              ],
-              "unmatch": "（……それはこの子の関心とは関係なさそうだ。子犬の鼻先は、もっと別の“匂い”を追っている）",
-              "to": "s1_after",
-              "grants": [],
-              "requires": [],
-              "chunkTitle": "子犬は何に惹かれている？",
-              "sectionBreak": false
-            },
-            {
-              "id": "s1_deduce",
-              "type": "narration",
-              "text": "子犬の鼻づらは、車内に漂う甘い香り——その源を、まっすぐ追っていた。\n（なるほど。この子は、チョコレートに目がないらしい。覚えておいて、損はない……か）\n【獲得：ショコラはチョコに目がない】",
-              "to": "s1_after",
-              "grants": [
-                "c_s1_doghabit"
-              ],
-              "requires": [],
-              "sectionBreak": false
-            },
-            {
-              "id": "s1_after",
-              "type": "narration",
-              "text": "ともあれ、他愛もない観察だ。——今はまだ、そう思っていた。",
-              "to": "s1_depart",
-              "grants": [],
-              "requires": [],
-              "chunkTitle": "発車",
-              "sectionBreak": false
-            },
-            {
-              "id": "s1_depart",
-              "type": "dir",
-              "text": "汽笛。車体がゆっくりと動き出し、窓の外を夜の街灯が流れはじめる。——チョコレート寝台特急、定刻発車。",
-              "to": "",
-              "grants": [],
-              "requires": [],
-              "media": [],
-              "sectionBreak": false
-            }
-          ],
-          "id": "x9l6zbk"
-        },
-        {
-          "id": "eyn4hb0",
-          "title": "第1幕：乗客たちの夜",
-          "beatKey": "setup",
-          "summary": "容疑者となる人々の顔見せと、伏線の自然な仕込み（犬・製造機・トンネル）",
-          "blocks": [
-            {
-              "type": "setting",
-              "place": "寝台特急 ／ ロビー車",
-              "time": "1日目 夜",
-              "id": "fee6ep8",
-              "to": "",
-              "no": 2,
-              "grants": [],
-              "requires": [],
-              "sectionBreak": false
-            },
-            {
-              "id": "h8lb4ja",
+              "id": "a1_02",
               "type": "note",
-              "text": "【演出意図】一人一芸＋一伏線。説明ではなく雑談で仕込む。すず＆ショコラとの交流は厚めに＝死の痛みと幽体ドラマの貯金。",
-              "media": [],
+              "text": "【意図】新ナハトの声のお披露目。話者表示は「探偵」（S10の命名まで。命名後は sc_rei に切替）。操作なし・カード獲得なし。犬用チョコを犯人アメールの口から自然に仕込む（ギャグと伏線の二重機能）。死の予兆ゼロ。所要1〜2分。※理想は名札を読むまで話者名を「メイド」と伏せる演出（実装可否は要検討）。",
               "to": "",
               "grants": [],
               "requires": [],
-              "sectionBreak": false
+              "sectionBreak": false,
+              "media": []
             },
             {
-              "id": "epmxqxi",
-              "type": "choice",
-              "opts": [
-                {
-                  "text": "令嬢とビーグル犬に挨拶する",
-                  "to": "",
-                  "requires": []
-                },
-                {
-                  "text": "車掌に列車の自慢を聞く",
-                  "to": "",
-                  "requires": []
-                },
-                {
-                  "text": "社交室の客たちを観察する",
-                  "to": "",
-                  "requires": []
-                }
-              ],
-              "text": "【自由探索】順不同で全員と話せる。全て回ると夜が更ける。",
-              "media": [],
-              "to": "",
-              "grants": [],
-              "requires": [],
-              "sectionBreak": false
-            },
-            {
-              "id": "uessxcc",
-              "type": "dir",
-              "text": "ビーグル犬が尻尾を振って駆けてくる。若い令嬢が慌てて追いかけてくる。",
-              "media": [],
-              "to": "",
-              "grants": [],
-              "requires": [],
-              "sectionBreak": false
-            },
-            {
-              "id": "dchfflz",
-              "type": "line",
-              "windows": [
-                {
-                  "id": "nd0by4b",
-                  "charId": "ep0_victim",
-                  "text": "ショコラ、だめ！\nお客様にじゃれちゃ。"
-                },
-                {
-                  "id": "q3h30kn",
-                  "charId": "sc_rei",
-                  "text": "いい犬だ。\n……チョコ好きか？"
-                },
-                {
-                  "id": "hk1o0e8",
-                  "charId": "ep0_victim",
-                  "text": "大好物なんです。\nだから名前も\nショコラ。"
-                },
-                {
-                  "id": "yqc0uwr",
-                  "charId": "ep0_victim",
-                  "text": "目を離すと、お部屋の\nチョコを食べ尽くして\nしまうくらい。"
-                }
-              ],
-              "to": "",
-              "grants": [],
-              "requires": [],
-              "sectionBreak": false
-            },
-            {
-              "id": "vumtvze",
+              "id": "a1_03",
               "type": "event",
-              "ev": "その他",
-              "text": "※伏線①：犬の習性「部屋のチョコを食べ尽くす」を、微笑ましい雑談として提示。",
-              "media": [],
+              "text": "黒画面。ガタン、ゴトン。規則正しい走行音だけが響く。",
               "to": "",
               "grants": [],
               "requires": [],
-              "sectionBreak": false
+              "sectionBreak": false,
+              "media": []
             },
             {
-              "id": "uj0lhob",
-              "type": "line",
-              "windows": [
-                {
-                  "id": "x20uqej",
-                  "charId": "ep0_cond",
-                  "text": "こちらが自慢の\nチョコレート製造機！"
-                },
-                {
-                  "id": "z17q1o8",
-                  "charId": "ep0_cond",
-                  "text": "ボタンひとつで\nどなたでも、\nお好きな形に〜。"
-                },
-                {
-                  "id": "rihqubp",
-                  "charId": "sc_rei",
-                  "text": "（誰でも、ね）"
-                }
-              ],
+              "id": "a1_04",
+              "type": "cg",
+              "text": "夜。蒸気を噴いて疾走する、金色の寝台特急の遠景（ワンカット）。",
               "to": "",
               "grants": [],
               "requires": [],
-              "sectionBreak": false
+              "sectionBreak": false,
+              "media": []
             },
             {
-              "id": "bqn821m",
+              "id": "a1_05",
               "type": "event",
-              "ev": "その他",
-              "text": "※伏線②：製造機は誰でも短時間で使える。※伏線③：今夜は長大トンネル通過で20時前後に一時停電の予定、と車内放送。",
-              "media": [],
+              "text": "車内へ。飴色のランプ。ソファで眠る男の視界が、ぼんやり開く。画面表示〈チョコレート寝台特急　ロビー車　PM 6:00〉。",
               "to": "",
               "grants": [],
               "requires": [],
-              "sectionBreak": false
+              "sectionBreak": false,
+              "media": []
             },
             {
-              "id": "fb5w9x8",
-              "type": "dir",
-              "text": "社交室。噂好きのローズ夫人、若き実業家レナード、忙しないヴァン、無口な料理長ガストン、直立不動のヴィクトル、影のように働くメイドのアメール。隅の席に、サングラスの不審な客。",
-              "media": [],
-              "to": "",
-              "grants": [],
-              "requires": [],
-              "sectionBreak": false
-            },
-            {
-              "id": "0tzf68v",
+              "id": "a1_06",
               "type": "line",
               "windows": [
                 {
-                  "id": "hn6c39o",
-                  "charId": "ep0_g1",
-                  "text": "甘宮家のご令嬢、\nご覧になった？"
-                },
-                {
-                  "id": "qt3849x",
-                  "charId": "ep0_g1",
-                  "text": "あの首飾り、\nお屋敷ひとつ分ですって。"
-                },
-                {
-                  "id": "kxidpwu",
-                  "charId": "sc_rei",
-                  "text": "（噂の速さは\n光速だな）"
+                  "id": "a1_06w0",
+                  "charId": "ep0_maid",
+                  "text": "お、お客様……お客様……。"
                 }
               ],
               "to": "",
@@ -1031,344 +756,1094 @@
               "sectionBreak": false
             },
             {
-              "id": "ogrt8rc",
-              "type": "dir",
-              "text": "不審な客が、こちらの視線に気づき、新聞で顔を隠した。",
-              "media": [],
+              "id": "a1_07",
+              "type": "line",
+              "windows": [
+                {
+                  "id": "a1_07w0",
+                  "charId": "ep0_tantei",
+                  "text": "……ん。あと五分。"
+                },
+                {
+                  "id": "a1_07w1",
+                  "charId": "ep0_tantei",
+                  "text": "いや、五時間で頼む……。"
+                }
+              ],
               "to": "",
               "grants": [],
               "requires": [],
               "sectionBreak": false
+            },
+            {
+              "id": "a1_08",
+              "type": "line",
+              "windows": [
+                {
+                  "id": "a1_08w0",
+                  "charId": "ep0_maid",
+                  "text": "も、申し訳ございません！　ワゴンの音で、お起こししてしまって……！"
+                }
+              ],
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false
+            },
+            {
+              "id": "a1_09",
+              "type": "dir",
+              "text": "探偵、跳ね起きる。寝癖がすごい。",
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false,
+              "media": []
+            },
+            {
+              "id": "a1_10",
+              "type": "line",
+              "windows": [
+                {
+                  "id": "a1_10w0",
+                  "charId": "ep0_tantei",
+                  "text": "——はっ。寝てないぞ。俺は寝てない。"
+                },
+                {
+                  "id": "a1_10w1",
+                  "charId": "ep0_tantei",
+                  "text": "……よし。誰も見てないな。"
+                }
+              ],
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false
+            },
+            {
+              "id": "a1_11",
+              "type": "line",
+              "windows": [
+                {
+                  "id": "a1_11w0",
+                  "charId": "ep0_tantei",
+                  "text": "（見られてた。目の前の子に、思いっきり）"
+                }
+              ],
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false
+            },
+            {
+              "id": "a1_12",
+              "type": "dir",
+              "text": "目の前で、メイドが恐縮して頭を下げている。探偵の視線が、すっと胸元の名札へ。——「アメール」。",
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false,
+              "media": []
+            },
+            {
+              "id": "a1_13",
+              "type": "line",
+              "windows": [
+                {
+                  "id": "a1_13w0",
+                  "charId": "ep0_tantei",
+                  "text": "（……名札を先に読む。なんでか知らないが、体に染みついた癖だ）"
+                }
+              ],
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false
+            },
+            {
+              "id": "a1_14",
+              "type": "line",
+              "windows": [
+                {
+                  "id": "a1_14w0",
+                  "charId": "ep0_maid",
+                  "text": "お休みのところ、本当に申し訳ございません……。"
+                }
+              ],
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false
+            },
+            {
+              "id": "a1_15",
+              "type": "line",
+              "windows": [
+                {
+                  "id": "a1_15w0",
+                  "charId": "ep0_tantei",
+                  "text": "いいさ。美人に起こされて怒る男は、世界にいない。"
+                },
+                {
+                  "id": "a1_15w1",
+                  "charId": "ep0_tantei",
+                  "text": "……ちなみに君、下の名前は？"
+                }
+              ],
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false
+            },
+            {
+              "id": "a1_16",
+              "type": "line",
+              "windows": [
+                {
+                  "id": "a1_16w0",
+                  "charId": "ep0_maid",
+                  "text": "め、名札の通りですが……。"
+                }
+              ],
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false
+            },
+            {
+              "id": "a1_17",
+              "type": "line",
+              "windows": [
+                {
+                  "id": "a1_17w0",
+                  "charId": "ep0_tantei",
+                  "text": "（だよな。知ってた）"
+                }
+              ],
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false
+            },
+            {
+              "id": "a1_18",
+              "type": "line",
+              "windows": [
+                {
+                  "id": "a1_18w0",
+                  "charId": "ep0_maid",
+                  "text": "あの……お客様は、どのようなお仕事を？"
+                }
+              ],
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false
+            },
+            {
+              "id": "a1_19",
+              "type": "line",
+              "windows": [
+                {
+                  "id": "a1_19w0",
+                  "charId": "ep0_tantei",
+                  "text": "探偵だ。"
+                }
+              ],
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false
+            },
+            {
+              "id": "a1_20",
+              "type": "line",
+              "windows": [
+                {
+                  "id": "a1_20w0",
+                  "charId": "ep0_tantei",
+                  "text": "（——と、口が勝手に答えた）"
+                },
+                {
+                  "id": "a1_20w1",
+                  "charId": "ep0_tantei",
+                  "text": "（探偵。ああ、探偵だ。……そのはず、なんだが）"
+                }
+              ],
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false
+            },
+            {
+              "id": "a1_21",
+              "type": "line",
+              "windows": [
+                {
+                  "id": "a1_21w0",
+                  "charId": "ep0_maid",
+                  "text": "まあ、探偵さん！　では、事件のご依頼で、この列車に？"
+                }
+              ],
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false
+            },
+            {
+              "id": "a1_22",
+              "type": "line",
+              "windows": [
+                {
+                  "id": "a1_22w0",
+                  "charId": "ep0_tantei",
+                  "text": "まあな。ただ——悪い、それ以上は守秘義務だ。"
+                }
+              ],
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false
+            },
+            {
+              "id": "a1_23",
+              "type": "line",
+              "windows": [
+                {
+                  "id": "a1_23w0",
+                  "charId": "ep0_tantei",
+                  "text": "（守秘義務。つくづく便利な言葉だ）"
+                },
+                {
+                  "id": "a1_23w1",
+                  "charId": "ep0_tantei",
+                  "text": "（「依頼人を思い出せない」とは、口が裂けても言えん）"
+                }
+              ],
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false
+            },
+            {
+              "id": "a1_24",
+              "type": "narration",
+              "text": "そう。思い出せない。依頼人の顔も、名前も。この列車に乗った理由さえ。おまけに、さっきから頭の奥がずきずき痛む。……寝不足だ。うん、そういうことにしておこう。",
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false
+            },
+            {
+              "id": "a1_25",
+              "type": "line",
+              "windows": [
+                {
+                  "id": "a1_25w0",
+                  "charId": "ep0_maid",
+                  "text": "では、わたくしはこれで。お嬢様の愛犬に、お夕食をお届けする途中でしたので。"
+                },
+                {
+                  "id": "a1_25w1",
+                  "charId": "ep0_maid",
+                  "text": "——特製の、犬用チョコを。"
+                }
+              ],
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false
+            },
+            {
+              "id": "a1_26",
+              "type": "line",
+              "windows": [
+                {
+                  "id": "a1_26w0",
+                  "charId": "ep0_tantei",
+                  "text": "……待て。犬に、チョコ？　殺す気か？"
+                }
+              ],
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false
+            },
+            {
+              "id": "a1_27",
+              "type": "line",
+              "windows": [
+                {
+                  "id": "a1_27w0",
+                  "charId": "ep0_maid",
+                  "text": "い、いえいえ！　カカオを使わない特製ですので、ご安心を！"
+                },
+                {
+                  "id": "a1_27w1",
+                  "charId": "ep0_maid",
+                  "text": "お嬢様が、それはもう可愛がっておられて。ショコラ様——あ、わんちゃんのお名前です——のためだけの、特別製なんです。"
+                }
+              ],
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false
+            },
+            {
+              "id": "a1_28",
+              "type": "line",
+              "windows": [
+                {
+                  "id": "a1_28w0",
+                  "charId": "ep0_tantei",
+                  "text": "（犬に「様」がついた。この列車、犬のほうが俺より偉いらしい）"
+                },
+                {
+                  "id": "a1_28w1",
+                  "charId": "ep0_tantei",
+                  "text": "（……金持ちの犬は、俺よりいい物を食ってるな）"
+                }
+              ],
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false
+            },
+            {
+              "id": "a1_29",
+              "type": "dir",
+              "text": "一礼して、メイドが去っていく。ロビー車に、走行音だけが残る。",
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false,
+              "media": []
+            },
+            {
+              "id": "a1_30",
+              "type": "dir",
+              "text": "柱の大時計。針は、18時。窓の外は、もう暗い。",
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false,
+              "media": []
+            },
+            {
+              "id": "a1_31",
+              "type": "line",
+              "windows": [
+                {
+                  "id": "a1_31w0",
+                  "charId": "ep0_tantei",
+                  "text": "（夕食までは、まだ間がある。……もうひと眠りだ）"
+                },
+                {
+                  "id": "a1_31w1",
+                  "charId": "ep0_tantei",
+                  "text": "（頭痛も、寝れば治る。——たぶんな）"
+                }
+              ],
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false
+            },
+            {
+              "id": "a1_32",
+              "type": "event",
+              "text": "探偵、ソファに深く沈み、目を閉じる。※この「18時・ロビー車のソファ」の構図を、再潜入の開始地点と完全に一致させる。",
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false,
+              "media": []
+            },
+            {
+              "id": "a1_33",
+              "type": "event",
+              "text": "暗転。走行音が、遠のいていく。→S02（朧げな夢）へ。",
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false,
+              "media": []
             }
-          ],
-          "phase": "pro"
+          ]
         },
         {
-          "id": "lzarg3c",
-          "title": "第1幕：探偵の流儀（夜食のチョコ）",
+          "id": "a2_dream",
+          "title": "S02 朧げな夢",
           "beatKey": "theme",
-          "summary": "「俺は、現物しか信じない」。すずとの小さな約束＝幽体ドラマの貯金",
+          "phase": "pro",
+          "summary": "言葉を使わない60秒。失われた幸せの断片→冷える転調→白い抹消。目覚めない探偵の頬に涙ひとすじ。テーマの先触れ（第8章⑦）。",
           "blocks": [
             {
+              "id": "a2_34",
               "type": "setting",
-              "place": "寝台特急 ／ 食堂車",
-              "time": "1日目 夜（夜食）",
-              "id": "99sk7eh",
               "to": "",
-              "no": 3,
               "grants": [],
               "requires": [],
-              "sectionBreak": false
+              "sectionBreak": false,
+              "place": "",
+              "time": ""
             },
             {
-              "id": "y987lbn",
+              "id": "a2_35",
               "type": "note",
-              "text": "【演出意図】テーマの地上版を一言で立てる。すずの優しさを1シーン分だけ濃く描く——彼女の死後、この時間が効いてくる。",
-              "media": [],
+              "text": "【意図】テーマ「一日・一瞬の尊さ」の先触れを映像と音だけで運ぶ。誰の記憶かは明かさない。顔・名前・時代が特定できる映像は出さない。台詞なし（声の断片のみ）。3つの仕込み＝①「ねえ、わたしの――」（最終話の台詞の前半。必ず途中で切る）②波の音（孤島の暗示）③白い塗りつぶし（抹消のイメージ）。",
               "to": "",
               "grants": [],
               "requires": [],
-              "sectionBreak": false
+              "sectionBreak": false,
+              "media": []
             },
             {
-              "id": "i4q1es2",
+              "id": "a2_36",
+              "type": "event",
+              "text": "走行音が、ゆっくり遠ざかる。暗転。しばしの静寂。",
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false,
+              "media": []
+            },
+            {
+              "id": "a2_37",
+              "type": "event",
+              "text": "まぶしい白。ぼやけた木漏れ日。世界の輪郭が、水彩のようににじんでいる。",
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false,
+              "media": []
+            },
+            {
+              "id": "a2_38",
               "type": "dir",
-              "text": "夜の食堂車。窓辺の席で手帳を繰るレイに、すずがそっと小皿を差し出す。",
-              "media": [],
+              "text": "断片、その一。ページをめくる音。テーブルの上の古い洋書と、湯気の立つ紅茶。誰かの、鈴を転がすような笑い声。",
               "to": "",
               "grants": [],
               "requires": [],
-              "sectionBreak": false
+              "sectionBreak": false,
+              "media": []
             },
             {
-              "id": "tjx0ee3",
-              "type": "line",
-              "windows": [
-                {
-                  "id": "5h9zcls",
-                  "charId": "ep0_victim",
-                  "text": "夜食、いかがですか。\n特製の生チョコです。"
-                },
-                {
-                  "id": "1yb2o7o",
-                  "charId": "sc_rei",
-                  "text": "……どうも。"
-                },
-                {
-                  "id": "crd6ge3",
-                  "charId": "ep0_victim",
-                  "text": "探偵様って、\nどんなお仕事を\nするんですか？"
-                }
-              ],
-              "to": "",
-              "grants": [],
-              "requires": [],
-              "sectionBreak": false
-            },
-            {
-              "id": "s9gjgjf",
-              "type": "line",
-              "windows": [
-                {
-                  "id": "d34cx26",
-                  "charId": "sc_rei",
-                  "text": "大したことはしない。"
-                },
-                {
-                  "id": "rieg4ui",
-                  "charId": "sc_rei",
-                  "text": "ただ——俺は、\n現物しか信じない。"
-                },
-                {
-                  "id": "jxgu34f",
-                  "charId": "sc_rei",
-                  "text": "うわさも書類も、\n現物の前では\nただの紙だ。"
-                },
-                {
-                  "id": "gu79ugd",
-                  "charId": "ep0_victim",
-                  "text": "ふふ。かっこいい。"
-                }
-              ],
-              "to": "",
-              "grants": [],
-              "requires": [],
-              "sectionBreak": false
-            },
-            {
-              "id": "4th5ma0",
-              "type": "line",
-              "windows": [
-                {
-                  "id": "e8xu56y",
-                  "charId": "ep0_victim",
-                  "text": "じゃあ約束。\n降りる朝に、もう一粒。"
-                },
-                {
-                  "id": "z6gcioz",
-                  "charId": "sc_rei",
-                  "text": "……ああ。\n楽しみにしてる。"
-                }
-              ],
-              "to": "",
-              "grants": [],
-              "requires": [],
-              "sectionBreak": false
-            },
-            {
-              "id": "qwwlscb",
+              "id": "a2_39",
               "type": "dir",
-              "text": "（※この約束は、果たされない）",
-              "media": [],
+              "text": "断片、その二。逆光の中、こちらへ振り向く人影。顔は、光に溶けて見えない。声だけが、風に乗って届く。——「ねえ、わたしの――」",
               "to": "",
               "grants": [],
               "requires": [],
-              "sectionBreak": false
+              "sectionBreak": false,
+              "media": []
             },
             {
-              "id": "8enkh5c",
-              "type": "line",
-              "windows": [
-                {
-                  "id": "xiyqaub",
-                  "charId": "sc_rei",
-                  "text": "（しかし俺は、何で\nこの列車に……）"
-                },
-                {
-                  "id": "5agc14u",
-                  "charId": "sc_rei",
-                  "text": "（——よそう。\n仕事に集中だ）"
-                }
-              ],
+              "id": "a2_40",
+              "type": "event",
+              "text": "声は、途中でノイズにかき消される。（※この一言は最終話の台詞の断片。ここでは絶対に、最後まで言わせない）",
               "to": "",
               "grants": [],
               "requires": [],
-              "sectionBreak": false
+              "sectionBreak": false,
+              "media": []
+            },
+            {
+              "id": "a2_41",
+              "type": "dir",
+              "text": "断片、その三。小指と小指が、そっと絡む。何かの、約束のしるし。",
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false,
+              "media": []
+            },
+            {
+              "id": "a2_42",
+              "type": "event",
+              "text": "——世界が、転調する。色が、急速に冷えていく。",
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false,
+              "media": []
+            },
+            {
+              "id": "a2_43",
+              "type": "dir",
+              "text": "波の音。遠い雷鳴。人々のざわめき。無数の影が、こちらを指さしている。",
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false,
+              "media": []
+            },
+            {
+              "id": "a2_44",
+              "type": "dir",
+              "text": "伸ばした手の先で、あの人影が遠ざかっていく。指先が、届かない。",
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false,
+              "media": []
+            },
+            {
+              "id": "a2_45",
+              "type": "event",
+              "text": "叫ぼうとする。だが、声が出ない。口だけが、むなしく動く。",
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false,
+              "media": []
+            },
+            {
+              "id": "a2_46",
+              "type": "event",
+              "text": "そして——すべてが、白く塗りつぶされていく。木漏れ日も、洋書も、人影も。端から順に、消しゴムで消されるように。（※「抹消」のイメージ。意味は最終話で分かる）",
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false,
+              "media": []
+            },
+            {
+              "id": "a2_47",
+              "type": "event",
+              "text": "完全な白。無音。二拍おいて、暗転。",
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false,
+              "media": []
+            },
+            {
+              "id": "a2_48",
+              "type": "dir",
+              "text": "ロビー車。ソファで眠る探偵。その頬に、涙がひとすじ、伝っている。本人は、気づいていない。",
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false,
+              "media": []
+            },
+            {
+              "id": "a2_49",
+              "type": "event",
+              "text": "走行音が、静かに戻ってくる。→S03（事件）へ。",
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false,
+              "media": []
             }
-          ],
-          "phase": "pro"
+          ]
         },
         {
-          "id": "g9vcn66",
-          "title": "第1幕：密室殺人の発覚",
+          "id": "a3_case",
+          "title": "S03 事件 ― チョコまみれの鍵",
+          "beatKey": "setup",
+          "phase": "pro",
+          "summary": "翌朝7時、叫び声で発覚。密室・チョコの鍵・室内の犬。「調べる」チュートリアル（獲得は手帳のメモ）。決め台詞の初出。去り際の視線が鍵に落ち、S04の動線へ。",
+          "blocks": [
+            {
+              "id": "a3_50",
+              "type": "setting",
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false,
+              "place": "",
+              "time": ""
+            },
+            {
+              "id": "a3_51",
+              "type": "note",
+              "text": "【意図】事件の発覚と「調べる」の初体験。獲得は〈手帳のメモ〉（推理ピースではない。昇格演出は魔界パート以降）。探偵にさせるのは観察まで（名探偵の推理はさせない）。発見の段取り＝起こしに来たアメール（悲鳴）→合鍵のヴィクトル（開錠・太い叫び）。アメールの不審な反応は一切映さない。",
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false,
+              "media": []
+            },
+            {
+              "id": "a3_52",
+              "type": "event",
+              "text": "暗転のまま。走行音。——突然、遠くで男の太い叫び声。",
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false,
+              "media": []
+            },
+            {
+              "id": "a3_53",
+              "type": "line",
+              "windows": [
+                {
+                  "id": "a3_53w0",
+                  "charId": "ep0_guard",
+                  "text": "（声のみ）お嬢様ァァッ‼"
+                }
+              ],
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false
+            },
+            {
+              "id": "a3_54",
+              "type": "line",
+              "windows": [
+                {
+                  "id": "a3_54w0",
+                  "charId": "ep0_tantei",
+                  "text": "（——今のは、寝起きに聞いていい声じゃない）"
+                }
+              ],
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false
+            },
+            {
+              "id": "a3_55",
+              "type": "dir",
+              "text": "探偵、跳ね起きる。窓の外、空が白み始めている。続けて、女性の短い悲鳴。",
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false,
+              "media": []
+            },
+            {
+              "id": "a3_56",
+              "type": "event",
+              "text": "操作解禁（移動）。「声のした方へ向かおう」と画面下に短く表示。廊下を進む。",
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false,
+              "media": []
+            },
+            {
+              "id": "a3_57",
+              "type": "dir",
+              "text": "特別室の前。扉は開いている。アメールが、壁ぎわにへたり込んでいる。巨漢のボディガードが、青ざめて立ち尽くしている。",
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false,
+              "media": []
+            },
+            {
+              "id": "a3_58",
+              "type": "line",
+              "windows": [
+                {
+                  "id": "a3_58w0",
+                  "charId": "ep0_maid",
+                  "text": "た、探偵さん……！　お嬢様が、お嬢様が……！"
+                }
+              ],
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false
+            },
+            {
+              "id": "a3_59",
+              "type": "line",
+              "windows": [
+                {
+                  "id": "a3_59w0",
+                  "charId": "ep0_guard",
+                  "text": "……起こしに来て、応答がなかった。私が合鍵で開けた。そうしたら——"
+                }
+              ],
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false
+            },
+            {
+              "id": "a3_60",
+              "type": "dir",
+              "text": "部屋の中。令嬢すずが、倒れている。頭に、殴られた痕。傍らで、子犬のショコラが、震えながら鳴いている。",
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false,
+              "media": []
+            },
+            {
+              "id": "a3_61",
+              "type": "line",
+              "windows": [
+                {
+                  "id": "a3_61w0",
+                  "charId": "ep0_tantei",
+                  "text": "（…………）"
+                }
+              ],
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false
+            },
+            {
+              "id": "a3_62",
+              "type": "dir",
+              "text": "探偵の目つきが、変わる。寝癖はそのまま。目だけが、別人になる。",
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false,
+              "media": []
+            },
+            {
+              "id": "a3_63",
+              "type": "line",
+              "windows": [
+                {
+                  "id": "a3_63w0",
+                  "charId": "ep0_guard",
+                  "text": "おい、勝手に入るな！　あんたに何が分かる！"
+                }
+              ],
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false
+            },
+            {
+              "id": "a3_64",
+              "type": "line",
+              "windows": [
+                {
+                  "id": "a3_64w0",
+                  "charId": "ep0_tantei",
+                  "text": "——分からんさ、まだ。だから、見る。"
+                },
+                {
+                  "id": "a3_64w1",
+                  "charId": "ep0_tantei",
+                  "text": "俺は、現物しか信じない。"
+                }
+              ],
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false
+            },
+            {
+              "id": "a3_65",
+              "type": "event",
+              "text": "調べるチュートリアル開始。「気になる場所を調べてみよう」。調べたことは〈手帳のメモ〉に記録される、と一言だけ表示。",
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false,
+              "media": []
+            },
+            {
+              "id": "a3_66",
+              "type": "event",
+              "text": "【調べる①】すず → メモ獲得〔すずは頭を殴られていた。争った様子はない〕",
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false,
+              "media": []
+            },
+            {
+              "id": "a3_67",
+              "type": "event",
+              "text": "【調べる②】床の鍵 → メモ獲得〔床に鍵が落ちていた。なぜか、チョコまみれ〕",
+              "to": "",
+              "grants": [
+                "c_keychoco"
+              ],
+              "requires": [],
+              "sectionBreak": false,
+              "media": []
+            },
+            {
+              "id": "a3_68",
+              "type": "line",
+              "windows": [
+                {
+                  "id": "a3_68w0",
+                  "charId": "ep0_tantei",
+                  "text": "（……鍵に、チョコ？）"
+                },
+                {
+                  "id": "a3_68w1",
+                  "charId": "ep0_tantei",
+                  "text": "（食いかけの飴じゃあるまいし。なんだこれは）"
+                }
+              ],
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false
+            },
+            {
+              "id": "a3_69",
+              "type": "event",
+              "text": "【調べる③】扉 → メモ獲得〔扉は施錠されていた。鍵は室内の1本と、ヴィクトルの合鍵〕",
+              "to": "",
+              "grants": [
+                "c_lockroom",
+                "c_twokeys"
+              ],
+              "requires": [],
+              "sectionBreak": false,
+              "media": []
+            },
+            {
+              "id": "a3_70",
+              "type": "event",
+              "text": "【調べる④】ショコラ → メモ獲得〔ショコラは、鍵のかかった部屋の中にいた〕",
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false,
+              "media": []
+            },
+            {
+              "id": "a3_71",
+              "type": "line",
+              "windows": [
+                {
+                  "id": "a3_71w0",
+                  "charId": "ep0_tantei",
+                  "text": "（お前、閉じ込められてたのか。……ひとりで、怖かったな）"
+                }
+              ],
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false
+            },
+            {
+              "id": "a3_72",
+              "type": "dir",
+              "text": "探偵、ショコラの頭にそっと手を置く。それから、立ち上がる。",
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false,
+              "media": []
+            },
+            {
+              "id": "a3_73",
+              "type": "line",
+              "windows": [
+                {
+                  "id": "a3_73w0",
+                  "charId": "ep0_guard",
+                  "text": "…………で。何か、分かったのか。"
+                }
+              ],
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false
+            },
+            {
+              "id": "a3_74",
+              "type": "line",
+              "windows": [
+                {
+                  "id": "a3_74w0",
+                  "charId": "ep0_tantei",
+                  "text": "ああ。「分からないことだらけだ」ってことが、よーく分かった。"
+                }
+              ],
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false
+            },
+            {
+              "id": "a3_75",
+              "type": "line",
+              "windows": [
+                {
+                  "id": "a3_75w0",
+                  "charId": "ep0_guard",
+                  "text": "ふざけてるのか。"
+                }
+              ],
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false
+            },
+            {
+              "id": "a3_76",
+              "type": "line",
+              "windows": [
+                {
+                  "id": "a3_76w0",
+                  "charId": "ep0_tantei",
+                  "text": "半分な。……車掌を呼んでくる。現場はこのまま。誰も入れるな。"
+                }
+              ],
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false
+            },
+            {
+              "id": "a3_77",
+              "type": "dir",
+              "text": "探偵、歩き出す。去り際、その視線が、もう一度だけ床の鍵に落ちる。",
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false,
+              "media": []
+            },
+            {
+              "id": "a3_78",
+              "type": "line",
+              "windows": [
+                {
+                  "id": "a3_78w0",
+                  "charId": "ep0_tantei",
+                  "text": "（……チョコまみれの鍵、ね）"
+                }
+              ],
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false
+            },
+            {
+              "id": "a3_79",
+              "type": "event",
+              "text": "→S04へ、切れ目なく続く。",
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false,
+              "media": []
+            }
+          ]
+        },
+        {
+          "id": "a4_death",
+          "title": "S04 ある探偵の死",
           "beatKey": "catalyst",
-          "summary": "翌7:00。悲鳴→駆けつけ→密室の死体発見。すずの死だから、痛い",
+          "phase": "pro",
+          "summary": "考え込む癖で、無自覚に製造機の方向へ（＝犯人には「気づかれた」と見える。真相は再潜入で解く謎）。背後から一撃、POVのまま死亡。タイトルは出さない。ぺちゃ、で次幕へ。",
           "blocks": [
             {
+              "id": "a4_80",
               "type": "setting",
-              "place": "寝台特急 ／ 客室区画（現場）",
-              "time": "1日目 深夜（発覚）",
-              "id": "ij8i1r0",
               "to": "",
-              "no": 4,
               "grants": [],
               "requires": [],
-              "sectionBreak": false
+              "sectionBreak": false,
+              "place": "",
+              "time": ""
             },
             {
-              "id": "9f7z1oy",
+              "id": "a4_81",
               "type": "note",
-              "text": "【演出意図】第1幕で交流した相手の死。操作（移動→調べる）を渡しつつ、「密室」「チョコのついた鍵」を説明ゼロの現物提示で焼き付ける。第一発見の悲鳴＝アメール（真犯人の大胆ムーブ。再プレイ時に戦慄する配置）。",
-              "media": [],
+              "text": "【意図】最大の引き。POVのまま死なせる。襲撃者・凶器は最後まで映さない（靄＝フェアネス）。「考え込むと周囲が見えなくなる癖」をここで初めて見せる（今は笑い、後で死因の説明＝二重機能）。タイトルコールは出さない（ビート6の再潜入の扉が開く瞬間へ移動）。",
               "to": "",
               "grants": [],
               "requires": [],
-              "sectionBreak": false
+              "sectionBreak": false,
+              "media": []
             },
             {
-              "id": "zcd8itn",
+              "id": "a4_82",
               "type": "event",
-              "ev": "その他",
-              "text": "SE：けたたましい悲鳴（女性）。一瞬だけ走行音を消すミキシングで悲鳴を立たせる。レイ、跳ね起きる。",
-              "media": [],
+              "text": "廊下を歩く探偵。窓の外、朝焼けの雲海が流れていく。",
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false,
+              "media": []
+            },
+            {
+              "id": "a4_83",
+              "type": "line",
+              "windows": [
+                {
+                  "id": "a4_83w0",
+                  "charId": "ep0_tantei",
+                  "text": "（さて。整理といこうか）"
+                }
+              ],
               "to": "",
               "grants": [],
               "requires": [],
               "sectionBreak": false
             },
             {
-              "id": "pbh9bew",
-              "type": "event",
-              "ev": "場面転換",
-              "text": "【操作：移動】目標マーカー「悲鳴の方へ」。通路は野次馬で歩速が落ちる。乗客の不安の囁き。",
-              "media": [],
+              "id": "a4_84",
+              "type": "line",
+              "windows": [
+                {
+                  "id": "a4_84w0",
+                  "charId": "ep0_tantei",
+                  "text": "（鍵のかかった部屋。チョコまみれの鍵。閉じ込められた犬。……で、殺されたお嬢様）"
+                }
+              ],
               "to": "",
               "grants": [],
               "requires": [],
               "sectionBreak": false
             },
             {
-              "id": "wx6xm33",
+              "id": "a4_85",
+              "type": "line",
+              "windows": [
+                {
+                  "id": "a4_85w0",
+                  "charId": "ep0_tantei",
+                  "text": "（チョコまみれの、鍵。……チョコってことは、出どころがあるはずだ。厨房か、それとも——）"
+                }
+              ],
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false
+            },
+            {
+              "id": "a4_86",
               "type": "dir",
-              "text": "最後尾のエグゼクティブ・スイート前。扉は開いている。傍らで、メイドのアメールが床に座り込んでいる。",
-              "media": [],
+              "text": "考えに沈む探偵。その足は、いつのまにか後方車両へ向かっている。車掌室のある先頭とは、逆方向。",
               "to": "",
               "grants": [],
               "requires": [],
-              "sectionBreak": false
+              "sectionBreak": false,
+              "media": []
             },
             {
-              "id": "k4v1dfi",
-              "type": "line",
-              "windows": [
-                {
-                  "id": "qai9w8n",
-                  "charId": "ep0_maid",
-                  "text": "いや……いやぁっ……！"
-                },
-                {
-                  "id": "427lqwj",
-                  "charId": "ep0_maid",
-                  "text": "お嬢様……お嬢様っ！"
-                }
-              ],
-              "to": "",
-              "grants": [],
-              "requires": [],
-              "sectionBreak": false
-            },
-            {
-              "id": "478wj1x",
-              "type": "line",
-              "windows": [
-                {
-                  "id": "53tpk8t",
-                  "charId": "ep0_guard",
-                  "text": "応答がないため、\n自分が予備の鍵で\n開けたのであります。"
-                }
-              ],
-              "to": "",
-              "grants": [],
-              "requires": [],
-              "sectionBreak": false
-            },
-            {
-              "id": "9afy3et",
-              "type": "line",
-              "windows": [
-                {
-                  "id": "asfad5s",
-                  "charId": "sc_rei",
-                  "text": "どいてくれ。\n俺は、探偵だ。"
-                }
-              ],
-              "to": "",
-              "grants": [],
-              "requires": [],
-              "sectionBreak": false
-            },
-            {
-              "id": "9bp5fi2",
-              "type": "dir",
-              "text": "人垣が割れる。豪奢なスイートの中央——甘宮すずが倒れている。頭部に殴打痕。既に絶命。昨夜の小皿が、机の上にぽつんとある。",
-              "media": [],
-              "to": "",
-              "grants": [],
-              "requires": [],
-              "sectionBreak": false
-            },
-            {
-              "id": "xnp3c7n",
-              "type": "cg",
-              "title": "発見：密室の令嬢",
-              "text": "逆光の室内。倒れたすずと、床に落ちた“何か”。窓は内鍵、扉は施錠されていた。引き→鍵のクローズアップの2段構成。",
-              "media": [
-                {
-                  "id": "w8gipej",
-                  "kind": "image",
-                  "src": "",
-                  "cap": "発見CG"
-                }
-              ],
-              "to": "",
-              "grants": [],
-              "requires": [],
-              "sectionBreak": false
-            },
-            {
-              "id": "v7cydef",
-              "type": "line",
-              "windows": [
-                {
-                  "id": "mvwbywm",
-                  "charId": "sc_rei",
-                  "text": "……約束、\nまだだったろ。"
-                }
-              ],
-              "to": "",
-              "grants": [],
-              "requires": [],
-              "sectionBreak": false
-            },
-            {
-              "id": "eayil19",
+              "id": "a4_87",
               "type": "event",
-              "ev": "カメラ演出",
-              "text": "カメラがゆっくり寄り、床の鍵にフォーカス送り。鍵の溝に、チョコレートの痕。",
-              "media": [],
+              "text": "ゴトン。車両の継ぎ目を越える音。",
               "to": "",
               "grants": [],
               "requires": [],
-              "sectionBreak": false
+              "sectionBreak": false,
+              "media": []
             },
             {
-              "id": "j2xajsk",
+              "id": "a4_88",
               "type": "line",
               "windows": [
                 {
-                  "id": "v7c4s8z",
-                  "charId": "sc_rei",
-                  "text": "扉は施錠。窓も内鍵。"
-                },
-                {
-                  "id": "l44av76",
-                  "charId": "sc_rei",
-                  "text": "なのに部屋の鍵が、\n中に落ちている。"
-                },
-                {
-                  "id": "3vd62yo",
-                  "charId": "sc_rei",
-                  "text": "……チョコの匂いだ。"
+                  "id": "a4_88w0",
+                  "charId": "ep0_tantei",
+                  "text": "（——ん？）"
                 }
               ],
               "to": "",
@@ -1377,300 +1852,191 @@
               "sectionBreak": false
             },
             {
-              "id": "xijp5cl",
-              "type": "event",
-              "ev": "推理カード獲得",
-              "text": "「被害者の部屋は密室だった」「チョコのついた鍵（室内に落下）」——最初の推理ピースを現物提示で獲得。",
-              "media": [],
-              "to": "",
-              "grants": [],
-              "requires": [],
-              "sectionBreak": false
-            },
-            {
-              "id": "jj884iq",
-              "type": "choice",
-              "opts": [
-                {
-                  "text": "室内に落ちた鍵を調べる",
-                  "to": "",
-                  "requires": []
-                },
-                {
-                  "text": "ボディガードに話を聞く",
-                  "to": "",
-                  "requires": []
-                },
-                {
-                  "text": "扉の施錠状態を確認する",
-                  "to": "",
-                  "requires": []
-                }
-              ],
-              "text": "（チュートリアル）どれを選んでも短い観察会話。全て確認すると次へ。順不同・取り返し可。",
-              "to": "",
-              "grants": [],
-              "requires": [],
-              "sectionBreak": false
-            },
-            {
-              "id": "5jf0n1y",
+              "id": "a4_89",
               "type": "dir",
-              "text": "通路の奥。サングラスの“不審な客”が、こちらを一瞥して雑踏に消える。",
-              "media": [],
+              "text": "顔を上げる。見慣れない通路。",
               "to": "",
               "grants": [],
               "requires": [],
-              "sectionBreak": false
+              "sectionBreak": false,
+              "media": []
             },
             {
-              "id": "pg7khyo",
+              "id": "a4_90",
               "type": "line",
               "windows": [
                 {
-                  "id": "a1vr932",
-                  "charId": "sc_rei",
-                  "text": "この事件——\n裏がある。"
+                  "id": "a4_90w0",
+                  "charId": "ep0_tantei",
+                  "text": "（……おい。車掌室、どっちだ）"
+                },
+                {
+                  "id": "a4_90w1",
+                  "charId": "ep0_tantei",
+                  "text": "（考えごとを始めると、これだ。目の前が留守になる）"
                 }
               ],
               "to": "",
               "grants": [],
               "requires": [],
               "sectionBreak": false
+            },
+            {
+              "id": "a4_91",
+              "type": "line",
+              "windows": [
+                {
+                  "id": "a4_91w0",
+                  "charId": "ep0_tantei",
+                  "text": "（ま、いい。こっちはこっちで、何か——）"
+                }
+              ],
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false
+            },
+            {
+              "id": "a4_92",
+              "type": "event",
+              "text": "——ゴッ。鈍い音。画面が大きく揺れる。",
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false,
+              "media": []
+            },
+            {
+              "id": "a4_93",
+              "type": "event",
+              "text": "視界が傾く。手帳が、手から滑り落ちる。床が、ゆっくり近づいてくる。",
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false,
+              "media": []
+            },
+            {
+              "id": "a4_94",
+              "type": "line",
+              "windows": [
+                {
+                  "id": "a4_94w0",
+                  "charId": "ep0_tantei",
+                  "text": "（——は？）"
+                }
+              ],
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false
+            },
+            {
+              "id": "a4_95",
+              "type": "dir",
+              "text": "倒れた視界。開いたページのメモが、ぼやけて見える。誰かの足音が、遠ざかっていく。——姿は、最後まで映らない。",
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false,
+              "media": []
+            },
+            {
+              "id": "a4_96",
+              "type": "event",
+              "text": "どくん。……どくん。……心音が、遅くなっていく。",
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false,
+              "media": []
+            },
+            {
+              "id": "a4_97",
+              "type": "dir",
+              "text": "遠くで、悲鳴。誰かの声が、水の中のようにくぐもって聞こえる。「——探偵が」「殺され——」",
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false,
+              "media": []
+            },
+            {
+              "id": "a4_98",
+              "type": "line",
+              "windows": [
+                {
+                  "id": "a4_98w0",
+                  "charId": "ep0_tantei",
+                  "text": "（あれ……。俺、探偵だよな……？）"
+                }
+              ],
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false
+            },
+            {
+              "id": "a4_99",
+              "type": "line",
+              "windows": [
+                {
+                  "id": "a4_99w0",
+                  "charId": "ep0_tantei",
+                  "text": "（探偵ってのは……謎を解く側で……）"
+                },
+                {
+                  "id": "a4_99w1",
+                  "charId": "ep0_tantei",
+                  "text": "（……殺される側じゃ、ない……だろ……）"
+                }
+              ],
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false
+            },
+            {
+              "id": "a4_100",
+              "type": "event",
+              "text": "どくん。——無音。視界が、完全な闇に落ちる。",
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false,
+              "media": []
+            },
+            {
+              "id": "a4_101",
+              "type": "event",
+              "text": "長い静寂。……そのまま、数秒。何も出さない。",
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false,
+              "media": []
+            },
+            {
+              "id": "a4_102",
+              "type": "event",
+              "text": "暗闇の奥から、かすかな音。……ぺちゃ。……ぺちゃ。（何かが、頬を舐めている）",
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false,
+              "media": []
+            },
+            {
+              "id": "a4_103",
+              "type": "event",
+              "text": "→第2幕・魔界パートへ。",
+              "to": "",
+              "grants": [],
+              "requires": [],
+              "sectionBreak": false,
+              "media": []
             }
-          ],
-          "phase": "pro"
-        },
-        {
-          "id": "tskx7ns",
-          "title": "第1幕：一日目の捜査",
-          "beatKey": "debate",
-          "summary": "聴取ダイジェスト。鍵のチョコ痕から核心へ手が掛かり——夜になる",
-          "blocks": [
-            {
-              "type": "setting",
-              "place": "寝台特急 ／ 車内各所",
-              "time": "1日目 深夜（聴取）",
-              "id": "p16qneh",
-              "to": "",
-              "no": 5,
-              "grants": [],
-              "requires": [],
-              "sectionBreak": false
-            },
-            {
-              "id": "zrpl0hf",
-              "type": "note",
-              "text": "【演出意図】普通のミステリとして捜査を快調に進ませ、観客に「これは探偵が解決する話だ」と確信させる。その確信ごと、次のシーンで殺す。予兆演出は一切置かない。",
-              "media": [],
-              "to": "",
-              "grants": [],
-              "requires": [],
-              "sectionBreak": false
-            },
-            {
-              "id": "7yyaq5a",
-              "type": "event",
-              "ev": "その他",
-              "text": "【簡易聴取】ヴィクトル（予備鍵の管理）／アメール（第一発見の状況）／ガナッシュ（停電と運行記録）／ヴァン（給仕の動線）。各2問の選択式。",
-              "media": [],
-              "to": "",
-              "grants": [],
-              "requires": [],
-              "sectionBreak": false
-            },
-            {
-              "id": "vt8ew9m",
-              "type": "line",
-              "windows": [
-                {
-                  "id": "0w0n85x",
-                  "charId": "ep0_guard",
-                  "text": "予備鍵は自分が\n肌身離さず。\n誓って真実です。"
-                },
-                {
-                  "id": "imd46eg",
-                  "charId": "ep0_waiter",
-                  "text": "昨夜は20時に停電が。\nええ、皆バタバタで。"
-                }
-              ],
-              "to": "",
-              "grants": [],
-              "requires": [],
-              "sectionBreak": false
-            },
-            {
-              "id": "mlw7wct",
-              "type": "line",
-              "windows": [
-                {
-                  "id": "fe5hjdp",
-                  "charId": "sc_rei",
-                  "text": "（鍵のチョコ痕……\nもし、これが——）"
-                },
-                {
-                  "id": "pgq9t51",
-                  "charId": "sc_rei",
-                  "text": "（いや、まさかな。\nだが、筋は通る）"
-                }
-              ],
-              "to": "",
-              "grants": [],
-              "requires": [],
-              "sectionBreak": false
-            },
-            {
-              "id": "oq498n8",
-              "type": "dir",
-              "text": "夜。考えを整理するため、レイは無人の通路へ出る。ランプの灯りが、規則正しく流れていく。",
-              "media": [],
-              "to": "",
-              "grants": [],
-              "requires": [],
-              "sectionBreak": false
-            }
-          ],
-          "phase": "pro"
-        },
-        {
-          "id": "zbj7ziv",
-          "title": "第2幕：探偵、殺される——タイトルコール",
-          "beatKey": "break2",
-          "summary": "完全な不意打ち。視点人物の死。「ある探偵の死」はここで初めて出す",
-          "blocks": [
-            {
-              "type": "setting",
-              "place": "寝台特急 ／ 車内",
-              "time": "1日目 深夜",
-              "id": "fzrk511",
-              "to": "",
-              "no": 6,
-              "grants": [],
-              "requires": [],
-              "sectionBreak": false
-            },
-            {
-              "id": "p0kfvax",
-              "type": "note",
-              "text": "【演出意図】予兆ゼロの一撃。コールドオープンも死に際の予告も存在しないため、プレイヤーは主役の死を本当に予期できない。襲撃者は最後まで映さない。タイトル「ある探偵の死」はこの瞬間まで完全に伏せる。",
-              "media": [],
-              "to": "",
-              "grants": [],
-              "requires": [],
-              "sectionBreak": false
-            },
-            {
-              "id": "yebz9ya",
-              "type": "dir",
-              "text": "歩きながら、鍵とチョコの仮説を組み立てるレイ。ごく普通の、捜査の夜。",
-              "media": [],
-              "to": "",
-              "grants": [],
-              "requires": [],
-              "sectionBreak": false
-            },
-            {
-              "id": "olzwucs",
-              "type": "line",
-              "windows": [
-                {
-                  "id": "5112ym6",
-                  "charId": "sc_rei",
-                  "text": "（明日の朝、\n製造機を調べれば——）"
-                }
-              ],
-              "to": "",
-              "grants": [],
-              "requires": [],
-              "sectionBreak": false
-            },
-            {
-              "id": "pywij2s",
-              "type": "dir",
-              "text": "——ガッ。鈍い衝撃。視界が傾ぎ、床板の木目が頬に迫る。",
-              "media": [],
-              "to": "",
-              "grants": [],
-              "requires": [],
-              "sectionBreak": false
-            },
-            {
-              "id": "jijephc",
-              "type": "event",
-              "ev": "カメラ演出",
-              "text": "POVが倒れ、ピントが揺れ、周辺減光。音が水中のようにこもる。遠くで犬の遠吠え。",
-              "media": [],
-              "to": "",
-              "grants": [],
-              "requires": [],
-              "sectionBreak": false
-            },
-            {
-              "id": "3f0nspo",
-              "type": "line",
-              "windows": [
-                {
-                  "id": "hpy78wj",
-                  "charId": "sc_rei",
-                  "text": "あれ……俺は……"
-                },
-                {
-                  "id": "hq50n5d",
-                  "charId": "sc_rei",
-                  "text": "探偵、だったよな……"
-                },
-                {
-                  "id": "av7ib8t",
-                  "charId": "sc_rei",
-                  "text": "こんなところで、\n死ぬわけには——"
-                }
-              ],
-              "to": "",
-              "grants": [],
-              "requires": [],
-              "sectionBreak": false
-            },
-            {
-              "id": "0y2g0jv",
-              "type": "dir",
-              "text": "伸ばした指先の先で、琥珀色の灯が滲む。視界の端を、“誰か”の靴音が遠ざかる。顔は、見えない。",
-              "media": [],
-              "to": "",
-              "grants": [],
-              "requires": [],
-              "sectionBreak": false
-            },
-            {
-              "id": "csma995",
-              "type": "event",
-              "ev": "その他",
-              "text": "心音停止。完全な暗転。静寂を3秒——そして、タイトルロゴ。",
-              "media": [],
-              "to": "",
-              "grants": [],
-              "requires": [],
-              "sectionBreak": false
-            },
-            {
-              "id": "fbv77op",
-              "type": "cg",
-              "title": "タイトルコール「ある探偵の死」",
-              "text": "漆黒にロゴが灯る。砕けたチョコレートの欠片が、ゆっくりと宙へ還っていく。サブタイトル「ある探偵の死」はこの画面で初出。",
-              "media": [
-                {
-                  "id": "cfq07e7",
-                  "kind": "image",
-                  "src": "",
-                  "cap": "タイトルロゴ"
-                }
-              ],
-              "to": "",
-              "grants": [],
-              "requires": [],
-              "sectionBreak": false
-            }
-          ],
-          "phase": "pro"
+          ]
         },
         {
           "id": "gbzxq8p",
@@ -4609,6 +4975,25 @@
         }
       ],
       "cast": [
+        {
+          "id": "ep0_tantei",
+          "name": "探偵",
+          "role": "主人公（命名前）",
+          "color": "",
+          "oneLiner": "お調子者の道化。だが、ここぞの推理は本物。",
+          "age": "",
+          "gender": "",
+          "personality": "",
+          "tone": "",
+          "silhouette": "",
+          "likes": "",
+          "dislikes": "",
+          "strengths": "",
+          "flaws": "",
+          "detail": "命名前の主人公の話者表示用。S01〜S09は「探偵」表示、S10の命名以降は sc_rei（→ナハト）に切り替える。内心（）はプレイヤーだけに聞こえる。",
+          "ability": "",
+          "media": []
+        },
         {
           "id": "ep0_mob",
           "name": "魔界の住人",
@@ -10814,17 +11199,17 @@
     {
       "id": "ds_05",
       "title": "4. 主人公ナハトと、シリーズが続く仕組み",
-      "body": "**まず、2つの事件を分けて整理します（重要）**\n混同しやすいので、先に区別します。\n- **EP0（チョコレート寝台特急）＝ナハトが魔界探偵として“最初に挑む”事件。** 出自（魔界に堕ちた原因）ではありません。\n- **ナハトの出自（魔界に堕ちた原因）＝大正・孤島の殺人事件。** こちらは第1作のラスト（最終エピソード）に置きます（詳細は第5章）。\n\n**EP0で起きること（チュートリアル）**\n1. ナハトはすでに魔界に堕ちた魂で、魔界探偵です。ただしEP0では、探偵としての意識（記憶）がないまま、相棒も依頼者の魂もない状態で、実験的に迷宮事件空間へ送り込まれます。\n2. 空間の中で事件を追体験し、最後に犯人に襲われます（サブタイトル「ある探偵の死」）。\n3. その後、猫姿のヒロイン（シエル）のぺろぺろで魔界で目覚め、魔界探偵としての記憶を取り戻します。\n4. 次は、相棒と依頼者の魂と一緒に、同じ事件へ“本番”として再潜入し、解決します。\n\n→ なぜ探偵が死ぬのか：迷宮空間への潜入には常に死の危険が伴うからです（常設ルール。詳しくは第1章）。EP0冒頭の探偵の死は、このルールが最初に発動する場面です。\n\n→ EP0で一時的に意識を失い、記憶が混乱するのは、準備なしの実験ダイブの反動です。シエルのぺろぺろで、魔界探偵としての意識は戻ります。**再潜入のナハトは、最初の潜入（実験ダイブ）での出来事は覚えています。**戻らないのは、抹消された前世の記憶――現世で自分が何者だったか――だけです（第5章）。\n\n**自分の出自（孤島の事件）は、なぜ最後に解くのか**\n自分自身の事件は、すべての歪みのなかで最も難しいもの（自分が当事者で、最も根が深い）。だからナハトは、他人の事件で腕を上げ、第1作の最後にようやく自分の出自に挑みます（第3章の「自分の事件は最難関」と一致）。\n\n**転換：傷の力から、術の力へ**\n- これまで（傷の力）：ナハトは「自分の記録が偽りだから」歪みに共鳴していました。受け身の力です。\n- 第1作ラストの自分の事件で、ナハトは史上初めて「自分自身の記録」を書き換えます。\n- その瞬間、共鳴は「勝手に起きるもの」から「意志で起こせる技術」に変わります（奥義オーバーライトの解禁もここ）。\n- これから（術の力）：もう自分が冤罪である必要はありません。最難関の「自分」を書き換えられた者には、どんな歪みも手が届く。資格は「傷」ではなく「身につけた術」として残ります。だから第2作以降も続けられます。\n\n**門は開く。でも、入らない。**\n自分の記録を正すと、成仏の代償は果たされ、天界への門が開きます。しかしナハトは入りません。自分の意志で魔界に留まります。理由は義務ではなく――**自分を陥れ、今も多くの魂をもてあそぶキャロルの黒幕ニコラが、まだ野放しだから。** 自分だけ救われて天界へは行けません。\n\n**物語の構造：孤島の事件は第1作の「山場」**\n- 第1作ラスト（孤島）＝自分の出自の謎が解け、犯人（兄）の意外な正体が明かされ、その裏にいた黒幕ニコラが姿を見せる場面。ここから対キャロルの長い戦いが始まります。\n- シリーズ全体の最終決戦＝黒幕ニコラ／キャロルとの決着。"
+      "body": "**まず、2つの事件を分けて整理します（重要）**\n混同しやすいので、先に区別します。\n- **EP0（チョコレート寝台特急）＝ナハトが魔界探偵として“最初に挑む”事件。** 出自（魔界に堕ちた原因）ではありません。\n- **ナハトの出自（魔界に堕ちた原因）＝大正・孤島の殺人事件。** こちらは第1作のラスト（最終エピソード）に置きます（詳細は第5章）。\n\n**EP0で起きること（チュートリアル）**\n1. ナハトはすでに魔界に堕ちた魂で、魔界探偵です。ただしEP0では、探偵としての意識（記憶）がないまま、相棒も依頼者の魂もない状態で、実験的に迷宮事件空間へ送り込まれます。\n2. 空間の中で事件を追体験し、最後に犯人に襲われます（サブタイトル「ある探偵の死」）。\n3. その後、猫姿のヒロイン（シエル）のぺろぺろで魔界で目覚め、魔界探偵としての記憶を取り戻します。\n4. 次は、相棒と依頼者の魂と一緒に、同じ事件へ“本番”として再潜入し、解決します。\n\n→ なぜ探偵が死ぬのか：迷宮空間への潜入には常に死の危険が伴うからです（常設ルール。詳しくは第1章）。EP0冒頭の探偵の死は、このルールが最初に発動する場面です。\n\n→ EP0で一時的に意識を失い、記憶が混乱するのは、準備なしの実験ダイブの反動です。シエルのぺろぺろで、魔界探偵としての意識は戻ります。**再潜入のナハトは、最初の潜入（実験ダイブ）での出来事は覚えています。**戻らないのは、抹消された前世の記憶――現世で自分が何者だったか――だけです（第5章）。\n\n**自分の出自（孤島の事件）は、なぜ最後に解くのか**\n自分自身の事件は、すべての歪みのなかで最も難しいもの（自分が当事者で、最も根が深い）。だからナハトは、他人の事件で腕を上げ、第1作の最後にようやく自分の出自に挑みます（第3章の「自分の事件は最難関」と一致）。\n\n**転換：傷の力から、術の力へ**\n- これまで（傷の力）：ナハトは「自分の記録が偽りだから」歪みに共鳴していました。受け身の力です。\n- 第1作ラストの自分の事件で、ナハトは史上初めて「自分自身の記録」を書き換えます。\n- その瞬間、共鳴は「勝手に起きるもの」から「意志で起こせる技術」に変わります（奥義オーバーライトの解禁もここ）。\n- これから（術の力）：もう自分が冤罪である必要はありません。最難関の「自分」を書き換えられた者には、どんな歪みも手が届く。資格は「傷」ではなく「身につけた術」として残ります。だから第2作以降も続けられます。\n\n**門は開く。でも、入らない。**\n自分の記録を正すと、成仏の代償は果たされ、天界への門が開きます。しかしナハトは入りません。自分の意志で魔界に留まります。理由は義務ではなく――**自分を陥れ、今も多くの魂をもてあそぶキャロルの黒幕ニコラが、まだ野放しだから。** 自分だけ救われて天界へは行けません。\n\n**物語の構造：孤島の事件は第1作の「山場」**\n- 第1作ラスト（孤島）＝自分の出自の謎が解け、犯人（兄）の意外な正体が明かされ、その裏にいた黒幕ニコラが姿を見せる場面。ここから対キャロルの長い戦いが始まります。\n- シリーズ全体の最終決戦＝黒幕ニコラ／キャロルとの決着。\n\n**ナハトのキャラクター性（確定）**\n共通の設計原則：性格の土台は、現世（前世）から地続き。衝撃的な体験は、性格を作り変えるのではなく、「心の傷」として少し歪んだ部分を生む（この原則は、ナハトとシエルの両方に適用する）。\n\n- 一行で：**お調子者の道化。だが、ここぞの推理は本物。**\n- 土台（現世から地続き）：お調子者、ひょうきん、女好き（軽口専門・誰にも本気にならない）、少し抜けている、喧嘩は弱い。ただし目だけは常に観ている。表はボケ、内心は冷静な観察者（内心はプレイヤーだけに聞こえる）。\n- ここぞの瞬間：目つきが変わり、「俺は、現物しか信じない」。普段の軽さとのギャップが、最大の見せ場。\n- 傷が生んだ歪み：①現物しか信じない頑なさ（証言と記録に潰されたから）。②誰にも本気で恋をしない（魂が“忘れた誰か”を覚えているから。本人は知らない。最終話で回収）。③つらい場面ほど、ふざける（明るさが鎧を兼ねる）。\n- 毒舌の矛先：強い者・理不尽へ。弱っている者には向けない。「別に、あんたのためじゃない」と言い訳しながら助ける。\n- 考え込むと、周囲が見えなくなる（思考に沈むと目の前が留守になる。EP0で最初の死の一因）。\n- 一人称は「俺」。喧嘩は弱いが、逃げ足と口は回る。"
     },
     {
       "id": "ds_06",
       "title": "5. 主人公の事件（出自）― 大正・孤島の殺人事件",
-      "body": "第1作の最終エピソード。ナハトが魔界に堕ちた、そもそもの事件です。\n\n**舞台と関係（大正ロマン＋クローズドサークル）**\n- 大正時代。ナハト（前世の朔弥）は、薬事工場を営む財閥の家に仕える使用人。\n- そこの令嬢（ヒロイン・シエルの前世＝ルナ）と恋に落ち、仲睦まじい関係になります。\n- ある暑い夏の日、一家とともに孤島の避暑地の邸宅を訪れたとき、**当主（令嬢の父親）が殺されます**。朔弥はこの事件に巻き込まれ、無実なのに罪を着せられます。\n\n→ 孤島の洋館＝逃げ場のない密室劇（嵐の山荘もの）。製薬一族なので毒物トリックも自然。本格ミステリの王道です。\n\n**犯人と黒幕（確定）**\n- 被害者＝令嬢の父親（財閥の当主）。\n- 実行犯＝朔弥の兄。生きた人間です（死後の存在が起こした事件ではありません）。兄の日本名は未定。\n- 兄は令嬢に恋し、朔弥に嫉妬していました。その「心の隙間」に、キャロルの黒幕ニコラが入り込み、事件を起こさせます。\n- 黒幕＝ニコラ。聖人然として口笛で聖歌を吹く、不気味な改竄者。第2作以降もナハトが追い続ける真の宿敵。\n- ミステリの驚き：第1作ラストで、犯人がナハトの実の兄だと明かされる。\n\n**ニコラの動機（愉快犯）**\n- ニコラは、朔弥個人を狙ったわけではありません。ただ「迷宮事件空間（ミステリゲーム）を作りたい」という、狂った愉快犯の動機で動きます。\n- たまたま兄の嫉妬という「心の隙間」が手頃だったので、そこを使って事件を仕立てた。朔弥の破滅は、ニコラにとっては“遊びのついで”でした。\n→ だからこそ救いがない。ナハトの人生を壊した相手は、それを「ゲーム」としか思っていない。この軽さが、いちばんの悪です。\n\n**ニコラの手口の特別さ：改竄ではなく「抹消」（最重要・かみくだき）**\nいちばん分かりやすいたとえは、データの保存です。\n- 普通の冤罪（改竄）＝「上書き保存」。本物の上に偽物をかぶせるだけ。元データは下に残るので、探偵が復元できる（だから他人でも解ける）。\n- ニコラが朔弥にやったこと（抹消）＝「元データごと完全削除」。本物の真実をまるごと消し、残ったのは「朔弥が犯人」という偽物だけ。\n\nもう少し細かく言うと、記録は二層です。「本物の真実」の上に、キャロルが「偽の結末」を貼る、というイメージ。\n- 普通の冤罪（改竄）：本物の真実の上に偽の結末を“上書き”する。本物は下に残っているので、探偵が剥がして証明できる。\n- ニコラが朔弥にやったこと（抹消）：偽の結末（＝「朔弥が犯人」）は表に残したまま、その下の“本物の真実”を丸ごと消した。つまり――\n  - 表（レコードが示す内容）：「朔弥が当主を殺した。事件は解決済み」。← この偽の有罪判決が残るから、朔弥は冤罪を背負って魔界へ堕ちる。事件は“迷宮入り（犯人不明）”ではなく、“嘘のまま解決済みで固く閉じた”状態。\n  - 消されたもの：朔弥が無実だという真実、真犯人が兄だという真実、そして朔弥本人の本当の人生・記憶。\n- だから「犯人不明の未解決事件」にはなりません。むしろ逆で、「偽の犯人で“解決済み”にされ、ひっくり返す手がかりが消された」のが、いちばん残酷で完璧な形です。\n- 抹消は極めて難しく、めったにできない絶技。だからこそニコラの“最高傑作”であり、朔弥はほぼ唯一の例外。\n\n**なぜ「完全削除」なんてできたのか（孤島だから、できた）**\n- 真実は、ひとりでには消えません。「それを知る人・残った証拠・事件の痕跡」に支えられて、レコードに留まっています。だから普通は、上から嘘を塗れても、本物そのものは消せない（支えが残るので、探偵が必ず掘り起こせる）。\n- ニコラは、その“支え”を全部断ちました。絶海の孤島、ごく少人数、事件後の口封じと隠蔽、そして「解決済み」として誰も振り返らないようにする。支えを失って宙ぶらりんになった真実なら、最後の糸を断ち切って消せる。\n- だから抹消はめったにできません。真実をここまで孤立させられる状況が、まず無いから。**孤島という舞台そのものが、消去を可能にした条件**でした（密室劇は雰囲気だけでなく、仕掛けの核）。\n\n**ただ一つ、消せなかった支え＝朔弥の魂**\n- 大事な原則：**記録は消せても、魂は消せない。** 真実は朔弥の魂の奥に、言葉にならない違和感として残っている。記録には無いが、魂には在る。\n- この「抹消」が、3つのことを生みます。\n  1. **朔弥だけが前世の記憶を失う**：記録に紐づく前世の記憶ごと、消えたから。だから彼だけ、自分が何者かを覚えていない。\n  2. **朔弥の事件は迷宮空間が自然発生しない**：迷宮空間は「嘘が、残った真実とこすれて生まれるほころび（傷跡）」から発生する。抹消はこすれる相手＝真実が記録に無いので、ほころびが生まれない。傷跡ゼロの“完璧に閉じた事件”。だから空間が生まれず、魔界の王も気づけない。事件はシステムから見えない。\n  3. **朔弥自身でしか冤罪を晴らせない**：真実は朔弥の魂の奥にしか残っていない。彼は自分の事件の“最後の生き証人”。彼が内側から真実を取り戻す以外に、書き換える手がかりがない。\n- なお、抹消された事件は、やった本人（キャロル）以外には知りようがありません。だからシエルも、キャロルに近づいて初めて、朔弥の無実を知ることになります（第6章）。\n\n**では、どうやって晴らすのか（解決方法）**\n1. まず舞台がない。抹消ゆえに迷宮空間が生まれないので、**シエルがキャロルに潜入し、その“事件を作る技”で、閉じた朔弥の事件を迷宮空間として無理やり開く**（第6章）。\n2. 朔弥がその中で事件を追体験する。現場に立つことで、魂に残った“真実の手応え”が呼び起こされる（第7章の「様子がおかしくなる」）。\n3. 朔弥は、空っぽの記録ではなく、自分の魂から真実を思い出す。**最後の生き証人として、自分で証言する**。\n4. 思い出した真実を、消された場所に書き戻す。普通の探偵は「残っている真実」を証明するだけだが、朔弥は「消された真実」を魂から復元して書き込む。これが史上初の所業＝傷の力が術の力に変わる瞬間（オーバーライト解禁・第4章）。\n\n**兄のその後（動機の連鎖・提案）**\n- 当主が死に、恋敵朔弥も消えたあと、兄が令嬢と結ばれて家督を得る――という連鎖にすると、「兄が工場を継いで財をなした」という設定がきれいに繋がります（※提案）。\n- つまり兄の犯行は、「恋敵の排除」と「家督・財産の獲得」を同時に果たした。古典ミステリらしい動機の連鎖です。\n- ただし兄は、その後の人生で別の悪事を重ね、結果的に魔界へ堕ちます。だから兄は「宿敵」ではなく、「悲劇の犯人であり、後に別件で堕ちた魂」。ナハトにとっては、いつか向き合う“もう一つの個人的な業”として残せます。"
+      "body": "第1作の最終エピソード。ナハトが魔界に堕ちた、そもそもの事件です。\n\n**舞台と関係（大正ロマン＋クローズドサークル）**\n- 大正時代。ナハト（前世の朔弥）は、薬事工場を営む財閥の家に仕える使用人。\n- そこの令嬢（ヒロイン・シエルの前世＝ルナ）と恋に落ち、仲睦まじい関係になります。\n- ある暑い夏の日、一家とともに孤島の避暑地の邸宅を訪れたとき、**当主（令嬢の父親）が殺されます**。朔弥はこの事件に巻き込まれ、無実なのに罪を着せられます。\n\n→ 孤島の洋館＝逃げ場のない密室劇（嵐の山荘もの）。製薬一族なので毒物トリックも自然。本格ミステリの王道です。\n\n**朔弥という男（人物像・確定）**\n- 生まれつきの性格：お調子者で、ひょうきん。屋敷の使用人仲間を笑わせるムードメーカー。女性への軽口が好きで、少し抜けていて、喧嘩は弱い。\n- ただし「目」だけは本物。観察眼と機転は生まれつきの才で、使用人の仕事（主の顔色を読む、客の靴の汚れに気づく）でさらに磨かれた。\n- 二層の型：ふざけて場を回しながら、内心では冷静に観察している。「表はボケ、内心は観察者」。これは現世からの彼の型で、魔界のナハトにそのまま引き継がれる。\n\n**恋の始まり（確定）**\n- 瑠璃は、舶来の探偵小説を愛読する、お転婆な令嬢。好奇心旺盛で、身分で人を分けない。\n- 屋敷で小さな盗難騒ぎが起き、疑われた女中を、朔弥が観察の力で救う。それを見た瑠璃が彼の「目」を面白がり、二人だけの謎解き遊びが始まる。\n- 瑠璃は彼をこう呼んだ――**「私の探偵さん」**。身分差を越えた接点は、書物と謎。これが恋の始まり。\n- この呼び名は、シリーズ最大級の伏線。EP0冒頭、記憶のない彼が、とっさに「探偵」と名乗るのは、この呼び名の“魂の残響”（本人は理由を知らない。最終話で回収する）。\n\n**犯人と黒幕（確定）**\n- 被害者＝令嬢の父親（財閥の当主）。\n- 実行犯＝朔弥の兄。生きた人間です（死後の存在が起こした事件ではありません）。兄の日本名は未定。\n- 兄は令嬢に恋し、朔弥に嫉妬していました。その「心の隙間」に、キャロルの黒幕ニコラが入り込み、事件を起こさせます。\n- 黒幕＝ニコラ。聖人然として口笛で聖歌を吹く、不気味な改竄者。第2作以降もナハトが追い続ける真の宿敵。\n- ミステリの驚き：第1作ラストで、犯人がナハトの実の兄だと明かされる。\n\n**ニコラの動機（愉快犯）**\n- ニコラは、朔弥個人を狙ったわけではありません。ただ「迷宮事件空間（ミステリゲーム）を作りたい」という、狂った愉快犯の動機で動きます。\n- たまたま兄の嫉妬という「心の隙間」が手頃だったので、そこを使って事件を仕立てた。朔弥の破滅は、ニコラにとっては“遊びのついで”でした。\n→ だからこそ救いがない。ナハトの人生を壊した相手は、それを「ゲーム」としか思っていない。この軽さが、いちばんの悪です。\n\n**ニコラの手口の特別さ：改竄ではなく「抹消」（最重要・かみくだき）**\nいちばん分かりやすいたとえは、データの保存です。\n- 普通の冤罪（改竄）＝「上書き保存」。本物の上に偽物をかぶせるだけ。元データは下に残るので、探偵が復元できる（だから他人でも解ける）。\n- ニコラが朔弥にやったこと（抹消）＝「元データごと完全削除」。本物の真実をまるごと消し、残ったのは「朔弥が犯人」という偽物だけ。\n\nもう少し細かく言うと、記録は二層です。「本物の真実」の上に、キャロルが「偽の結末」を貼る、というイメージ。\n- 普通の冤罪（改竄）：本物の真実の上に偽の結末を“上書き”する。本物は下に残っているので、探偵が剥がして証明できる。\n- ニコラが朔弥にやったこと（抹消）：偽の結末（＝「朔弥が犯人」）は表に残したまま、その下の“本物の真実”を丸ごと消した。つまり――\n  - 表（レコードが示す内容）：「朔弥が当主を殺した。事件は解決済み」。← この偽の有罪判決が残るから、朔弥は冤罪を背負って魔界へ堕ちる。事件は“迷宮入り（犯人不明）”ではなく、“嘘のまま解決済みで固く閉じた”状態。\n  - 消されたもの：朔弥が無実だという真実、真犯人が兄だという真実、そして朔弥本人の本当の人生・記憶。\n- だから「犯人不明の未解決事件」にはなりません。むしろ逆で、「偽の犯人で“解決済み”にされ、ひっくり返す手がかりが消された」のが、いちばん残酷で完璧な形です。\n- 抹消は極めて難しく、めったにできない絶技。だからこそニコラの“最高傑作”であり、朔弥はほぼ唯一の例外。\n\n**なぜ「完全削除」なんてできたのか（孤島だから、できた）**\n- 真実は、ひとりでには消えません。「それを知る人・残った証拠・事件の痕跡」に支えられて、レコードに留まっています。だから普通は、上から嘘を塗れても、本物そのものは消せない（支えが残るので、探偵が必ず掘り起こせる）。\n- ニコラは、その“支え”を全部断ちました。絶海の孤島、ごく少人数、事件後の口封じと隠蔽、そして「解決済み」として誰も振り返らないようにする。支えを失って宙ぶらりんになった真実なら、最後の糸を断ち切って消せる。\n- だから抹消はめったにできません。真実をここまで孤立させられる状況が、まず無いから。**孤島という舞台そのものが、消去を可能にした条件**でした（密室劇は雰囲気だけでなく、仕掛けの核）。\n\n**ただ一つ、消せなかった支え＝朔弥の魂**\n- 大事な原則：**記録は消せても、魂は消せない。** 真実は朔弥の魂の奥に、言葉にならない違和感として残っている。記録には無いが、魂には在る。\n- この「抹消」が、3つのことを生みます。\n  1. **朔弥だけが前世の記憶を失う**：記録に紐づく前世の記憶ごと、消えたから。だから彼だけ、自分が何者かを覚えていない。\n  2. **朔弥の事件は迷宮空間が自然発生しない**：迷宮空間は「嘘が、残った真実とこすれて生まれるほころび（傷跡）」から発生する。抹消はこすれる相手＝真実が記録に無いので、ほころびが生まれない。傷跡ゼロの“完璧に閉じた事件”。だから空間が生まれず、魔界の王も気づけない。事件はシステムから見えない。\n  3. **朔弥自身でしか冤罪を晴らせない**：真実は朔弥の魂の奥にしか残っていない。彼は自分の事件の“最後の生き証人”。彼が内側から真実を取り戻す以外に、書き換える手がかりがない。\n- なお、抹消された事件は、やった本人（キャロル）以外には知りようがありません。だからシエルも、キャロルに近づいて初めて、朔弥の無実を知ることになります（第6章）。\n\n**では、どうやって晴らすのか（解決方法）**\n1. まず舞台がない。抹消ゆえに迷宮空間が生まれないので、**シエルがキャロルに潜入し、その“事件を作る技”で、閉じた朔弥の事件を迷宮空間として無理やり開く**（第6章）。\n2. 朔弥がその中で事件を追体験する。現場に立つことで、魂に残った“真実の手応え”が呼び起こされる（第7章の「様子がおかしくなる」）。\n3. 朔弥は、空っぽの記録ではなく、自分の魂から真実を思い出す。**最後の生き証人として、自分で証言する**。\n4. 思い出した真実を、消された場所に書き戻す。普通の探偵は「残っている真実」を証明するだけだが、朔弥は「消された真実」を魂から復元して書き込む。これが史上初の所業＝傷の力が術の力に変わる瞬間（オーバーライト解禁・第4章）。\n\n**冤罪のあと（輪郭・死の形は未確定）**\n- 朔弥は捕らえられ、裁かれる。無実の叫びは、誰にも届かない。人々の証言が彼を指し、記録が彼を犯人と記す。信じたのは瑠璃だけ――だが、会うことも許されないまま、彼は死んだ。\n- ※どう死んだか（形と時期）は未確定。第14章のとおり、最終話（EP7）の設計で確定する。\n- この体験が、決め台詞「俺は、現物しか信じない」の起源。証言と記録に人生を潰された男だから、目に見える現物しか信じない。\n\n**記憶の抹消で「残るもの」（精密化・確定）**\n- 抹消で消えるのは、エピソード記憶（自分が何者だったか・過去の出来事）。\n- 魂と体に染みついた技能・癖・反射（観察眼、身のこなし、口ぐせ、お茶の淹れ方など）は残る。「記録は消せても、魂は消せない」の延長。\n- だから記憶のないナハトにも、使用人時代の癖（名札を先に読む等）が、理由の分からないまま滲む。小さな笑いと伏線を兼ねる。\n\n**兄のその後（動機の連鎖・提案）**\n- 当主が死に、恋敵朔弥も消えたあと、兄が令嬢と結ばれて家督を得る――という連鎖にすると、「兄が工場を継いで財をなした」という設定がきれいに繋がります（※提案）。\n- つまり兄の犯行は、「恋敵の排除」と「家督・財産の獲得」を同時に果たした。古典ミステリらしい動機の連鎖です。\n- ただし兄は、その後の人生で別の悪事を重ね、結果的に魔界へ堕ちます。だから兄は「宿敵」ではなく、「悲劇の犯人であり、後に別件で堕ちた魂」。ナハトにとっては、いつか向き合う“もう一つの個人的な業”として残せます。"
     },
     {
       "id": "ds_07",
       "title": "6. ヒロイン シエル（前世ルナ）― 正体と潜入計画",
-      "body": "**課題**：シエルが「ナハトの相棒」であり「孤島事件の令嬢（ナハトの最愛の人）」でもあるのは、ともすればご都合主義に見えます。これを“必然”に変えるための設計です。\n\n**解決の核（3点）**\n1. **偶然ではなく、彼女が探し出した**：シエルがナハトの相棒なのは、偶然ではありません。二人の絆に導かれ、彼女がナハトを探し出し、その側にいることを選んだから。\n2. **隠すものを2層に分ける（重要）**：\n   - 薄く匂わせる層（プレイヤーに見せる）：「シエルはナハトに、何か個人的な事情を抱えていそう」。これはチラ見せして、恋愛線の伏線にする。\n   - 最後まで伏せる層：「シエル＝最愛のルナ本人」「だから彼を見守っている」。この核心は、終盤まで絶対に悟らせない。\n   - → プレイヤーは「秘密がありそう」と感じつつ、まさか“本人”だとは思わない。だから終盤、ナハトが過去を取り戻すと同時に「相棒＝ルナだった」と判明する衝撃が最大化する。\n3. **関係をツンデレ→恋愛へ育て、その絶頂で裏切る**：\n   - 序盤：ツンツンした厳しい先輩。ナハトに辛く当たる。（この“厳しさ”の正体は切ない。本当は最愛の人なのに、正体も告げられず見守るしかない不器用さが、厳しさになっている）\n   - 中盤：事件を共にするうち不器用な優しさが見え、ナハトが相手として意識し始める。プレイヤーも一緒に惹かれていく。\n   - 最高潮：恋愛感情がピークに達した、まさにその時、シエルがキャロルへ寝返り失踪する。恋愛の絶頂で“裏切り”が来るので、衝撃と喪失感が最大になる。\n   - 終盤：寝返りは“彼を救うための潜入”だったと判明。さらに、彼女こそ最愛のルナ本人だったと明かされ、二重の衝撃になる。\n\n**相棒の扱い（基本シエル＋失踪中は代理）**\n- 基本の相棒は、ずっとシエル。\n- シエル失踪中（第4話の後〜最終話の途中）は、別キャラが一時的に相棒になる。シエルと正反対のタイプにして、喪失感とギャップを立てる。\n- この代理相棒は、最終話でナハトに同行する「別の探偵（実はキャロルの偽物）」と同一にできる（＝失踪中の代理が、実は敵だった、という二段の裏切り）。最初から敵にするか、途中までは本物の味方にするかは要検討。\n\n**どう魔界に来たか（確定：案②「彼女もまた被害者」）**\n孤島の後、ルナの人生も同じ敵に壊され、冤罪を負って魔界へ堕ちた。そこで彼女自身も魔界探偵になった。だから「迷宮空間に入れる（＝冤罪の共鳴）」「ナハトの先輩（＝先に探偵になった）」が自然に説明できます。\n\n**シエルの計画（魔界探偵になってから）**\n1. 探偵として調査するうち、キャロルの存在と、朔弥の事件が“抹消による冤罪”だと知る（抹消された事件は、やったキャロル側からしか知り得ない）。同時に、目の前の記憶を失った探偵こそ朔弥＝最愛の人だと気づく（記録は消えても、彼女は彼の魂を見分けられる）。\n2. 朔弥の冤罪は、朔弥自身が内側から真実にたどり着くしか晴らせない（真実は彼の魂にしか残っていないから）。だからシエルは、答えを教えられない。教えれば書き換えは成立せず、むしろ押しつけた筋書きは“新たな歪み”になりかねない。「シエル＝ルナ」も答えの一部なので、自分の正体も言えない。彼を“自力でたどり着ける探偵”に育てながら、隣で待つしかない。\n   - 残酷な点：シエルは二人の過去を全部覚えている。朔弥は何も覚えていない。彼女はその記憶をひとりで背負って、厳しい先輩を装って隣にいます。\n3. 機会をうかがうが、朔弥の事件は抹消ゆえに迷宮空間が生まれない（傷跡ゼロ）。自然には永遠に開かない。\n4. 空間を“人工的に作る”技術を持つのはキャロルだけ（愉快犯が記録を歪めて迷宮を作っている＝堕落した技）。だからシエルは、寝返ったふりをしてニコラに潜入し、その技で“閉じた朔弥の事件”を無理やり開こうとする。\n   - 代償：裏切り者として失踪し、朔弥にすら「裏切った」と思わせる。彼を救う唯一の機会のために。"
+      "body": "**課題**：シエルが「ナハトの相棒」であり「孤島事件の令嬢（ナハトの最愛の人）」でもあるのは、ともすればご都合主義に見えます。これを“必然”に変えるための設計です。\n\n**解決の核（3点）**\n1. **偶然ではなく、彼女が探し出した**：シエルがナハトの相棒なのは、偶然ではありません。二人の絆に導かれ、彼女がナハトを探し出し、その側にいることを選んだから。\n2. **隠すものを2層に分ける（重要）**：\n   - 薄く匂わせる層（プレイヤーに見せる）：「シエルはナハトに、何か個人的な事情を抱えていそう」。これはチラ見せして、恋愛線の伏線にする。\n   - 最後まで伏せる層：「シエル＝最愛のルナ本人」「だから彼を見守っている」。この核心は、終盤まで絶対に悟らせない。\n   - → プレイヤーは「秘密がありそう」と感じつつ、まさか“本人”だとは思わない。だから終盤、ナハトが過去を取り戻すと同時に「相棒＝ルナだった」と判明する衝撃が最大化する。\n3. **関係をツンデレ→恋愛へ育て、その絶頂で裏切る**：\n   - 序盤：ツンツンした厳しい先輩。ナハトに辛く当たる。（この“厳しさ”の正体は切ない。本当は最愛の人なのに、正体も告げられず見守るしかない不器用さが、厳しさになっている）\n   - 中盤：事件を共にするうち不器用な優しさが見え、ナハトが相手として意識し始める。プレイヤーも一緒に惹かれていく。\n   - 最高潮：恋愛感情がピークに達した、まさにその時、シエルがキャロルへ寝返り失踪する。恋愛の絶頂で“裏切り”が来るので、衝撃と喪失感が最大になる。\n   - 終盤：寝返りは“彼を救うための潜入”だったと判明。さらに、彼女こそ最愛のルナ本人だったと明かされ、二重の衝撃になる。\n\n**相棒の扱い（基本シエル＋失踪中は代理）**\n- 基本の相棒は、ずっとシエル。\n- シエル失踪中（第4話の後〜最終話の途中）は、別キャラが一時的に相棒になる。シエルと正反対のタイプにして、喪失感とギャップを立てる。\n- この代理相棒は、最終話でナハトに同行する「別の探偵（実はキャロルの偽物）」と同一にできる（＝失踪中の代理が、実は敵だった、という二段の裏切り）。最初から敵にするか、途中までは本物の味方にするかは要検討。\n\n**どう魔界に来たか（確定：案②「彼女もまた被害者」）**\n孤島の後、ルナの人生も同じ敵に壊され、冤罪を負って魔界へ堕ちた。そこで彼女自身も魔界探偵になった。だから「迷宮空間に入れる（＝冤罪の共鳴）」「ナハトの先輩（＝先に探偵になった）」が自然に説明できます。\n\n**シエルの計画（魔界探偵になってから）**\n1. 探偵として調査するうち、キャロルの存在と、朔弥の事件が“抹消による冤罪”だと知る（抹消された事件は、やったキャロル側からしか知り得ない）。同時に、目の前の記憶を失った探偵こそ朔弥＝最愛の人だと気づく（記録は消えても、彼女は彼の魂を見分けられる）。\n2. 朔弥の冤罪は、朔弥自身が内側から真実にたどり着くしか晴らせない（真実は彼の魂にしか残っていないから）。だからシエルは、答えを教えられない。教えれば書き換えは成立せず、むしろ押しつけた筋書きは“新たな歪み”になりかねない。「シエル＝ルナ」も答えの一部なので、自分の正体も言えない。彼を“自力でたどり着ける探偵”に育てながら、隣で待つしかない。\n   - 残酷な点：シエルは二人の過去を全部覚えている。朔弥は何も覚えていない。彼女はその記憶をひとりで背負って、厳しい先輩を装って隣にいます。\n3. 機会をうかがうが、朔弥の事件は抹消ゆえに迷宮空間が生まれない（傷跡ゼロ）。自然には永遠に開かない。\n4. 空間を“人工的に作る”技術を持つのはキャロルだけ（愉快犯が記録を歪めて迷宮を作っている＝堕落した技）。だからシエルは、寝返ったふりをしてニコラに潜入し、その技で“閉じた朔弥の事件”を無理やり開こうとする。\n   - 代償：裏切り者として失踪し、朔弥にすら「裏切った」と思わせる。彼を救う唯一の機会のために。\n\n**シエルのキャラクター性（確定）**\n設計原則は、第4章のナハトと共通（土台は現世から地続き。傷は歪みを少し生むだけ）。\n\n- 一行で：**まっすぐ熱血。クールな先輩（のつもり）。**\n- 土台（現世から地続き）：真面目でまっすぐ。曲がったことが大嫌い。感情がすぐ顔に出る。融通がきかない。探偵小説好きのお転婆令嬢で、身分で人を分けない（だから使用人の朔弥と対等に謎解き遊びをし、恋に落ちた）。推理は苦手だが、「なんか変」という直感が鋭い。気合いと根性。喧嘩は強く、ナハトを守る側。弱い者への愛情が深い。\n- 傷が生んだ歪み：①「クールな先輩」の仮面を被ろうとする（正体を明かせない立場ゆえの演技。だが、まっすぐすぎて三秒で剥がれる。この“剥がれる”笑いは、実は彼女の傷そのもの）。②嘘と、歪んだ記録への、人一倍激しい怒り。\n- 一人称は「私」。\n\n**二人の掛け合い（基本形・確定）**\n- ナハトがボケ、シエルがツッコミ。情緒（シエル）×理性（ナハト）の組み合わせ。\n- 捜査では、シエルの直感「なんか変」が入口になり、ナハトの観察と推理が形にする。\n- 3人1組では：ゲスト（依頼者の魂）がボケる→シエルが表でツッコむ→ナハトが内心で追い打ち（そのまま捜査のフックを兼ねる）。\n- シエルのツッコミは、ただの塩対応ではない。「自力で真実に辿り着ける探偵に育てる」計画（本章）の実行。コメディが、そのまま愛の教育になる。"
     },
     {
       "id": "ds_08",
@@ -10834,7 +11219,7 @@
     {
       "id": "ds_09",
       "title": "8. 演出・構成の方針（プレイ体験）",
-      "body": "物語をどう「見せる」かの方針です。各話の設計は、必ずこれに従います。\n\n**① 世界設定は小出しにする（それ自体を引きにする）**\n魔界・魔界探偵・記録・キャロルの設定は深い。一度に説明すると説明くさく、重くなる。だから「事件を解くために、いま必要な分だけ」明かす。たとえば「記録を書き換えるとは何か」「なぜ探偵にしか迷宮に入れないのか」「キャロルとは何か」を、別々の回に小出しにする。世界の解明そのものが、もう一つのミステリになる。\n\n**② 3人1組で挑む（掛け合いをコミカルに）**\n各話は「主人公ナハト＋相棒＋その回の依頼者の魂」の3人1組で事件に挑む。依頼者の魂は毎回入れ替わる濃いゲストで、マンネリを防ぐ。ナハト（飄々・毒舌・内心ツッコミ）×相棒×個性的なゲストの掛け合いで、重いテーマを重くなりすぎないよう、コミカルに転がす。\n- 相棒は基本シエル（第6章）。シエル失踪中は代理相棒に交代する。\n\n**③ シエルの正体は予感させず、恋愛線で引っぱる（第6章）**\n「個人的事情を抱えていそう」は薄く匂わせるが、「＝ルナ本人」は最後まで伏せる。関係はツンデレ→恋愛へと育て、その絶頂で寝返り＝失踪の衝撃をぶつける。\n\n**④ 「救いの重み」は段階的に体感させる**\n第0話でも依頼者の魂は救う（操作と世界に慣れる回）。第1話は、救うとはどういうことかを、しみじみ実感させる回。つまり「初めて救う回」ではなく「救いの重みを初めて実感させる回」。\n\n**⑤ 毎話、「尊さの気づき」を必ず描く（作品の核＝第0章）**\n事件を解くだけで終わらせない。依頼者の魂とともに、現世の一日・一瞬の尊さに気づく――その感情の流れを、毎話必ず通す。これが謎解きと並ぶ、この作品の payoff。\n\n**⑥ プレイヤー目線の二つの問い（全シーン・全演出の検品基準）**\nすべてのシーン・セリフ・演出は、次の二つの問いで検品する。\n一、プレイヤー目線に立って、自然とゲームの世界観に没入できるか。\n二、初見プレイヤーが迷子にならないか（画面の情報だけで「いま誰が、どこで、何をすればいいか」が分かるか。ゲームを何も知らずに「はじめから」を押した人を基準にする）。\n作り手の都合（設定の消化、伏線の回収、チュートリアルの詰め込み）を、この二つの問いより優先してはならない。1シーンに背負わせる仕事は、原則1つ。\n\n**⑦ 体験メッセージは、言葉で説かない**\n作品の核（一日の尊さ）は、セリフやナレーションで総括せず、プレイ（現物・対比・選択）で運ぶ。教訓をまとめるセリフは置かない。"
+      "body": "物語をどう「見せる」かの方針です。各話の設計は、必ずこれに従います。\n\n**① 世界設定は小出しにする（それ自体を引きにする）**\n魔界・魔界探偵・記録・キャロルの設定は深い。一度に説明すると説明くさく、重くなる。だから「事件を解くために、いま必要な分だけ」明かす。たとえば「記録を書き換えるとは何か」「なぜ探偵にしか迷宮に入れないのか」「キャロルとは何か」を、別々の回に小出しにする。世界の解明そのものが、もう一つのミステリになる。\n\n**② 3人1組で挑む（掛け合いをコミカルに）**\n各話は「主人公ナハト＋相棒＋その回の依頼者の魂」の3人1組で事件に挑む。依頼者の魂は毎回入れ替わる濃いゲストで、マンネリを防ぐ。ナハト（飄々・毒舌・内心ツッコミ）×相棒×個性的なゲストの掛け合いで、重いテーマを重くなりすぎないよう、コミカルに転がす。\n- 相棒は基本シエル（第6章）。シエル失踪中は代理相棒に交代する。\n\n**③ シエルの正体は予感させず、恋愛線で引っぱる（第6章）**\n「個人的事情を抱えていそう」は薄く匂わせるが、「＝ルナ本人」は最後まで伏せる。関係はツンデレ→恋愛へと育て、その絶頂で寝返り＝失踪の衝撃をぶつける。\n\n**④ 「救いの重み」は段階的に体感させる**\n第0話でも依頼者の魂は救う（操作と世界に慣れる回）。第1話は、救うとはどういうことかを、しみじみ実感させる回。つまり「初めて救う回」ではなく「救いの重みを初めて実感させる回」。\n\n**⑤ 毎話、「尊さの気づき」を必ず描く（作品の核＝第0章）**\n事件を解くだけで終わらせない。依頼者の魂とともに、現世の一日・一瞬の尊さに気づく――その感情の流れを、毎話必ず通す。これが謎解きと並ぶ、この作品の payoff。\n\n**⑥ プレイヤー目線の二つの問い（全シーン・全演出の検品基準）**\nすべてのシーン・セリフ・演出は、次の二つの問いで検品する。\n一、プレイヤー目線に立って、自然とゲームの世界観に没入できるか。\n二、初見プレイヤーが迷子にならないか（画面の情報だけで「いま誰が、どこで、何をすればいいか」が分かるか。ゲームを何も知らずに「はじめから」を押した人を基準にする）。\n作り手の都合（設定の消化、伏線の回収、チュートリアルの詰め込み）を、この二つの問いより優先してはならない。1シーンに背負わせる仕事は、原則1つ。\n\n**⑦ 体験メッセージは、言葉で説かない**\n作品の核（一日の尊さ）は、セリフやナレーションで総括せず、プレイ（現物・対比・選択）で運ぶ。教訓をまとめるセリフは置かない。\n\n**⑧ セリフと演出は、ウィットとエンタメ性を基本スタンスにする**\n世界水準のミステリADVに伍する、機知に富んだ掛け合いと演出を、全編で狙う。\n一、笑いは「上品な毒」で。皮肉は強い者や理不尽に向け、弱い者には向けない。\n二、ギャグと伏線の二重機能を推奨する（笑える一言が、後で意味を持つ）。\n三、重いテーマほど、軽やかに運ぶ（本章②のコミカル方針と同根）。\n四、笑いは、キャラクターの性格から生む。状況説明のためのセリフに、笑いを貼り付けない。\n\n**⑨ 迷宮空間に、モブを置かない**\n迷宮空間は現世の忠実な再現であり、そこに出る人物は全員「数えられる関係者」でなければならない。名もない給仕や通行人を出さず、画面に登場する人物は、必ずその事件のキャストに割り当てる（フェアネスと、クローズドサークルの原則）。※魔界側の街（アケロシティ等）のモブは、この限りではない。"
     },
     {
       "id": "ds_10",
