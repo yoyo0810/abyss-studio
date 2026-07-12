@@ -519,13 +519,6 @@ html[data-fs="xl"] #app{ zoom: 1.3; }
 <div id="patchBanner" style="display:none;position:fixed;top:0;left:0;right:0;z-index:99999;padding:14px 16px;font-size:15px;font-weight:bold;white-space:pre-wrap;line-height:1.5;box-shadow:0 2px 12px rgba(0,0,0,.5)" onclick="this.style.display='none'"></div>
 <div class="bg"></div><div class="grain"></div>
 
-<div id="fsToggle" style="position:fixed;right:10px;bottom:10px;z-index:9999;display:flex;gap:4px;align-items:center;background:var(--surface,#14171f);border:1px solid var(--line,#2a3040);border-radius:10px;padding:5px 7px;box-shadow:0 2px 10px rgba(0,0,0,.35);font-family:var(--sans)">
-<span style="font-size:10px;color:var(--muted);margin-right:2px">文字</span>
-<button data-fs-set="s" style="font-size:11px;padding:3px 7px;border-radius:6px;border:1px solid var(--line,#2a3040);background:none;color:var(--text,#eee);cursor:pointer">小</button>
-<button data-fs-set="m" style="font-size:12px;padding:3px 8px;border-radius:6px;border:1px solid var(--line,#2a3040);background:none;color:var(--text,#eee);cursor:pointer">中</button>
-<button data-fs-set="l" style="font-size:13px;padding:3px 8px;border-radius:6px;border:1px solid var(--line,#2a3040);background:none;color:var(--text,#eee);cursor:pointer">大</button>
-<button data-fs-set="xl" style="font-size:14px;padding:3px 8px;border-radius:6px;border:1px solid var(--line,#2a3040);background:none;color:var(--text,#eee);cursor:pointer">特大</button>
-</div>
 
 <div id="app">
   <aside class="side">
@@ -542,10 +535,10 @@ html[data-fs="xl"] #app{ zoom: 1.3; }
     <nav class="nav" id="nav"></nav>
     <div class="savebar">
       <span class="dot" id="savedot"></span><span id="savetxt">自動保存 有効</span>
-      <button class="btn sm" id="gsavebtn" data-act="cloudsave" title="プロジェクトをGistへ保存" style="margin-left:8px">⬆ Gist保存</button>
-      <button class="btn sm" id="gloadbtn" data-act="cloudload" title="Gistから読み込み">⬇ 読込</button>
+      <button class="btn sm" id="gsavebtn" data-act="cloudsave" title="プロジェクトをGistへ保存" style="margin-left:8px;display:none">⬆ Gist保存</button>
+      <button class="btn sm" id="gloadbtn" data-act="cloudload" title="Gistから読み込み" style="display:none">⬇ 読込</button>
       <span id="hdrMsg" style="font-size:11px;color:var(--ember-soft,#caa24a);margin-left:6px;max-width:240px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap"></span>
-      <div class="themeswitch" id="themeswitch">
+      <div class="themeswitch" id="themeswitch" style="display:none">
         <button data-act="theme" data-mode="dark" title="夜・低輝度（暖色）">冥</button>
         <button data-act="theme" data-mode="light" title="昼・高輝度（暖色紙）">昼</button>
       </div>
@@ -579,6 +572,7 @@ const ICONS={
   copy:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/></svg>',
   dup:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M4 16V6a2 2 0 0 1 2-2h10"/></svg>',
   deliverable:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 14l2 2 4-4"/></svg>',
+  settings:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>',
 };
 const NAV=[
   {id:'series',ja:'シリーズ',en:'Series'},
@@ -591,6 +585,7 @@ const NAV=[
   {id:'deliverable',ja:'成果物',en:'Deliverable'},
   {sep:true},
   {id:'data',ja:'データ',en:'Data'},
+  {id:'settings',ja:'設定',en:'Settings'},
 ];
 const EP_SCOPED=['dash','scenes','chars','system','deliverable'];
 const STC=[
@@ -2637,6 +2632,34 @@ function renderNav(){
   nav.innerHTML=NAV.map(n=>n.sep?'<div class="navsep"></div>':`<button data-act="nav" data-id="${n.id}" class="${route===n.id?'on':''}">${ICONS[n.id]}<span>${n.ja}</span><span class="lbl-en">${n.en}</span></button>`).join('');
   tb.innerHTML=NAV.filter(n=>!n.sep).map(n=>`<button data-act="nav" data-id="${n.id}" class="${route===n.id?'on':''}">${ICONS[n.id]}<span>${n.ja}</span></button>`).join('');
 }
+function viewSettings(){
+  const th=(state.ui&&state.ui.theme==='light')?'light':'dark';
+  let fs='m'; try{ fs=localStorage.getItem('abyssFS')||'m'; }catch(e){}
+  const fsBtn=(v,lbl)=>'<button class="btn '+(fs===v?'pri':'')+'" data-act="fsset" data-fs="'+v+'" style="min-width:64px">'+lbl+'</button>';
+  const thBtn=(v,lbl)=>'<button class="btn '+((th===v)?'pri':'')+'" data-act="theme" data-mode="'+v+'" style="min-width:120px">'+lbl+'</button>';
+  return `
+  <div class="panel">
+    <div class="panel-t">設定 <span class="en">SETTINGS</span></div>
+    <div class="panel-sub" style="margin-bottom:18px">表示に関する設定をまとめています。ここでの変更は、この端末のブラウザに保存されます（データ本体には影響しません）。</div>
+
+    <div class="fld" style="margin-bottom:22px">
+      <span class="lt">文字サイズ</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        ${fsBtn('s','小')}${fsBtn('m','中')}${fsBtn('l','大')}${fsBtn('xl','特大')}
+      </div>
+      <div class="panel-sub" style="margin-top:8px">画面全体の文字の大きさを変えます。</div>
+    </div>
+
+    <div class="fld" style="margin-bottom:22px">
+      <span class="lt">画面テーマ</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        ${thBtn('dark','冥（夜・低輝度）')}${thBtn('light','昼（高輝度・暖色紙）')}
+      </div>
+      <div class="panel-sub" style="margin-top:8px">明るい／暗いの切り替えです。</div>
+    </div>
+  </div>`;
+}
+
 function render(){
   renderNav();applyTheme();pendingDelete=null;
   renderRestoreBanner();
@@ -2650,6 +2673,7 @@ function render(){
   else if(route==='system')v.innerHTML=viewSystem();
   else if(route==='deliverable')v.innerHTML=viewDeliverable();
   else if(route==='data')v.innerHTML=viewData();
+  else if(route==='settings')v.innerHTML=viewSettings();
   const m=$('#main');if(m&&!(route==='scenes'&&currentScene))m.scrollTop=0; if(route!=='scenes')window.scrollTo(0,0);
   autosizeAll(); if(typeof requestAnimationFrame!=='undefined')requestAnimationFrame(autosizeAll);
 }
@@ -3767,6 +3791,7 @@ document.addEventListener('click',e=>{
   const t=e.target.closest('[data-act]');if(!t)return;
   const a=t.dataset.act,id=t.dataset.id;
   if(a==='nav'){route=id;currentScene=null;insertIdx=insertScene=null;render();return;}
+  if(a==='fsset'){const v=el.getAttribute('data-fs')||'m';document.documentElement.setAttribute('data-fs',v);try{localStorage.setItem('abyssFS',v);}catch(e){}if(route==='settings')render();return;}
   if(a==='theme'){state.ui.theme=t.dataset.mode==='light'?'light':'dark';scheduleSave();applyTheme();if(route==='data')render();return;}
   if(a==='afexpand'){const ta=t.previousElementSibling;if(ta&&ta.tagName==='TEXTAREA'){ta.classList.toggle('expanded');autosizeOne(ta);}return;}
   if(a==='editep'){state.activeEp=id;openBeat=openChar=currentScene=null;route='dash';scheduleSave();render();return;}
