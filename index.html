@@ -503,16 +503,12 @@ textarea.line-ta{min-height:0;max-width:22em;overflow-y:hidden;resize:none;line-
   svg.curve path.line{stroke-dashoffset:0!important;animation:none!important}
 }
 
-/* === 文字サイズ切替（全体ズーム） === */
-html[data-fs="s"] #app{ zoom: 0.9; }
-html[data-fs="m"] #app{ zoom: 1.0; }
-html[data-fs="l"] #app{ zoom: 1.15; }
-html[data-fs="xl"] #app{ zoom: 1.3; }
-@supports not (zoom: 1){
-  html[data-fs="s"] #app{ transform:scale(.9); transform-origin:top left; width:111.1%; }
-  html[data-fs="l"] #app{ transform:scale(1.15); transform-origin:top left; width:86.9%; }
-  html[data-fs="xl"] #app{ transform:scale(1.3); transform-origin:top left; width:76.9%; }
-}
+/* === 文字サイズ切替（本文域のみ・安全版） === */
+/* zoomはレイアウト崩れを避けるため #view（作業本文）だけに限定 */
+html[data-fs="s"] #view{ zoom: 0.92; }
+html[data-fs="m"] #view{ zoom: 1.0; }
+html[data-fs="l"] #view{ zoom: 1.12; }
+html[data-fs="xl"] #view{ zoom: 1.24; }
 </style>
 </head>
 <body>
@@ -4355,27 +4351,13 @@ function doImport(){
 })();
 </script>
 
+
+
 <script>
-(function(){
-  var root=document.documentElement;
-  function setFS(v){ root.setAttribute('data-fs', v);
-    try{ localStorage.setItem('abyssFS', v); }catch(e){}
-    var box=document.getElementById('fsToggle');
-    if(box){ box.querySelectorAll('button').forEach(function(b){
-      var on=b.getAttribute('data-fs-set')===v;
-      b.style.background = on ? 'var(--ember,#bd7916)' : 'none';
-      b.style.color = on ? '#1a1205' : 'var(--text,#eee)';
-      b.style.fontWeight = on ? '700' : '400';
-    }); }
-  }
-  var saved='m';
-  try{ saved=localStorage.getItem('abyssFS')||'m'; }catch(e){}
-  document.addEventListener('click', function(e){
-    var b=e.target.closest('[data-fs-set]');
-    if(b){ setFS(b.getAttribute('data-fs-set')); }
-  });
-  document.addEventListener('DOMContentLoaded', function(){ setFS(saved); });
-  setFS(saved);
+/* 文字サイズの初期適用（設定タブと一本化。fssetハンドラが本体側にある） */
+(function __fsInit(){
+  try{ var v=localStorage.getItem('abyssFS')||'m'; document.documentElement.setAttribute('data-fs', v); }
+  catch(e){ document.documentElement.setAttribute('data-fs','m'); }
 })();
 </script>
 </body>
