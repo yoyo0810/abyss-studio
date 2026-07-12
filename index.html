@@ -3690,6 +3690,7 @@ function viewData(){
 
   <div class="panel">
     <div class="panel-t">index.html をGitHubへアップ <span class="en">Update App</span></div>
+    <div style="font-family:var(--mono);font-size:14px;color:var(--ember,#bd7916);font-weight:700;margin:10px 0 4px;padding:7px 14px;background:var(--ember-glow,rgba(231,169,72,.14));border:1px solid rgba(231,169,72,.35);border-radius:8px;display:inline-block">🛠 ツール本体バージョン：v15</div>
     <div class="panel-sub">Claudeが新しい <b>index.html</b> を出したとき、ここから差し替えます（GitHubへ直接アップ→Pagesが自動更新）。<b>ファイルを選ぶ方式</b>が確実です（index.htmlは大きく、貼り付けは失敗しやすいため）。</div>
     <div class="toolbar" style="margin-top:8px">
       <button class="btn pri" data-act="pickindexfile">⬆ ファイルを選んでアップ</button>
@@ -3722,8 +3723,7 @@ function viewData(){
       <input class="io-in" id="gistIdInput" placeholder="別端末では既存IDをここに貼る" style="flex:1;min-width:180px">
       <button class="btn ghost" data-act="cloudsetid">IDを設定</button>
     </div>
-    <div style="font-family:var(--mono);font-size:12px;color:var(--ember,#bd7916);font-weight:700;margin:0 0 8px;padding:4px 10px;background:var(--ember-glow,rgba(231,169,72,.12));border-radius:6px;display:inline-block">ツール本体バージョン：v14</div>
-      <div class="layer-lbl" style="margin:16px 0 6px">GitHubリポジトリ（project.json / index.html の保存先）</div>
+    <div class="layer-lbl" style="margin:16px 0 6px">GitHubリポジトリ（project.json / index.html の保存先）</div>
     <div style="display:flex;gap:8px;flex-wrap:wrap">
       <input class="io-in" id="repoOwnerInput" placeholder="owner（例 yoyo0810）" value="${rc.owner}" style="flex:1;min-width:120px">
       <input class="io-in" id="repoNameInput" placeholder="repo（例 abyss-studio）" value="${rc.repo}" style="flex:1;min-width:120px">
