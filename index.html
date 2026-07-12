@@ -3671,7 +3671,6 @@ function viewData(){
   <div class="panel">
     <div class="panel-t">AIの変更を適用 <span class="en">Apply AI Patch</span></div>
     <div class="panel-sub">Claudeが返した「差分パッチ」を貼って適用します。プロジェクト全文ではなく変更点だけなので軽量です。適用後は自動保存され、必要なら「⬆ Gistへ保存」も押してください。</div>
-    <div style="font-family:var(--mono);font-size:10px;color:var(--ember-soft,#caa24a);margin:2px 0 4px">build: v10（結果バナー対応）</div>
     <textarea class="io-ta" id="patchTA" placeholder='Claudeが出力した {"abyssPatch":1,"ops":[...]} を貼り付け…' style="min-height:120px;margin-top:8px"></textarea>
     <div class="toolbar"><button class="btn pri" data-act="applypatch">差分を適用</button></div>
     <div id="patchMsg" style="font-size:12px;color:var(--ember-soft,#caa24a);margin-top:8px;white-space:pre-wrap;min-height:16px"></div>
@@ -3723,7 +3722,8 @@ function viewData(){
       <input class="io-in" id="gistIdInput" placeholder="別端末では既存IDをここに貼る" style="flex:1;min-width:180px">
       <button class="btn ghost" data-act="cloudsetid">IDを設定</button>
     </div>
-    <div class="layer-lbl" style="margin:16px 0 6px">GitHubリポジトリ（project.json / index.html の保存先）</div>
+    <div style="font-family:var(--mono);font-size:12px;color:var(--ember,#bd7916);font-weight:700;margin:0 0 8px;padding:4px 10px;background:var(--ember-glow,rgba(231,169,72,.12));border-radius:6px;display:inline-block">ツール本体バージョン：v14</div>
+      <div class="layer-lbl" style="margin:16px 0 6px">GitHubリポジトリ（project.json / index.html の保存先）</div>
     <div style="display:flex;gap:8px;flex-wrap:wrap">
       <input class="io-in" id="repoOwnerInput" placeholder="owner（例 yoyo0810）" value="${rc.owner}" style="flex:1;min-width:120px">
       <input class="io-in" id="repoNameInput" placeholder="repo（例 abyss-studio）" value="${rc.repo}" style="flex:1;min-width:120px">
@@ -3787,7 +3787,7 @@ document.addEventListener('click',e=>{
   const t=e.target.closest('[data-act]');if(!t)return;
   const a=t.dataset.act,id=t.dataset.id;
   if(a==='nav'){route=id;currentScene=null;insertIdx=insertScene=null;render();return;}
-  if(a==='fsset'){const v=el.getAttribute('data-fs')||'m';document.documentElement.setAttribute('data-fs',v);try{localStorage.setItem('abyssFS',v);}catch(e){}if(route==='settings')render();return;}
+  if(a==='fsset'){const v=t.dataset.fs||'m';document.documentElement.setAttribute('data-fs',v);try{localStorage.setItem('abyssFS',v);}catch(e){}if(route==='settings')render();return;}
   if(a==='theme'){state.ui.theme=t.dataset.mode==='light'?'light':'dark';scheduleSave();applyTheme();if(route==='data')render();return;}
   if(a==='afexpand'){const ta=t.previousElementSibling;if(ta&&ta.tagName==='TEXTAREA'){ta.classList.toggle('expanded');autosizeOne(ta);}return;}
   if(a==='editep'){state.activeEp=id;openBeat=openChar=currentScene=null;route='dash';scheduleSave();render();return;}
